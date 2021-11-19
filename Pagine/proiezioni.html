@@ -5,52 +5,54 @@
 </head>
 
 <body>
+    
     <header>
-        <label for="anno">Seleziona edizione</label>
-        <select id="anno" name="anno">
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-            <option value="2017">2017</option>
-            <option value="2016">2016</option>
-            <option value="2015">2015</option>
-            <option value="2014">2014</option>
-        </select>
     </header>
 
     <div class="content">
-        <h1>Lista Film</h1>
+        <h1>Proiezioni</h1>
 
         <h3>Filtra per</h3>
 
         <form id="filters">
             <label for="nomeFilm">Nome</label>
             <input type="text" name="nomeFilm" id="nomeFilm"/>
-
+            
+            <label for="dataInizio">Data inizio</label>
+            <input type="date" name="dataInizio" id="dataInizio"/>
+            
+            <label for="dataFine">Data fine</label>
+            <input type="date" name="dataFine" id="dataFine"/>
+    
             <label for="gara">Tipo Film</label>
             <select name="gara" id="gara">
                 <option value="tutti">Tutti</option>
                 <option value="gara">In gara</option>
                 <option value="noGara">Non in gara</option>
             </select>
-
+    
             <button type="submit" form="filters">Filtra</button>
         </form>
 
         <ul>
             <li class="inGara">
                 <h3>Gilberto Filè, l'addio</h3>
-                <h5>a cura di Alessandro Sperduti e Caterina Sartori</h5>
-                <input type="checkbox" name="like" id="like"/>
+                <h5>Alessandro Sperduti e Caterina Sartori</h5>
+                <p>25/12/2021</p>
+                <p>21:00</p>
+                <a href="./acquistaBiglietti.html?id=film1">Acquista Biglietti</a>
             </li>
             <li class="noGara">
                 <h3>Il Padrino</h3>
                 <h5>Francis Ford Coppola</h5>
+                <p>27/12/2021</p>
+                <p>17:30</p>
+                <a href="./acquistaBiglietti.html?id=film2">Acquista Biglietti</a>
             </li>
         </ul>
 
     </div>
 
     <footer></footer>
+
 </body>
