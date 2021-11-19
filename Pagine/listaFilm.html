@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-
+    <meta name="keywords" content="film lista edizione filtra"/>
 </head>
 
 <body>
@@ -19,7 +19,44 @@
         </select>
     </header>
 
-    <div class="content"></div>
+    <div class="content">
+        <h1>Lista Film</h1>
+
+        <h3>Filtra per</h3>
+
+        <form id="filters">
+            <label for="nomeFilm">Nome</label>
+            <input type="text" name="nomeFilm" id="nomeFilm"/>
+            
+            <label for="dataInizio">Data inizio</label>
+            <input type="date" name="dataInizio" id="dataInizio"/>
+            
+            <label for="dataFine">Data fine</label>
+            <input type="date" name="dataFine" id="dataFine"/>
+
+            <label for="gara">Tipo Film</label>
+            <select name="gara" id="gara">
+                <option value="tutti">Tutti</option>
+                <option value="gara">In gara</option>
+                <option value="noGara">Non in gara</option>
+            </select>
+
+            <button type="submit" form="filters">Filtra</button>
+        </form>
+
+        <ul>
+            <li class="inGara">
+                <h3>Nome</h3>
+                <h5>Autore</h5>
+                <input type="checkbox" name="like" id="like"/>
+            </li>
+            <li class="noGara">
+                <h3>Nome</h3>
+                <h5>Autore</h5>
+            </li>
+        </ul>
+
+    </div>
 
     <footer></footer>
 </body>
