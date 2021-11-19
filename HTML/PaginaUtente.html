@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <title>Utente</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta name="title" content="Account Utente" />
+    <meta name="description" content="Pagina per vedere e modificare i propri dati utente e biglietti" />
+    <meta name="keywords" content="impostazioni, utente, account, password, email, biglietti" />
+    <meta name="language" content="italian it" />
+    <meta name="author" content="TODO" /><!--TODO nome autore-->
+</head>
+<body>
+
+    <div id="Info">
+            <h1>Informazioni Account</h1>
+            <form> <!--TODO aggiungi action e method-->
+                <fieldset>
+                    <legend>Informazioni Personali</legend>
+                    <label for="nome">Nome</label>
+                    <input id="nome" name="nome" type="text">
+                    <label for="cognome">Cognome</label>
+                    <input id="cognome" name="cognome" type="text">
+                    <label for="dataNascita">Data di nascita</label>
+                    <input id="dataNascita" name="dataNascita" type="text">
+                </fieldset>
+
+                <fieldset>
+                    <legend>Informazioni Account</legend>
+                    <p>
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email">
+                    </p>
+                    <p>
+                        <label for="password">Password</label>
+                        <input id="password" name="password" type="password">
+                    </p>
+                    <button>OK</button>
+                    <button>Reset</button>
+                </fieldset>
+            </form>
+    </div>
+
+    <div id="biglietti">
+        <ul>
+            <li class="ticket">
+                <p>
+                    <span class="ticket-up">film</span>
+                    <span class="ticket-up">#numero biglietto</span>
+                </p><!--TODO replace with php-->
+                <p>
+                    <span class="ticket-low">Luogo</span>
+                    <span class="ticket-low">Orario</span>
+                </p><!--TODO replace with php-->
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
