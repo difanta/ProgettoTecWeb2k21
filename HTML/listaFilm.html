@@ -2,7 +2,7 @@
 <html lang="it">
 
 <head>
-    <meta name="charset" content="utf-8">
+    <meta charset="utf-8">
 
     <title>Lista Film</title>
     <meta name="keywords" content="film lista edizione info">
@@ -29,7 +29,7 @@
     <div class="content">
         <h1>Lista Film</h1>
 
-        <h3>Filtra per</h3>
+        <p>Filtra per</p>
 
         <form id="filtriFilm">
             <label for="nomeFilm">Nome</label>
@@ -47,15 +47,19 @@
 
         <ul id="listaFilm">
             <li class="inGara">
-                <h3 title="Titolo">Gilberto Filè, l'addio</h3>
-                <h5 title="Registi">a cura di Alessandro Sperduti e Caterina Sartori</h5>
+                <strong title="Titolo">Gilberto Filè, l'addio</strong>
+                <em title="Registi">a cura di Alessandro Sperduti e Caterina Sartori</em>
+                
                 <input type="checkbox" name="like" id="like"/>
+                <label for="like">Like</label>
+
                 <a href="./gilbertofileladdio.html">Info</a>
                 <a href="./proiezioni.html?nomeFilm=gilbertofileladdio">Biglietti</a>
             </li>
             <li class="noGara">
-                <h3 title="Titolo">Il Padrino</h3>
-                <h5 title="Regista">Francis Ford Coppola</h5>
+                <strong title="Titolo">Il Padrino</strong>
+                <em title="Regista">Francis Ford Coppola</em>
+
                 <a href="./ilpadrino.html">Info</a>
                 <a href="./proiezioni.html?nomeFilm=ilpadrino">Biglietti</a>
             </li>
