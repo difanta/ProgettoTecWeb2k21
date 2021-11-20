@@ -1,7 +1,14 @@
 <!DOCTYPE html>
+<html lang="it">
 
 <head>
-    <meta name="keywords" content="film lista edizione filtra"/>
+    <meta name="charset" content="utf-8">
+
+    <title>Lista Film</title>
+    <meta name="keywords" content="film lista edizione info">
+    <meta name="description" content="lista dei film di una certa edizione">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="TODO">
 </head>
 
 <body>
@@ -24,7 +31,7 @@
 
         <h3>Filtra per</h3>
 
-        <form id="filters">
+        <form id="filtriFilm">
             <label for="nomeFilm">Nome</label>
             <input type="text" name="nomeFilm" id="nomeFilm"/>
 
@@ -35,22 +42,27 @@
                 <option value="noGara">Non in gara</option>
             </select>
 
-            <button type="submit" form="filters">Filtra</button>
+            <button type="submit" form="filtriFilm">Filtra</button>
         </form>
 
-        <ul>
+        <ul id="listaFilm">
             <li class="inGara">
-                <h3>Gilberto Filè, l'addio</h3>
-                <h5>a cura di Alessandro Sperduti e Caterina Sartori</h5>
+                <h3 title="Titolo">Gilberto Filè, l'addio</h3>
+                <h5 title="Registi">a cura di Alessandro Sperduti e Caterina Sartori</h5>
                 <input type="checkbox" name="like" id="like"/>
+                <a href="./gilbertofileladdio.html">Info</a>
+                <a href="./proiezioni.html?nomeFilm=gilbertofileladdio">Biglietti</a>
             </li>
             <li class="noGara">
-                <h3>Il Padrino</h3>
-                <h5>Francis Ford Coppola</h5>
+                <h3 title="Titolo">Il Padrino</h3>
+                <h5 title="Regista">Francis Ford Coppola</h5>
+                <a href="./ilpadrino.html">Info</a>
+                <a href="./proiezioni.html?nomeFilm=ilpadrino">Biglietti</a>
             </li>
         </ul>
-
     </div>
 
-    <footer></footer>
+    <footer>
+    </footer>
 </body>
+</html>

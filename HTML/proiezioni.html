@@ -1,11 +1,17 @@
 <!DOCTYPE html>
+<html lang="it">
 
 <head>
+    <meta name="charset" content="utf-8">
+
+    <title>Proiezioni</title>
     <meta name="keywords" content="proiezioni acquista filtra"/>
+    <meta name="description" content="lista delle proiezioni nel programma prossimamente">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="TODO">
 </head>
 
 <body>
-    
     <header>
     </header>
 
@@ -14,7 +20,7 @@
 
         <h3>Filtra per</h3>
 
-        <form id="filters">
+        <form id="filtriProiezioni">
             <label for="nomeFilm">Nome</label>
             <input type="text" name="nomeFilm" id="nomeFilm"/>
             
@@ -31,30 +37,30 @@
                 <option value="noGara">Non in gara</option>
             </select>
     
-            <button type="submit" form="filters">Filtra</button>
+            <button type="submit" form="filtriProiezioni">Filtra</button>
         </form>
 
-        <ul>
+        <ul id="listaProiezioni">
             <li class="inGara">
-                <h3>Gilberto Filè, l'addio</h3>
-                <h5>Alessandro Sperduti e Caterina Sartori</h5>
+                <h3 title="Titolo">Gilberto Filè, l'addio</h3>
+                <h5 title="Registi">Alessandro Sperduti e Caterina Sartori</h5>
                 <p>25/12/2021</p>
                 <p>21:00</p>
                 <p>Sala 1</p>
-                <a href="./acquistaBiglietti.html?id=film1"><strong>Acquista Biglietti</strong></a>
+                <a href="./acquistaBiglietti.html?id=$idProiezione"><strong>Acquista Biglietti</strong></a>
             </li>
             <li class="noGara">
-                <h3>Il Padrino</h3>
-                <h5>Francis Ford Coppola</h5>
+                <h3 title="Titolo">Il Padrino</h3>
+                <h5 title="Regista">Francis Ford Coppola</h5>
                 <p>27/12/2021</p>
                 <p>17:30</p>
                 <p>Sala 3 - Ovest</p>
-                <a href="./acquistaBiglietti.html?id=film2"><strong>Acquista Biglietti</strong></a>
+                <a href="./acquistaBiglietti.html?id=$idProiezione"><strong>Acquista Biglietti</strong></a>
             </li>
         </ul>
-
     </div>
 
-    <footer></footer>
-
+    <footer>
+    </footer>
 </body>
+</html>
