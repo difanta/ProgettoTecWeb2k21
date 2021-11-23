@@ -22,47 +22,68 @@
     <div id="content">
         <h1>Acquisto biglietti</h1>
 
+        <!-- da nasondere o mostrare se l'utente è loggato o meno -->
+
+        <p>Per poter acquistare un biglietto devi prima effettuare il login</p>
+
+        <button onclick="">Login</button>
+        <div id="login">
+            <form>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email">
+                
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password">
+                <button>accedi</button>
+            </form>
+        </div>
+        
+        <div id="signin">
+            <form>
+
+                <label for="nome">Nome</label>
+                <input id="nome" name="nome" type="text">
+                <label for="cognome">Cognome</label>
+                <input id="cognome" name="cognome" type="text">
+                <label for="dataNascita">Data di nascita</label>
+                <input id="dataNascita" name="dataNascita" type="text">
+                
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password">
+                <label for="password">ridigita la password</label>
+                <input id="password" name="password" type="password">
+
+                <button>registrati</button>
+            </form>
+        </div>
+
+        <h2>Riepilogo ordine</h2>
+
+        <!-- i dati seguenti verrano poi inseriti dinmicamente -->
+
+        <h2 title="Titolo">Gilberto Filè, l'addio</h2>
+        <em title="Registi">Alessandro Sperduti e Caterina Sartori</em>
         <p>
-            Paragrafo che spiega un attimo come funzionano i biglietti?
+            <span class="data">25/12/2021</span>
+            <span class="ora">21:00</span>
+            <span class="luogo">Sala 1</span>
+            <span class="prezzo">7.00€</span>
         </p>
 
+
+        <p>Seleziona il metodo di pagamento:</p>
         <form action="http://server/path/file.cgi" method="post">
 
-            <fieldset>
-                <legend>Dati utente</legend>
+            <input type="radio" id="carta_di_credito" name="metodo_pagamento" value="Carta di credito">
+            <label for="Carta di credito">Carta di credito</label><br>
+            <input type="radio" id="paypal" name="metodo_pagamento" value="PayPal">
+            <label for="PayPal">PayPal</label><br>
+            <input type="radio" id="satispay" name="metodo_pagamento" value="satispay">
+            <label for="satispay">Satispay</label><br>
 
-                <label for="nome">Nome</label><br>
-                <input type="text" name="nome" id="nome"/><br>
-                <label for="cognome">Cognome</label><br>
-                <input type="text" name="cognome" id="cognome"/><br>
-                <label for="email">Email</label><br>
-                <input type="text" name="email" id="email"><br>
-            </fieldset>
-
-            <fieldset>
-                <legend>Selezione film</legend>
-
-                <label for="nfilm">Film</label><br>
-                <select name="nfilm" id="nfilm">
-                    <option>Film 1</option>
-                    <option>Film 2</option>
-                    <option>Film 3</option>
-                    <option>Film 4</option>
-                    <option>Film 5</option>
-                    <option>Film 6</option>
-                    <option>Film 7</option>
-                </select><br>
-                <label for="ofilm">Orario proiezione</label><br>
-                <select name="ofilm" id="ofilm">
-                    <option>Orario 1</option>
-                </select><br>
-
-                <label for="nbiglietti">Quantità biglietti</label><br>
-                <input type="number" name="nbiglietti" id="nbiglietti" value="1"><br>
-
-            </fieldset>
-
-            <input type="submit" value="Acquista">
+            <input type="submit" value="Vai al pagamento">
         </form>
 
     </div>
