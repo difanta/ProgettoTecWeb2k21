@@ -16,8 +16,60 @@
 </head>
     
 <body> 
-    <header></header>
-    
+    <header>
+        <h1>FestivalDiCinema</h1>
+
+        <nav id="menu">
+            <ul>
+                <li lang="en"><a href="index.html">Home</a></li>
+                <li lang="en"><a href="AboutUs.html">About us</a></li>
+                <li><a href="listaFilm.html">Film</a></li>
+                <li><a href="proiezioni.html">Programma</a></li>
+                <li><a href="ComeTrovarci.html">Come Trovarci</a></li>
+                <li><a href="IlContest.html">Il Contest</a></li>
+            </ul>
+        </nav>
+
+        <button onclick="">Login</button>
+        <button onclick="">Registrati</button>
+        <div id="login">
+            <form>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email">
+                
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password">
+                <button>accedi</button>
+            </form>
+        </div>
+
+        <div id="signup">
+            <form>
+
+                <label for="nome">Nome</label>
+                <input id="nome" name="nome" type="text">
+                <label for="cognome">Cognome</label>
+                <input id="cognome" name="cognome" type="text">
+                <label for="dataNascita">Data di nascita</label>
+                <input id="dataNascita" name="dataNascita" type="text">
+                
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password">
+                <label for="password">ridigita la password</label>
+                <input id="password" name="password" type="password">
+
+                <button>registrati</button>
+            </form>
+        </div>
+
+        <div id="breadcrumb">
+            <p>Ti trovi in: <span lang="en">Home</span></p>
+        </div>
+
+    </header>
+        
     <div id="content">
         <p id="homeDescription">
             Il festival di cinema indipendente di Padova, dal 12 al 18 settembre 2021
@@ -73,6 +125,17 @@
         </ul>
     </div>
 
-    <footer></footer>
+    <footer>
+        <img id="htmlvalid" src="../images/HTML5_certified.png" alt="" lang="en"/>
+        <img id="cssvalid" src="../images/vcss-blue.gif" alt="" lang="en"/>
+        <a href="TODO">Pannello admin</a>
+        <ul id="studenti">
+            <li>Alberto</li>
+            <li>Giovanni</li>
+            <li>Luca</li>
+            <li>Tommaso</li>
+        </ul>
+        <p>&copy; Copyright 2021</p>
+    </footer>
 </body>
 </html>
