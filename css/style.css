@@ -2,15 +2,56 @@
 
 header {
     position: sticky;
-    top: 2em;
+    top: 0em;
     z-index: 1;
+
     background-color: grey;
     opacity: 0.97;
+    
     text-align: center;
 }
 
-header form {
-    display: none;
+header h1 {
+    margin: auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+header #menu ul {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    width: 100%;
+    padding-left: 0em;
+    margin: auto;
+
+    list-style-type: none;
+}
+
+header #menu li {
+    width: 12%;
+}
+
+header #menu li a {
+    display: block;
+    padding-top: 0.5em;
+    padding-bottom: 0.2em;
+
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+header #menu li:first-of-type a {
+    border-left: 2px solid black;
 }
 
 header #breadcrumb {
@@ -18,34 +59,25 @@ header #breadcrumb {
     background-color: indianred;
 }
 
-header nav ul {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    justify-content: center;
-    padding-left: 0px;
-    width: 90%;
-    float: left;
-    margin: auto;
-    margin-top: 0.5em;
-    list-style-type: none;
+header #breadcrumb p {
+    padding: 0.1em 0em;
+    margin: 0em 0em;
+} 
+
+
+header form {
+    display: none;
 }
 
-header nav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding-left: 3em;
-    padding-right: 3em;
-    padding: 0.5em 3em 0em 3em;
-    text-decoration: none;
-    border: 2px solid black;
-    border-left: none;
-    border-bottom: none;
+header #loginBtn {
+    position: absolute;
+    display: none;
 }
 
-header nav li:first-of-type a {
-    border-left: 2px solid black;
+header #singupBtn {
+    position: absolute;
+    display: none;
 }
+
 
 /* ---HEADER */
