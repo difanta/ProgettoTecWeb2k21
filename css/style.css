@@ -13,8 +13,14 @@ header {
 
 header h1 {
     margin: auto;
+    font-size: 2em;
     padding-top: 1em;
     padding-bottom: 1em;
+}
+
+header #menu {
+    margin-right: 0%;
+    width: 100%;
 }
 
 header #menu ul {
@@ -32,13 +38,15 @@ header #menu ul {
 }
 
 header #menu li {
-    width: 13%;
+    width: 16.666%;
 }
 
 header #menu li a {
     display: block;
     padding-top: 0.8em;
     padding-bottom: 0.4em;
+
+    border-top: 1px solid rgba(92, 92, 92, 0.5);
 
     text-decoration: none;
     color: white;
@@ -49,13 +57,13 @@ header #menu li a {
     transition: 0.5s ease-out;
 }
 
-header #menu li:first-of-type a {
+/*header #menu li:first-of-type a {
     border-left: 2px solid black;
 }
 
 header #menu li:last-of-type a {
     border-right: 2px solid black;
-}
+}*/
 
 header #menu li a:hover {
     background-color: rgb(74, 74, 74);
@@ -76,14 +84,15 @@ header form {
     display: none;
 }
 
-header #loginBtn {
+header #loginButtons {
     position: absolute;
-    display: none;
+    top: 18%;
+    right: 2%;
 }
 
-header #singupBtn {
-    position: absolute;
-    display: none;
+header #loginButtons button {
+    margin-right: 0.1em;
+    margin-left: 0.1em;
 }
 
 
