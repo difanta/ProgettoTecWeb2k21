@@ -1,3 +1,5 @@
+/* HEADER */
+
 header {
     position: sticky;
     top: 2em;
@@ -45,3 +47,5 @@ header nav li a {
 header nav li:first-of-type a {
     border-left: 2px solid black;
 }
+
+/* ---HEADER */
