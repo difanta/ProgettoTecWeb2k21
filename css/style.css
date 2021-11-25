@@ -54,7 +54,7 @@ header #menu li a {
     white-space: nowrap;
     overflow: hidden;
 
-    transition: 0.5s ease-out;
+    transition: background-color 0.5s ease-out;
 }
 
 header #menu li a:hover {
