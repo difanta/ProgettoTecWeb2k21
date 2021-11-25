@@ -1,0 +1,47 @@
+header {
+    position: sticky;
+    top: 2em;
+    z-index: 1;
+    background-color: grey;
+    opacity: 0.97;
+    text-align: center;
+}
+
+header form {
+    display: none;
+}
+
+header #breadcrumb {
+    text-align: left;
+    background-color: indianred;
+}
+
+header nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    padding-left: 0px;
+    width: 90%;
+    float: left;
+    margin: auto;
+    margin-top: 0.5em;
+    list-style-type: none;
+}
+
+header nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding-left: 3em;
+    padding-right: 3em;
+    padding: 0.5em 3em 0em 3em;
+    text-decoration: none;
+    border: 2px solid black;
+    border-left: none;
+    border-bottom: none;
+}
+
+header nav li:first-of-type a {
+    border-left: 2px solid black;
+}
