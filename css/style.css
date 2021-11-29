@@ -149,5 +149,86 @@ header button:active {
     background-color: rgba(150, 150, 150, 0.822);
 }
 
-
 /* ---HEADER */
+
+
+/* CONTENT */
+
+#homeDescription{
+    text-align: center;
+    font-size: 1.8em;
+}
+
+#content h2{
+    text-align: center;
+}
+
+#filmPopolari{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    width: 100%;
+    padding-left: 0em;
+    margin: auto;
+
+    list-style-type: none;
+    
+}
+
+#filmPopolari li{
+    width: 10%;
+    padding-top: 10%;
+    position: relative;
+    margin: 0 7px 0 7px;
+    border: solid black 1px;
+}
+
+#acquistoBiglietti{
+    max-width: 1024px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    width: 100%;
+    padding-left: 0;
+    padding: 1em;
+    margin: auto;
+    border: solid black 1px;
+    border-radius: 15px;
+
+    list-style-type: none;
+}
+
+#acquistoBiglietti li{
+
+    width: 12%;
+    padding-top: 12%;
+    position: relative;
+    margin: 0px 5px 0px 5px;
+    border: solid black 1px;
+    border-radius: 10%;
+    background-color: indianred;
+    transition: background-color 0.4s ease-out;
+}
+
+ #acquistoBiglietti li:hover{
+     background-color: rgb(194, 40, 40);
+ }
+
+#acquistoBiglietti li p{
+    position: absolute;
+    text-align: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/* ---CONTENT */
+
+/* FOOTER */
+
+/* ---FOOTER */
