@@ -21,6 +21,9 @@ header h1 {
     font-size: 2em;
     padding-top: 1em;
     padding-bottom: 1em;
+
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.582);
 }
 
 /*header #menu {
@@ -232,3 +235,57 @@ header button:active {
 /* FOOTER */
 
 /* ---FOOTER */
+
+/* Footer */
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.582);
+    background-color: rgb(255, 250, 219);
+
+    font-size: 0.9em;
+}
+
+footer ul {
+    display: flex;
+    flex-direction: row;
+    margin-right: 1em;
+    padding-left: 0;
+}
+
+footer li {
+    margin-left: 2em;
+}
+
+footer p {
+    margin-left: 0.5em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+footer #htmlvalid {
+    margin-left: 1em;
+    height: 2em;
+}
+
+footer #cssvalid {
+    height: 2em;
+    margin-right: 1em;
+    justify-self: left;
+}
+
+footer a {
+    display: none;
+}
+
+/* Other */
+
+.remove {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
