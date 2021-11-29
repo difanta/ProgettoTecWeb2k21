@@ -14,6 +14,7 @@
 	<meta name="description" content="sito ufficiale del FestivalDiCinema" />
     <meta name="author" content="TW2021" />
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 600px)">
 </head>
     
@@ -22,18 +23,20 @@
         <h1>FestivalDiCinema</h1>
 
         <div id="loginButtons">
-            <button id="loginBtn" onclick="
-            (() => {
-                document.getElementById('singup').classList.remove('dropdown');
-                document.getElementById('login').classList.toggle('dropdown');
-            })()"
-                >Login</button>
-            <button id="singupBtn" onclick="            
-            (() => {
-                document.getElementById('login').classList.remove('dropdown');
-                document.getElementById('singup').classList.toggle('dropdown');
-            })()"
-            >Registrati</button>
+            <button title="login" id="loginBtn" onclick="
+                (() => {
+                    document.getElementById('singup').classList.remove('dropdown');
+                    document.getElementById('login').classList.toggle('dropdown');
+                })()">
+                <span class="material-icons">login</span>
+            </button>
+            <button title="singup" id="singupBtn" onclick="            
+                (() => {
+                    document.getElementById('login').classList.remove('dropdown');
+                    document.getElementById('singup').classList.toggle('dropdown');
+                })()">
+                <span class="material-icons">create</span>
+            </button>
         </div>
 
         <form id="login">

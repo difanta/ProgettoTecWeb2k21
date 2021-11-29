@@ -21,6 +21,9 @@ header h1 {
     font-size: 2em;
     padding-top: 1em;
     padding-bottom: 1em;
+
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.582);
 }
 
 /*header #menu {
@@ -71,7 +74,7 @@ header #menu li a:hover {
 
 header #breadcrumb {
     text-align: left;
-    background-color: indianred;
+    background-color: rgba(206, 206, 206, 0.932);
 }
 
 header #breadcrumb p {
@@ -92,20 +95,20 @@ header #loginButtons button {
     margin-left: 0.1em;
 
     padding: 0.4em 1em;
-    background-color:rgb(228, 255, 253);
+    background-color:rgb(255, 255, 255);
 
     border-radius: 6px;
-    border: 2px inset rgba(68, 180, 255, 0.945);
+    border: 2px solid rgba(107, 107, 107, 0.945);
 
     transition: background-color 0.2s ease-out;
 }
 
 header #loginButtons button:hover {
-    background-color: rgba(164, 159, 255, 0.644);
+    background-color: rgba(196, 196, 196, 0.644);
 }
 
 header #loginButtons button:active {
-    background-color: rgb(228, 255, 253);
+    background-color: rgb(255, 255, 255);
 }
 
 header form {
@@ -149,5 +152,58 @@ header button:active {
     background-color: rgba(150, 150, 150, 0.822);
 }
 
-
 /* ---HEADER */
+
+/* Footer */
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.582);
+    background-color: rgb(255, 250, 219);
+
+    font-size: 0.9em;
+}
+
+footer ul {
+    display: flex;
+    flex-direction: row;
+    margin-right: 1em;
+    padding-left: 0;
+}
+
+footer li {
+    margin-left: 2em;
+}
+
+footer p {
+    margin-left: 0.5em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+footer #htmlvalid {
+    margin-left: 1em;
+    height: 2em;
+}
+
+footer #cssvalid {
+    height: 2em;
+    margin-right: 1em;
+    justify-self: left;
+}
+
+footer a {
+    display: none;
+}
+
+/* Other */
+
+.remove {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
