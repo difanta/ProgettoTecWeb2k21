@@ -15,6 +15,7 @@
     <meta name="author" content="TW2021" />
 
     <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 600px)">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
     
 <body> 
@@ -22,18 +23,20 @@
         <h1>FestivalDiCinema</h1>
 
         <div id="loginButtons">
-            <button id="loginBtn" onclick="
-            (() => {
-                document.getElementById('singup').classList.remove('dropdown');
-                document.getElementById('login').classList.toggle('dropdown');
-            })()"
-                >Login</button>
-            <button id="singupBtn" onclick="            
-            (() => {
-                document.getElementById('login').classList.remove('dropdown');
-                document.getElementById('singup').classList.toggle('dropdown');
-            })()"
-            >Registrati</button>
+            <button title="login" id="loginBtn" onclick="
+                (() => {
+                    document.getElementById('signup').classList.remove('dropdown');
+                    document.getElementById('login').classList.toggle('dropdown');
+                })()">
+                <span class="material-icons">login</span>
+            </button>
+            <button title="sign up" id="signupBtn" onclick="            
+                (() => {
+                    document.getElementById('login').classList.remove('dropdown');
+                    document.getElementById('signup').classList.toggle('dropdown');
+                })()">
+                <span class="material-icons">drive_file_rename_outline</span>
+            </button>
         </div>
 
         <form id="login">
@@ -45,7 +48,7 @@
             <button>accedi</button>
         </form>
 
-        <form id="singup">
+        <form id="signup">
             <label for="nome">Nome</label>
             <input id="nome" name="nome" type="text">
             <label for="cognome">Cognome</label>
