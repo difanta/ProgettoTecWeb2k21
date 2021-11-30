@@ -12,11 +12,75 @@
     <meta name="description" content="" />
 
     <meta name="author" content="" />
+
+
+    <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 600px)">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
     <header>
-        <!-- header -->
+        <h1>FestivalDiCinema</h1>
+
+        <div id="loginButtons">
+            <button title="login" id="loginBtn" onclick="
+                (() => {
+                    document.getElementById('signup').classList.remove('dropdown');
+                    document.getElementById('login').classList.toggle('dropdown');
+                })()">
+                <span class="material-icons">login</span>
+            </button>
+            <button title="sign up" id="signupBtn" onclick="            
+                (() => {
+                    document.getElementById('login').classList.remove('dropdown');
+                    document.getElementById('signup').classList.toggle('dropdown');
+                })()">
+                <span class="material-icons">drive_file_rename_outline</span>
+            </button>
+        </div>
+
+        <form id="login">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email">
+            
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password">
+            <button>accedi</button>
+        </form>
+
+        <form id="signup">
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" type="text">
+            <label for="cognome">Cognome</label>
+            <input id="cognome" name="cognome" type="text">
+            <label for="dataNascita">Data di nascita</label>
+            <input id="dataNascita" name="dataNascita" type="text">
+            
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password">
+            <label for="password">ridigita la password</label>
+            <input id="password" name="password" type="password">
+
+            <button>registrati</button>
+        </form>
+
+        <nav id="menu">
+            <ul>
+                <li lang="en"><a href="home.html">Home</a></li>
+                <li lang="en"><a href="AboutUs.html">About us</a></li>
+                <li><a href="listaFilm.html">Film</a></li>
+                <li><a href="proiezioni.html">Programma</a></li>
+                <li><a href="ComeTrovarci.html">Come Trovarci</a></li>
+                <li><a href="IlContest.html">Il Contest</a></li>
+            </ul>
+        </nav>
+
+        <nav id="breadcrumb">
+            <p>Ti trovi in: <a href="home.html" lang="en">Home</a> &gt; &gt; <a href="proiezioni.html">Proiezioni</a> &gt; &gt; Acquisto biglietti</p>
+        </nav>
+
     </header>
 
     <div id="content">
@@ -89,7 +153,16 @@
     </div>
 
     <footer>
-        <!-- footer -->
+        <img id="htmlvalid" src="../images/HTML5_certified.png" alt="" lang="en"/>
+        <img id="cssvalid" src="../images/vcss-blue.gif" alt="" lang="en"/>
+        <a href="TODO">Pannello admin</a>
+        <ul id="studenti">
+            <li>Alberto</li>
+            <li>Giovanni</li>
+            <li>Luca</li>
+            <li>Tommaso</li>
+        </ul>
+        <p>&copy; Copyright 2021</p>
     </footer>
 </body>
 
