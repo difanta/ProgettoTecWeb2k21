@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!-- 
-    meming allowed
-    mantenere Cavalli & Segugi pls
--->
 <html lang="it">
 
 <head>
@@ -10,8 +6,8 @@
 	
 	<title>FestivalDiCinema</title>
 	
-	<meta name="keywords" content="cinema, constest, festival, padova, indipendente" />
-	<meta name="description" content="sito ufficiale del contenst del FestivalDiCinema" />
+	<meta name="keywords" content="cinema, festival, padova, indipendente" />
+	<meta name="description" content="sito ufficiale del FestivalDiCinema" />
     <meta name="author" content="TW2021" />
 
     <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 600px)">
@@ -73,50 +69,28 @@
                 <li><a href="listaFilm.html">Film</a></li>
                 <li><a href="proiezioni.html">Programma</a></li>
                 <li><a href="ComeTrovarci.html">Come Trovarci</a></li>
-                <li><a href="IlContest.html">Il Contest</a></li>
+                <li><a href="contest.html">Il Contest</a></li>
             </ul>
         </nav>
 
         <nav id="breadcrumb">
-            <p>Ti trovi in: <a href="home.html" lang="en">Home</a> &gt; &gt; Il Contest </p>
+            <p>Ti trovi in: <span lang="en">Home</span >&gt; &gt; Admin &gt; &gt; candidature</p>
         </nav>
 
     </header>
-    <nav id="breadcrumb"></nav>
-    <nav id="menu"></nav>
-    
-    <div id="content">
-        <h1>Il Contest</h1>
-        <p>Anche quest'anno, FestivalDiCinema organizza il Contest, occasione per scoprire nuovi talenti del cinema.</p>
-
-        <h2>Regolamento</h2>
-        <p>Per partecipare al contest, compila la form che trovi in fondo a questa pagina, nella sezione "Candidatura". Prima però leggi bene il regolamento:</p>
-        <ul>
-            <li><p>Devi detenere tutti i diritti del prodotto che vuoi candidare</p></li>
-            <li><p>Il prodotto deve avere una durata compresa tra i 60 ed i 180 minuti. Non sono quindi ammessi cortometraggi.</p></li>
-            <li><p>Non ci sono restrizioni sulla lingua, ma è richiesta la presenza di sottotitoli se necessari alla comprensione.</p></li>
-            <li><p>Non ci sono restrizioni sulla data di produzione o distribuzione.</p></li>
-            <li><p>Restrizioni d'età al pubblico saranno applicate a discrezione del'organizzazione del festival</p></li>
-            <li><p>Sono ammessi anche prodotti d'animazione, stop-motion, <abbr title="eccetera">ecc</abbr>..</p></li>
-        </ul>
-        <p>Una volta presentata la candidatura, si riceverà entro 4 giorni lavorativi una mail di conferma di ricezione della candidatura. Il rifiuto della candidatura verrà notificato tramite mail. Se viene passata la prima fase di approvazione si verrà contattati per un incontro e la visione completa del film candidato.</p>
-
-        <h2>Candidatura</h2>
-        <p>Nel presentare la candidatura è fondamentale inserire il link <span lang="en">youtube</span> ad un trailer o una clip del film, la durata del video non può superare i 3 minuti. Il video può essere pubbilico o "non in elenco", basta che sia accessibile tramite il link. E' consigliato inserire alcune informazioni nella descrizione del video <span lang="en">youtube</span> riguardanti il film.</p>
-
         
-        <p id="mustBeLogged">Per presentare una candidatura bisogna essere loggati.</p>
-        <form action="" method="post">
-            <label for="titoloFilm">Titolo film</label><br>
-            <input type="text" name="titoloFilm" id="titoloFilm"/><br>
-            <label for="descrizioneFilm">Descrizione</label><br>
-            <textarea id="descrizioneFilm" name="descrizioneFilm" rows="6" cols="60"/><br>
-            <label for="linkYT">link <span lang="en">youtube</span></label><br>
-            <input type="text" name="linkYT" id="linkYT"/><br>
-            <label for="email">Email</label><br>
-            <input type="text" name="email" id="email"><br>
-            <input type="submit" value="Invia candidatura">
-        </form>
+    <div id="content">
+        <h1>Candidature in sospeso</h1>
+        <li>
+            <ul><h2 id="candTitolo">Titolo</h2>
+                <pre id="candDescrizione">descrizione</pre>
+                <a href="">trailer</a><br>
+                <label for="candCommento">Commento</label><br>
+                <textarea id="candCommento" name="candCommento" rows="4" cols="40"></textarea><br>
+                <input id="candAccetta" type="submit" value="Accetta candidatura">
+                <input id="candRifiuta" type="submit" value="Rifiuta candidatura">
+            </ul>
+        </li>
     </div>
 
     <footer>
