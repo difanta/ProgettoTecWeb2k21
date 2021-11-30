@@ -269,8 +269,9 @@ header button:active {
 footer {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
 
     border-top: 1px solid rgba(0, 0, 0, 0.582);
     background-color: var(--footer-color);
@@ -281,7 +282,7 @@ footer {
 footer ul {
     display: flex;
     flex-direction: row;
-    margin-right: 1em;
+    margin: 0 0.5em;
     padding-left: 0;
 }
 
@@ -296,17 +297,17 @@ footer p {
 }
 
 footer #htmlvalid {
-    margin-left: 1em;
+    margin-left: 0.5em;
     height: 2em;
 }
 
 footer #cssvalid {
     height: 2em;
-    margin-right: 1em;
+    margin-right: 0.5em;
     justify-self: left;
 }
 
-footer a {
+footer > a {
     display: none;
 }
 

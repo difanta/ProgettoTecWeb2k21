@@ -4,29 +4,114 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Gilberto Filé - L'Addio</title>
-    <meta name="keywords" content="Gilberto Filé - L'Addio, Alessandro Sperduti, Caterina Sartori, 2020"/>
-    <meta name="description" content="informazioni film Gilberto Filé - L'Addio di Alessandro Sperduti Caterina Sartori">
+    <title>Gilberto Filé, L'Addio</title>
+    <meta name="keywords" content="Gilberto Filé &#44; L'Addio, Alessandro Sperduti, Caterina Sartori, 2020"/>
+    <meta name="description" content="informazioni film Gilberto Filé, L'Addio di Alessandro Sperduti Caterina Sartori">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="TODO">
+
+    <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 600px)">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
     <header>
+        <h1>FestivalDiCinema</h1>
+
+        <div id="loginButtons">
+            <button title="login" id="loginBtn" onclick="
+                (() => {
+                    document.getElementById('signup').classList.remove('dropdown');
+                    document.getElementById('login').classList.toggle('dropdown');
+                })()">
+                <span class="material-icons">login</span>
+            </button>
+            <button title="sign up" id="signupBtn" onclick="            
+                (() => {
+                    document.getElementById('login').classList.remove('dropdown');
+                    document.getElementById('signup').classList.toggle('dropdown');
+                })()">
+                <span class="material-icons">drive_file_rename_outline</span>
+            </button>
+        </div>
+
+        <form id="login">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email">
+            
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password">
+            <button>accedi</button>
+        </form>
+
+        <form id="signup">
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" type="text">
+            <label for="cognome">Cognome</label>
+            <input id="cognome" name="cognome" type="text">
+            <label for="dataNascita">Data di nascita</label>
+            <input id="dataNascita" name="dataNascita" type="text">
+            
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password">
+            <label for="password">ridigita la password</label>
+            <input id="password" name="password" type="password">
+
+            <button>registrati</button>
+        </form>
+
+        <nav id="menu">
+            <ul>
+                <li lang="en"><a href="home.html">Home</a></li>
+                <li lang="en"><a href="AboutUs.html">About us</a></li>
+                <li><a href="listaFilm.html">Film</a></li>
+                <li><a href="proiezioni.html">Programma</a></li>
+                <li><a href="ComeTrovarci.html">Come Trovarci</a></li>
+                <li><a href="IlContest.html">Il Contest</a></li>
+            </ul>
+        </nav>
+
+        <nav id="breadcrumb">
+            <p>Ti trovi in: <a href="home.html" lang="en">Home</a> &gt; &gt; <a href="listaFilm.html">Lista Film</a> &gt; &gt; Gilberto Filé, L'Addio</p>
+        </nav>
+
     </header>
 
     <div class="content">
-        <h1>Gilberto Filé - L'Addio</h1>
+        <h1>Gilberto Filé, L'Addio</h1>
         <h2>di Alessandro Sperduti e Caterina Sartori</h2>
         <p title="anno di pubblicazione">2020</p>
         <p title="descrizione"> Due grandi amici del celebre professore Unipd celebrano il suo ritiro ricordando vari momenti classici della vita dell'egregio professor Filé. <br>
                                 Tra gossip e storie piccanti, il percorso didattico del professore storico di Informatica Unipd viene descritto con zelo e precisione senza precedenti.
         </p>
         <img src="../images/file.jpg" alt="Primo piano di Gilberto Filé">
-        <a href="proiezioni.html?nomeFilm=Gilberto+Filé%2C+l%27addio"></a>
+        <a href="proiezioni.html?nomeFilm=Gilberto+Filé%2C+l%27addio">Proiezioni</a>
     </div>
 
     <footer>
+        <img id="htmlvalid" src="../images/HTML5_certified.png" alt="" lang="en"/>
+        <img id="cssvalid" src="../images/vcss-blue.gif" alt="" lang="en"/>
+        <a href="TODO">Pannello admin</a>
+        <ul title="sponsors" id="listaSponsor">
+            <li>
+                <img id="imgSponsor1" src="images/sponsor1" alt="La dolce vita"/>
+            </li>
+            <li>
+                <img id="imgSponsor2" src="images/sponsor2" alt="La Feltrinelli"/>
+            </li>
+            <li>
+                <img id="imgSponsor3" src="images/sponsor3" alt="Grand Budapest Hotel"/>
+            </li>
+        </ul>
+        <ul id="studenti">
+            <li>Alberto</li>
+            <li>Giovanni</li>
+            <li>Luca</li>
+            <li>Tommaso</li>
+        </ul>
+        <p>&copy; Copyright 2021</p>
     </footer>
 </body>
 

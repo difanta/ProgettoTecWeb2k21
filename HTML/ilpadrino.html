@@ -9,10 +9,74 @@
     <meta name="description" content="informazioni del film Il Padrino di Francis Ford Coppola">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="TODO">
+
+    <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 600px)">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
     <header>
+        <h1>FestivalDiCinema</h1>
+
+        <div id="loginButtons">
+            <button title="login" id="loginBtn" onclick="
+                (() => {
+                    document.getElementById('signup').classList.remove('dropdown');
+                    document.getElementById('login').classList.toggle('dropdown');
+                })()">
+                <span class="material-icons">login</span>
+            </button>
+            <button title="sign up" id="signupBtn" onclick="            
+                (() => {
+                    document.getElementById('login').classList.remove('dropdown');
+                    document.getElementById('signup').classList.toggle('dropdown');
+                })()">
+                <span class="material-icons">drive_file_rename_outline</span>
+            </button>
+        </div>
+
+        <form id="login">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email">
+            
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password">
+            <button>accedi</button>
+        </form>
+
+        <form id="signup">
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" type="text">
+            <label for="cognome">Cognome</label>
+            <input id="cognome" name="cognome" type="text">
+            <label for="dataNascita">Data di nascita</label>
+            <input id="dataNascita" name="dataNascita" type="text">
+            
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password">
+            <label for="password">ridigita la password</label>
+            <input id="password" name="password" type="password">
+
+            <button>registrati</button>
+        </form>
+
+        <nav id="menu">
+            <ul>
+                <li lang="en"><a href="home.html">Home</a></li>
+                <li lang="en"><a href="AboutUs.html">About us</a></li>
+                <li><a href="listaFilm.html">Film</a></li>
+                <li><a href="proiezioni.html">Programma</a></li>
+                <li><a href="ComeTrovarci.html">Come Trovarci</a></li>
+                <li><a href="IlContest.html">Il Contest</a></li>
+            </ul>
+        </nav>
+
+        <nav id="breadcrumb">
+            <p>Ti trovi in: <a href="home.html" lang="en">Home</a> &gt; &gt; <a href="listaFilm.html">Lista Film</a> &gt; &gt; Il Padrino</p>
+        </nav>
+
     </header>
 
     <div class="content">
@@ -25,10 +89,31 @@
                                 Quando don Vito rimane vittima di un attentato da parte di un boss rivale, il figlio Michael Corleone comincia l'ascesa nell'impero criminale della famiglia, 
                                 fino a diventare il nuovo "padrino".</p>
         <img src="../images/260px-Don_Vito_Corleone.jpg" alt="Don Vito Corleone riceve Amerigo Bonasera">
-        <a href="proiezioni.html?nomeFilm=il+padrino"></a>
+        <a href="proiezioni.html?nomeFilm=il+padrino">Proiezioni</a>
     </div>
 
     <footer>
+        <img id="htmlvalid" src="../images/HTML5_certified.png" alt="" lang="en"/>
+        <img id="cssvalid" src="../images/vcss-blue.gif" alt="" lang="en"/>
+        <a href="TODO">Pannello admin</a>
+        <ul title="sponsors" id="listaSponsor">
+            <li>
+                <img id="imgSponsor1" src="images/sponsor1" alt="La dolce vita"/>
+            </li>
+            <li>
+                <img id="imgSponsor2" src="images/sponsor2" alt="La Feltrinelli"/>
+            </li>
+            <li>
+                <img id="imgSponsor3" src="images/sponsor3" alt="Grand Budapest Hotel"/>
+            </li>
+        </ul>
+        <ul id="studenti">
+            <li>Alberto</li>
+            <li>Giovanni</li>
+            <li>Luca</li>
+            <li>Tommaso</li>
+        </ul>
+        <p>&copy; Copyright 2021</p>
     </footer>
 </body>
 
