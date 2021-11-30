@@ -262,6 +262,51 @@ header button:active {
     right: 0;
 }
 
+#listaRecensioni {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    padding: 0;
+    margin: 0;
+
+    list-style-type: none;
+}
+
+#listaRecensioni li {
+    padding: 0.5em 1.5em;
+    margin: 0.5em 0.5em;
+
+    background: url("../images/article_background.jpg");
+    background-repeat: no-repeat;
+
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.45);
+}
+
+#listaRecensioni h3 {
+    font-size: 1.2em;
+}
+
+#listaRecensioni p {
+    max-width: 20em;
+    max-height: 6em;
+    overflow: hidden;
+
+    font-size: 0.95em;
+    font-style: italic;
+
+    quotes: "“" "”" "‘" "’";
+}
+
+#listaRecensioni p::before {
+    content: open-quote;
+}
+#listaRecensioni p::after {
+    content: close-quote;
+}
+
 /* ---CONTENT */
 
 /* FOOTER */
@@ -311,7 +356,7 @@ footer > a {
     display: none;
 }
 
-/* --FOOTER */
+/* ---FOOTER */
 
 /* OTHER */
 
