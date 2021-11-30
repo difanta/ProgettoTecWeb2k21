@@ -277,7 +277,7 @@ header button:active {
 
 #listaRecensioni li {
     padding: 0.5em 1.5em;
-    margin: 0.5em 0.5em;
+    margin: 0.8em 0.5em;
 
     background: url("../images/article_background.jpg");
     background-repeat: no-repeat;
@@ -286,7 +286,8 @@ header button:active {
 }
 
 #listaRecensioni h3 {
-    font-size: 1.2em;
+    font-size: 1.3em;
+    text-shadow: 2px 2px 4px rgba(104, 104, 104, 0.3);
 }
 
 #listaRecensioni p {
@@ -294,7 +295,7 @@ header button:active {
     max-height: 6em;
     overflow: hidden;
 
-    font-size: 0.95em;
+    font-size: 1em;
     font-style: italic;
 
     quotes: "“" "”" "‘" "’";
