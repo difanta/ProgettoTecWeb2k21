@@ -208,30 +208,40 @@ header button:active {
     flex-wrap: wrap;
     width: 100%;
     padding-left: 0em;
-    margin: auto;
     list-style-type: none;
 }
 
-#filmPopolari li{
+#filmPopolari li {
     width: 18vw;
     height: 18vw;
     position: relative;
     margin: 0 7px 0 7px;
     border: solid black 1px;
+    border-radius: 8px 8px 0 0;
+    padding-bottom: 2em;
+}
+
+#filmPopolari li a{
+    display: block;
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    position: relative;
     border-radius: 5px;
     background-color: var(--main-color-light);
     background-size: cover;
     background-position: 50% 50%;
 }
 
-#filmPopolare1{ background-image: url(../images/filmPopolare1.jpg);}
-#filmPopolare2{ background-image: url(../images/filmPopolare2.jpg);}
-#filmPopolare3{ background-image: url(../images/filmPopolare3.jpg);}
-
 #filmPopolari li p{
+    padding-bottom: 1em;
     text-align: center;
-    padding-top: 100%;
+    border-bottom: solid black 1px;
 }
+
+#filmPopolare1 a{ background-image: url(../images/filmPopolare1.jpg);}
+#filmPopolare2 a{ background-image: url(../images/filmPopolare2.jpg);}
+#filmPopolare3 a{ background-image: url(../images/filmPopolare3.jpg);}
 
 #containerLinkFilmPopolari{
     background-color: var(--main-color);
@@ -250,8 +260,8 @@ header button:active {
     width: 100%;
     margin: auto;
     text-align: center;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
+    padding-top: 0.7%;
+    padding-bottom: 0.7%;
 }
 
 /* Acquisto bilglietti -----------------------------------------------------------------------------------------*/
@@ -290,6 +300,7 @@ header button:active {
  #acquistoBiglietti li:hover{
      background-color: #21a3df;
      transform: scale(1.03);
+     cursor: pointer;
  }
 
 #acquistoBiglietti li p.dayNum {
