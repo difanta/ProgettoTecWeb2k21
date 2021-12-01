@@ -198,27 +198,63 @@ header button:active {
     text-align: center;
 }
 
+
+/* film popolari ---------------------------------------------------------------------------------------------*/
+
 #filmPopolari{
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-
     width: 100%;
     padding-left: 0em;
     margin: auto;
-
     list-style-type: none;
-    
 }
 
 #filmPopolari li{
-    width: 10%;
-    padding-top: 10%;
+    width: 18vw;
+    height: 18vw;
     position: relative;
     margin: 0 7px 0 7px;
     border: solid black 1px;
+    border-radius: 5px;
+    background-color: var(--main-color-light);
+    background-size: cover;
+    background-position: 50% 50%;
 }
+
+#filmPopolare1{ background-image: url(../images/filmPopolare1.jpg);}
+#filmPopolare2{ background-image: url(../images/filmPopolare2.jpg);}
+#filmPopolare3{ background-image: url(../images/filmPopolare3.jpg);}
+
+#filmPopolari li p{
+    text-align: center;
+    padding-top: 100%;
+}
+
+#containerLinkFilmPopolari{
+    background-color: var(--main-color);
+    width: 57%;
+    margin: auto;
+    margin-top: 3em;
+    border-radius: 5px;
+}
+
+#containerLinkFilmPopolari:hover{
+    background-color: var(--main-color-light);
+}
+
+#linkFilmPopolari{
+    display: block;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+
+/* Acquisto bilglietti -----------------------------------------------------------------------------------------*/
 
 #acquistoBiglietti{
     max-width: 1024px;
@@ -226,41 +262,56 @@ header button:active {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-
-    width: 100%;
-    padding-left: 0;
+    width: 90%;
     padding: 1em;
     margin: auto;
     border: solid black 1px;
     border-radius: 15px;
-
+    background-color: var(--main-color-light-halfopacity);
     list-style-type: none;
 }
 
 #acquistoBiglietti li{
-
+    height: 0;
     width: 12%;
-    padding-top: 12%;
+    padding-bottom: 12%;
     position: relative;
     margin: 0px 5px 0px 5px;
     border: solid black 1px;
     border-radius: 10%;
-    background-color: indianred;
-    transition: background-color 0.4s ease-out;
+    background-color: #54c9ff;
+    background-image: url(../images/outline_calendar_today_black_24dp.png);
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+    transition: all 0.4s ease-out;
 }
 
  #acquistoBiglietti li:hover{
-     background-color: rgb(194, 40, 40);
+     background-color: #21a3df;
+     transform: scale(1.03);
  }
 
-#acquistoBiglietti li p{
-    position: absolute;
+#acquistoBiglietti li p.dayNum {
+    font-size: 150%;
+    text-align: center;
+    padding-top: 18%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#acquistoBiglietti li p.Month {
+    font-size: 90%;
     text-align: center;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
 }
+
+/* Lista recensioni --------------------------------------------------------------------------------------------------*/
 
 #listaRecensioni {
     display: flex;
