@@ -73,7 +73,7 @@
                 <li><a href="listaFilm.html">Film</a></li>
                 <li><a href="proiezioni.html">Programma</a></li>
                 <li><a href="ComeTrovarci.html">Come Trovarci</a></li>
-                <li><a href="IlContest.html">Il Contest</a></li>
+                <li><a href="contest.html">Il Contest</a></li>
             </ul>
         </nav>
 
@@ -82,8 +82,6 @@
         </nav>
 
     </header>
-    <nav id="breadcrumb"></nav>
-    <nav id="menu"></nav>
     
     <div id="content">
         <h1>Il Contest</h1>
@@ -104,19 +102,20 @@
         <h2>Candidatura</h2>
         <p>Nel presentare la candidatura è fondamentale inserire il link <span lang="en">youtube</span> ad un trailer o una clip del film, la durata del video non può superare i 3 minuti. Il video può essere pubbilico o "non in elenco", basta che sia accessibile tramite il link. E' consigliato inserire alcune informazioni nella descrizione del video <span lang="en">youtube</span> riguardanti il film.</p>
 
-        
-        <p id="mustBeLogged">Per presentare una candidatura bisogna essere loggati.</p>
-        <form action="" method="post">
-            <label for="titoloFilm">Titolo film</label><br>
-            <input type="text" name="titoloFilm" id="titoloFilm"/><br>
-            <label for="descrizioneFilm">Descrizione</label><br>
-            <textarea id="descrizioneFilm" name="descrizioneFilm" rows="6" cols="60"/><br>
-            <label for="linkYT">link <span lang="en">youtube</span></label><br>
-            <input type="text" name="linkYT" id="linkYT"/><br>
-            <label for="email">Email</label><br>
-            <input type="text" name="email" id="email"><br>
-            <input type="submit" value="Invia candidatura">
-        </form>
+        <div id="contestForm">
+            <p id="mustBeLogged">Per presentare una candidatura bisogna essere loggati.</p>
+            <form action="" method="post">
+                <label for="titoloFilm">Titolo film</label>
+                <input type="text" name="titoloFilm" id="titoloFilm"/>
+                <label for="descrizioneFilm">Descrizione</label>
+                <textarea name="descrizioneFilm" id="descrizioneFilm"></textarea>
+                <label for="linkYT">link <span lang="en">youtube</span></label>
+                <input type="text" name="linkYT" id="linkYT"/>
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email">
+                <input type="submit" value="Invia candidatura">
+            </form>
+        </div>
     </div>
 
     <footer>
