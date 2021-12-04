@@ -207,30 +207,32 @@ header button:active {
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    width: 100%;
-    padding-left: 0em;
+    justify-content: space-around;
+    padding: 0;
+    margin: 2%;
+
     list-style-type: none;
 }
 
 #filmPopolari li {
-    width: 25vw;
-    height: 25vw;
+    width: 22vw;
+    height: 22vw;
+    min-width: 300px;
+    min-height: 300px;
+    margin: 2%;
     position: relative;
-    margin: 0 35px 0 35px;
     border: none;
-    border-radius: 8px 8px 0 0;
-    padding-bottom: 2em;
+    padding-bottom: 1.5%;
     border: solid black 4px;
     border-radius:8px;
 }
 
 #filmPopolari li a{
     display: block;
-    top: 17.8%;
+    top: 19%;
     margin: 0;
     width: 100%;
-    height: 82%;
-    position: absolute;
+    height: 86%;
     border-radius: 0 0 5px 5px;
     background-color: var(--main-color-light);
     background-size: cover;
@@ -283,14 +285,12 @@ header button:active {
 /* Acquisto bilglietti -----------------------------------------------------------------------------------------*/
 
 #acquistoBiglietti{
-    max-width: 1024px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    width: 90%;
-    padding: 1em;
-    margin: auto;
+    justify-content: space-around;
+    margin: 2% 10%;
     border: solid black 1px;
     border-radius: 15px;
     background-color: var(--main-color-light-halfopacity);
@@ -298,19 +298,20 @@ header button:active {
 }
 
 #acquistoBiglietti li{
-    height: 0;
-    width: 12%;
-    padding-bottom: 12%;
+    width: 8vw;
+    height: 8vw;
+    min-width: 140px;
+    min-height: 140px;
     position: relative;
-    margin: 0px 5px 0px 5px;
+    margin: 1%;
     border: solid black 1px;
     border-radius: 10%;
     background-color: #54c9ff;
     background-image: url(../images/outline_calendar_today_black_24dp.png);
     background-size: 70%;
     background-repeat: no-repeat;
-    background-position: 50% 20%;
-    transition: all 0.4s ease-out;
+    background-position: 50% 40%;
+    transition: all 0.3s ease-in-out;
 }
 
  #acquistoBiglietti li:hover{
@@ -320,25 +321,19 @@ header button:active {
  }
 
 #acquistoBiglietti li p.dayNum {
-    font-size: 150%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
+    font-size: calc(20px + 0.9vw);
+    font-weight: 800;
     text-align: center;
-    padding-top: 20%;
+    margin: 0;
+    padding-top:  40%;
 }
 
-#acquistoBiglietti li p.Month {
-    display: none;
-    /*
-    font-size: 90%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    */
+#acquistoBiglietti li p.Month{
+    font-size: calc(12px + 0.6vw);
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    padding-top:  7%;
 }
 
 /* Lista recensioni --------------------------------------------------------------------------------------------------*/
