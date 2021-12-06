@@ -12,7 +12,8 @@ body {
 }
 
 body {
-    margin: 0;
+    max-width: 1024px;
+    margin: auto;
     font-family: Helvetica, sans-serif;
 }
 
@@ -425,6 +426,38 @@ header button:active {
 }
 
 
+/* Come Trovarci --------------------------------------------------------------------------------------------------*/
+
+#ComeRaggiungerci dl{
+    position: relative;
+    padding: 2em;
+}
+
+#ristorazione ul{
+    list-style-type: none;
+    margin: 0;
+    position: relative;
+    padding: 2em;
+}
+
+/* 404 --------------------------------------------------------------------------------------------------*/
+
+#404{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Contest --------------------------------------------------------------------------------------------------*/
+
+#contestForm form{
+    text-align: center;
+}
+
+#contestForm fom label{
+    width: 100%;
+}
 
 /* ---CONTENT */
 

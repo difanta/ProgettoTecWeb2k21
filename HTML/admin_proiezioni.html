@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!-- 
-    meming allowed
-    mantenere Cavalli & Segugi pls
--->
+
 <html lang="it">
 
 <head>
@@ -84,38 +81,37 @@
     </header>
         
     <div id="content">
+        <a href="admin.html">Torna alla Dashboard</a>
         <h1>Proiezioni</h1>
-        <form id="proAggiungi" action="" method="post">
-            <label for="proAggFilm">Film</label><br>
-            <input type="text" name="proAggFilm" id="proAggFilm"/><br>
-            <label for="proAggRegisti">Registi</label><br>
-            <input type="text" name="proAggRegisti" id="proAggRegisti"/><br>
-            <label for="proAggData">Data</label><br>
-            <input type="text" name="proDproAggDataata" id="prproAggDataoData"/><br>
-            <label for="proAggOra">Ora</label><br>
-            <input type="text" name="proAggOra" id="proAggOra"/><br>
-            <input type="checkbox" id="proGara" name="proGara" value="Gara">
-            <label for="proGara">In Gara</label><br>
+
+        <input type="submit" value="Aggiungi una nuova proiezione"><br>
+        <label for="aprSelect">Seleziona una proiezione e poi premi "Modifica o elimina"</label>
+        <select id="aprSelect">
+            <option value="aprOp01">Padrino 12/09 20:30</option>
+        </select><br>
+        <input type="submit" value="Modifica o elimina">
+
+        <form id="aprAggiungi" action="" method="post">
+            <label for="apraSelect">Film</label><br>
+            <select id="apraSelect">
+                <option value="apraOp01">Il Padrino</option>
+                <option value="apraOp02">Filè Addio</option>
+            </select><br>
+            <label for="apraData">Data e Ora</label><br>
+            <input type="datetime-local" id="apraData">
             <input type="submit" value="Aggiungi Proiezione">
         </form>
         
-        <form>
-            <label for="proSeleziona">Seleziona proiezione:</label>
-            <select id="proSeleziona" name="carlist">
-                <option value="proSel01">Padrino 12/09 20:30</option>
+        <form id="aprModifica" action="" method="post">
+            <label for="aprmSelect">Film</label><br>
+            <select id="aprmSelect">
+                <option value="aprmOp01">Il Padrino</option>
+                <option value="aprmOp02">Filè Addio</option>
             </select><br>
-            <label for="proFilm">Film</label><br>
-            <input type="text" name="proFilm" id="proFilm"/><br>
-            <label for="proRegisti">Registi</label><br>
-            <input type="text" name="proRegisti" id="proRegisti"/><br>
-            <label for="proData">Data</label><br>
-            <input type="text" name="proData" id="proData"/><br>
-            <label for="proOra">Ora</label><br>
-            <input type="text" name="proOra" id="proOra"/><br>
-            <input type="checkbox" id="proGara" name="proGara" value="Gara">
-            <label for="proGara">In Gara</label><br>
-            <input type="submit" value="Conferma modifiche">
-            <input type="submit" value="Cancella proiezione">
+            <label for="aprmData">Data e Ora</label><br>
+            <input type="datetime-local" id="aprmData">
+            <input type="submit" value="Conferma modifice">
+            <input type="submit" value="Elimina proiezione">
         </form>
     </div>
 

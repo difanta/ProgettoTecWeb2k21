@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!-- 
-    meming allowed
-    mantenere Cavalli & Segugi pls
--->
+
 <html lang="it">
 
 <head>
@@ -10,8 +7,8 @@
 	
 	<title>FestivalDiCinema</title>
 	
-	<meta name="keywords" content="cinema, constest, festival, padova, indipendente" />
-	<meta name="description" content="sito ufficiale del contenst del FestivalDiCinema" />
+	<meta name="keywords" content="cinema, festival, padova, indipendente" />
+	<meta name="description" content="sito ufficiale del FestivalDiCinema" />
     <meta name="author" content="TW2021" />
 
     <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 600px)">
@@ -78,44 +75,47 @@
         </nav>
 
         <nav id="breadcrumb">
-            <p>Ti trovi in: <a href="home.html" lang="en">Home</a> &gt; &gt; Il Contest </p>
+            <p>Ti trovi in: <span lang="en">Home</span></p>
         </nav>
 
     </header>
-    
+        
     <div id="content">
-        <h1>Il Contest</h1>
-        <p>Anche quest'anno, FestivalDiCinema organizza il Contest, occasione per scoprire nuovi talenti del cinema.</p>
+        <a href="admin.html">Torna alla Dashboard</a>
+        
+        <h1>Lista Film</h1>
+        <input type="submit" value="Aggiungi un nuovo film"><br>
+        <label for="alfSelect">Seleziona un film e poi premi "Modifica o elimina"</label>
+        <select id="alfSelect">
+            <option value="alfOp01">Il Padrino</option>
+            <option value="alfOp02">Filè Addio</option>
+        </select><br>
+        <input type="submit" value="Modifica o elimina">
 
-        <h2>Regolamento</h2>
-        <p>Per partecipare al contest, compila la form che trovi in fondo a questa pagina, nella sezione "Candidatura". Prima però leggi bene il regolamento:</p>
-        <ul>
-            <li><p>Devi detenere tutti i diritti del prodotto che vuoi candidare</p></li>
-            <li><p>Il prodotto deve avere una durata compresa tra i 60 ed i 180 minuti. Non sono quindi ammessi cortometraggi.</p></li>
-            <li><p>Non ci sono restrizioni sulla lingua, ma è richiesta la presenza di sottotitoli se necessari alla comprensione.</p></li>
-            <li><p>Non ci sono restrizioni sulla data di produzione o distribuzione.</p></li>
-            <li><p>Restrizioni d'età al pubblico saranno applicate a discrezione del'organizzazione del festival</p></li>
-            <li><p>Sono ammessi anche prodotti d'animazione, stop-motion, <abbr title="eccetera">ecc</abbr>..</p></li>
-        </ul>
-        <p>Una volta presentata la candidatura, si riceverà entro 4 giorni lavorativi una mail di conferma di ricezione della candidatura. Il rifiuto della candidatura verrà notificato tramite mail. Se viene passata la prima fase di approvazione si verrà contattati per un incontro e la visione completa del film candidato.</p>
-
-        <h2>Candidatura</h2>
-        <p>Nel presentare la candidatura è fondamentale inserire il link <span lang="en">youtube</span> ad un trailer o una clip del film, la durata del video non può superare i 3 minuti. Il video può essere pubbilico o "non in elenco", basta che sia accessibile tramite il link. E' consigliato inserire alcune informazioni nella descrizione del video <span lang="en">youtube</span> riguardanti il film.</p>
-
-        <div id="contestForm">
-            <p id="mustBeLogged">Per presentare una candidatura bisogna essere loggati.</p>
-            <form action="" method="post">
-                <label for="titoloFilm">Titolo film</label>
-                <input type="text" name="titoloFilm" id="titoloFilm"/>
-                <label for="descrizioneFilm">Descrizione</label>
-                <textarea name="descrizioneFilm" id="descrizioneFilm"></textarea>
-                <label for="linkYT">link <span lang="en">youtube</span></label>
-                <input type="text" name="linkYT" id="linkYT"/>
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email">
-                <input type="submit" value="Invia candidatura">
-            </form>
-        </div>
+        <form id="alfModifica">
+            <label for="alfmTitolo">Titolo:</label><br>
+            <input type="text" name="titolo" id="alfmTitolo"/><br>
+            <label for="alfmRegisti">Registi:</label><br>
+            <input type="text" name="registi" id="alfmRegisti"/><br>
+            <label for="alfmDurata">Durata(min):</label><br>
+            <input type="number" id="alfmDurata" name="durata" value="90"><br>
+            <input type="checkbox" id="alfmGara" name="proGara" value="Gara">
+            <label for="alfmGara">In Gara</label><br>
+            <input type="submit" value="Conferma modifiche">
+            <input type="submit" value="Cancella film">
+        </form>
+        <form id="alfAggiungi">
+            <label for="alfaTitolo">Titolo:</label><br>
+            <input type="text" name="titolo" id="alfaTitolo"/><br>
+            <label for="alfaRegisti">Registi:</label><br>
+            <input type="text" name="registi" id="alfaRegisti"/><br>
+            <label for="alfaDurata">Durata(min):</label><br>
+            <input type="number" id="alfaDurata" name="durata" value="90"><br>
+            <input type="checkbox" id="alfaGara" value="Gara">
+            <label for="alfaGara">In Gara</label><br>
+            <input type="submit" value="Aggiungi film">
+            <input type="submit" value="Annulla">
+        </form>
     </div>
 
     <footer>
