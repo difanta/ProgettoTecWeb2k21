@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!-- 
+    meming allowed
+    mantenere Cavalli & Segugi pls
+-->
 <html lang="it">
 
 <head>
@@ -74,51 +78,27 @@
         </nav>
 
         <nav id="breadcrumb">
-            <p>Ti trovi in: <span lang="en">Home</span >&gt; &gt; Admin &gt; &gt; candidature</p>
+            <p>Ti trovi in: <span lang="en">Home</span></p>
         </nav>
 
     </header>
         
     <div id="content">
-        <a href="admin.html">Torna alla Dashboard</a>
-
-        <br><label for="acnSelect">Candidature: </label>
-        <select id="acnSelect">
-            <option value="acnOp01">In sospeso</option>
-            <option value="acnOp02">Approvate</option>
-            <option value="acnOp03">Scartate</option>
-        </select><br>
-        <input type="submit" value="Seleziona">
-
-        <h1>Candidature in sospeso</h1>
-        <li id="acnSospeso">
-            <ul><h2 id="ancsTitolo01">Titolo</h2>
-                <pre id="ancsDescrizione01">descrizione</pre>
-                <a href="">trailer</a><br>
-                <label for="ancsCommento01">Commento</label><br>
-                <textarea id="ancsCommento02" rows="4" cols="40"></textarea><br>
-                <input id="ancsAccetta01" type="submit" value="Accetta candidatura">
-                <input id="ancsRifiuta01" type="submit" value="Rifiuta candidatura">
-            </ul>
-        </li>
-
-        <li id="acnApprovate">
-            <ul><h2 id="acnaTitolo01">Titolo</h2>
-                <pre id="acnaDescrizione01">descrizione</pre>
-                <a href="">trailer</a><br>
-                <input id="acnaSospendi01" type="submit" value="Sposta in 'In sospeso' ">
-                <input id="acnaRifiuta01" type="submit" value="Rifiuta candidatura">
-            </ul>
-        </li>
-
-        <li id="acnRifiutate">
-            <ul><h2 id="acnrTitolo01">Titolo</h2>
-                <pre id="acnrDescrizione01">descrizione</pre>
-                <a href="">trailer</a><br>
-                <input id="acnrSospendi01" type="submit" value="Sposta in 'In sospeso' ">
-                <input id="acnrElimina01" type="submit" value="Elimina definitivamente">
-            </ul>
-        </li>
+        <div id="adminDashboard">
+            <a href="admin_candidature.html">Candidature</a>
+            <a href="admin_proiezioni.html">Proiezioni</a>
+            <a href="admin_listaFilm.html">Lista Film</a>
+        </div>
+        <dl id="adminInfo">
+            <dt>Utenti registrati: </dt>
+            <dd>13</dd>
+            <dt>Totale biglietti venduti: </dt>
+            <dd>126</dd>
+            <dt>Media biglietti venduti per proiezione:</dt>
+            <dd>7</dd>
+            <dt>Totale Like dati ai film: </dt>
+            <dd>256</dd>
+        </dl>
     </div>
 
     <footer>
