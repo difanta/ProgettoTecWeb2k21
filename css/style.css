@@ -383,6 +383,49 @@ header button:active {
     content: close-quote;
 }
 
+/*Pagina Utente ------------------------------------------------------------------- */
+
+
+
+
+#Info{
+    margin: auto;
+    width: 60%;
+    padding: 0 1% 1% 1%;
+    border: solid black 1px;
+}
+
+#Info button{
+    width: 10%;
+    background-color: var(--main-color);
+    border: none;
+    padding: 0.4% 2%;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+}
+
+#Info button:hover{
+    background-color: var(--main-color-dark);
+}
+
+#Info fieldset:first-child{
+    margin-bottom: 1em;  
+}
+
+#Info input{
+    display: block;
+    width: 60%;
+    padding: 0.4em;
+}
+
+#Info label{
+    display: block;
+    padding-top: 1%;
+}
+
+
+
 /* ---CONTENT */
 
 /* FOOTER */
