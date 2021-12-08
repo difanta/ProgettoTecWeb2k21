@@ -458,7 +458,7 @@ div.filters > form button[type="submit"] {
     margin-left: 4em;
 }
 
-div.contentListaFilm ul {
+div.contentListaFilm ul, div.contentListaProiezioni ul {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -466,7 +466,7 @@ div.contentListaFilm ul {
     padding-right: 2.5em;
 }
 
-div.contentListaFilm li {
+div.contentListaFilm li, div.contentListaProiezioni li {
     list-style: none;
     text-align: center;
     position: relative;
@@ -476,7 +476,7 @@ div.contentListaFilm li {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
 }
 
-div.contentListaFilm li h2 {
+div.contentListaFilm li h2, div.contentListaProiezioni li h2 {
     margin-top: 0;
 }
 
