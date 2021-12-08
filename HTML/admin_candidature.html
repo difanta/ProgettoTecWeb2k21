@@ -74,51 +74,59 @@
         </nav>
 
         <nav id="breadcrumb">
-            <p>Ti trovi in: <span lang="en">Home</span >&gt; &gt; Admin &gt; &gt; candidature</p>
+            <p>Ti trovi in: <a href="home.html" lang="en">Home</a> &gt; &gt; <a href="admin.html">Admin</a>&gt; &gt; Candidature</p>
         </nav>
 
     </header>
         
     <div id="content">
-        <a href="admin.html">Torna alla Dashboard</a>
+        <a class="tornaDashboard" href="admin.html">Torna al menu admin</a>
 
         <br><label for="acnSelect">Candidature: </label>
         <select id="acnSelect">
             <option value="acnOp01">In sospeso</option>
             <option value="acnOp02">Approvate</option>
             <option value="acnOp03">Scartate</option>
-        </select><br>
+        </select>
         <input type="submit" value="Seleziona">
 
         <h1>Candidature in sospeso</h1>
-        <li id="acnSospeso">
-            <ul><h2 id="ancsTitolo01">Titolo</h2>
-                <pre id="ancsDescrizione01">descrizione</pre>
+        <ul id="acnSospese">
+            <li><h2 class="ancsTitolo">Titolo</h2>
+                <pre class="ancsDescrizione">descrizione</pre>
                 <a href="">trailer</a><br>
-                <label for="ancsCommento01">Commento</label><br>
-                <textarea id="ancsCommento02" rows="4" cols="40"></textarea><br>
-                <input id="ancsAccetta01" type="submit" value="Accetta candidatura">
-                <input id="ancsRifiuta01" type="submit" value="Rifiuta candidatura">
-            </ul>
-        </li>
+                <label for="ancsCommento">Commento</label><br>
+                <textarea class="ancsCommento" rows="4" cols="40"></textarea><br>
+                <input class="ancsAccetta" type="submit" value="Accetta candidatura">
+                <input class="ancsRifiuta" type="submit" value="Rifiuta candidatura">
+            </li>
+            <li><h2 class="ancsTitolo">Titolo</h2>
+                <pre class="ancsDescrizione">descrizione</pre>
+                <a href="">trailer</a><br>
+                <label for="ancsCommento">Commento</label><br>
+                <textarea class="ancsCommento" rows="4" cols="40"></textarea><br>
+                <input class="ancsAccetta" type="submit" value="Accetta candidatura">
+                <input class="ancsRifiuta" type="submit" value="Rifiuta candidatura">
+            </li>
+        </ul>
 
-        <li id="acnApprovate">
-            <ul><h2 id="acnaTitolo01">Titolo</h2>
-                <pre id="acnaDescrizione01">descrizione</pre>
+        <ul id="acnApprovate">
+            <li><h2 class="acnaTitolo">Titolo</h2>
+                <pre class="acnaDescrizione">descrizione</pre>
                 <a href="">trailer</a><br>
-                <input id="acnaSospendi01" type="submit" value="Sposta in 'In sospeso' ">
-                <input id="acnaRifiuta01" type="submit" value="Rifiuta candidatura">
-            </ul>
-        </li>
+                <input class="acnaSospendi" type="submit" value="Sposta in 'In sospeso' ">
+                <input class="acnaRifiuta" type="submit" value="Rifiuta candidatura">
+            </li>
+        </ul>
 
-        <li id="acnRifiutate">
-            <ul><h2 id="acnrTitolo01">Titolo</h2>
-                <pre id="acnrDescrizione01">descrizione</pre>
+        <ul id="acnRifiutate">
+            <li><h2 class="acnrTitolo">Titolo</h2>
+                <pre class="acnrDescrizione">descrizione</pre>
                 <a href="">trailer</a><br>
-                <input id="acnrSospendi01" type="submit" value="Sposta in 'In sospeso' ">
-                <input id="acnrElimina01" type="submit" value="Elimina definitivamente">
-            </ul>
-        </li>
+                <input class="acnrSospendi" type="submit" value="Sposta in 'In sospeso' ">
+                <input class="acnrElimina" type="submit" value="Elimina definitivamente">
+            </li>
+        </ul>
     </div>
 
     <footer>

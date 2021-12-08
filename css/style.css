@@ -417,6 +417,95 @@ header button:active {
     width: 100%;
 }
 
+/* Admin --------------------------------------------------------------------------------------------------*/
+#adminDashboard{
+    width: 76%;
+    margin: auto;
+    border: 3px solid black;
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 4px;
+}
+#adminDashboard a{
+    background-color: #f44336;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    display: inline-block;
+    width: 30%;
+    border: 3px solid #a12c23;
+}
+#adminDashboard a:hover{
+    background-color: #f36e65;
+    color: white;
+}
+#adminInfo{
+    width: 70%;
+    margin: auto;
+    border: 3px solid black;
+    margin-bottom: 30px;
+}
+#adminInfo dt{
+    background-color: #e6847d;
+    text-align: center;
+    display: block;
+}
+#adminInfo dd{
+    background-color: rgb(219, 185, 182);
+    margin:0;
+    text-align: center;
+    display: block;
+}
+
+.tornaDashboard{
+    display: block;
+    margin: 8px 0 10px 4px;
+}
+
+#acnSospese li{
+    border:darkblue solid;
+    max-width: 400px;
+    list-style-type: none;
+    margin:5px 0;
+    padding:0;
+}
+#acnSospese li h2{
+    background-color: rgb(255, 163, 57);
+    padding:0;
+    margin:0;
+}
+#acnSospese li pre{
+    text-align: center;
+}
+#acnSospese li a{
+    display:block;
+    text-align:center;
+}
+#acnSospese li label, #acnSospese li textarea{
+    margin-left:10px;
+    margin-bottom:4px;
+}
+#acnSospese li .ancsAccetta, #acnSospese li .ancsRifiuta{
+    background-color: rgb(255, 163, 57);
+    margin-left:8px;
+    margin-bottom:4px;
+}
+#acnApprovate{
+    display:none;
+}
+#acnRifiutate{
+    display:none;
+}
+
+#alfModifica,#alfAggiungi{
+    display:block;
+    border:darkmagenta solid;
+}
+
+#aprAggiungi,#aprModifica{
+    display:block;
+    border:darkmagenta solid;  
+}
 /* ---CONTENT */
 
 /* FOOTER */
