@@ -420,6 +420,89 @@ header button:active {
     content: close-quote;
 }
 
+/*Pagina Utente ------------------------------------------------------------------- */
+
+#Info{
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 60%;
+    padding: 0 1% 1% 1%;
+    border: solid black 1px;
+}
+
+#Info button{
+    width: 10%;
+    background-color: var(--main-color);
+    border: none;
+    padding: 0.4% 2%;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+}
+
+#Info button:hover{
+    background-color: var(--main-color-dark);
+}
+
+#Info fieldset:first-child{
+    margin-bottom: 1em;  
+}
+
+#Info input{
+    display: block;
+    width: 60%;
+    padding: 0.4em;
+}
+
+#Info label{
+    display: block;
+    padding-top: 1%;
+}
+
+#biglietti{
+    border: solid black 1px;
+    margin-bottom: 2em;
+}
+
+#biglietti h1{
+    padding-left: 1em;
+}
+
+#biglietti ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style-type: none;
+
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+}
+
+.ticket{
+    background-color: var(--main-color-light);
+    border: solid black 1px;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 25%;
+}
+
+.ticket-up:first-child{
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.ticket-low:first-child{
+    font-style: italic;
+}
+
+.ticket-low:first-child::after{
+    content: ",";
+}
+
 /* Come Trovarci --------------------------------------------------------------------------------------------------*/
 
 #ComeRaggiungerci dl{
@@ -436,7 +519,7 @@ header button:active {
 
 /* 404 --------------------------------------------------------------------------------------------------*/
 
-#404 {
+#404{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -453,11 +536,56 @@ header button:active {
     width: 100%;
 }
 
+/* Pagina film -----------------------------------------------------------------------------------------------*/
+
+.contentPaginaFilm h1{
+    text-align: center;
+}
+
+.contentPaginaFilm h2{
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+
+.contentPaginaFilm p{
+    font-size: 1.2em;
+    font-style: italic;
+    width: 65%;
+    padding: 1%;
+    float: right;
+    
+}
+
+.contentPaginaFilm img{
+    position: relative;
+    width: 25%;
+    right: 3%;
+    padding: 1em;
+    float: right;
+}
+
+.contentPaginaFilm [title="anno di pubblicazione"]{
+    text-align: right;
+    margin: 0;
+    padding-left: 2%;
+}
+
+.contentPaginaFilm a{
+    display: block;
+    padding: 2%;
+    float: right;
+    text-align: center;
+    bottom: 20%;
+}
+
 /* ---CONTENT */
 
 /* FOOTER */
 
 footer {
+    clear: both;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;

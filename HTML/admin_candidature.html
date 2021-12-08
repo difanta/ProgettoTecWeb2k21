@@ -80,15 +80,43 @@
     </header>
         
     <div id="content">
+        <a href="admin.html">Torna alla Dashboard</a>
+
+        <br><label for="acnSelect">Candidature: </label>
+        <select id="acnSelect">
+            <option value="acnOp01">In sospeso</option>
+            <option value="acnOp02">Approvate</option>
+            <option value="acnOp03">Scartate</option>
+        </select><br>
+        <input type="submit" value="Seleziona">
+
         <h1>Candidature in sospeso</h1>
-        <li>
-            <ul><h2 id="candTitolo">Titolo</h2>
-                <pre id="candDescrizione">descrizione</pre>
+        <li id="acnSospeso">
+            <ul><h2 id="ancsTitolo01">Titolo</h2>
+                <pre id="ancsDescrizione01">descrizione</pre>
                 <a href="">trailer</a><br>
-                <label for="candCommento">Commento</label><br>
-                <textarea id="candCommento" name="candCommento" rows="4" cols="40"></textarea><br>
-                <input id="candAccetta" type="submit" value="Accetta candidatura">
-                <input id="candRifiuta" type="submit" value="Rifiuta candidatura">
+                <label for="ancsCommento01">Commento</label><br>
+                <textarea id="ancsCommento02" rows="4" cols="40"></textarea><br>
+                <input id="ancsAccetta01" type="submit" value="Accetta candidatura">
+                <input id="ancsRifiuta01" type="submit" value="Rifiuta candidatura">
+            </ul>
+        </li>
+
+        <li id="acnApprovate">
+            <ul><h2 id="acnaTitolo01">Titolo</h2>
+                <pre id="acnaDescrizione01">descrizione</pre>
+                <a href="">trailer</a><br>
+                <input id="acnaSospendi01" type="submit" value="Sposta in 'In sospeso' ">
+                <input id="acnaRifiuta01" type="submit" value="Rifiuta candidatura">
+            </ul>
+        </li>
+
+        <li id="acnRifiutate">
+            <ul><h2 id="acnrTitolo01">Titolo</h2>
+                <pre id="acnrDescrizione01">descrizione</pre>
+                <a href="">trailer</a><br>
+                <input id="acnrSospendi01" type="submit" value="Sposta in 'In sospeso' ">
+                <input id="acnrElimina01" type="submit" value="Elimina definitivamente">
             </ul>
         </li>
     </div>
