@@ -83,44 +83,65 @@
     </header>
 
     <div id="Info">
-            <h1>Informazioni Account</h1>
-            <form> <!--TODO aggiungi action e method-->
-                <fieldset>
-                    <legend>Informazioni Personali</legend>
-                    <label for="nome">Nome</label>
-                    <input id="nome" name="nome" type="text">
-                    <label for="cognome">Cognome</label>
-                    <input id="cognome" name="cognome" type="text">
-                    <label for="dataNascita">Data di nascita</label>
-                    <input id="dataNascita" name="dataNascita" type="text">
-                </fieldset>
+        <h1>Informazioni Account</h1>
+        <form> <!--TODO aggiungi action e method-->
+            <fieldset>
+                <legend>Informazioni Personali</legend>
+                <label for="nome">Nome</label>
+                <input id="nome" name="nome" type="text">
+                <label for="cognome">Cognome</label>
+                <input id="cognome" name="cognome" type="text">
+                <label for="dataNascita">Data di nascita</label>
+                <input id="dataNascita" name="dataNascita" type="text">
+            </fieldset>
 
-                <fieldset>
-                    <legend>Informazioni Account</legend>
-                    <p>
-                        <label for="email">Email</label>
-                        <input id="email" name="email" type="email">
-                    </p>
-                    <p>
-                        <label for="password">Password</label>
-                        <input id="password" name="password" type="password">
-                    </p>
-                    <button>OK</button>
-                    <button>Reset</button>
-                </fieldset>
-            </form>
+            <fieldset>
+                <legend>Informazioni Account</legend>
+                <p>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email">
+                </p>
+                <p>
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password">
+                </p>
+                <button>OK</button>
+                <button>Reset</button>
+            </fieldset>
+        </form>
     </div>
 
     <div id="biglietti">
+        <h1>I tuoi biglietti</h1>
         <ul>
             <li class="ticket">
                 <p>
-                    <span class="ticket-up">film</span>
-                    <span class="ticket-up">#numero biglietto</span>
+                    <span class="ticket-up">film1</span>
+                    <span class="ticket-up">#numero biglietto1</span>
                 </p><!--TODO replace with php-->
                 <p>
-                    <span class="ticket-low">Luogo</span>
-                    <span class="ticket-low">Orario</span>
+                    <span class="ticket-low">Luogo1</span>
+                    <span class="ticket-low">Orario1</span>
+                </p><!--TODO replace with php-->
+            </li>
+            <li class="ticket">
+                <p>
+                    <span class="ticket-up">film2</span>
+                    <span class="ticket-up">#numero biglietto2</span>
+                </p><!--TODO replace with php-->
+                <p>
+                    <span class="ticket-low">Luogo2</span>
+                    <span class="ticket-low">Orario2</span>
+                </p><!--TODO replace with php-->
+            </li>
+            <li class="ticket">
+                <p>
+                    <span class="ticket-up">film2</span>
+                    <span class="ticket-up">#numero biglietto2</span>
+                </p><!--TODO replace with php-->
+                <p>
+                    <span class="ticket-low">Luogo2</span>
+                    <span class="ticket-low">Orario2</span>
                 </p><!--TODO replace with php-->
             </li>
         </ul>

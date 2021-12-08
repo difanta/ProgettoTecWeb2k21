@@ -97,67 +97,109 @@ header #breadcrumb p {
 
 /* Login-signup */
 
-header #loginButtons {
+header #accountButton {
     position: absolute;
     top: 10%;
-    right: 2%;
+    right: 5%;
 }
 
-header #loginButtons button {
+header #accountButton, header #accountDropdown button {
     color: rgb(49, 49, 49);
     cursor: pointer;
-    float: left;
 
     padding: 0.4em 1em;
 
     transition: background-color 0.2s ease-out;
 }
 
-header #loginBtn {
+header #accountButton {
     background-color: var(--login-color);
     border: 1px solid rgba(82, 82, 82, 0.7);
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 5px;
 }
 
-header #signupBtn {
-    background-color: #f5f5f5;
-    border: 1px solid rgba(82, 82, 82, 0.7);
-    border-radius: 0px 5px 5px 0px;
-}
-
-header #loginButtons #loginBtn:hover {
+header #accountButton:hover {
     background-color: var(--login-color-hover);
 }
 
-header #loginButtons #signupBtn:hover {
-    background-color: #c2c2c2;
-}
-
-#loginButtons button:last-child {
-    border-left: none;
-}
-
-/* Clearfix */
-header #loginButtons:after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-header form {
+header #accountDropdown {
     visibility: hidden;
+    opacity: 0;
     position: absolute;
+
     top: 40%;
     right: 0.5%;
-    padding: 1em;
+
     background-color: white;
     text-align: left;
-    opacity: 0;
 
     box-shadow: 1px 2px 8px rgb(0 0 0 / 15%);
     border: 1px solid #ced4da;
 
     transition: 0.2s ease-in-out;
+}
+
+header #accountDropdown.dropdown {
+    visibility: visible;
+    opacity: 1;
+}
+
+header #accountDropdown {
+    z-index: 2;
+}
+
+header #accountDropdown div.slidableOut {
+    display: block;
+    padding: 1em;
+}
+
+header #accountDropdown div.slideOut {
+    display: none;
+}
+
+header #accountDropdown div.slidableIn {
+    display: none;
+
+    transition: 0.5s ease-in-out;
+}
+
+header #accountDropdown div.slideIn {
+    display: block;
+}
+
+header #accountDropdown header {
+    position: static;
+    background-color: white;
+    text-align: left;
+}
+
+header #accountDropdown button {
+    min-width: 10em;
+    margin: 0.5em;
+    display: block;
+    background-color: #f5f5f5;
+    border: 1px solid rgba(82, 82, 82, 0.7);
+}
+
+header #accountDropdown div > a {
+    margin: 0.5em;
+    display: block;
+    text-align: center;
+}
+
+header #accountDropdown header button {
+    min-width: initial;
+    margin: initial;
+    background-color: white;
+    border: none;
+}
+
+header #accountDropdown button:hover {
+    background-color: #686868;
+}
+
+header form {
+    padding: 1em;
 }
 
 header form label {
@@ -174,11 +216,6 @@ header form input {
 header form button {
     border-radius: 4px;
     border-style: solid;
-}
-
-header form.dropdown {
-    visibility: visible;
-    opacity: 1;
 }
 
 header button:active {
@@ -341,9 +378,9 @@ header button:active {
 #listaRecensioni {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: top;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
     padding: 0;
     margin: 0;
@@ -355,8 +392,7 @@ header button:active {
     padding: 0.5em 1.5em;
     margin: 0.8em 0.5em;
 
-    background: url("../images/article_background.jpg");
-    background-repeat: no-repeat;
+    background: linear-gradient(to left top, white, 60%, rgb(218, 218, 218));
 
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.45);
 }
@@ -384,6 +420,155 @@ header button:active {
     content: close-quote;
 }
 
+/* Lista Film / Proiezioni ---------------------------------------------------------*/
+
+div.selectYear {
+    float: right;
+    background-color: transparent;
+    text-align: right;
+    padding: 0.2em 1em;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
+}
+
+div.filters {
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
+    padding: 0 1em;
+}
+
+div.filters > p {
+    display: inline;
+    margin: 0;
+    margin-right: 2em;
+}
+
+div.filters > form {
+    margin: auto;
+    display: inline;
+}
+
+div.filters > form label {
+    margin-right: 0.5em;
+    margin-left: 2em;
+}
+
+div.filters > form button[type="submit"] {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 4em;
+}
+
+div.contentListaFilm ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding-right: 2.5em;
+}
+
+div.contentListaFilm li {
+    list-style: none;
+    text-align: center;
+    position: relative;
+    width: 20em;
+    margin: 2em;
+    padding: 2em;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
+}
+
+div.contentListaFilm li h2 {
+    margin-top: 0;
+}
+
+div.contentListaFilm li div.like {
+    position: absolute;
+    bottom: 10%;
+    right: 6%;
+}
+
+/*Pagina Utente ------------------------------------------------------------------- */
+
+#Info{
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 60%;
+    padding: 0 1% 1% 1%;
+    border: solid black 1px;
+}
+
+#Info button{
+    width: 10%;
+    background-color: var(--main-color);
+    border: none;
+    padding: 0.4% 2%;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+}
+
+#Info button:hover{
+    background-color: var(--main-color-dark);
+}
+
+#Info fieldset:first-child{
+    margin-bottom: 1em;  
+}
+
+#Info input{
+    display: block;
+    width: 60%;
+    padding: 0.4em;
+}
+
+#Info label{
+    display: block;
+    padding-top: 1%;
+}
+
+#biglietti{
+    border: solid black 1px;
+    margin-bottom: 2em;
+}
+
+#biglietti h1{
+    padding-left: 1em;
+}
+
+#biglietti ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style-type: none;
+
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+}
+
+.ticket{
+    background-color: var(--main-color-light);
+    border: solid black 1px;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 25%;
+}
+
+.ticket-up:first-child{
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.ticket-low:first-child{
+    font-style: italic;
+}
+
+.ticket-low:first-child::after{
+    content: ",";
+}
+
 /* Come Trovarci --------------------------------------------------------------------------------------------------*/
 
 #ComeRaggiungerci dl{
@@ -400,7 +585,7 @@ header button:active {
 
 /* 404 --------------------------------------------------------------------------------------------------*/
 
-#404 {
+#404{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -506,11 +691,56 @@ header button:active {
     display:block;
     border:darkmagenta solid;  
 }
+/* Pagina film -----------------------------------------------------------------------------------------------*/
+
+.contentPaginaFilm h1{
+    text-align: center;
+}
+
+.contentPaginaFilm h2{
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+
+.contentPaginaFilm p{
+    font-size: 1.2em;
+    font-style: italic;
+    width: 65%;
+    padding: 1%;
+    float: right;
+    
+}
+
+.contentPaginaFilm img{
+    position: relative;
+    width: 25%;
+    right: 3%;
+    padding: 1em;
+    float: right;
+}
+
+.contentPaginaFilm [title="anno di pubblicazione"]{
+    text-align: right;
+    margin: 0;
+    padding-left: 2%;
+}
+
+.contentPaginaFilm a{
+    display: block;
+    padding: 2%;
+    float: right;
+    text-align: center;
+    bottom: 20%;
+}
+
 /* ---CONTENT */
 
 /* FOOTER */
 
 footer {
+    clear: both;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
