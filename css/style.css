@@ -420,6 +420,72 @@ header button:active {
     content: close-quote;
 }
 
+/* Lista Film / Proiezioni ---------------------------------------------------------*/
+
+div.selectYear {
+    float: right;
+    background-color: transparent;
+    text-align: right;
+    padding: 0.2em 1em;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
+}
+
+div.filters {
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
+    padding: 0 1em;
+}
+
+div.filters > p {
+    display: inline;
+    margin: 0;
+    margin-right: 2em;
+}
+
+div.filters > form {
+    margin: auto;
+    display: inline;
+}
+
+div.filters > form label {
+    margin-right: 0.5em;
+    margin-left: 2em;
+}
+
+div.filters > form button[type="submit"] {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 4em;
+}
+
+div.contentListaFilm ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding-right: 2.5em;
+}
+
+div.contentListaFilm li {
+    list-style: none;
+    text-align: center;
+    position: relative;
+    width: 20em;
+    margin: 2em;
+    padding: 2em;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
+}
+
+div.contentListaFilm li h2 {
+    margin-top: 0;
+}
+
+div.contentListaFilm li div.like {
+    position: absolute;
+    bottom: 10%;
+    right: 6%;
+}
+
 /*Pagina Utente ------------------------------------------------------------------- */
 
 #Info{
