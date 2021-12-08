@@ -18,49 +18,87 @@
     <header>
         <h1>FestivalDiCinema</h1>
 
-        <div id="loginButtons">
-            <button title="login" id="loginBtn" onclick="
+        <button title="account" id="accountButton" onclick="            
                 (() => {
-                    document.getElementById('signup').classList.remove('dropdown');
-                    document.getElementById('login').classList.toggle('dropdown');
+                    document.getElementById('accountDropdown').classList.toggle('dropdown');
+                    document.getElementById('accountSection').classList.remove('slideOut');
+                    document.getElementById('loginSection').classList.remove('slideIn');
+                    document.getElementById('signupSection').classList.remove('slideIn');
                 })()">
-                <span class="material-icons">login</span>
-            </button>
-            <button title="sign up" id="signupBtn" onclick="            
-                (() => {
-                    document.getElementById('login').classList.remove('dropdown');
-                    document.getElementById('signup').classList.toggle('dropdown');
-                })()">
-                <span class="material-icons">drive_file_rename_outline</span>
-            </button>
+            <span class="material-icons">account_circle</span>
+        </button>
+
+        <div id="accountDropdown">
+            <div id="accountSection" class="slidableOut">
+                <button title="login" id="loginBtn" onclick="
+                    (() => {
+                        document.getElementById('accountSection').classList.toggle('slideOut');
+                        document.getElementById('loginSection').classList.toggle('slideIn');
+                    })()">
+                    Login
+                </button>
+                <button title="sign up" id="signupBtn" onclick="            
+                    (() => {
+                        document.getElementById('accountSection').classList.toggle('slideOut');
+                        document.getElementById('signupSection').classList.toggle('slideIn');
+                    })()">
+                    Registrati
+                </button>
+    
+                <button id="logout">Logout</button>
+    
+                <a href="PaginaUtente.html">Il mio Profilo</a>
+            </div>
+    
+            <div id="loginSection" class="slidableIn">
+                <header>
+                    <button class="back" onclick="            
+                        (() => {
+                            document.getElementById('accountSection').classList.toggle('slideOut');
+                            document.getElementById('loginSection').classList.toggle('slideIn');
+                        })()">
+                        <span class="material-icons">arrow_back</span>
+                    </button>
+                </header>
+                <form id="login">
+                    <label for="loginEmail">Email</label>
+                    <input id="loginEmail" name="email" type="email">
+                    
+                    <label for="loginPassword">Password</label>
+                    <input id="loginPassword" name="password" type="password">
+                    <button>accedi</button>
+                </form>
+            </div>
+    
+            <div id="signupSection" class="slidableIn">
+                <header>
+                    <button class="back" onclick="
+                        (() => {
+                            document.getElementById('accountSection').classList.toggle('slideOut');
+                            document.getElementById('signupSection').classList.toggle('slideIn');
+                        })()">
+                        <span class="material-icons">arrow_back</span>
+                    </button>
+                </header>
+                <form id="signup">
+                    <label for="signupNome">Nome</label>
+                    <input id="signupNome" name="nome" type="text">
+                    <label for="signupCognome">Cognome</label>
+                    <input id="signupCognome" name="cognome" type="text">
+                    <label for="signupDataNascita">Data di nascita</label>
+                    <input id="signupDataNascita" name="dataNascita" type="text">
+                    
+                    <label for="signupEmail">Email</label>
+                    <input id="signupEmail" name="email" type="email">
+                    <label for="signupPassword">Password</label>
+                    <input id="signupPassword" name="password" type="password">
+                    <label for="signupPassword2">ridigita la password</label>
+                    <input id="signupPassword2" name="password" type="password">
+        
+                    <button>registrati</button>
+                </form>
+            </div>
         </div>
-
-        <form id="login">
-            <label for="loginEmail">Email</label>
-            <input id="loginEmail" name="email" type="email">
-            
-            <label for="loginPassword">Password</label>
-            <input id="loginPassword" name="password" type="password">
-            <button>accedi</button>
-        </form>
-
-        <form id="signup">
-            <label for="signupNome">Nome</label>
-            <input id="signupNome" name="nome" type="text">
-            <label for="signupCognome">Cognome</label>
-            <input id="signupCognome" name="cognome" type="text">
-            <label for="signupDataNascita">Data di nascita</label>
-            <input id="signupDataNascita" name="dataNascita" type="text">
-            
-            <label for="signupEmail">Email</label>
-            <input id="signupEmail" name="email" type="email">
-            <label for="signupPassword">Password</label>
-            <input id="signupPassword" name="password" type="password">
-            <label for="signupPassword2">ridigita la password</label>
-            <input id="signupPassword2" name="password" type="password">
-
-            <button>registrati</button>
-        </form>
 
         <nav id="menu">
             <ul>
@@ -74,51 +112,59 @@
         </nav>
 
         <nav id="breadcrumb">
-            <p>Ti trovi in: <span lang="en">Home</span >&gt; &gt; Admin &gt; &gt; candidature</p>
+            <p>Ti trovi in: <span lang="en">Home</span></p>
         </nav>
 
     </header>
         
     <div id="content">
-        <a href="admin.html">Torna alla Dashboard</a>
+        <a class="tornaDashboard" href="admin.html">Torna al menu admin</a>
 
         <br><label for="acnSelect">Candidature: </label>
         <select id="acnSelect">
             <option value="acnOp01">In sospeso</option>
             <option value="acnOp02">Approvate</option>
             <option value="acnOp03">Scartate</option>
-        </select><br>
+        </select>
         <input type="submit" value="Seleziona">
 
         <h1>Candidature in sospeso</h1>
-        <li id="acnSospeso">
-            <ul><h2 id="ancsTitolo01">Titolo</h2>
-                <pre id="ancsDescrizione01">descrizione</pre>
+        <ul id="acnSospese">
+            <li><h2 class="ancsTitolo">Titolo</h2>
+                <pre class="ancsDescrizione">descrizione</pre>
                 <a href="">trailer</a><br>
-                <label for="ancsCommento01">Commento</label><br>
-                <textarea id="ancsCommento02" rows="4" cols="40"></textarea><br>
-                <input id="ancsAccetta01" type="submit" value="Accetta candidatura">
-                <input id="ancsRifiuta01" type="submit" value="Rifiuta candidatura">
-            </ul>
-        </li>
+                <label for="ancsCommento">Commento</label><br>
+                <textarea class="ancsCommento" rows="4" cols="40"></textarea><br>
+                <input class="ancsAccetta" type="submit" value="Accetta candidatura">
+                <input class="ancsRifiuta" type="submit" value="Rifiuta candidatura">
+            </li>
+            <li><h2 class="ancsTitolo">Titolo</h2>
+                <pre class="ancsDescrizione">descrizione</pre>
+                <a href="">trailer</a><br>
+                <label for="ancsCommento">Commento</label><br>
+                <textarea class="ancsCommento" rows="4" cols="40"></textarea><br>
+                <input class="ancsAccetta" type="submit" value="Accetta candidatura">
+                <input class="ancsRifiuta" type="submit" value="Rifiuta candidatura">
+            </li>
+        </ul>
 
-        <li id="acnApprovate">
-            <ul><h2 id="acnaTitolo01">Titolo</h2>
-                <pre id="acnaDescrizione01">descrizione</pre>
+        <ul id="acnApprovate">
+            <li><h2 class="acnaTitolo">Titolo</h2>
+                <pre class="acnaDescrizione">descrizione</pre>
                 <a href="">trailer</a><br>
-                <input id="acnaSospendi01" type="submit" value="Sposta in 'In sospeso' ">
-                <input id="acnaRifiuta01" type="submit" value="Rifiuta candidatura">
-            </ul>
-        </li>
+                <input class="acnaSospendi" type="submit" value="Sposta in 'In sospeso' ">
+                <input class="acnaRifiuta" type="submit" value="Rifiuta candidatura">
+            </li>
+        </ul>
 
-        <li id="acnRifiutate">
-            <ul><h2 id="acnrTitolo01">Titolo</h2>
-                <pre id="acnrDescrizione01">descrizione</pre>
+        <ul id="acnRifiutate">
+            <li><h2 class="acnrTitolo">Titolo</h2>
+                <pre class="acnrDescrizione">descrizione</pre>
                 <a href="">trailer</a><br>
-                <input id="acnrSospendi01" type="submit" value="Sposta in 'In sospeso' ">
-                <input id="acnrElimina01" type="submit" value="Elimina definitivamente">
-            </ul>
-        </li>
+                <input class="acnrSospendi" type="submit" value="Sposta in 'In sospeso' ">
+                <input class="acnrElimina" type="submit" value="Elimina definitivamente">
+            </li>
+        </ul>
     </div>
 
     <footer>
