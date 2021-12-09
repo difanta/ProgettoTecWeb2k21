@@ -12,7 +12,7 @@ body {
 }
 
 body {
-    max-width: 1024px;
+    max-width: 1200px;
     margin: auto;
     font-family: Helvetica, sans-serif;
 }
@@ -230,6 +230,10 @@ header button:active {
 #homeDescription{
     text-align: center;
     font-size: 1.8em;
+}
+
+#content {
+    padding: 2em;
 }
 
 #content h2{
@@ -594,12 +598,15 @@ div.contentListaFilm li div.like {
 
 /* Contest --------------------------------------------------------------------------------------------------*/
 
-#contestForm form{
-    text-align: center;
+#contestForm input{
+    display: block;
+    width: 60%;
+    padding: 0.4em;
 }
 
-#contestForm fom label{
-    width: 100%;
+#contestForm label{
+    display: block;
+    padding-top: 1%;
 }
 
 /* Pagina film -----------------------------------------------------------------------------------------------*/
