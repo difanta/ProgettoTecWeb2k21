@@ -18,49 +18,87 @@
     <header>
         <h1>FestivalDiCinema</h1>
 
-        <div id="loginButtons">
-            <button title="login" id="loginBtn" onclick="
+        <button title="account" id="accountButton" onclick="            
                 (() => {
-                    document.getElementById('signup').classList.remove('dropdown');
-                    document.getElementById('login').classList.toggle('dropdown');
+                    document.getElementById('accountDropdown').classList.toggle('dropdown');
+                    document.getElementById('accountSection').classList.remove('slideOut');
+                    document.getElementById('loginSection').classList.remove('slideIn');
+                    document.getElementById('signupSection').classList.remove('slideIn');
                 })()">
-                <span class="material-icons">login</span>
-            </button>
-            <button title="sign up" id="signupBtn" onclick="            
-                (() => {
-                    document.getElementById('login').classList.remove('dropdown');
-                    document.getElementById('signup').classList.toggle('dropdown');
-                })()">
-                <span class="material-icons">drive_file_rename_outline</span>
-            </button>
+            <span class="material-icons">account_circle</span>
+        </button>
+
+        <div id="accountDropdown">
+            <div id="accountSection" class="slidableOut">
+                <button title="login" id="loginBtn" onclick="
+                    (() => {
+                        document.getElementById('accountSection').classList.toggle('slideOut');
+                        document.getElementById('loginSection').classList.toggle('slideIn');
+                    })()">
+                    Login
+                </button>
+                <button title="sign up" id="signupBtn" onclick="            
+                    (() => {
+                        document.getElementById('accountSection').classList.toggle('slideOut');
+                        document.getElementById('signupSection').classList.toggle('slideIn');
+                    })()">
+                    Registrati
+                </button>
+    
+                <button id="logout">Logout</button>
+    
+                <a href="PaginaUtente.html">Il mio Profilo</a>
+            </div>
+    
+            <div id="loginSection" class="slidableIn">
+                <header>
+                    <button class="back" onclick="            
+                        (() => {
+                            document.getElementById('accountSection').classList.toggle('slideOut');
+                            document.getElementById('loginSection').classList.toggle('slideIn');
+                        })()">
+                        <span class="material-icons">arrow_back</span>
+                    </button>
+                </header>
+                <form id="login">
+                    <label for="loginEmail">Email</label>
+                    <input id="loginEmail" name="email" type="email">
+                    
+                    <label for="loginPassword">Password</label>
+                    <input id="loginPassword" name="password" type="password">
+                    <button>accedi</button>
+                </form>
+            </div>
+    
+            <div id="signupSection" class="slidableIn">
+                <header>
+                    <button class="back" onclick="
+                        (() => {
+                            document.getElementById('accountSection').classList.toggle('slideOut');
+                            document.getElementById('signupSection').classList.toggle('slideIn');
+                        })()">
+                        <span class="material-icons">arrow_back</span>
+                    </button>
+                </header>
+                <form id="signup">
+                    <label for="signupNome">Nome</label>
+                    <input id="signupNome" name="nome" type="text">
+                    <label for="signupCognome">Cognome</label>
+                    <input id="signupCognome" name="cognome" type="text">
+                    <label for="signupDataNascita">Data di nascita</label>
+                    <input id="signupDataNascita" name="dataNascita" type="text">
+                    
+                    <label for="signupEmail">Email</label>
+                    <input id="signupEmail" name="email" type="email">
+                    <label for="signupPassword">Password</label>
+                    <input id="signupPassword" name="password" type="password">
+                    <label for="signupPassword2">ridigita la password</label>
+                    <input id="signupPassword2" name="password" type="password">
+        
+                    <button>registrati</button>
+                </form>
+            </div>
         </div>
-
-        <form id="login">
-            <label for="loginEmail">Email</label>
-            <input id="loginEmail" name="email" type="email">
-            
-            <label for="loginPassword">Password</label>
-            <input id="loginPassword" name="password" type="password">
-            <button>accedi</button>
-        </form>
-
-        <form id="signup">
-            <label for="signupNome">Nome</label>
-            <input id="signupNome" name="nome" type="text">
-            <label for="signupCognome">Cognome</label>
-            <input id="signupCognome" name="cognome" type="text">
-            <label for="signupDataNascita">Data di nascita</label>
-            <input id="signupDataNascita" name="dataNascita" type="text">
-            
-            <label for="signupEmail">Email</label>
-            <input id="signupEmail" name="email" type="email">
-            <label for="signupPassword">Password</label>
-            <input id="signupPassword" name="password" type="password">
-            <label for="signupPassword2">ridigita la password</label>
-            <input id="signupPassword2" name="password" type="password">
-
-            <button>registrati</button>
-        </form>
 
         <nav id="menu">
             <ul>
@@ -72,7 +110,6 @@
                 <li><a href="contest.html">Il Contest</a></li>
             </ul>
         </nav>
-
         <nav id="breadcrumb">
             <p>Ti trovi in: <span lang="en">Home</span></p>
         </nav>
