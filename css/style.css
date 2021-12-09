@@ -591,15 +591,44 @@ div.contentListaFilm li div.like {
 
 /* Contest --------------------------------------------------------------------------------------------------*/
 
-#contestForm input{
-    display: block;
+#contestForm {
+    margin: 2em auto;
     width: 60%;
+    padding: 0 1% 1% 1%;
+}
+
+#contestForm input[type=submit]{
+    background-color: var(--main-color);
+    border: none;
+    padding: 0.4% 2%;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+}
+
+#contestForm input[type=submit]:hover{
+    background-color: var(--main-color-dark);
+}
+
+#contestForm fieldset{
+    max-width: fit-content;
+    border: none;
+}
+
+#contestForm form{
+    max-width: 300px;
+    margin: auto;
+}
+
+#contestForm input, textarea{
+    display: block;
+    width: 100%;
     padding: 0.4em;
 }
 
 #contestForm label{
     display: block;
-    padding-top: 1%;
+    padding-top: 3%;
 }
 
 /* Admin --------------------------------------------------------------------------------------------------*/

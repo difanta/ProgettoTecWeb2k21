@@ -143,15 +143,17 @@
         <div id="contestForm">
             <p id="mustBeLogged">Per presentare una candidatura bisogna essere loggati.</p>
             <form action="" method="post">
-                <label for="titoloFilm">Titolo film</label>
-                <input type="text" name="titoloFilm" id="titoloFilm"/>
-                <label for="descrizioneFilm">Descrizione</label>
-                <textarea name="descrizioneFilm" id="descrizioneFilm"></textarea>
-                <label for="linkYT">link <span lang="en">youtube</span></label>
-                <input type="text" name="linkYT" id="linkYT"/>
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email">
-                <input type="submit" value="Invia candidatura">
+                <fieldset>
+                    <label for="titoloFilm">Titolo film</label>
+                    <input type="text" name="titoloFilm" id="titoloFilm"/>
+                    <label for="descrizioneFilm">Descrizione</label>
+                    <textarea name="descrizioneFilm" id="descrizioneFilm" cols="40" rows="8"></textarea>
+                    <label for="linkYT">link <span lang="en">youtube</span></label>
+                    <input type="text" name="linkYT" id="linkYT"/>
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email">
+                    <input type="submit" value="Invia candidatura">
+                </fieldset>
             </form>
         </div>
     </div>
