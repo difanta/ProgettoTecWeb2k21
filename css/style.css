@@ -5,8 +5,10 @@ body {
     --main-color-dark: #c41c00;
     --main-color-dark-halfopacity: #c41d006c;
 
-    --login-color: #81d4fa;
-    --login-color-hover: #4ba3c7;
+    --login-color: #f8f8f8;
+    --login-color-hover: #aaaaaa;
+    --login-color-09opacity: #f8f8f8e7;
+    --login-color-hover-09opacity: #aaaaaae7;
 
     --footer-color: rgb(255, 250, 219);
 }
@@ -15,6 +17,22 @@ body {
     max-width: 1200px;
     margin: auto;
     font-family: Helvetica, sans-serif;
+}
+
+span.material-icons-outlined.md18 {
+    font-size: 48px;
+}
+
+span.material-icons-outlined.md24 {
+    font-size: 24px;
+}
+
+span.material-icons-outlined.md36 {
+    font-size: 36px;
+}
+
+span.material-icons-outlined.md48 {
+    font-size: 48px;
 }
 
 /* HEADER */
@@ -191,7 +209,7 @@ header #accountDropdown button {
     min-width: 10em;
     margin: 0.5em;
     display: block;
-    background-color: #f5f5f5;
+    background-color: var(--login-color);
     border: 1px solid rgba(82, 82, 82, 0.7);
 }
 
@@ -209,7 +227,7 @@ header #accountDropdown header button {
 }
 
 header #accountDropdown button:hover {
-    background-color: #686868;
+    background-color: var(--login-color-hover);
 }
 
 header form {
@@ -469,7 +487,7 @@ div.filters > form button[type="submit"] {
     margin-left: 4em;
 }
 
-div.contentListaFilm ul, div.contentListaProiezioni ul {
+.boxesList {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -477,7 +495,8 @@ div.contentListaFilm ul, div.contentListaProiezioni ul {
     padding-right: 2.5em;
 }
 
-div.contentListaFilm li, div.contentListaProiezioni li {
+.boxesList li {
+    position: relative;
     list-style: none;
     text-align: center;
     position: relative;
@@ -487,15 +506,90 @@ div.contentListaFilm li, div.contentListaProiezioni li {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
 }
 
-div.contentListaFilm li h2, div.contentListaProiezioni li h2 {
+.boxesList li h2 {
     margin-top: 0;
 }
 
-div.contentListaFilm li div.like {
+.boxesList div.like {
     position: absolute;
     bottom: 10%;
     right: 6%;
 }
+
+.boxesList a {
+    display: inline-block;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 0.5em;
+    text-decoration: solid;
+    transition: 0.2s ease-in-out;
+}
+
+.boxesList a.acquista {
+    margin: 0;
+    position: absolute;
+    bottom: 10%;
+    right: 6%;
+}
+
+.boxesList a:visited {
+    color: initial;
+}
+
+.boxesList a:hover {
+    transform: scale(1.2);
+    text-decoration: underline;
+}
+
+@media (pointer: fine) {
+    .boxesList a {
+        visibility: hidden;
+        opacity: 0;
+        margin: 0;
+    
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        transition: 0.4s ease-out;
+    
+        background-color: var(--login-color-09opacity);
+    }
+    
+    .boxesList a.info {
+        top: 0%;
+        left: 0%;
+        height: 100%;
+        width: 50%;
+    }
+    
+    .boxesList a.biglietti {
+        top: 0%;
+        left: 50%;
+        height: 100%;
+        width: 50%;
+    }
+    
+    .boxesList a.acquista { 
+        top: 0%;
+        left: 0%;
+        height: 100%;
+        width: 100%;
+    }
+    
+    .boxesList li.show a {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .boxesList a:hover {
+        transform: none;
+        background-color: var(--login-color-hover-09opacity);
+    }
+}
+
 
 /*Pagina Utente ------------------------------------------------------------------- */
 

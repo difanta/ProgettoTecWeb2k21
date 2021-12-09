@@ -12,7 +12,7 @@
 
     
     <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 600px)">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                     document.getElementById('loginSection').classList.remove('slideIn');
                     document.getElementById('signupSection').classList.remove('slideIn');
                 })()">
-            <span class="material-icons">account_circle</span>
+            <span class="material-icons-outlined">account_circle</span>
         </button>
 
         <div id="accountDropdown">
@@ -60,7 +60,7 @@
                             document.getElementById('accountSection').classList.toggle('slideOut');
                             document.getElementById('loginSection').classList.toggle('slideIn');
                         })()">
-                        <span class="material-icons">arrow_back</span>
+                        <span class="material-icons-outlined">arrow_back</span>
                     </button>
                 </header>
                 <form id="login">
@@ -80,7 +80,7 @@
                             document.getElementById('accountSection').classList.toggle('slideOut');
                             document.getElementById('signupSection').classList.toggle('slideIn');
                         })()">
-                        <span class="material-icons">arrow_back</span>
+                        <span class="material-icons-outlined">arrow_back</span>
                     </button>
                 </header>
                 <form id="signup">
@@ -130,11 +130,8 @@
                 <label for="nomeFilm">Nome</label>
                 <input type="text" name="nomeFilm" id="nomeFilm"/>
                 
-                <label for="dataInizio">Data inizio</label>
-                <input type="date" name="dataInizio" id="dataInizio"/>
-                
-                <label for="dataFine">Data fine</label>
-                <input type="date" name="dataFine" id="dataFine"/>
+                <label for="data">Data</label>
+                <input type="date" name="data" id="data"/>
         
                 <label for="gara">Tipo Film</label>
                 <select name="gara" id="gara">
@@ -147,24 +144,36 @@
             </form>
         </div>
 
-        <ul id="listaProiezioni">
-            <li class="inGara">
+        <ul id="listaProiezioni" class="boxesList">
+            <li class="inGara" id="gilbertofileladdio"
+            onmouseenter="(() => {
+                document.getElementById('gilbertofileladdio').classList.add('show');
+            })()"
+            onmouseleave="(() => {
+                document.getElementById('gilbertofileladdio').classList.remove('show');
+            })()">
                 <h2 title="Titolo">Gilberto Filé, l'addio</h2>
                 <em title="Registi">Alessandro Sperduti e Caterina Sartori</em>
                 <p>
                     <span class="data">25/12/2021</span>
                     <span class="ora">21:00</span>
                 </p>
-                <a href="./AcquistoBiglietti.html?id=$idProiezione"><strong>Acquista Biglietti</strong></a>
+                <a class="acquista" title="acquista" href="./AcquistoBiglietti.html?id=$idProiezione"><span class="material-icons-outlined md36">local_atm</span></a>
             </li>
-            <li class="noGara">
+            <li class="noGara" id="ilpadrino"
+            onmouseenter="(() => {
+                document.getElementById('ilpadrino').classList.add('show');
+            })()"
+            onmouseleave="(() => {
+                document.getElementById('ilpadrino').classList.remove('show');
+            })()">
                 <h2 title="Titolo">Il Padrino</h2>
                 <em title="Regista">Francis Ford Coppola</em>
                 <p>
                     <span class="data">27/12/2021</span>
                     <span class="ora">17:30</span>
                 </p>
-                <a href="./AcquistoBiglietti.html?id=$idProiezione"><strong>Acquista Biglietti</strong></a>
+                <a class="acquista" title="acquista" href="./AcquistoBiglietti.html?id=$idProiezione"><span class="material-icons-outlined md36">local_atm</span></a>
             </li>
         </ul>
     </div>
