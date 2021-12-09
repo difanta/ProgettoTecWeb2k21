@@ -12,7 +12,7 @@ body {
 }
 
 body {
-    max-width: 1024px;
+    max-width: 1200px;
     margin: auto;
     font-family: Helvetica, sans-serif;
 }
@@ -327,27 +327,28 @@ header button:active {
     justify-content: center;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 2% 10%;
+    width: 90%;
+    margin: auto;
     border: solid black 1px;
     border-radius: 15px;
     background-color: var(--main-color-light-halfopacity);
     list-style-type: none;
+    padding: 0;
 }
 
 #acquistoBiglietti li{
-    width: 8vw;
-    height: 8vw;
-    min-width: 140px;
-    min-height: 140px;
+    width: 6em;
+    height: 6em;
     position: relative;
-    margin: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     border: solid black 1px;
     border-radius: 10%;
     background-color: #54c9ff;
     background-image: url(../images/outline_calendar_today_black_24dp.png);
-    background-size: 70%;
+    background-size: 75%;
     background-repeat: no-repeat;
-    background-position: 50% 40%;
+    background-position: 50% 25%;
     transition: all 0.3s ease-in-out;
 }
 
@@ -358,19 +359,19 @@ header button:active {
  }
 
 #acquistoBiglietti li p.dayNum {
-    font-size: calc(20px + 0.9vw);
+    font-size: 1.7em;
     font-weight: 800;
     text-align: center;
     margin: 0;
-    padding-top:  40%;
+    padding-top:  33%;
 }
 
 #acquistoBiglietti li p.Month{
-    font-size: calc(12px + 0.6vw);
+    font-size: 1.1em;
     font-weight: 600;
     text-align: center;
     margin: 0;
-    padding-top:  7%;
+    padding-top:  5%;
 }
 
 /* Lista recensioni --------------------------------------------------------------------------------------------------*/
