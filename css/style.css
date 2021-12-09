@@ -331,27 +331,28 @@ header button:active {
     justify-content: center;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 2% 10%;
+    width: 90%;
+    margin: auto;
     border: solid black 1px;
     border-radius: 15px;
     background-color: var(--main-color-light-halfopacity);
     list-style-type: none;
+    padding: 0;
 }
 
 #acquistoBiglietti li{
-    width: 8vw;
-    height: 8vw;
-    min-width: 140px;
-    min-height: 140px;
+    width: 6em;
+    height: 6em;
     position: relative;
-    margin: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     border: solid black 1px;
     border-radius: 10%;
     background-color: #54c9ff;
     background-image: url(../images/outline_calendar_today_black_24dp.png);
-    background-size: 70%;
+    background-size: 75%;
     background-repeat: no-repeat;
-    background-position: 50% 40%;
+    background-position: 50% 25%;
     transition: all 0.3s ease-in-out;
 }
 
@@ -362,19 +363,19 @@ header button:active {
  }
 
 #acquistoBiglietti li p.dayNum {
-    font-size: calc(20px + 0.9vw);
+    font-size: 1.7em;
     font-weight: 800;
     text-align: center;
     margin: 0;
-    padding-top:  40%;
+    padding-top:  33%;
 }
 
 #acquistoBiglietti li p.Month{
-    font-size: calc(12px + 0.6vw);
+    font-size: 1.1em;
     font-weight: 600;
     text-align: center;
     margin: 0;
-    padding-top:  7%;
+    padding-top:  5%;
 }
 
 /* Lista recensioni --------------------------------------------------------------------------------------------------*/
@@ -426,14 +427,6 @@ header button:active {
 
 /* Lista Film / Proiezioni ---------------------------------------------------------*/
 
-div.selectYear {
-    float: right;
-    background-color: transparent;
-    text-align: right;
-    padding: 0.2em 1em;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
-}
-
 div.filters {
     text-align: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
@@ -462,7 +455,7 @@ div.filters > form button[type="submit"] {
     margin-left: 4em;
 }
 
-div.contentListaFilm ul {
+div.contentListaFilm ul, div.contentListaProiezioni ul {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -470,7 +463,7 @@ div.contentListaFilm ul {
     padding-right: 2.5em;
 }
 
-div.contentListaFilm li {
+div.contentListaFilm li, div.contentListaProiezioni li {
     list-style: none;
     text-align: center;
     position: relative;
@@ -480,7 +473,7 @@ div.contentListaFilm li {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
 }
 
-div.contentListaFilm li h2 {
+div.contentListaFilm li h2, div.contentListaProiezioni li h2 {
     margin-top: 0;
 }
 
@@ -609,6 +602,95 @@ div.contentListaFilm li div.like {
     padding-top: 1%;
 }
 
+/* Admin --------------------------------------------------------------------------------------------------*/
+#adminDashboard{
+    width: 76%;
+    margin: auto;
+    border: 3px solid black;
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 4px;
+}
+#adminDashboard a{
+    background-color: #f44336;
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    display: inline-block;
+    width: 30%;
+    border: 3px solid #a12c23;
+}
+#adminDashboard a:hover{
+    background-color: #f36e65;
+    color: white;
+}
+#adminInfo{
+    width: 70%;
+    margin: auto;
+    border: 3px solid black;
+    margin-bottom: 30px;
+}
+#adminInfo dt{
+    background-color: #e6847d;
+    text-align: center;
+    display: block;
+}
+#adminInfo dd{
+    background-color: rgb(219, 185, 182);
+    margin:0;
+    text-align: center;
+    display: block;
+}
+
+.tornaDashboard{
+    display: block;
+    margin: 8px 0 10px 4px;
+}
+
+#acnSospese li{
+    border:darkblue solid;
+    max-width: 400px;
+    list-style-type: none;
+    margin:5px 0;
+    padding:0;
+}
+#acnSospese li h2{
+    background-color: rgb(255, 163, 57);
+    padding:0;
+    margin:0;
+}
+#acnSospese li pre{
+    text-align: center;
+}
+#acnSospese li a{
+    display:block;
+    text-align:center;
+}
+#acnSospese li label, #acnSospese li textarea{
+    margin-left:10px;
+    margin-bottom:4px;
+}
+#acnSospese li .ancsAccetta, #acnSospese li .ancsRifiuta{
+    background-color: rgb(255, 163, 57);
+    margin-left:8px;
+    margin-bottom:4px;
+}
+#acnApprovate{
+    display:none;
+}
+#acnRifiutate{
+    display:none;
+}
+
+#alfModifica,#alfAggiungi{
+    display:block;
+    border:darkmagenta solid;
+}
+
+#aprAggiungi,#aprModifica{
+    display:block;
+    border:darkmagenta solid;  
+}
 /* Pagina film -----------------------------------------------------------------------------------------------*/
 
 .contentPaginaFilm h1{
