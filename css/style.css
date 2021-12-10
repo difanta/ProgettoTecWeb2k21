@@ -511,6 +511,10 @@ div.filters > form button[type="submit"] {
     margin-top: 0;
 }
 
+.boxesList li .data {
+    margin-right: 1em;
+}
+
 .boxesList input[type="checkbox"] {
     position: absolute;
     left: -10000%;
