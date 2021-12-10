@@ -581,9 +581,11 @@ div.filters > form button[type="submit"] {
 
 #Info button{
     width: 10%;
+    min-width: 50px;
     background-color: var(--main-color);
     border: none;
-    padding: 0.4% 2%;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
     color: white;
     cursor: pointer;
     transition: background-color 0.2s ease-out;
@@ -594,6 +596,7 @@ div.filters > form button[type="submit"] {
 }
 
 #Info fieldset:first-child{
+    padding-bottom: 0;
     margin-bottom: 1em;  
 }
 
@@ -601,15 +604,18 @@ div.filters > form button[type="submit"] {
     display: block;
     width: 60%;
     padding: 0.4em;
+    margin-top: 0;
+    margin-bottom: 1em;
 }
 
 #Info label{
     display: block;
-    padding-top: 1%;
 }
 
 #biglietti{
+    width: 90%;
     border: solid black 1px;
+    margin: auto;
     margin-bottom: 2em;
 }
 
@@ -625,9 +631,7 @@ div.filters > form button[type="submit"] {
     justify-content: space-around;
     list-style-type: none;
 
-    padding-top: 1em;
-    padding-bottom: 1em;
-
+    padding: 1em;
 }
 
 .ticket{
@@ -635,7 +639,9 @@ div.filters > form button[type="submit"] {
     border: solid black 1px;
     padding-left: 1em;
     padding-right: 1em;
+    margin: 1em 0 1em 0;
     width: 25%;
+    min-width: 200px;
 }
 
 .ticket-up:first-child{
