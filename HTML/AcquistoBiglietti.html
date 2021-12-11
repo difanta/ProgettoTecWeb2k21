@@ -123,41 +123,38 @@
 
     </header>
 
-    <div id="content">
+    <div id="content" class="content contentAcquistoBiglietti">
         <h1>Acquisto biglietti</h1>
 
         <!-- da nasondere o mostrare se l'utente è loggato o meno -->
 
-        <p>Per poter acquistare un biglietto devi prima effettuare il login</p>
+        <div id="login-container">
+            <p>Per poter acquistare un biglietto devi prima effettuare il login</p>
 
-        <button onclick="">Login</button>
-        <div id="login">
-            <form>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email">
-                
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password">
+            <button onclick="">Login</button>
+             oppure 
+            <button onclick="">Registrati</button>
+            <form id="login">
+                <label for="loginEmail">Email</label>
+                <input id="loginEmail" name="email" type="email">
+                <label for="loginpassword">Password</label>
+                <input id="loginpassword" name="password" type="password">
                 <button>accedi</button>
             </form>
-        </div>
-        
-        <div id="signin">
-            <form>
-
-                <label for="nome">Nome</label>
-                <input id="nome" name="nome" type="text">
-                <label for="cognome">Cognome</label>
-                <input id="cognome" name="cognome" type="text">
-                <label for="dataNascita">Data di nascita</label>
-                <input id="dataNascita" name="dataNascita" type="text">
+            <form id="signin">
+                <label for="singupnome">Nome</label>
+                <input id="singupnome" name="nome" type="text">
+                <label for="singupcognome">Cognome</label>
+                <input id="singupcognome" name="cognome" type="text">
+                <label for="singupdataNascita">Data di nascita</label>
+                <input id="singupdataNascita" name="dataNascita" type="text">
                 
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email">
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password">
-                <label for="password">ridigita la password</label>
-                <input id="password" name="password" type="password">
+                <label for="singupemail">Email</label>
+                <input id="singupemail" name="email" type="email">
+                <label for="singuppassword">Password</label>
+                <input id="singuppassword" name="password" type="password">
+                <label for="singuppassword">ridigita la password</label>
+                <input id="singuppassword" name="password" type="password">
 
                 <button>registrati</button>
             </form>
@@ -167,25 +164,25 @@
 
         <!-- i dati seguenti verrano poi inseriti dinmicamente -->
 
-        <h2 title="Titolo">Gilberto Filé, l'addio</h2>
-        <em title="Registi">Alessandro Sperduti e Caterina Sartori</em>
-        <p>
-            <span class="data">25/12/2021</span>
-            <span class="ora">21:00</span>
-            <span class="luogo">Sala 1</span>
-            <span class="prezzo">7.00€</span>
-        </p>
+        <div class="ordine">
+            <h3 title="Titolo">Gilberto Filé, l'addio</h3>
+            <em title="Registi">Alessandro Sperduti e Caterina Sartori</em>
+            <p>
+                <span class="data">25/12/2021</span>
+                <span class="ora">21:00</span>
+                <span class="luogo">Sala 1</span>
+                <span class="prezzo">7.00€</span>
+            </p>
+        </div>
 
-
-        <p>Seleziona il metodo di pagamento:</p>
-        <form action="http://server/path/file.cgi" method="post">
-
+        <p id="form-intro">Seleziona il metodo di pagamento:</p>
+        <form id="pagamento" action="" method="post">
             <input type="radio" id="carta_di_credito" name="metodo_pagamento" value="Carta di credito">
-            <label for="Carta di credito">Carta di credito</label><br>
+            <label for="carta_di_credito">Carta di credito</label>
             <input type="radio" id="paypal" name="metodo_pagamento" value="PayPal">
-            <label for="PayPal">PayPal</label><br>
+            <label for="paypal">PayPal</label>
             <input type="radio" id="satispay" name="metodo_pagamento" value="satispay">
-            <label for="satispay">Satispay</label><br>
+            <label for="satispay">Satispay</label>
 
             <input type="submit" value="Vai al pagamento">
         </form>
