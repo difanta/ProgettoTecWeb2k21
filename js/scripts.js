@@ -2,6 +2,18 @@
 /* Header -------------------------------------------- */
 
 
+
+/* Lista Film ---------------------------------------- */
+
+function listaFilmLike(checked, id) {
+    elem = document.getElementById('label-'+id);
+    if(checked) {
+        elem.innerHTML = elem.innerHTML.replace('favorite_border', 'favorite');
+    } else {
+        elem.innerHTML = elem.innerHTML.replace('favorite', 'favorite_border');
+    }
+}
+
 /* Acquisto biglietti -------------------------------- */
 
 function acquistoBigliettiLogin() {

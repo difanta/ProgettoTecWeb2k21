@@ -13,6 +13,7 @@
     
     <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 600px)">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+    <script src="../js/scripts.js"></script>
 </head>
 
 <body>
@@ -145,15 +146,7 @@
                 <h2 title="Titolo">Gilberto Filé, l'addio</h2>
                 <em title="Registi">a cura di Alessandro Sperduti e Caterina Sartori</em>
 
-                <input type="checkbox" name="like" id="like-gilbertofileladdio" onchange="
-                    (() => {
-                        elem = document.getElementById('label-like-gilbertofileladdio');
-                        if(this.checked) {
-                            elem.innerHTML = elem.innerHTML.replace('favorite_border', 'favorite');
-                        } else {
-                            elem.innerHTML = elem.innerHTML.replace('favorite', 'favorite_border');
-                        }
-                    })()"/>
+                <input type="checkbox" name="like" id="like-gilbertofileladdio" onchange="listaFilmLike(this.checked, 'like-gilbertofileladdio')"/>
                 <label for="like-gilbertofileladdio" id="label-like-gilbertofileladdio" title="like"><span class="material-icons-outlined md24">favorite_border</span></label>
                 <br>
                 <a title="info" class="info" href="./gilbertofileladdio.html"><span class="material-icons-outlined md36">info</span></a>
