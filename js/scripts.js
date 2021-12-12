@@ -1,7 +1,32 @@
 
 /* Header -------------------------------------------- */
 
+function toggleAccountDropdown() {
+    document.getElementById('accountDropdown').classList.toggle('dropdown');
+    document.getElementById('accountSection').classList.remove('slideOut');
+    document.getElementById('loginSection').classList.remove('slideIn');
+    document.getElementById('signupSection').classList.remove('slideIn');
+}
 
+function openLogin() {
+    document.getElementById('accountSection').classList.toggle('slideOut');
+    document.getElementById('loginSection').classList.toggle('slideIn');
+}
+
+function openSignup() {
+    document.getElementById('accountSection').classList.toggle('slideOut');
+    document.getElementById('signupSection').classList.toggle('slideIn');
+}
+
+function loginBack() {
+    document.getElementById('accountSection').classList.toggle('slideOut');
+    document.getElementById('loginSection').classList.toggle('slideIn');
+}
+
+function signupBack() {
+    document.getElementById('accountSection').classList.toggle('slideOut');
+    document.getElementById('signupSection').classList.toggle('slideIn');
+}
 
 /* Lista Film ---------------------------------------- */
 

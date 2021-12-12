@@ -22,82 +22,47 @@
 
         <h1>FestivalDiCinema</h1>
 
-        <button title="account" id="accountButton" onclick="            
-                (() => {
-                    document.getElementById('accountDropdown').classList.toggle('dropdown');
-                    document.getElementById('accountSection').classList.remove('slideOut');
-                    document.getElementById('loginSection').classList.remove('slideIn');
-                    document.getElementById('signupSection').classList.remove('slideIn');
-                })()">
-            <span class="material-icons-outlined">account_circle</span>
-        </button>
-
+        <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span></button>
         <div id="accountDropdown">
             <div id="accountSection" class="slidableOut">
-                <button title="login" id="loginBtn" onclick="
-                    (() => {
-                        document.getElementById('accountSection').classList.toggle('slideOut');
-                        document.getElementById('loginSection').classList.toggle('slideIn');
-                    })()">
-                    Login
-                </button>
-                <button title="sign up" id="signupBtn" onclick="            
-                    (() => {
-                        document.getElementById('accountSection').classList.toggle('slideOut');
-                        document.getElementById('signupSection').classList.toggle('slideIn');
-                    })()">
-                    Registrati
-                </button>
-    
+                <button title="login" id="loginBtn" onclick="openLogin()">Login</button>
+                <button title="sign up" id="signupBtn" onclick="openLogin()">Registrati</button>
                 <button id="logout">Logout</button>
-    
                 <a href="PaginaUtente.html">Il mio Profilo</a>
             </div>
     
             <div id="loginSection" class="slidableIn">
                 <header>
-                    <button class="back" onclick="            
-                        (() => {
-                            document.getElementById('accountSection').classList.toggle('slideOut');
-                            document.getElementById('loginSection').classList.toggle('slideIn');
-                        })()">
-                        <span class="material-icons-outlined">arrow_back</span>
-                    </button>
+                    <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span></button>
                 </header>
                 <form id="login">
                     <label for="loginEmail">Email</label>
-                    <input id="loginEmail" name="email" type="email">
-                    
+                    <input id="loginEmail" name="email" type="email" autocomplete="username">
                     <label for="loginPassword">Password</label>
-                    <input id="loginPassword" name="password" type="password">
+                    <input id="loginPassword" name="password" type="password" autocomplete="current-password">
+
                     <button>accedi</button>
                 </form>
             </div>
     
             <div id="signupSection" class="slidableIn">
                 <header>
-                    <button class="back" onclick="
-                        (() => {
-                            document.getElementById('accountSection').classList.toggle('slideOut');
-                            document.getElementById('signupSection').classList.toggle('slideIn');
-                        })()">
-                        <span class="material-icons-outlined">arrow_back</span>
-                    </button>
+                    <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span></button>
                 </header>
                 <form id="signup">
                     <label for="signupNome">Nome</label>
-                    <input id="signupNome" name="nome" type="text">
+                    <input id="signupNome" name="nome" type="text" autocomplete="name">
                     <label for="signupCognome">Cognome</label>
-                    <input id="signupCognome" name="cognome" type="text">
+                    <input id="signupCognome" name="cognome" type="text" autocomplete="family-name">
                     <label for="signupDataNascita">Data di nascita</label>
-                    <input id="signupDataNascita" name="dataNascita" type="text">
+                    <input id="signupDataNascita" name="dataNascita" type="text" autocomplete="bday">
                     
                     <label for="signupEmail">Email</label>
-                    <input id="signupEmail" name="email" type="email">
+                    <input id="signupEmail" name="email" type="email" autocomplete="home email">
                     <label for="signupPassword">Password</label>
-                    <input id="signupPassword" name="password" type="password">
+                    <input id="signupPassword" name="password" type="password" autocomplete="new-password">
                     <label for="signupPassword2">ridigita la password</label>
-                    <input id="signupPassword2" name="password" type="password">
+                    <input id="signupPassword2" name="password" type="password" autocomplete="new-password">
         
                     <button>registrati</button>
                 </form>
