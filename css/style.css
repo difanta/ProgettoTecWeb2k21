@@ -20,7 +20,7 @@ body {
 }
 
 span.material-icons-outlined.md18 {
-    font-size: 48px;
+    font-size: 18px;
 }
 
 span.material-icons-outlined.md24 {
@@ -135,7 +135,8 @@ header #accountButton {
     right: 5%;
 }
 
-header #accountButton, header #accountDropdown button {
+header #accountButton, 
+header #accountDropdown button {
     color: rgb(49, 49, 49);
     cursor: pointer;
 
@@ -469,7 +470,6 @@ div.filters > p {
 }
 
 div.filters > form {
-    margin: auto;
     display: inline;
 }
 
@@ -500,6 +500,7 @@ div.filters > form button[type="submit"] {
     width: 20em;
     margin: 2em;
     padding: 2em;
+    padding-bottom: 0.5em;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
 }
 
@@ -507,86 +508,190 @@ div.filters > form button[type="submit"] {
     margin-top: 0;
 }
 
-.boxesList div.like {
+.boxesList li .data {
+    margin-right: 1em;
+}
+
+.boxesList input[type="checkbox"] {
     position: absolute;
-    bottom: 10%;
+    left: -10000%;
+}
+
+.boxesList label {
+    position: absolute;
+    bottom: 8%;
     right: 6%;
+
+    cursor: pointer;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+.boxesList label:hover {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
 }
 
 .boxesList a {
     display: inline-block;
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 0.5em;
+    margin-top: 1em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+
     text-decoration: solid;
-    transition: 0.2s ease-in-out;
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+.boxesList a:hover {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 .boxesList a.acquista {
-    margin: 0;
     position: absolute;
-    bottom: 10%;
-    right: 6%;
+    bottom: 6%;
+    right: 3%;
+    margin: 0;
+    padding: 0.3em 0.6em;
+
+    background-color: rgba(0, 255, 255, 0.35);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.315);
+    border-radius: 5px;
+
+    transition: background-color 0.2s ease-in-out;
+}
+
+.boxesList a.acquista:hover {
+    text-shadow: none;
+    background-color: rgba(0, 165, 165, 0.575);
 }
 
 .boxesList a:visited {
     color: initial;
 }
 
-.boxesList a:hover {
-    transform: scale(1.2);
-    text-decoration: underline;
+/* Acquisto biglietti ------------------------------------------------------------- */
+
+
+.contentAcquistoBiglietti h1 {
+    text-align: center;
+    margin-bottom: 1.2em;
 }
 
-@media (pointer: fine) {
-    .boxesList a {
-        visibility: hidden;
-        opacity: 0;
-        margin: 0;
-    
-        position: absolute;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-
-        transition: 0.4s ease-out;
-    
-        background-color: var(--login-color-09opacity);
-    }
-    
-    .boxesList a.info {
-        top: 0%;
-        left: 0%;
-        height: 100%;
-        width: 50%;
-    }
-    
-    .boxesList a.biglietti {
-        top: 0%;
-        left: 50%;
-        height: 100%;
-        width: 50%;
-    }
-    
-    .boxesList a.acquista { 
-        top: 0%;
-        left: 0%;
-        height: 100%;
-        width: 100%;
-    }
-    
-    .boxesList li.show a {
-        visibility: visible;
-        opacity: 1;
-    }
-
-    .boxesList a:hover {
-        transform: none;
-        background-color: var(--login-color-hover-09opacity);
-    }
+.contentAcquistoBiglietti h2 {
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
 }
 
+#login-container button {
+    font-size: 1em;
+}
+
+#login-container form {
+    padding: 1em;
+}
+
+#login-container form label {
+    display: block;
+}
+
+#login-container form input {
+    display: block;
+    margin-bottom: 1em;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+
+#login-container form button {
+    border-radius: 4px;
+    border-style: solid;
+}
+
+#login-container button:active {
+    background-color: rgba(150, 150, 150, 0.822);
+}
+
+.contentAcquistoBiglietti #contentLogin,
+.contentAcquistoBiglietti #contentSignin {
+    display: none;
+}
+
+.contentAcquistoBiglietti #contentLogin.show,
+.contentAcquistoBiglietti #contentSignin.show {
+    display: block;
+}
+
+.contentAcquistoBiglietti .ordine {
+    font-size: 1.2em;
+    width: 20em;
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 3em;
+    padding: 1em;
+
+    text-align: center;
+    box-shadow: 1px 1px 4px black;
+}
+
+.contentAcquistoBiglietti .ordine h3 {
+    font-size: 1.3em;
+    margin-top: 0;
+}
+
+.contentAcquistoBiglietti .ordine p {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+}
+
+.contentAcquistoBiglietti .ordine p > span {
+    display: inline-block;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-top: 0.5em;
+}
+
+.contentAcquistoBiglietti #form-intro {
+    text-align: center;
+    font-style: italic;
+}
+
+.contentAcquistoBiglietti #pagamento {
+    text-align: center;
+}
+
+.contentAcquistoBiglietti #pagamento input:not([type="submit"]) {
+    position: absolute;
+    left: -10000%;
+}
+
+.contentAcquistoBiglietti #pagamento label {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0.5em;   
+    padding: 0.5em;
+
+    width: 7em;
+
+    border: 2px solid white;
+
+    transition: border 0.3s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.contentAcquistoBiglietti #pagamento label:hover {
+    border: 2px solid rgb(115, 146, 54);
+}
+
+.contentAcquistoBiglietti #pagamento label.selected {
+    background-color: rgb(171, 219, 74);
+    border: 2px solid rgb(115, 146, 54);
+}
+
+.contentAcquistoBiglietti #pagamento input[type="submit"] {
+    font-size: 1em;
+    display: block;
+    margin: auto;
+    margin-top: 0.5em;
+    padding: 0.3em
+}
 
 /*Pagina Utente ------------------------------------------------------------------- */
 
