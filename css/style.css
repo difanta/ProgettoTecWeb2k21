@@ -613,13 +613,13 @@ div.filters > form button[type="submit"] {
     background-color: rgba(150, 150, 150, 0.822);
 }
 
-.contentAcquistoBiglietti #login,
-.contentAcquistoBiglietti #signin {
+.contentAcquistoBiglietti #contentLogin,
+.contentAcquistoBiglietti #contentSignin {
     display: none;
 }
 
-.contentAcquistoBiglietti #login.show,
-.contentAcquistoBiglietti #signin.show {
+.contentAcquistoBiglietti #contentLogin.show,
+.contentAcquistoBiglietti #contentSignin.show {
     display: block;
 }
 
@@ -676,7 +676,7 @@ div.filters > form button[type="submit"] {
 
     border: 2px solid white;
 
-    transition: border 0.4s ease-in-out, background-color 0.4s ease-in-out;
+    transition: border 0.3s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 .contentAcquistoBiglietti #pagamento label:hover {

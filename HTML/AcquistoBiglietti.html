@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 600px)">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+    <script src="../js/scripts.js"></script>
 </head>
 
 <body>
@@ -131,30 +132,30 @@
         <div id="login-container">
             <p>Per poter acquistare un biglietto devi prima effettuare il login</p>
 
-            <button onclick="">Login</button>
+            <button onclick="acquistoBigliettiLogin()">Login</button>
              oppure 
-            <button onclick="">Registrati</button>
-            <form id="login">
-                <label for="loginEmail">Email</label>
-                <input id="loginEmail" name="email" type="email">
-                <label for="loginpassword">Password</label>
-                <input id="loginpassword" name="password" type="password">
+            <button onclick="acquistoBigliettiSignup()">Registrati</button>
+            <form id="contentLogin">
+                <label for="contentLoginEmail">Email</label>
+                <input id="contentLoginEmail" name="email" type="email">
+                <label for="contentLoginPassword">Password</label>
+                <input id="contentLoginPassword" name="password" type="password">
                 <button>accedi</button>
             </form>
-            <form id="signin">
-                <label for="singupnome">Nome</label>
-                <input id="singupnome" name="nome" type="text">
-                <label for="singupcognome">Cognome</label>
-                <input id="singupcognome" name="cognome" type="text">
-                <label for="singupdataNascita">Data di nascita</label>
-                <input id="singupdataNascita" name="dataNascita" type="text">
+            <form id="contentSignin">
+                <label for="contentSingupNome">Nome</label>
+                <input id="contentSingupNome" name="nome" type="text">
+                <label for="contentSingupCognome">Cognome</label>
+                <input id="contentSingupCognome" name="cognome" type="text">
+                <label for="contentSingupDataNascita">Data di nascita</label>
+                <input id="contentSingupDataNascita" name="dataNascita" type="text">
                 
-                <label for="singupemail">Email</label>
-                <input id="singupemail" name="email" type="email">
-                <label for="singuppassword">Password</label>
-                <input id="singuppassword" name="password" type="password">
-                <label for="singuppassword">ridigita la password</label>
-                <input id="singuppassword" name="password" type="password">
+                <label for="contentSingupEmail">Email</label>
+                <input id="contentSingupEmail" name="email" type="email">
+                <label for="contentSingupPassword">Password</label>
+                <input id="contentSingupPassword" name="password" type="password">
+                <label for="contentSingupPassword2">ridigita la password</label>
+                <input id="contentSingupPassword2" name="password2" type="password">
 
                 <button>registrati</button>
             </form>
@@ -177,12 +178,12 @@
 
         <p id="form-intro">Seleziona il metodo di pagamento:</p>
         <form id="pagamento" action="" method="post">
-            <input type="radio" id="carta_di_credito" name="metodo_pagamento" value="Carta di credito">
-            <label for="carta_di_credito">Carta di credito</label>
-            <input type="radio" id="paypal" name="metodo_pagamento" value="PayPal">
-            <label for="paypal">PayPal</label>
-            <input type="radio" id="satispay" name="metodo_pagamento" value="satispay">
-            <label for="satispay">Satispay</label>
+            <input type="radio" id="carta_di_credito" name="metodo_pagamento" value="Carta di credito" onchange="paymentSelectionChanged()"/>
+            <label for="carta_di_credito" id="label-carta_di_credito">Carta di credito</label>
+            <input type="radio" id="paypal" name="metodo_pagamento" value="PayPal" onchange="paymentSelectionChanged()">
+            <label for="paypal" id="label-paypal">PayPal</label>
+            <input type="radio" id="satispay" name="metodo_pagamento" value="satispay" onchange="paymentSelectionChanged()">
+            <label for="satispay" id="label-satispay">Satispay</label>
 
             <input type="submit" value="Vai al pagamento">
         </form>
