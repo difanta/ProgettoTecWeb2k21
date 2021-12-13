@@ -504,6 +504,10 @@ div.filters > form button[type="submit"] {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
 }
 
+.boxesList li:hover {
+    box-shadow: 2px 6px 8px rgba(0, 0, 0, 0.5);
+}
+
 .boxesList li h2 {
     margin-top: 0;
 }
