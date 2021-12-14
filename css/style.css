@@ -459,28 +459,28 @@ header button:active {
 
 /* Lista Film / Proiezioni ---------------------------------------------------------*/
 
-div.filters {
+.filters {
     text-align: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
     padding: 0 1em;
 }
 
-div.filters > p {
+.filters > p {
     display: inline;
     margin: 0;
     margin-right: 2em;
 }
 
-div.filters > form {
+.filters > form {
     display: inline;
 }
 
-div.filters > form label {
+.filters > form label {
     margin-right: 0.5em;
     margin-left: 2em;
 }
 
-div.filters > form button[type="submit"] {
+.filters > form button[type="submit"] {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     margin-left: 4em;
@@ -580,12 +580,12 @@ div.filters > form button[type="submit"] {
 /* Acquisto biglietti ------------------------------------------------------------- */
 
 
-.contentAcquistoBiglietti h1 {
+#content_AcquistoBiglietti h1 {
     text-align: center;
     margin-bottom: 1.2em;
 }
 
-.contentAcquistoBiglietti h2 {
+#content_AcquistoBiglietti h2 {
     padding-bottom: 0.5em;
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
 }
@@ -618,17 +618,17 @@ div.filters > form button[type="submit"] {
     background-color: rgba(150, 150, 150, 0.822);
 }
 
-.contentAcquistoBiglietti #contentLogin,
-.contentAcquistoBiglietti #contentSignin {
+#content_AcquistoBiglietti #contentLogin,
+#content_AcquistoBiglietti #contentSignin {
     display: none;
 }
 
-.contentAcquistoBiglietti #contentLogin.show,
-.contentAcquistoBiglietti #contentSignin.show {
+#content_AcquistoBiglietti #contentLogin.show,
+#content_AcquistoBiglietti #contentSignin.show {
     display: block;
 }
 
-.contentAcquistoBiglietti .ordine {
+#content_AcquistoBiglietti .ordine {
     font-size: 1.2em;
     width: 20em;
     margin: auto;
@@ -640,38 +640,38 @@ div.filters > form button[type="submit"] {
     box-shadow: 1px 1px 4px black;
 }
 
-.contentAcquistoBiglietti .ordine h3 {
+#content_AcquistoBiglietti .ordine h3 {
     font-size: 1.3em;
     margin-top: 0;
 }
 
-.contentAcquistoBiglietti .ordine p {
+#content_AcquistoBiglietti .ordine p {
     margin-top: 0.5em;
     margin-bottom: 0;
 }
 
-.contentAcquistoBiglietti .ordine p > span {
+#content_AcquistoBiglietti .ordine p > span {
     display: inline-block;
     margin-left: 0.5em;
     margin-right: 0.5em;
     margin-top: 0.5em;
 }
 
-.contentAcquistoBiglietti #form-intro {
+#content_AcquistoBiglietti #form-intro {
     text-align: center;
     font-style: italic;
 }
 
-.contentAcquistoBiglietti #pagamento {
+#content_AcquistoBiglietti #pagamento {
     text-align: center;
 }
 
-.contentAcquistoBiglietti #pagamento input:not([type="submit"]) {
+#content_AcquistoBiglietti #pagamento input:not([type="submit"]) {
     position: absolute;
     left: -10000%;
 }
 
-.contentAcquistoBiglietti #pagamento label {
+#content_AcquistoBiglietti #pagamento label {
     display: inline-block;
     cursor: pointer;
     margin: 0.5em;   
@@ -685,16 +685,16 @@ div.filters > form button[type="submit"] {
     transition: border 0.3s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-.contentAcquistoBiglietti #pagamento label:hover {
+#content_AcquistoBiglietti #pagamento label:hover {
     border: 2px solid rgb(113, 170, 0);
 }
 
-.contentAcquistoBiglietti #pagamento label.selected {
+#content_AcquistoBiglietti #pagamento label.selected {
     background-color: rgb(171, 219, 74);
     border: 2px solid rgb(113, 170, 0);
 }
 
-.contentAcquistoBiglietti #pagamento input[type="submit"] {
+#content_AcquistoBiglietti #pagamento input[type="submit"] {
     font-size: 1em;
     display: block;
     margin: auto;
