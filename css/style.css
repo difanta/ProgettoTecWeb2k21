@@ -1,22 +1,34 @@
 body {
-    --main-color: #ff5722;
-    --main-color-light: #ff8a50;
-    --main-color-light-halfopacity: #ff8a50a2;
-    --main-color-dark: #c41c00;
-    --main-color-dark-halfopacity: #c41d006c;
+    --main-color: #0f709a;
+    --main-color-light: #34A0A4;
+    --main-color-light-halfopacity: #168aad77;
+    --main-color-lighter: #74d9dd;
+    --main-color-lightest: #b2f8fa;
+    --main-color-dark: #1E6091;
+    --main-color-dark-halfopacity: #1a4e778c;
+    --main-color-darker:#143c5a;
+    --main-color-background: #e7fbff;
+    --main-color-background-light: #ffffff;
+    --main-color-contrast:#4c4c4c;
+
+    --other-color:#9e0000;
+    --other-color-light:#d83a3a;
+    --other-color-dark:#9e0000;
+    --other-color-darker:#9e0000;
 
     --login-color: #f8f8f8;
     --login-color-hover: #aaaaaa;
     --login-color-09opacity: #f8f8f8e7;
     --login-color-hover-09opacity: #aaaaaae7;
 
-    --footer-color: rgb(255, 250, 219);
+    --footer-color: #15516b;
 }
 
 body {
     max-width: 1200px;
     margin: auto;
     font-family: Helvetica, sans-serif;
+    background-color: var(--main-color-background);
 }
 
 span.material-icons-outlined.md18 {
@@ -260,17 +272,37 @@ header button:active {
 
 /* CONTENT */
 
+div.content{
+    background-color: var(--main-color-background-light);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.267);
+}
+.content h1{
+    color:var(--main-color-darker);
+    text-align: left;
+    text-shadow: 1px 1px 7px var(--main-color-light-halfopacity);
+    font-size: 2.8em;
+    padding: 16px 20px;
+}
+.content h2{
+    color:var(--main-color-dark);
+    text-align: center;
+    text-shadow: 1px 1px 7px var(--main-color-light-halfopacity);
+    font-size: 2.3em;
+}
+.content h3{
+    color:black;
+    text-align: left;
+    text-shadow: 1px 1px 7px #afafaf;
+    font-size: 1.4em;
+    padding: 16px 20px;
+}
+.content p{
+    padding: 8px 20px 0 20px;
+}
+
 #homeDescription{
     text-align: center;
     font-size: 1.8em;
-}
-
-#content {
-    padding: 2em;
-}
-
-#content h2{
-    text-align: center;
 }
 
 
@@ -288,11 +320,12 @@ header button:active {
     justify-content: space-around;
     padding: 0;
     margin: auto;
-
+    background-color: var(--main-color-dark);
+    box-shadow: 0 14px 18px rgba(0, 0, 0, 0.267) inset;
     list-style-type: none;
 }
 
-#filmPopolari li {
+li.filmPopolare {
     width: 18vw;
     height: 18vw;
     min-width: 300px;
@@ -307,19 +340,19 @@ header button:active {
     box-shadow: 0 0 20px 0px rgb(49, 49, 49);
 }
 
-#filmPopolari li p{
+li.filmPopolare p{
     font-size: 1.8em;
     margin: 0;
     /* margin-bottom: 0.4em; */
     padding-top: 5%;
     padding-bottom: 5%;
     text-align: center;
-    background-color: var(--main-color-light-halfopacity);
+    background-color: var(--main-color-lighter);
     
     /* box-shadow: 0 0 20px 0px rgb(49, 49, 49); */
 }
 
-#filmPopolari li a{
+li.filmPopolare a{
     display: block;
     margin: 0;
     width: 100%;
@@ -331,26 +364,24 @@ header button:active {
     margin: solid black 10px;
     /* box-shadow: 0 0 20px 0px rgb(49, 49, 49); */
 }
-
-#containerLinkFilmPopolari{
-    background-color: var(--main-color);
-    width: 57%;
-    margin: auto;
-    margin-top: 3em;
-    border-radius: 5px;
+#filmPopolareLink a{
+    color:black;
+    font-size: 1.4em;
 }
-
-#containerLinkFilmPopolari:hover{
-    background-color: var(--main-color-light);
-}
-
-#linkFilmPopolari{
-    display: block;
-    width: 100%;
-    margin: auto;
+#filmPopolareLink{
+    background-color: var(--main-color-lighter);
+    min-width:350px;
+    min-height: 40px;
     text-align: center;
     padding-top: 0.7%;
     padding-bottom: 0.7%;
+    margin-bottom: 8px;
+    align-self: flex-end;
+    box-shadow: 0 0 20px 0px rgb(49, 49, 49);
+}
+
+#filmPopolareLink:hover{
+    background-color: var(--main-color-lightest);
 }
 
 /* Acquisto bilglietti -----------------------------------------------------------------------------------------*/
@@ -361,13 +392,16 @@ header button:active {
     justify-content: center;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 90%;
     margin: auto;
-    border: solid black 1px;
-    border-radius: 15px;
     background-color: var(--main-color-light-halfopacity);
     list-style-type: none;
     padding: 0;
+    box-shadow: 0 14px 18px rgba(0, 0, 0, 0.267) inset;
+    /*
+        border: solid black 1px;
+        border-radius: 15px;
+        width: 90%;
+    */
 }
 
 #acquistoBiglietti li{
@@ -376,14 +410,15 @@ header button:active {
     position: relative;
     margin-top: 1%;
     margin-bottom: 1%;
-    border: solid black 1px;
-    border-radius: 10%;
-    background-color: #54c9ff;
     background-image: url(../images/outline_calendar_today_black_24dp.png);
     background-size: 75%;
     background-repeat: no-repeat;
     background-position: 50% 25%;
     transition: all 0.3s ease-in-out;
+    /*
+        border: solid black 1px;
+        border-radius: 10%;
+    */
 }
 
  #acquistoBiglietti li:hover{
@@ -406,6 +441,7 @@ header button:active {
     text-align: center;
     margin: 0;
     padding-top:  5%;
+    padding-left:8px;
 }
 
 /* Lista recensioni --------------------------------------------------------------------------------------------------*/
