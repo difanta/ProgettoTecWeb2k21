@@ -503,6 +503,12 @@ div.filters > form button[type="submit"] {
     padding: 2em;
     padding-bottom: 0.5em;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
+
+    transition: box-shadow 0.2s ease-out;
+}
+
+.boxesList li:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .boxesList li h2 {
@@ -672,18 +678,19 @@ div.filters > form button[type="submit"] {
 
     width: 7em;
 
-    border: 2px solid white;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.1);
 
     transition: border 0.3s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 .contentAcquistoBiglietti #pagamento label:hover {
-    border: 2px solid rgb(115, 146, 54);
+    border: 2px solid rgb(113, 170, 0);
 }
 
 .contentAcquistoBiglietti #pagamento label.selected {
     background-color: rgb(171, 219, 74);
-    border: 2px solid rgb(115, 146, 54);
+    border: 2px solid rgb(113, 170, 0);
 }
 
 .contentAcquistoBiglietti #pagamento input[type="submit"] {
