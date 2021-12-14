@@ -275,13 +275,13 @@ header button:active {
 div.content{
     background-color: var(--main-color-background-light);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.267);
+    padding:40px;
 }
 .content h1{
     color:var(--main-color-darker);
     text-align: left;
     text-shadow: 1px 1px 7px var(--main-color-light-halfopacity);
     font-size: 2.8em;
-    padding: 16px 20px;
 }
 .content h2{
     color:var(--main-color-dark);
@@ -294,36 +294,40 @@ div.content{
     text-align: left;
     text-shadow: 1px 1px 7px #afafaf;
     font-size: 1.4em;
-    padding: 16px 20px;
     margin-bottom:0;
-}
-.content p{
-    padding: 8px 20px 0 20px;
-}
-
-#contatti a{
-    padding: 0 20px;
 }
 #contatti ul{
     list-style-type: none;
+    padding:0;
+}
+#contatti li{
+	background-position: left center;
+	background-size: 30px;
+	background-repeat: no-repeat;
+    vertical-align: center;
+    padding:8px 0 8px 43px;
 }
 #contatti #social_ig{
-	background-image: url('images\social\instagram.png');
-	background-position: left center;
-	background-size: 1.4em;
-	background-repeat: no-repeat;
-	padding-left: 1.5em;
+	background-image: url(../images/social/instagram.png);
 }
 #contatti #social_fb{
-	background-image: url('images/social/facebook.png');
-	background-position: left center;
-	background-size: 1.4em;
-	padding-left: 1.5em;
+	background-image: url(../images/social/facebook.png);
+}
+#contatti #social_yt{
+	background-image: url(../images/social/youtube.png);
+}
+#contatti #aiutaci{
+    font-size:1.2em;
+    font-weight: italic;
+    font-weight: bold;
 }
 
 #homeDescription{
     text-align: center;
     font-size: 1.8em;
+}
+#content_home{
+    padding:40px 0;
 }
 
 
@@ -453,7 +457,7 @@ li.filmPopolare a{
     font-weight: 800;
     text-align: center;
     margin: 0;
-    padding-top:  33%;
+    padding: 33% 0 0 0;
 }
 
 #acquistoBiglietti li p.Month{
@@ -847,10 +851,27 @@ div.filters > form button[type="submit"] {
 }
 
 /* Come Trovarci --------------------------------------------------------------------------------------------------*/
-
+#content_ComeTrovarci #gmaps{
+    max-width: 200px;
+    float:left;
+    margin: 0 20px 30px 0;
+}
+#ComeRaggiungerci{
+    clear:both;
+}
 #ComeRaggiungerci dl{
-    position: relative;
-    padding: 2em;
+    padding:0;
+    margin:0;
+}
+#ComeRaggiungerci dt{
+    color:black;
+    text-align: left;
+    text-shadow: 1px 1px 7px #afafaf;
+    font-size: 1.4em;
+    margin-bottom:0;
+}
+#ComeRaggiungerci dd{
+    margin:0;
 }
 
 #ristorazione ul{
