@@ -20,6 +20,50 @@ body {
     font-size: 120%;
 }
 
+/* General Input Styles */
+
+button,
+input,
+textarea,
+select {
+    font-size: 0.8em;
+}
+
+select {
+    padding: 0.2em 0.4em;
+    border-radius: 2px;
+
+    background-color: #f1f1f1;
+}
+
+/* Form Style */
+form {
+    padding: 0.5em;
+}
+
+form input, 
+form textarea {
+    display: block;
+
+    margin-top: 0.2em;
+    margin-bottom: 1em;
+}
+
+form input[type="checkbox"] {
+    display: inline;
+}
+
+form input[type="submit"] {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+form textarea {
+    resize: none;
+}
+
+/* Material Icons */
+
 span.material-icons-outlined.md18 {
     font-size: 18px;
 }
@@ -36,7 +80,7 @@ span.material-icons-outlined.md48 {
     font-size: 48px;
 }
 
-/* HEADER */
+/* HEADER --------------------------------------------- */
 
 header {
     position: sticky;
@@ -182,22 +226,22 @@ header #accountDropdown {
     z-index: 2;
 }
 
-header #accountDropdown div.slidableOut {
+header #accountDropdown .slidableOut {
     display: block;
     padding: 1em;
 }
 
-header #accountDropdown div.slideOut {
+header #accountDropdown .slideOut {
     display: none;
 }
 
-header #accountDropdown div.slidableIn {
+header #accountDropdown .slidableIn {
     display: none;
 
     transition: 0.5s ease-in-out;
 }
 
-header #accountDropdown div.slideIn {
+header #accountDropdown .slideIn {
     display: block;
 }
 
@@ -208,11 +252,12 @@ header #accountDropdown header {
 }
 
 header #accountDropdown button {
+    display: block;
     min-width: 10em;
     margin: 0.5em;
-    display: block;
-    background-color: var(--login-color);
     border: 1px solid rgba(82, 82, 82, 0.7);
+
+    background-color: var(--login-color);
 }
 
 header #accountDropdown div > a {
@@ -224,7 +269,7 @@ header #accountDropdown div > a {
 header #accountDropdown header button {
     min-width: initial;
     margin: initial;
-    background-color: white;
+    background-color: #f1f1f1;
     border: none;
 }
 
@@ -236,14 +281,8 @@ header form {
     padding: 1em;
 }
 
-header form label {
-    display: block;
-}
-
 header form input {
-    display: block;
-    margin-bottom: 1em;
-    border-radius: 4px;
+    margin-top: 0.2em;
     border: 1px solid #ced4da;
 }
 
@@ -481,7 +520,6 @@ header button:active {
 }
 
 .filters > form button[type="submit"] {
-    font-size: 0.8em;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     margin-left: 4em;
@@ -592,7 +630,8 @@ header button:active {
 }
 
 #login-container button {
-    font-size: 1em;
+    font-size: 0.9em;
+    margin: 0 1em;
 }
 
 #login-container form {
@@ -701,7 +740,7 @@ header button:active {
     display: block;
     margin: auto;
     margin-top: 0.5em;
-    padding: 0.3em
+    padding: 0.3em 0.5em;
 }
 
 /*Pagina Utente ------------------------------------------------------------------- */
@@ -859,6 +898,7 @@ header button:active {
 }
 
 /* Admin --------------------------------------------------------------------------------------------------*/
+
 #adminDashboard{
     width: 76%;
     margin: auto;
@@ -947,7 +987,38 @@ header button:active {
     display:block;
     border:darkmagenta solid;  
 }
-/* Pagina film -----------------------------------------------------------------------------------------------*/
+
+/* Admin Lista Film ----------------------------------------------------------------------------------------- */
+
+#content_admin_listaFilm h2 {
+    margin-top: 1.5em;
+}
+
+#content_admin_listaFilm form {
+    margin-bottom: 1em;
+    padding-bottom: 1.5em;
+
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+#content_admin_listaFilm form input {
+    margin-top: 0.5em;
+}
+
+#content_admin_listaFilm form input[type="submit"] {
+    margin-right: 0.5em;
+}
+
+#content_admin_listaFilm select {
+    margin-left: 0.5em;
+}
+
+#content_admin_listaFilm #alfModifica {
+    margin-top: 1em;
+}
+
+/* Pagina film ---------------------------------------------------------------------------------------------- */
 
 .contentPaginaFilm h1{
     text-align: center;
