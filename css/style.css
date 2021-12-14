@@ -964,6 +964,10 @@ header button:active {
 
 /* Admin Lista Film ----------------------------------------------------------------------------------------- */
 
+#content_admin_listaFilm * {
+    width: initial;
+}
+
 #content_admin_listaFilm h2 {
     margin-top: 1.5em;
 }
@@ -980,7 +984,18 @@ header button:active {
     margin-top: 0.5em;
 }
 
+#content_admin_listaFilm form input[type="checkbox"] {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    display: inline-block;
+}
+
+#content_admin_listaFilm form label.inline {
+    display: inline;
+}
+
 #content_admin_listaFilm form input[type="submit"] {
+    display: inline-block;
     margin-right: 0.5em;
 }
 
