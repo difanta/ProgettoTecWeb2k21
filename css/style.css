@@ -16,7 +16,8 @@ body {
 body {
     max-width: 1200px;
     margin: auto;
-    font-family: Helvetica, sans-serif;
+    font-family: 'Mulish', sans-serif;
+    font-size: 120%;
 }
 
 span.material-icons-outlined.md18 {
