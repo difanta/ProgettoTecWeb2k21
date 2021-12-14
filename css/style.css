@@ -261,6 +261,45 @@ header button:active {
 
 /* CONTENT */
 
+.content form input{
+    display: block;
+    width: 80%;
+    padding: 0.4em;
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+.content form label{
+    display: block;
+}
+
+.content form textarea{
+    display: block;
+    width: 80%;
+    padding: 0.4em;
+    margin-top: 0;
+    margin-bottom: 1em;
+    resize: vertical;
+    overflow: auto;   
+}
+
+.content form .formButton{
+    width: fit-content;
+    min-width: 50px;
+    background-color: var(--main-color);
+    border: none;
+    padding: 0.3em 1em 0.3em 1em;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+}
+
+.content form .formButton:hover{
+    background-color: var(--main-color-dark);
+}
+
+/* 
+
 #homeDescription{
     text-align: center;
     font-size: 1.8em;
@@ -334,28 +373,22 @@ header button:active {
     /* box-shadow: 0 0 20px 0px rgb(49, 49, 49); */
 }
 
-#containerLinkFilmPopolari{
+#linkFilmPopolari{
     background-color: var(--main-color);
     width: 57%;
     margin: auto;
     margin-top: 3em;
-    border-radius: 5px;
-}
-
-#containerLinkFilmPopolari:hover{
-    background-color: var(--main-color-light);
-}
-
-#linkFilmPopolari{
     display: block;
-    width: 100%;
-    margin: auto;
     text-align: center;
     padding-top: 0.7%;
     padding-bottom: 0.7%;
 }
 
-/* Acquisto bilglietti -----------------------------------------------------------------------------------------*/
+#linkFilmPopolari:hover{
+    background-color: var(--main-color-light);
+}
+
+/* Acquisto bilglietti Home-----------------------------------------------------------------------------------------*/
 
 #acquistoBiglietti{
     display: flex;
@@ -704,7 +737,7 @@ div.filters > form button[type="submit"] {
 
 /*Pagina Utente ------------------------------------------------------------------- */
 
-#Info{
+#content_PaginaUtente div:first-of-type{
     margin: auto;
     margin-top: 2em;
     margin-bottom: 2em;
@@ -713,37 +746,9 @@ div.filters > form button[type="submit"] {
     border: solid black 1px;
 }
 
-#Info button{
-    width: 10%;
-    min-width: 50px;
-    background-color: var(--main-color);
-    border: none;
-    padding-top: 0.3em;
-    padding-bottom: 0.3em;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s ease-out;
-}
-
-#Info button:hover{
-    background-color: var(--main-color-dark);
-}
-
-#Info fieldset:first-child{
+#content_PaginaUtente form fieldset:first-child{
     padding-bottom: 0;
     margin-bottom: 1em;  
-}
-
-#Info input{
-    display: block;
-    width: 60%;
-    padding: 0.4em;
-    margin-top: 0;
-    margin-bottom: 1em;
-}
-
-#Info label{
-    display: block;
 }
 
 #biglietti{
@@ -816,45 +821,17 @@ div.filters > form button[type="submit"] {
 
 /* Contest --------------------------------------------------------------------------------------------------*/
 
-#contestForm {
+#content_contest div:first-of-type{
     margin: 2em auto;
     width: 60%;
     padding: 0 1% 1% 1%;
 }
-
-#contestForm input[type=submit]{
-    background-color: var(--main-color);
-    border: none;
-    padding: 0.4% 2%;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s ease-out;
-}
-
-#contestForm input[type=submit]:hover{
-    background-color: var(--main-color-dark);
-}
-
-#contestForm fieldset{
-    max-width: fit-content;
-    border: none;
-}
-
+ 
+/* 
 #contestForm form{
     max-width: 300px;
     margin: auto;
-}
-
-#contestForm input, textarea{
-    display: block;
-    width: 100%;
-    padding: 0.4em;
-}
-
-#contestForm label{
-    display: block;
-    padding-top: 3%;
-}
+} */
 
 /* Admin --------------------------------------------------------------------------------------------------*/
 #adminDashboard{
