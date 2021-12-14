@@ -295,9 +295,30 @@ div.content{
     text-shadow: 1px 1px 7px #afafaf;
     font-size: 1.4em;
     padding: 16px 20px;
+    margin-bottom:0;
 }
 .content p{
     padding: 8px 20px 0 20px;
+}
+
+#contatti a{
+    padding: 0 20px;
+}
+#contatti ul{
+    list-style-type: none;
+}
+#contatti #social_ig{
+	background-image: url('images\social\instagram.png');
+	background-position: left center;
+	background-size: 1.4em;
+	background-repeat: no-repeat;
+	padding-left: 1.5em;
+}
+#contatti #social_fb{
+	background-image: url('images/social/facebook.png');
+	background-position: left center;
+	background-size: 1.4em;
+	padding-left: 1.5em;
 }
 
 #homeDescription{
