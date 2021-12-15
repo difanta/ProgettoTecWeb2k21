@@ -1051,6 +1051,38 @@ header button:active {
     bottom: 20%;
 }
 
+/* tornaSu -------------------------------*/
+
+
+#tornaSu {
+    overflow-y: auto;
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--main-color-light);
+    padding: 0.8em;
+    border-radius: 10px;
+    opacity: 0.9;
+}
+
+#tornaSu a {
+    width: 10px;
+    height: 10px;
+}
+
+#tornaSu a img {
+    width: 35px;
+    height: auto;
+}
+
+#tornaSu:hover {
+    opacity: 0.97;
+}
+
+
 /* ---CONTENT */
 
 /* FOOTER */
