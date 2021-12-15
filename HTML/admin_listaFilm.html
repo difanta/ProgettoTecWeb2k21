@@ -83,15 +83,13 @@
         </nav>
 
         <nav id="breadcrumb">
-            <p>Ti trovi in: <span lang="en">Home</span></p>
+            <p>Ti trovi in: <a href="home.html" lang="en">Home</a> &gt; &gt; <a href="admin.html" lang="en">Admin</a> &gt; &gt; Lista Film</p>
         </nav>
 
     </header>
         
-    <div id="content_admin_listaFilm" class="content">
-        <a class="tornaDashboard" href="admin.html">Torna al menu admin</a>
-        
-        <h1>Lista Film</h1>
+    <div id="content_admin_listaFilm" class="content">        
+        <h1>Admin Lista Film</h1>
 
         <h2>Aggiungi Film</h2>
         <form id="alfAggiungi">
@@ -101,6 +99,8 @@
             <input type="text" name="registi" id="alfaRegisti"/>
             <label for="alfaDurata">Durata(min):</label>
             <input type="number" id="alfaDurata" name="durata" value="90">
+            <label for="alfaDescrizione">Descrizione:</label>
+            <textarea name="descrizione" id="alfaDescrizione" cols="26" rows="5"></textarea>
             <input type="checkbox" id="alfaGara" value="Gara">
             <label for="alfaGara" class="inline">In Gara</label><br>
             <input type="submit" value="Aggiungi film">
@@ -120,6 +120,8 @@
             <input type="text" name="registi" id="alfmRegisti"/>
             <label for="alfmDurata">Durata(min):</label>
             <input type="number" id="alfmDurata" name="durata" value="90">
+            <label for="alfmDescrizione">Descrizione:</label>
+            <textarea name="descrizione" id="alfmDescrizione" cols="26" rows="5"></textarea>
             <input type="checkbox" id="alfmGara" name="proGara" value="Gara">
             <label for="alfmGara" class="inline">In Gara</label><br>
             <input type="submit" value="Modifica">
