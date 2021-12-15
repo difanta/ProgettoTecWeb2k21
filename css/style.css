@@ -541,12 +541,21 @@ header button:active {
 }
 
 .filters > form {
-    display: inline;
+    padding: 0.2em;
+    display: inline-block;
 }
 
 .filters > form label {
+    display: inline-block;
     margin-right: 0.5em;
     margin-left: 2em;
+}
+
+.filters > form input {
+    display: inline-block;
+    width: initial;
+    margin-bottom: 0;
+    padding: 0.3em;
 }
 
 .filters > form button[type="submit"] {
