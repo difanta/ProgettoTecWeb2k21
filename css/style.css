@@ -424,8 +424,8 @@ div.content{
     justify-content: space-around;
     padding: 0;
     margin: auto;
-    /*background-color: var(--main-color-dark);
-    box-shadow: 0 14px 18px rgba(0, 0, 0, 0.267) inset; */ 
+    background-color: var(--main-color-dark);
+    box-shadow: 0 14px 18px rgba(0, 0, 0, 0.267) inset;
     list-style-type: none;
 }
 
