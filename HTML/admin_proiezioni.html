@@ -13,6 +13,8 @@
 
     <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 600px)">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+   	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="../js/scripts.js"></script>
 </head>
     
@@ -81,42 +83,47 @@
         </nav>
 
         <nav id="breadcrumb">
-            <p>Ti trovi in: <span lang="en">Home</span></p>
+            <p>Ti trovi in: <a href="home.html" lang="en">Home</a> &gt; &gt; <a href="admin.html" lang="en">Admin</a> &gt; &gt; Proiezioni</p>
         </nav>
 
     </header>
         
-    <div id="content_admin_proiezioni" class="content_admin">
-        <a class="tornaDashboard" href="admin.html">Torna al menu admin</a>
+    <div id="content_admin_proiezioni" class="content">
         <h1>Proiezioni</h1>
 
-        <input type="submit" value="Aggiungi una nuova proiezione"><br>
-        <label for="aprSelect">Seleziona una proiezione e poi premi "Modifica o elimina"</label>
-        <select id="aprSelect">
-            <option value="aprOp01">Padrino 12/09 20:30</option>
-        </select><br>
-        <input type="submit" value="Modifica o elimina">
-
+        <h2>Aggiungi Proiezione</h2>
         <form id="aprAggiungi" action="" method="post">
-            <label for="apraSelect">Film</label><br>
+            <label for="apraSelect">Film</label>
             <select id="apraSelect">
                 <option value="apraOp01">Il Padrino</option>
                 <option value="apraOp02">Filè Addio</option>
-            </select><br>
-            <label for="apraData">Data e Ora</label><br>
+            </select>
+            <label for="apraData">Data e Ora</label>
             <input type="datetime-local" id="apraData">
             <input type="submit" value="Aggiungi Proiezione">
+            <input type="submit" value="Reset">
         </form>
         
+        <h2>Modifica Proiezione</h2>
+        <label for="alfSelect">Seleziona un film</label>
+        <select id="alfSelect">
+            <option value="alfOp01">Il Padrino</option>
+            <option value="alfOp02">Filè Addio</option>
+        </select><br>
+        <label for="alfSelectP">Seleziona una proiezione</label>
+        <select id="alfSelectP">
+            <option value="alfOp01">21 set - 20:30</option>
+            <option value="alfOp02">22 set - 21:00</option>
+        </select>
         <form id="aprModifica" action="" method="post">
-            <label for="aprmSelect">Film</label><br>
+            <label for="aprmSelect">Film</label>
             <select id="aprmSelect">
                 <option value="aprmOp01">Il Padrino</option>
                 <option value="aprmOp02">Filè Addio</option>
-            </select><br>
-            <label for="aprmData">Data e Ora</label><br>
+            </select>
+            <label for="aprmData">Data e Ora</label>
             <input type="datetime-local" id="aprmData">
-            <input type="submit" value="Conferma modifice">
+            <input type="submit" value="Conferma modifiche">
             <input type="submit" value="Elimina proiezione">
         </form>
     </div>

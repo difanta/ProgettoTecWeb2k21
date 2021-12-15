@@ -16,6 +16,8 @@
 
     <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 600px)">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+   	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="../js/scripts.js"></script>
 </head>
 
@@ -130,13 +132,14 @@
 
         <!-- i dati seguenti verrano poi inseriti dinmicamente -->
 
-        <div class="ordine">
+        <div id="ordine">
             <h3 title="Titolo">Gilberto Filé, l'addio</h3>
             <em title="Registi">Alessandro Sperduti e Caterina Sartori</em>
             <p>
                 <span class="data">25/12/2021</span>
                 <span class="ora">21:00</span>
                 <span class="luogo">Sala 1</span>
+                <br>
                 <span class="prezzo">7.00€</span>
             </p>
         </div>
@@ -145,8 +148,10 @@
         <form id="pagamento" action="" method="post">
             <input type="radio" id="carta_di_credito" name="metodo_pagamento" value="Carta di credito" onchange="paymentSelectionChanged()"/>
             <label for="carta_di_credito" id="label-carta_di_credito">Carta di credito</label>
+
             <input type="radio" id="paypal" name="metodo_pagamento" value="PayPal" onchange="paymentSelectionChanged()">
             <label for="paypal" id="label-paypal">PayPal</label>
+
             <input type="radio" id="satispay" name="metodo_pagamento" value="satispay" onchange="paymentSelectionChanged()">
             <label for="satispay" id="label-satispay">Satispay</label>
 

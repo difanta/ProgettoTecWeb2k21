@@ -27,9 +27,51 @@ body {
 body {
     max-width: 1200px;
     margin: auto;
-    font-family: Helvetica, sans-serif;
     background-color: var(--main-color-background);
+    font-family: 'Mulish', sans-serif;
+    font-size: 120%;
 }
+
+/* General Input Styles */
+
+button,
+input,
+textarea,
+select {
+    /* Testo più leggibile */
+    font-size: 0.8em; 
+}
+
+select {
+    /* Select più carino */
+    padding: 0.2em 0.4em;
+    border-radius: 2px;
+
+    background-color: #f1f1f1;
+}
+
+/* Form Style */
+
+form {
+    /* Non lo so, mi sembra carino ma non sono sicuro */
+    padding: 1em; 
+}
+
+form input, 
+form textarea {
+    /* Per separare dal testo sovrastante */
+    margin-top: 0.2em; 
+}
+
+form input[type="submit"] {
+    /* Più bottoni submit stanno sulla stessa riga, anche perchè non avendo label dovrebbero stare bene su una riga sola */
+    display: inline-block; 
+
+    /* Nessun margine ulteriore a fine form */
+    margin-bottom: 0; 
+}
+
+/* Material Icons */
 
 span.material-icons-outlined.md18 {
     font-size: 18px;
@@ -47,7 +89,7 @@ span.material-icons-outlined.md48 {
     font-size: 48px;
 }
 
-/* HEADER */
+/* HEADER --------------------------------------------- */
 
 header {
     position: sticky;
@@ -193,22 +235,22 @@ header #accountDropdown {
     z-index: 2;
 }
 
-header #accountDropdown div.slidableOut {
+header #accountDropdown .slidableOut {
     display: block;
     padding: 1em;
 }
 
-header #accountDropdown div.slideOut {
+header #accountDropdown .slideOut {
     display: none;
 }
 
-header #accountDropdown div.slidableIn {
+header #accountDropdown .slidableIn {
     display: none;
 
     transition: 0.5s ease-in-out;
 }
 
-header #accountDropdown div.slideIn {
+header #accountDropdown .slideIn {
     display: block;
 }
 
@@ -219,11 +261,12 @@ header #accountDropdown header {
 }
 
 header #accountDropdown button {
-    min-width: 10em;
-    margin: 0.5em;
     display: block;
-    background-color: var(--login-color);
+    min-width: 10em;
+    margin: 0.8em;
     border: 1px solid rgba(82, 82, 82, 0.7);
+
+    background-color: var(--login-color);
 }
 
 header #accountDropdown div > a {
@@ -235,7 +278,7 @@ header #accountDropdown div > a {
 header #accountDropdown header button {
     min-width: initial;
     margin: initial;
-    background-color: white;
+    background-color: #f1f1f1;
     border: none;
 }
 
@@ -247,14 +290,8 @@ header form {
     padding: 1em;
 }
 
-header form label {
-    display: block;
-}
-
 header form input {
-    display: block;
-    margin-bottom: 1em;
-    border-radius: 4px;
+    margin-top: 0.2em;
     border: 1px solid #ced4da;
 }
 
@@ -285,6 +322,47 @@ div.content{
 }
 .content h2{
     color:var(--main-color-dark);
+  
+.content form input{
+    display: block;
+    width: 80%;
+    padding: 0.4em;
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+.content form label{
+    display: block;
+}
+
+.content form textarea{
+    display: block;
+    width: 80%;
+    padding: 0.4em;
+    margin-top: 0;
+    margin-bottom: 1em;
+    resize: vertical;
+    overflow: auto;   
+}
+
+.content form .formButton{
+    width: fit-content;
+    min-width: 50px;
+    background-color: var(--main-color);
+    border: none;
+    padding: 0.3em 1em 0.3em 1em;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+}
+
+.content form .formButton:hover{
+    background-color: var(--main-color-dark);
+}
+
+/* 
+
+#homeDescription{
     text-align: center;
     text-shadow: 1px 1px 7px var(--main-color-light-halfopacity);
     font-size: 2.3em;
@@ -382,13 +460,14 @@ li.filmPopolare a{
     margin: 0;
     width: 100%;
     height: 90%;
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 0 8px 8px;
     background-color: var(--main-color-light);
     background-size: cover;
     background-position: 50% 50%;
     margin: solid black 10px;
     /* box-shadow: 0 0 20px 0px rgb(49, 49, 49); */
 }
+  
 #filmPopolareLink a{
     color:black;
     font-size: 1.4em;
@@ -397,6 +476,13 @@ li.filmPopolare a{
     background-color: var(--main-color-lighter);
     min-width:350px;
     min-height: 40px;
+
+#linkFilmPopolari{
+    background-color: var(--main-color);
+    width: 57%;
+    margin: auto;
+    margin-top: 3em;
+    display: block;
     text-align: center;
     padding-top: 0.7%;
     padding-bottom: 0.7%;
@@ -409,7 +495,11 @@ li.filmPopolare a{
     background-color: var(--main-color-lightest);
 }
 
-/* Acquisto bilglietti -----------------------------------------------------------------------------------------*/
+#linkFilmPopolari:hover{
+    background-color: var(--main-color-light);
+}
+
+/* Acquisto bilglietti Home-----------------------------------------------------------------------------------------*/
 
 #acquistoBiglietti{
     display: flex;
@@ -518,28 +608,37 @@ li.filmPopolare a{
 
 /* Lista Film / Proiezioni ---------------------------------------------------------*/
 
-div.filters {
+.filters {
     text-align: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
     padding: 0 1em;
 }
 
-div.filters > p {
+.filters > p {
     display: inline;
     margin: 0;
     margin-right: 2em;
 }
 
-div.filters > form {
-    display: inline;
+.filters > form {
+    padding: 0.2em;
+    display: inline-block;
 }
 
-div.filters > form label {
+.filters > form label {
+    display: inline-block;
     margin-right: 0.5em;
     margin-left: 2em;
 }
 
-div.filters > form button[type="submit"] {
+.filters > form input {
+    display: inline-block;
+    width: initial;
+    margin-bottom: 0;
+    padding: 0.3em;
+}
+
+.filters > form button[type="submit"] {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
     margin-left: 4em;
@@ -639,18 +738,19 @@ div.filters > form button[type="submit"] {
 /* Acquisto biglietti ------------------------------------------------------------- */
 
 
-.contentAcquistoBiglietti h1 {
+#content_AcquistoBiglietti h1 {
     text-align: center;
     margin-bottom: 1.2em;
 }
 
-.contentAcquistoBiglietti h2 {
+#content_AcquistoBiglietti h2 {
     padding-bottom: 0.5em;
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
 }
 
 #login-container button {
-    font-size: 1em;
+    font-size: 0.9em;
+    margin: 0 1em;
 }
 
 #login-container form {
@@ -677,17 +777,17 @@ div.filters > form button[type="submit"] {
     background-color: rgba(150, 150, 150, 0.822);
 }
 
-.contentAcquistoBiglietti #contentLogin,
-.contentAcquistoBiglietti #contentSignin {
+#content_AcquistoBiglietti #contentLogin,
+#content_AcquistoBiglietti #contentSignin {
     display: none;
 }
 
-.contentAcquistoBiglietti #contentLogin.show,
-.contentAcquistoBiglietti #contentSignin.show {
+#content_AcquistoBiglietti #contentLogin.show,
+#content_AcquistoBiglietti #contentSignin.show {
     display: block;
 }
 
-.contentAcquistoBiglietti .ordine {
+#content_AcquistoBiglietti #ordine {
     font-size: 1.2em;
     width: 20em;
     margin: auto;
@@ -699,44 +799,45 @@ div.filters > form button[type="submit"] {
     box-shadow: 1px 1px 4px black;
 }
 
-.contentAcquistoBiglietti .ordine h3 {
+#content_AcquistoBiglietti #ordine h3 {
     font-size: 1.3em;
     margin-top: 0;
 }
 
-.contentAcquistoBiglietti .ordine p {
+#content_AcquistoBiglietti #ordine p {
     margin-top: 0.5em;
     margin-bottom: 0;
 }
 
-.contentAcquistoBiglietti .ordine p > span {
+#content_AcquistoBiglietti #ordine p > span {
     display: inline-block;
     margin-left: 0.5em;
     margin-right: 0.5em;
     margin-top: 0.5em;
 }
 
-.contentAcquistoBiglietti #form-intro {
+#content_AcquistoBiglietti #form-intro {
     text-align: center;
     font-style: italic;
 }
 
-.contentAcquistoBiglietti #pagamento {
+#content_AcquistoBiglietti #pagamento {
     text-align: center;
+    margin-bottom: 2em;
 }
 
-.contentAcquistoBiglietti #pagamento input:not([type="submit"]) {
+#content_AcquistoBiglietti #pagamento input:not([type="submit"]) {
     position: absolute;
     left: -10000%;
 }
 
-.contentAcquistoBiglietti #pagamento label {
+#content_AcquistoBiglietti #pagamento label {
     display: inline-block;
     cursor: pointer;
     margin: 0.5em;   
     padding: 0.5em;
 
-    width: 7em;
+    width: 8em;
 
     border: 2px solid rgba(0, 0, 0, 0.2);
     background-color: rgba(0, 0, 0, 0.1);
@@ -744,26 +845,26 @@ div.filters > form button[type="submit"] {
     transition: border 0.3s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-.contentAcquistoBiglietti #pagamento label:hover {
+#content_AcquistoBiglietti #pagamento label:hover {
     border: 2px solid rgb(113, 170, 0);
 }
 
-.contentAcquistoBiglietti #pagamento label.selected {
+#content_AcquistoBiglietti #pagamento label.selected {
     background-color: rgb(171, 219, 74);
     border: 2px solid rgb(113, 170, 0);
 }
 
-.contentAcquistoBiglietti #pagamento input[type="submit"] {
+#content_AcquistoBiglietti #pagamento input[type="submit"] {
     font-size: 1em;
     display: block;
     margin: auto;
     margin-top: 0.5em;
-    padding: 0.3em
+    padding: 0.3em 0.5em;
 }
 
 /*Pagina Utente ------------------------------------------------------------------- */
 
-#Info{
+#content_PaginaUtente div:first-of-type{
     margin: auto;
     margin-top: 2em;
     margin-bottom: 2em;
@@ -772,37 +873,9 @@ div.filters > form button[type="submit"] {
     border: solid black 1px;
 }
 
-#Info button{
-    width: 10%;
-    min-width: 50px;
-    background-color: var(--main-color);
-    border: none;
-    padding-top: 0.3em;
-    padding-bottom: 0.3em;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s ease-out;
-}
-
-#Info button:hover{
-    background-color: var(--main-color-dark);
-}
-
-#Info fieldset:first-child{
+#content_PaginaUtente form fieldset:first-child{
     padding-bottom: 0;
     margin-bottom: 1em;  
-}
-
-#Info input{
-    display: block;
-    width: 60%;
-    padding: 0.4em;
-    margin-top: 0;
-    margin-bottom: 1em;
-}
-
-#Info label{
-    display: block;
 }
 
 #biglietti{
@@ -892,47 +965,15 @@ div.filters > form button[type="submit"] {
 
 /* Contest --------------------------------------------------------------------------------------------------*/
 
-#contestForm {
+#content_contest div:first-of-type{
     margin: 2em auto;
     width: 60%;
     padding: 0 1% 1% 1%;
 }
-
-#contestForm input[type=submit]{
-    background-color: var(--main-color);
-    border: none;
-    padding: 0.4% 2%;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s ease-out;
-}
-
-#contestForm input[type=submit]:hover{
-    background-color: var(--main-color-dark);
-}
-
-#contestForm fieldset{
-    max-width: fit-content;
-    border: none;
-}
-
-#contestForm form{
-    max-width: 300px;
-    margin: auto;
-}
-
-#contestForm input, textarea{
-    display: block;
-    width: 100%;
-    padding: 0.4em;
-}
-
-#contestForm label{
-    display: block;
-    padding-top: 3%;
-}
+ 
 
 /* Admin --------------------------------------------------------------------------------------------------*/
+
 #adminDashboard{
     width: 76%;
     margin: auto;
@@ -1021,49 +1062,191 @@ div.filters > form button[type="submit"] {
     display:block;
     border:darkmagenta solid;  
 }
-/* Pagina film -----------------------------------------------------------------------------------------------*/
 
-.contentPaginaFilm h1{
-    text-align: center;
+/* Admin Lista Film / Lista Proiezioni  --------------------------------------------------------------------- */
+
+#content_admin_listaFilm *,
+#content_admin_proiezioni * {
+    width: initial;
 }
 
-.contentPaginaFilm h2{
+#content_admin_listaFilm h2,
+#content_admin_proiezioni h2 {
+    margin-top: 1.5em;
+}
+
+#content_admin_listaFilm form,
+#content_admin_proiezioni form {
+    margin-top: 0;
+    margin-bottom: 1em;
+    padding-bottom: 1.5em;
+
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+#content_admin_listaFilm form input,
+#content_admin_proiezioni form input {
+    margin-top: 0.5em;
+}
+
+#content_admin_listaFilm form input[type="submit"],
+#content_admin_proiezioni form input[type="submit"] {
+    display: inline-block;
+    margin-right: 0.6em;
+    margin-top: 0.8em;
+}
+
+#content_admin_listaFilm select,
+#content_admin_proiezioni select {
+    margin-top: 1em;
+    margin-left: 0.6em;
+    margin-bottom: 0.5em;
+}
+
+#content_admin_listaFilm form input[type="checkbox"] {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    display: inline-block;
+}
+
+#content_admin_listaFilm form label.inline {
+    display: inline;
+}
+
+#content_admin_proiezioni form input[type="submit"] {
+    margin-top: 1.2em;
+}
+
+#content_admin_proiezioni form select {
+    margin-left: 0;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+/* Pagina film ---------------------------------------------------------------------------------------------- */
+#content_templateFilm{
+    display: grid;
+    grid-template-areas:    "c a"
+                            "c b"
+                            "c e"
+                            "d e"
+                            "f f";
+    margin-top: 2em;
+}
+
+#content_templateFilm h1{
+    text-align: center;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    grid-area: a;
+}
+
+#content_templateFilm h2{
     text-align: center;
     font-style: italic;
     margin-bottom: 0;
+    margin-top: 0;
+    grid-area: b;
 }
 
+#content_templateFilm dl{
+    margin: auto;
+    padding: 1em;
+    width: 95%;
+    grid-area: d;
+}
 
-.contentPaginaFilm p{
+#content_templateFilm dt{
+    float: left;
+    clear: left;
+    width: max-content;
+    font-weight: 600;
+    padding-bottom: 0.3em;
+}
+
+#content_templateFilm dt::after{
+    content: ":";
+}
+
+#content_templateFilm dd{
+    padding: 0 0 0.3em 10em;
+}
+
+#content_templateFilm ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#content_templateFilm li{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+#content_templateFilm li::after{
+    content: ",";
+}
+
+#content_templateFilm li:last-child::after{
+    content: "";
+}
+
+#content_templateFilm p{
     font-size: 1.2em;
     font-style: italic;
-    width: 65%;
+    width: 95%;
     padding: 1%;
-    float: right;
-    
+    margin: auto;
+    text-align: justify;
+    grid-area: e;
 }
 
-.contentPaginaFilm img{
-    position: relative;
-    width: 25%;
-    right: 3%;
+#content_templateFilm img{
+    width: 95%;
     padding: 1em;
-    float: right;
+    margin: auto;
+    grid-area: c;
 }
 
-.contentPaginaFilm [title="anno di pubblicazione"]{
-    text-align: right;
-    margin: 0;
-    padding-left: 2%;
-}
-
-.contentPaginaFilm a{
-    display: block;
+#content_templateFilm a{
     padding: 2%;
-    float: right;
     text-align: center;
-    bottom: 20%;
+    grid-area: f;
 }
+
+/* tornaSu -------------------------------*/
+
+
+#tornaSu {
+    overflow-y: auto;
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--main-color-light);
+    padding: 0.8em;
+    border-radius: 10px;
+    opacity: 0.9;
+}
+
+#tornaSu a {
+    width: 10px;
+    height: 10px;
+}
+
+#tornaSu a img {
+    width: 35px;
+    height: auto;
+}
+
+#tornaSu:hover {
+    opacity: 0.97;
+}
+
 
 /* ---CONTENT */
 
