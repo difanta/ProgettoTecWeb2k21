@@ -801,8 +801,12 @@ li.filmPopolare a{
 }
 
 #content_AcquistoBiglietti #ordine h3 {
-    font-size: 1.3em;
+    text-align: center;
+    margin-bottom: 0.5em;
     margin-top: 0;
+
+    text-shadow: initial;
+    font-size: 1.3em;
 }
 
 #content_AcquistoBiglietti #ordine p {
