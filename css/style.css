@@ -868,11 +868,6 @@ header button:active {
     padding: 0 1% 1% 1%;
 }
  
-/* 
-#contestForm form{
-    max-width: 300px;
-    margin: auto;
-} */
 
 /* Admin --------------------------------------------------------------------------------------------------*/
 
@@ -996,47 +991,95 @@ header button:active {
 }
 
 /* Pagina film ---------------------------------------------------------------------------------------------- */
-
-.contentPaginaFilm h1{
-    text-align: center;
+#content_templateFilm{
+    display: grid;
+    grid-template-areas:    "c a"
+                            "c b"
+                            "c e"
+                            "d e"
+                            "f f";
+    margin-top: 2em;
 }
 
-.contentPaginaFilm h2{
+#content_templateFilm h1{
+    text-align: center;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    grid-area: a;
+}
+
+#content_templateFilm h2{
     text-align: center;
     font-style: italic;
     margin-bottom: 0;
+    margin-top: 0;
+    grid-area: b;
 }
 
+#content_templateFilm dl{
+    margin: auto;
+    padding: 1em;
+    width: 95%;
+    grid-area: d;
+}
 
-.contentPaginaFilm p{
+#content_templateFilm dt{
+    float: left;
+    clear: left;
+    width: max-content;
+    font-weight: 600;
+    padding-bottom: 0.3em;
+}
+
+#content_templateFilm dt::after{
+    content: ":";
+}
+
+#content_templateFilm dd{
+    padding: 0 0 0.3em 10em;
+}
+
+#content_templateFilm ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#content_templateFilm li{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+#content_templateFilm li::after{
+    content: ",";
+}
+
+#content_templateFilm li:last-child::after{
+    content: "";
+}
+
+#content_templateFilm p{
     font-size: 1.2em;
     font-style: italic;
-    width: 65%;
+    width: 95%;
     padding: 1%;
-    float: right;
-    
+    margin: auto;
+    text-align: justify;
+    grid-area: e;
 }
 
-.contentPaginaFilm img{
-    position: relative;
-    width: 25%;
-    right: 3%;
+#content_templateFilm img{
+    width: 95%;
     padding: 1em;
-    float: right;
+    margin: auto;
+    grid-area: c;
 }
 
-.contentPaginaFilm [title="anno di pubblicazione"]{
-    text-align: right;
-    margin: 0;
-    padding-left: 2%;
-}
-
-.contentPaginaFilm a{
-    display: block;
+#content_templateFilm a{
     padding: 2%;
-    float: right;
     text-align: center;
-    bottom: 20%;
+    grid-area: f;
 }
 
 /* ---CONTENT */
