@@ -26,10 +26,12 @@ button,
 input,
 textarea,
 select {
-    font-size: 0.8em;
+    /* Testo più leggibile */
+    font-size: 0.8em; 
 }
 
 select {
+    /* Select più carino */
     padding: 0.2em 0.4em;
     border-radius: 2px;
 
@@ -37,29 +39,24 @@ select {
 }
 
 /* Form Style */
+
 form {
-    padding: 0.5em;
+    /* Non lo so, mi sembra carino ma non sono sicuro */
+    padding: 1em; 
 }
 
 form input, 
 form textarea {
-    display: block;
-
-    margin-top: 0.2em;
-    margin-bottom: 1em;
-}
-
-form input[type="checkbox"] {
-    display: inline;
+    /* Per separare dal testo sovrastante */
+    margin-top: 0.2em; 
 }
 
 form input[type="submit"] {
-    display: inline-block;
-    margin-bottom: 0;
-}
+    /* Più bottoni submit stanno sulla stessa riga, anche perchè non avendo label dovrebbero stare bene su una riga sola */
+    display: inline-block; 
 
-form textarea {
-    resize: none;
+    /* Nessun margine ulteriore a fine form */
+    margin-bottom: 0; 
 }
 
 /* Material Icons */
@@ -254,7 +251,7 @@ header #accountDropdown header {
 header #accountDropdown button {
     display: block;
     min-width: 10em;
-    margin: 0.5em;
+    margin: 0.8em;
     border: 1px solid rgba(82, 82, 82, 0.7);
 
     background-color: var(--login-color);
@@ -544,12 +541,21 @@ header button:active {
 }
 
 .filters > form {
-    display: inline;
+    padding: 0.2em;
+    display: inline-block;
 }
 
 .filters > form label {
+    display: inline-block;
     margin-right: 0.5em;
     margin-left: 2em;
+}
+
+.filters > form input {
+    display: inline-block;
+    width: initial;
+    margin-bottom: 0;
+    padding: 0.3em;
 }
 
 .filters > form button[type="submit"] {
@@ -960,13 +966,21 @@ header button:active {
     border:darkmagenta solid;  
 }
 
-/* Admin Lista Film ----------------------------------------------------------------------------------------- */
+/* Admin Lista Film / Lista Proiezioni  --------------------------------------------------------------------- */
 
-#content_admin_listaFilm h2 {
+#content_admin_listaFilm *,
+#content_admin_proiezioni * {
+    width: initial;
+}
+
+#content_admin_listaFilm h2,
+#content_admin_proiezioni h2 {
     margin-top: 1.5em;
 }
 
-#content_admin_listaFilm form {
+#content_admin_listaFilm form,
+#content_admin_proiezioni form {
+    margin-top: 0;
     margin-bottom: 1em;
     padding-bottom: 1.5em;
 
@@ -974,20 +988,43 @@ header button:active {
     border-bottom: 2px solid black;
 }
 
-#content_admin_listaFilm form input {
+#content_admin_listaFilm form input,
+#content_admin_proiezioni form input {
     margin-top: 0.5em;
 }
 
-#content_admin_listaFilm form input[type="submit"] {
-    margin-right: 0.5em;
+#content_admin_listaFilm form input[type="submit"],
+#content_admin_proiezioni form input[type="submit"] {
+    display: inline-block;
+    margin-right: 0.6em;
+    margin-top: 0.8em;
 }
 
-#content_admin_listaFilm select {
-    margin-left: 0.5em;
-}
-
-#content_admin_listaFilm #alfModifica {
+#content_admin_listaFilm select,
+#content_admin_proiezioni select {
     margin-top: 1em;
+    margin-left: 0.6em;
+    margin-bottom: 0.5em;
+}
+
+#content_admin_listaFilm form input[type="checkbox"] {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    display: inline-block;
+}
+
+#content_admin_listaFilm form label.inline {
+    display: inline;
+}
+
+#content_admin_proiezioni form input[type="submit"] {
+    margin-top: 1.2em;
+}
+
+#content_admin_proiezioni form select {
+    margin-left: 0;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
 }
 
 /* Pagina film ---------------------------------------------------------------------------------------------- */
@@ -1081,6 +1118,38 @@ header button:active {
     text-align: center;
     grid-area: f;
 }
+
+/* tornaSu -------------------------------*/
+
+
+#tornaSu {
+    overflow-y: auto;
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--main-color-light);
+    padding: 0.8em;
+    border-radius: 10px;
+    opacity: 0.9;
+}
+
+#tornaSu a {
+    width: 10px;
+    height: 10px;
+}
+
+#tornaSu a img {
+    width: 35px;
+    height: auto;
+}
+
+#tornaSu:hover {
+    opacity: 0.97;
+}
+
 
 /* ---CONTENT */
 
