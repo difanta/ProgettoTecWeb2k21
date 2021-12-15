@@ -42,7 +42,7 @@ select {
 
 form {
     /* Non lo so, mi sembra carino ma non sono sicuro */
-    padding: 0.5em; 
+    padding: 1em; 
 }
 
 form input, 
@@ -962,17 +962,21 @@ header button:active {
     border:darkmagenta solid;  
 }
 
-/* Admin Lista Film ----------------------------------------------------------------------------------------- */
+/* Admin Lista Film / Lista Proiezioni  --------------------------------------------------------------------- */
 
-#content_admin_listaFilm * {
+#content_admin_listaFilm *,
+#content_admin_proiezioni * {
     width: initial;
 }
 
-#content_admin_listaFilm h2 {
+#content_admin_listaFilm h2,
+#content_admin_proiezioni h2 {
     margin-top: 1.5em;
 }
 
-#content_admin_listaFilm form {
+#content_admin_listaFilm form,
+#content_admin_proiezioni form {
+    margin-top: 0;
     margin-bottom: 1em;
     padding-bottom: 1.5em;
 
@@ -980,8 +984,23 @@ header button:active {
     border-bottom: 2px solid black;
 }
 
-#content_admin_listaFilm form input {
+#content_admin_listaFilm form input,
+#content_admin_proiezioni form input {
     margin-top: 0.5em;
+}
+
+#content_admin_listaFilm form input[type="submit"],
+#content_admin_proiezioni form input[type="submit"] {
+    display: inline-block;
+    margin-right: 0.6em;
+    margin-top: 0.8em;
+}
+
+#content_admin_listaFilm select,
+#content_admin_proiezioni select {
+    margin-top: 1em;
+    margin-left: 0.6em;
+    margin-bottom: 0.5em;
 }
 
 #content_admin_listaFilm form input[type="checkbox"] {
@@ -994,17 +1013,14 @@ header button:active {
     display: inline;
 }
 
-#content_admin_listaFilm form input[type="submit"] {
-    display: inline-block;
-    margin-right: 0.5em;
+#content_admin_proiezioni form input[type="submit"] {
+    margin-top: 1.2em;
 }
 
-#content_admin_listaFilm select {
-    margin-left: 0.5em;
-}
-
-#content_admin_listaFilm #alfModifica {
-    margin-top: 1em;
+#content_admin_proiezioni form select {
+    margin-left: 0;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
 }
 
 /* Pagina film ---------------------------------------------------------------------------------------------- */
