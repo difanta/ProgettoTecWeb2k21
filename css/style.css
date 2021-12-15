@@ -566,7 +566,6 @@ li.filmPopolare a{
 #listaRecensioni {
     display: flex;
     flex-direction: row;
-    align-items: top;
     flex-wrap: wrap;
     justify-content: space-evenly;
 
@@ -591,8 +590,8 @@ li.filmPopolare a{
 }
 
 #listaRecensioni p {
-    max-width: 20em;
-    max-height: 6em;
+    width: 20em;
+    height: 4em;
     overflow: hidden;
 
     font-size: 1em;
@@ -1263,6 +1262,7 @@ footer {
 
     border-top: 1px solid rgba(0, 0, 0, 0.582);
     background-color: var(--footer-color);
+    color: aliceblue;
 
     font-size: 0.9em;
 }
