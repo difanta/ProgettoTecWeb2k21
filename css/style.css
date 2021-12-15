@@ -71,6 +71,43 @@ form input[type="submit"] {
     margin-bottom: 0; 
 }
 
+form input{
+    display: block;
+    width: 80%;
+    padding: 0.4em;
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+form label{
+    display: block;
+}
+
+form textarea{
+    display: block;
+    width: 80%;
+    padding: 0.4em;
+    margin-top: 0;
+    margin-bottom: 1em;
+    resize: vertical;
+    overflow: auto;   
+}
+
+form .formButton{
+    width: fit-content;
+    min-width: 50px;
+    background-color: var(--main-color);
+    border: none;
+    padding: 0.3em 1em 0.3em 1em;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+}
+
+form .formButton:hover{
+    background-color: var(--main-color-dark);
+}
+
 /* Material Icons */
 
 span.material-icons-outlined.md18 {
@@ -322,43 +359,6 @@ div.content{
 }
 .content h2{
     color:var(--main-color-dark);
-}
-  
-.content form input{
-    display: block;
-    width: 80%;
-    padding: 0.4em;
-    margin-top: 0;
-    margin-bottom: 1em;
-}
-
-.content form label{
-    display: block;
-}
-
-.content form textarea{
-    display: block;
-    width: 80%;
-    padding: 0.4em;
-    margin-top: 0;
-    margin-bottom: 1em;
-    resize: vertical;
-    overflow: auto;   
-}
-
-.content form .formButton{
-    width: fit-content;
-    min-width: 50px;
-    background-color: var(--main-color);
-    border: none;
-    padding: 0.3em 1em 0.3em 1em;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s ease-out;
-}
-
-.content form .formButton:hover{
-    background-color: var(--main-color-dark);
 }
 
 
