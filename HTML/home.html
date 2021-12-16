@@ -40,13 +40,13 @@
                 <header>
                     <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span></button>
                 </header>
-                <form id="login">
+                <form id="login" action="../php/login.php" method="post">
                     <label for="loginEmail">Email</label>
                     <input id="loginEmail" name="email" type="email" autocomplete="username">
                     <label for="loginPassword">Password</label>
                     <input id="loginPassword" name="password" type="password" autocomplete="current-password">
 
-                    <button>accedi</button>
+                    <input type="submit" name="method" value="login">accedi</input>
                 </form>
             </div>
     
@@ -54,22 +54,22 @@
                 <header>
                     <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span></button>
                 </header>
-                <form id="signup">
+                <form id="signup" action="../php/login.php" method="post">
                     <label for="signupNome">Nome</label>
                     <input id="signupNome" name="nome" type="text" autocomplete="name">
                     <label for="signupCognome">Cognome</label>
                     <input id="signupCognome" name="cognome" type="text" autocomplete="family-name">
                     <label for="signupDataNascita">Data di nascita</label>
-                    <input id="signupDataNascita" name="dataNascita" type="text" autocomplete="bday">
+                    <input id="signupDataNascita" name="data_di_nascita" type="date" autocomplete="bday">
                     
                     <label for="signupEmail">Email</label>
                     <input id="signupEmail" name="email" type="email" autocomplete="home email">
                     <label for="signupPassword">Password</label>
                     <input id="signupPassword" name="password" type="password" autocomplete="new-password">
                     <label for="signupPassword2">ridigita la password</label>
-                    <input id="signupPassword2" name="password" type="password" autocomplete="new-password">
+                    <input id="signupPassword2" name="" type="password" autocomplete="new-password">
         
-                    <button>registrati</button>
+                    <input type="submit" name="method" value="register">registrati</input>
                 </form>
             </div>
         </div>
