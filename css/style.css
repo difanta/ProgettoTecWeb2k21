@@ -93,7 +93,7 @@ form textarea{
     overflow: auto;   
 }
 
-form .formButton{
+form button{
     width: fit-content;
     min-width: 50px;
     background-color: var(--main-color);
@@ -104,7 +104,7 @@ form .formButton{
     transition: background-color 0.2s ease-out;
 }
 
-form .formButton:hover{
+form button:hover{
     background-color: var(--main-color-dark);
 }
 
