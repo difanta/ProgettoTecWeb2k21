@@ -87,8 +87,10 @@ class Login {
     }
 
     public static function handle_login(&$htmlPage) {
-        if(isset($_POST["method"])) {
-            if(!Login::is_logged()) {
+        if(isset($_POST["method"])) // #1 if login method is defined go on (= if a login form button was clicked)
+        {
+            if(!Login::is_logged()) //    if not logged try to login or register
+            {
                 if($_POST["method"] == "login") 
                 {
                     $email = $_POST["email"];
@@ -131,14 +133,14 @@ class Login {
                         echo ("connection error");
                     }
                 }
-            } else {
+            } else { // if logged you can only logout
                 if($_POST["method"] == "logout") {
                     session_unset();
                     session_destroy();
                 }
             }
 
-            // Keep dropdown state
+            // Keep dropdown state (if #1)
             if       ($_POST["method"] == "login") {
                 $htmlPage = str_replace(Login::$p_account_dropdown, Login::$p_account_dropdown . " class=\"dropdown\"", $htmlPage);
                 $htmlPage = str_replace(Login::$p_account_section,  Login::$p_account_section  . " slideOut\"",         $htmlPage);
@@ -151,7 +153,7 @@ class Login {
                 $htmlPage = str_replace(Login::$p_account_dropdown, Login::$p_account_dropdown . " class=\"dropdown\"", $htmlPage);
             }
 
-            // Set Button states
+            // Set Button states (if #1)
             Login::display_account_buttons($htmlPage, Login::is_logged());
         }
     }
