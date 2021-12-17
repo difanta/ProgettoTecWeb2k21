@@ -1,18 +1,16 @@
 <?php
+
 namespace DB;
 
 class DBAccess {
 	private const HOST_DB = "127.0.0.1";
 	private const DB_NAME = "tdifant";
 	private const DB_USER = "tdifant";
-	
-	private $db_password;
-	
+
 	private $connection;
 	
 	public function openDB() {
-		$this->db_password = trim(file_get_contents("../../../pwd_db_2021-22.txt"));
-		$this->connection = mysqli_connect(DBAccess::HOST_DB, DBAccess::DB_USER, $this->db_password, DBAccess::DB_NAME);
+		$this->connection = mysqli_connect(DBAccess::HOST_DB, DBAccess::DB_USER, trim(file_get_contents("../../../pwd_db_2021-22.txt")), DBAccess::DB_NAME);
 		if(mysqli_errno($this->connection)) {
 			return false;
 		} else {
