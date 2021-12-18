@@ -41,7 +41,7 @@
                 <header>
                     <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span></button>
                 </header>
-                <form id="login" method="post">
+                <form id="login" method="post" placeholder="ifnotloginsuccess">
                     <label for="loginEmail">Email</label>
                     <input id="loginEmail" name="email" type="email" autocomplete="username">
                     <label for="loginPassword">Password</label>
@@ -49,13 +49,14 @@
 
                     <button name="method" value="login">accedi</button>
                 </form>
+                <p placeholder="ifloginsuccess">Loggato con successo!</p>
             </div>
     
             <div id="signupSection" class="slidableIn">
                 <header>
                     <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span></button>
                 </header>
-                <form id="signup" method="post">
+                <form id="signup" method="post" placeholder="ifnotregistersuccess">
                     <label for="signupNome">Nome</label>
                     <input id="signupNome" name="nome" type="text" autocomplete="name">
                     <label for="signupCognome">Cognome</label>
@@ -72,6 +73,7 @@
         
                     <button name="method" value="register">registrati</button>
                 </form>
+                <p placeholder="ifregistersuccess">Registrato con successo! Ora effettua il Login</p>
             </div>
         </div>
 
