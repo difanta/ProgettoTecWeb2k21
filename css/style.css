@@ -407,6 +407,9 @@ div.content{
 #content_home{
     padding:40px 0;
 }
+#content_home h2{
+    padding:40px;
+}
 
 
 /* film popolari ---------------------------------------------------------------------------------------------*/
@@ -451,7 +454,6 @@ li.filmPopolare p{
     padding-bottom: 5%;
     text-align: center;
     background-color: var(--main-color-lighter);
-    
     /* box-shadow: 0 0 20px 0px rgb(49, 49, 49); */
 }
 
@@ -461,7 +463,6 @@ li.filmPopolare a{
     width: 100%;
     height: 90%;
     border-radius: 0 0 8px 8px;
-    background-color: var(--main-color-light);
     background-size: cover;
     background-position: 50% 50%;
     margin: solid black 10px;
@@ -472,32 +473,24 @@ li.filmPopolare a{
     color:black;
     font-size: 1.4em;
 }
-#filmPopolareLink{
-    background-color: var(--main-color-lighter);
-    min-width:350px;
-    min-height: 40px;
-}
 
 #linkFilmPopolari{
-    background-color: var(--main-color);
-    width: 57%;
+    background-color: var(--main-color-lighter);
     margin: auto;
-    margin-top: 3em;
+    margin-top: 32px;
     display: block;
     text-align: center;
     padding-top: 0.7%;
     padding-bottom: 0.7%;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
     align-self: flex-end;
     box-shadow: 0 0 20px 0px rgb(49, 49, 49);
-}
-
-#filmPopolareLink:hover{
-    background-color: var(--main-color-lightest);
+    min-width:420px;
+    min-height: 40px;
 }
 
 #linkFilmPopolari:hover{
-    background-color: var(--main-color-light);
+    background-color: var(--main-color-lightest);
 }
 
 /* Acquisto bilglietti Home-----------------------------------------------------------------------------------------*/
@@ -607,7 +600,9 @@ li.filmPopolare a{
 }
 
 /* Lista Film / Proiezioni ---------------------------------------------------------*/
-
+#content_listaFilm{
+    padding:0;
+}
 .filters {
     text-align: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
@@ -648,8 +643,9 @@ li.filmPopolare a{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: left;
     padding-right: 2.5em;
+    align-items: center;
+  justify-content: center;
 }
 
 .boxesList li {
@@ -662,7 +658,7 @@ li.filmPopolare a{
     padding: 2em;
     padding-bottom: 0.5em;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
-
+    
     transition: box-shadow 0.2s ease-out;
 }
 
@@ -1268,8 +1264,8 @@ footer {
     border-top: 1px solid rgba(0, 0, 0, 0.582);
     background-color: var(--footer-color);
     color: aliceblue;
-
     font-size: 0.9em;
+    padding:30px;
 }
 
 footer ul {
@@ -1277,6 +1273,8 @@ footer ul {
     flex-direction: row;
     margin: 0 0.5em;
     padding-left: 0;
+    
+    list-style-type: none;
 }
 
 footer li {
@@ -1299,9 +1297,15 @@ footer #cssvalid {
     margin-right: 0.5em;
     justify-self: left;
 }
+#listaSponsor img{
+    max-width: 300px;
+    max-height: 120px;
+}
 
 footer > a {
-    display: none;
+    display: show;
+    color:aliceblue;
+    font-size: 2.3em;
 }
 
 /* ---FOOTER */
