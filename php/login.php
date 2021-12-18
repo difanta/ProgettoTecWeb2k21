@@ -37,18 +37,16 @@ class Login {
     private static $p_login_section = "<div id=\"loginSection\" class=\"slidableIn";
     private static $p_signup_section = "<div id=\"signupSection\" class=\"slidableIn";
 
-    private static $p_loginBtn = "<button title=\"login\" id=\"loginBtn\"";
-    private static $p_signupBtn = "<button title=\"sign up\" id=\"signupBtn\"";
-    private static $p_logoutBtn = "<button title=\"logout\" id=\"logout\" name=\"method\" value=\"logout\" form=\"login\"";
-    private static $p_linkUserPage = "<a href=\"PaginaUtente.html\"";
+    private static $p_if_logged = "placeholder=\"iflogged\"";        // show if logged
+    private static $p_if_not_logged = "placeholder=\"ifnotlogged\""; // show if not logged
 
     private static function display_account_buttons(&$htmlPage, $_is_logged) {
         if($_is_logged) {
-            $htmlPage = str_replace(Login::$p_loginBtn,     Login::$p_loginBtn     . " style=\"display: none\"",   $htmlPage); // hide
-            $htmlPage = str_replace(Login::$p_signupBtn,    Login::$p_signupBtn    . " style=\"display: none\"",   $htmlPage); // hide
+            $htmlPage = str_replace(Login::$p_if_logged     , ""                         ,    $htmlPage); // show
+            $htmlPage = str_replace(Login::$p_if_not_logged , " style=\"display: none\"" ,    $htmlPage); // hide
         } else {
-            $htmlPage = str_replace(Login::$p_logoutBtn,    Login::$p_logoutBtn    . " style=\"display: none\"",   $htmlPage); // hide
-            $htmlPage = str_replace(Login::$p_linkUserPage, Login::$p_linkUserPage . " style=\"display: none\"",   $htmlPage); // hide
+            $htmlPage = str_replace(Login::$p_if_logged     , " style=\"display: none\"" ,    $htmlPage); // hide
+            $htmlPage = str_replace(Login::$p_if_not_logged , ""                         ,    $htmlPage); // show
         }
     }
 
@@ -65,7 +63,7 @@ class Login {
             else 
             { return false; }
         } else {
-            echo ("connection error");
+            echo "connection error";
         }
     }
 
@@ -82,7 +80,7 @@ class Login {
             else 
             { return false; }
         } else {
-            echo ("connection error");
+            echo "connection error";
         }
     }
 
@@ -102,13 +100,14 @@ class Login {
                     if($connectionOk) {
                         $result = $connection->get("SELECT * FROM Utente WHERE Utente.email = '$email'");
                         if($result && ($result["password"] == $password)) {
+                            echo "login done";
                             $_SESSION["login"] = $result["id"];
                         } else {
-                            echo ("wrong password or email");
+                            echo "wrong password or email";
                         }
                         $connection->closeConnection();
                     } else {
-                        echo ("connection error");
+                        echo "connection error";
                     }
                 } 
                 elseif ($_POST["method"] == "register") 
@@ -125,16 +124,18 @@ class Login {
                     if($connectionOk) {
                         if($connection->insert("INSERT INTO Utente(nome, cognome, data_di_nascita, email, password, admin)
                                                 VALUES ('$nome', '$cognome', '$data_di_nascita', '$email', '$password', '0')")) {
+                            echo "register done";
                         } else {
-                            echo ("email already used"); // or other input errors, but the input should already be checked earlier
+                            echo "email already used"; // or other input errors, but the input should already be checked earlier
                         }
                         $connection->closeConnection();
                     } else {
-                        echo ("connection error");
+                        echo "connection error";
                     }
                 }
             } else { // if logged you can only logout
                 if($_POST["method"] == "logout") {
+                    echo "logout done";
                     session_unset();
                     session_destroy();
                 }
@@ -152,10 +153,9 @@ class Login {
             } elseif ($_POST["method"] == "logout") {
                 $htmlPage = str_replace(Login::$p_account_dropdown, Login::$p_account_dropdown . " class=\"dropdown\"", $htmlPage);
             }
-
-            // Set Button states (if #1)
-            Login::display_account_buttons($htmlPage, Login::is_logged());
         }
+        // in all cases set login button status
+        Login::display_account_buttons($htmlPage, Login::is_logged());
     }
 
 }
