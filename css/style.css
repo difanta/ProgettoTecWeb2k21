@@ -62,21 +62,19 @@ form textarea {
     /* Per separare dal testo sovrastante */
     margin-top: 0.2em; 
 }
-
-form input[type="submit"] {
-    /* Più bottoni submit stanno sulla stessa riga, anche perchè non avendo label dovrebbero stare bene su una riga sola */
-    display: inline-block; 
-
-    /* Nessun margine ulteriore a fine form */
-    margin-bottom: 0; 
-}
-
 form input{
     display: block;
     width: 80%;
     padding: 0.4em;
     margin-top: 0;
     margin-bottom: 1em;
+}
+form .button {
+    /* Più bottoni submit stanno sulla stessa riga, anche perchè non avendo label dovrebbero stare bene su una riga sola */
+    display: inline; 
+
+    /* Nessun margine ulteriore a fine form */
+    margin-bottom: 0; 
 }
 
 form label{
@@ -93,7 +91,7 @@ form textarea{
     overflow: auto;   
 }
 
-form button{
+form button, .button{
     width: fit-content;
     min-width: 50px;
     background-color: var(--main-color);
@@ -104,7 +102,7 @@ form button{
     transition: background-color 0.2s ease-out;
 }
 
-form button:hover{
+form button, .button:hover{
     background-color: var(--main-color-dark);
 }
 
@@ -643,9 +641,7 @@ li.filmPopolare a{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding-right: 2.5em;
-    align-items: center;
-  justify-content: center;
+    justify-content: center;
 }
 
 .boxesList li {
@@ -931,6 +927,9 @@ li.filmPopolare a{
 }
 
 /* Come Trovarci --------------------------------------------------------------------------------------------------*/
+#ristorazione h2{
+    margin-top:70px;
+}
 #content_ComeTrovarci #gmaps{
     max-width: 200px;
     float:left;
@@ -939,26 +938,24 @@ li.filmPopolare a{
 #ComeRaggiungerci{
     clear:both;
 }
-#ComeRaggiungerci dl{
+#content_ComeTrovarci dl{
     padding:0;
     margin:0;
 }
-#ComeRaggiungerci dt{
+#content_ComeTrovarci dt{
     color:black;
     text-align: left;
     text-shadow: 1px 1px 7px #afafaf;
     font-size: 1.4em;
     margin-bottom:0;
 }
-#ComeRaggiungerci dd{
+#content_ComeTrovarci dd{
     margin:0;
 }
 
-#ristorazione ul{
-    list-style-type: none;
-    margin: 0;
-    position: relative;
-    padding: 2em;
+#ristorazione dt{
+    color:var(--main-color-dark);
+    margin-top:16px;
 }
 
 /* 404 --------------------------------------------------------------------------------------------------*/
@@ -1259,58 +1256,31 @@ li.filmPopolare a{
 /* FOOTER */
 
 footer {
-    clear: both;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-
-    border-top: 1px solid rgba(0, 0, 0, 0.582);
     background-color: var(--footer-color);
     color: aliceblue;
     font-size: 0.9em;
     padding:30px;
 }
-
 footer ul {
     display: flex;
-    flex-direction: row;
-    margin: 0 0.5em;
-    padding-left: 0;
-    
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top:8px;
     list-style-type: none;
 }
-
-footer li {
-    margin-left: 2em;
-}
-
 footer p {
-    margin-left: 0.5em;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-footer #htmlvalid {
-    margin-left: 0.5em;
-    height: 2em;
-}
-
-footer #cssvalid {
-    height: 2em;
-    margin-right: 0.5em;
-    justify-self: left;
+    text-align: center;
 }
 #listaSponsor img{
     max-width: 300px;
     max-height: 120px;
 }
-
-footer > a {
-    display: show;
+footer a {
+    display: block;
     color:aliceblue;
     font-size: 2.3em;
+    text-align: center;
+    background-color: var(--main-color-dark);
 }
 
 /* ---FOOTER */
