@@ -95,8 +95,13 @@
             <p>Filtra per</p>
 
             <form id="filtriProiezioni">
-                <label for="nomeFilm">Nome</label>
-                <input type="text" name="nomeFilm" id="nomeFilm"/>
+                <label for="nomeFilm">Nome Film</label>
+                <input list="film" name="nomeFilm" id="nomeFilm">
+                <datalist id="film">
+                    <option value="Il Padrino">
+                    <option value="Gilberto Filè, l'addio">
+                    <option value="Il Padrone">
+                </datalist>
                 
                 <label for="data">Data</label>
                 <input type="date" name="data" id="data"/>
