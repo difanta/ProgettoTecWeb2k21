@@ -662,6 +662,11 @@ li.filmPopolare a{
     transition: box-shadow 0.2s ease-out;
 }
 
+.boxesList li.noGara label[title="like"],
+.boxesList li.noGara input[type="checkbox"] {
+    display: none;
+}
+
 .boxesList li:hover {
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
 }
