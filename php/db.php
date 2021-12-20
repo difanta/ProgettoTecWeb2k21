@@ -9,7 +9,7 @@ class DBAccess {
 	
 	public function openDB() {
 		$config = json_decode(file_get_contents("config.json"));
-		$this->connection = mysqli_connect(DBAccess::HOST_DB, $config["db_username"], trim(file_get_contents($config["pwd_filename"])), $config["db_username"]);
+		$this->connection = mysqli_connect(DBAccess::HOST_DB, $config->db_username, trim(file_get_contents($config->pwd_filename)), $config->db_username);
 		if(mysqli_errno($this->connection)) {
 			return false;
 		} else {
