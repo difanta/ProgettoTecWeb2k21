@@ -111,18 +111,19 @@
         <p>Nel presentare la candidatura è fondamentale inserire il link <span lang="en">youtube</span> ad un trailer o una clip del film, la durata del video non può superare i 3 minuti. Il video può essere pubbilico o "non in elenco", basta che sia accessibile tramite il link. E' consigliato inserire alcune informazioni nella descrizione del video <span lang="en">youtube</span> riguardanti il film.</p>
 
         <div id="contestForm">
-            <p id="mustBeLogged">Per presentare una candidatura bisogna essere loggati.</p>
-            <form action="" method="post">
+            <messaggi/>
+            <form action="contest.php" method="post">
                 <fieldset>
-                    <label for="titoloFilm">Titolo film</label>
-                    <input type="text" name="titoloFilm" id="titoloFilm"/>
-                    <label for="descrizioneFilm">Descrizione</label>
-                    <textarea name="descrizioneFilm" id="descrizioneFilm" cols="40" rows="8"></textarea>
-                    <label for="linkYT">link <span lang="en">youtube</span></label>
-                    <input type="text" name="linkYT" id="linkYT"/>
+                    <label for="titolo">Titolo</label>
+                    <input type="text" name="titolo" id="titolo"/>
+                    <label for="descrizione">Descrizione</label>
+                    <textarea name="descrizione" id="descrizione" cols="40" rows="8"></textarea>
+                    <label for="linkyt">link <span lang="en">youtube</span></label>
+                    <input type="text" name="linkyt" id="linkyt"/>
                     <label for="email">Email</label>
                     <input type="text" name="email" id="email">
-                    <input class="button" type="submit" value="Invia Candidatura">
+                    <input class="button" type="submit" name="submit" value="Invia Candidatura">
+                    <input class="button" type="reset" value="Reset">
                 </fieldset>
             </form>
         </div>

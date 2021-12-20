@@ -43,6 +43,9 @@ create table Film
     foreign key (candidatore) references Utente (id) on update cascade on delete set null
 );
 
+insert into Film(id, nome, descrizione, durata, anno, regista, produttore, cast, in_gara, approvato, candidatore)
+values (1, "film1", "desc", 120, 1999, "regista paolo", "prod paolo", "paolo; paolo2", 1, 1, 1);
+
 create table _Like
 (
     utente int not null,
@@ -60,6 +63,9 @@ create table Proiezione
     foreign key (film) references Film (id) on update cascade on delete cascade
 );
 
+insert into Proiezione(id, orario, film)
+values (1, '2021-09-18 18:00:00', 1);
+
 create table Biglietto
 (
     id         int not null auto_increment primary key,
@@ -68,5 +74,8 @@ create table Biglietto
     foreign key (utente) references Utente (id) on update cascade on delete cascade,
     foreign key (proiezione) references Proiezione (id) on update cascade on delete cascade
 );
+
+insert into Biglietto(id, utente, proiezione)
+values (1, 1, 1);
 
 commit;
