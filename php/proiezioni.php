@@ -5,15 +5,22 @@ session_start();
 include "login.php";
 use DB\DBAccess;
 
-function printFilms(&$htmlPage) {
-    $p_filmPreview = "<filmPreview/>";
+function printProiezioni(&$htmlPage) {
+    $p_proiezione= "<proiezione/>";
     $p_nomeFilmFilter = "inputnomefilm";
+    $p_dataProiezioneFilter = "inputdata";
     $p_tuttiFilter = "tuttiselected";
     $p_garaFilter = "garaselected";
     $p_nogaraFilter = "nogaraselected";
-    
+
     $nomeFilm = "";
+    $dataProiezione = "";
     $in_gara = "tutti";
+    
+    if(isset($_GET["data"])) { 
+        $dataProiezione = $_GET["data"]; 
+    }
+    $htmlPage = str_replace($p_dataProiezioneFilter, $dataProiezione, $htmlPage);
 
     if(isset($_GET["nomeFilm"])) { 
         $nomeFilm = $_GET["nomeFilm"]; 
@@ -71,22 +78,27 @@ function printFilms(&$htmlPage) {
                 $query = "$query and $filter";
             }
         }
+
+        if($dataProiezione != "") {
+            $query = "SELECT *, Proiezione.id as pid, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora from Proiezione join ($query) as Film on Proiezione.film = Film.id where CAST(orario AS DATE) = '$dataProiezione' order by orario asc";
+        } else {
+            $query = "SELECT *, Proiezione.id as pid, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora from Proiezione join ($query) as Film on Proiezione.film = Film.id order by orario asc";
+        }
+
         unset($filters);
         $result = $connection->get($query);
 
         if($result) {
-            $template = file_get_contents("templateFilmPreview.html");
+            $template = file_get_contents("templateProiezione.html");
 
             foreach($result as $indice => $film) {
                 $at_least_one = true;
-                $film_html = str_replace("titolofilm", $film["nome"], $template);
-                $film_html = str_replace("regista", $film["regista"], $film_html);
-                if($film["in_gara"]) {
-                    $film_html = str_replace("ifingara", "", $film_html);
-                 } else {
-                    $film_html = str_replace("ifingara", "display: none", $film_html);
-                }
-                $htmlPage  = str_replace($p_filmPreview, $film_html . $p_filmPreview, $htmlPage);
+                $proiezione_html = str_replace("titolofilm", $film["nome"], $template);
+                $proiezione_html = str_replace("regista", $film["regista"], $proiezione_html);
+                $proiezione_html = str_replace("data", $film["data"], $proiezione_html);
+                $proiezione_html = str_replace("ora", $film["ora"], $proiezione_html);
+                $proiezione_html = str_replace("id", $film["pid"], $proiezione_html);
+                $htmlPage  = str_replace($p_proiezione, $proiezione_html . $p_proiezione, $htmlPage);
             }
         }
     } else {
@@ -94,9 +106,9 @@ function printFilms(&$htmlPage) {
     }
 
     if($at_least_one) {
-        $htmlPage  = str_replace($p_filmPreview, "", $htmlPage);
+        $htmlPage  = str_replace($p_proiezione, "", $htmlPage);
     } else {
-        $htmlPage  = str_replace($p_filmPreview, "<p>Nessun Film trovato!</p>", $htmlPage);
+        $htmlPage  = str_replace($p_proiezione, "<p>Nessuna Proiezione trovata!</p>", $htmlPage);
     }
 }
 
@@ -106,17 +118,15 @@ if(isset($_POST["method"])) {
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     header("HTTP/1.1 303 See Other");
-    header("Location: ./home.php");
+    header("Location: ./proiezioni.php");
 } else /* GET */ {
-    $htmlPage = file_get_contents("../HTML/listaFilm.html");
+    $htmlPage = file_get_contents("../HTML/proiezioni.html");
 
     // show login/register/logout results
     Login::set_login_contents($htmlPage);
-    printFilms($htmlPage);
+    printProiezioni($htmlPage);
 
     $htmlPage = str_replace("placeholder", "style", $htmlPage);
 
     echo $htmlPage;
 }
-
-?>

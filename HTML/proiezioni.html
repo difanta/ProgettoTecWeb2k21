@@ -96,7 +96,7 @@
 
             <form id="filtriProiezioni">
                 <label for="nomeFilm">Nome Film</label>
-                <input list="film" name="nomeFilm" id="nomeFilm">
+                <input list="film" name="nomeFilm" id="nomeFilm" value="inputnomefilm">
                 <datalist id="film">
                     <option value="Il Padrino">
                     <option value="Gilberto Filè, l'addio">
@@ -104,13 +104,13 @@
                 </datalist>
                 
                 <label for="data">Data</label>
-                <input type="date" name="data" id="data"/>
+                <input type="date" name="data" id="data" value="inputdata"/>
         
                 <label for="gara">Tipo Film</label>
                 <select name="gara" id="gara">
-                    <option value="tutti">Tutti</option>
-                    <option value="gara">In gara</option>
-                    <option value="noGara">Non in gara</option>
+                    <option value="tutti" tuttiselected>Tutti</option>
+                    <option value="gara" garaselected>In gara</option>
+                    <option value="noGara" nogaraselected>Non in gara</option>
                 </select>
         
                 <button type="submit" form="filtriProiezioni">Filtra</button>
@@ -118,7 +118,8 @@
         </div>
 
         <ul id="listaProiezioni" class="boxesList">
-            <li class="inGara" id="gilbertofileladdio">
+            <!--
+            <li id="gilbertofileladdio">
                 <h2 title="Titolo">Gilberto Filé, l'addio</h2>
                 <em title="Registi">Alessandro Sperduti e Caterina Sartori</em>
                 <p>
@@ -127,7 +128,7 @@
                 </p>
                 <a class="acquista" title="acquista" href="./AcquistoBiglietti.html?id=$idProiezione">Acquista &gt;</a>
             </li>
-            <li class="noGara" id="ilpadrino">
+            <li id="ilpadrino">
                 <h2 title="Titolo">Il Padrino</h2>
                 <em title="Regista">Francis Ford Coppola</em>
                 <p>
@@ -136,6 +137,8 @@
                 </p>
                 <a class="acquista" title="acquista" href="./AcquistoBiglietti.html?id=$idProiezione">Acquista &gt;</a>
             </li>
+            -->
+            <proiezione/>
         </ul>
     </div>
 
