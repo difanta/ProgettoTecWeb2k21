@@ -43,8 +43,10 @@ create table Film
     foreign key (candidatore) references Utente (id) on update cascade on delete set null
 );
 
-insert into Film(id, nome, descrizione, durata, anno, regista, produttore, cast, in_gara, approvato, candidatore)
-values (1, "film1", "desc", 120, 1999, "regista paolo", "prod paolo", "paolo; paolo2", 1, 1, 1);
+INSERT INTO `Film` (`id`, `nome`, `descrizione`, `durata`, `anno`, `regista`, `produttore`, `cast`, `in_gara`, `approvato`, `candidatore`) VALUES
+('Gilberto Filé - L\'addio', 'Due grandi amici del celebre professore Unipd celebrano il suo ritiro ricordando vari momenti classici della vita dell\'egregio professor Filé.\r\nTra gossip e storie piccanti, il percorso didattico del professore storico di Informatica Unipd viene descritto con zelo e precisione senza precedenti.', 120, 2020, 'Alessandro Sperduti, Caterina Sartori', 'Unipd', 'Vari membri dell\'università di Padova', 1, 1, 2),
+('Il Padrino', 'Il film è ambientato a New York in pieno dopoguerra, tra la fine degli anni 1940 e la prima metà degli anni 1950. Il protagonista è don Vito Corleone, capo di una famiglia mafiosa divenuta col tempo una delle più potenti organizzazioni criminali della Grande Mela, grazie al rispetto e all\'onorabilità ottenute dal patriarca e dai figli coinvolti nelle attività malavitose. Quando don Vito rimane vittima di un attentato da parte di un boss rivale, il figlio Michael Corleone comincia l\'ascesa nell\'impero criminale della famiglia, fino a diventare il nuovo \"padrino\".', 175, 1972, 'Francis Ford Coppola', 'Albert S. Ruddy', 'Marlon Brando, Al Pacino, James Caan', 0, 1, NULL);
+("film1", "desc", 120, 1999, "regista paolo", "prod paolo", "paolo; paolo2", 1, 1, 1);
 
 create table _Like
 (

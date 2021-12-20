@@ -24,7 +24,7 @@ function printFilms(&$htmlPage) {
         
         $filmNameQuery = "";
         if($nomeFilm != "") {
-            $filmNameQuery = "Film.name = " . $nomeFilm;
+            $filmNameQuery = "Film.nome like '%" . $nomeFilm . "%'";
         }
 
         switch ($in_gara) {
@@ -38,7 +38,7 @@ function printFilms(&$htmlPage) {
 
             case 'gara':
                 if($nomeFilm != "") {
-                    $result = $connection->get("SELECT * from Film where Film.in_gara = '1' and" . $filmNameQuery);
+                    $result = $connection->get("SELECT * from Film where Film.in_gara = '1' and " . $filmNameQuery);
                 } else {
                     $result = $connection->get("SELECT * from Film where Film.in_gara = '1'");
                 }
@@ -46,7 +46,7 @@ function printFilms(&$htmlPage) {
 
             case 'noGara':
                 if($nomeFilm != "") {
-                    $result = $connection->get("SELECT * from Film where Film.in_gara = '0' and" . $filmNameQuery);
+                    $result = $connection->get("SELECT * from Film where Film.in_gara = '0' and " . $filmNameQuery);
                 } else {
                     $result = $connection->get("SELECT * from Film where Film.in_gara = '0'");
                 }
