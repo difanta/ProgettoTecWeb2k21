@@ -42,7 +42,7 @@ if (isset($_POST["submit"])) {
         $connectionOk = $connection->openDB();
 
         if($connectionOk){ // TODO
-            $result = $connection->get("insert into Film(id, nome, descrizione, durata, anno, regista, produttore, "cast", in_gara, approvato, candidatore) values (1, \"\");");
+            $result = $connection->get("insert into Film(id, nome, descrizione, durata, anno, regista, produttore, cast, in_gara, approvato, candidatore) values (1, \"\");");
         }
 
         $messaggi .= "<p>Candidatura inviata con successo.</p>"

@@ -14,17 +14,18 @@ $listaBiglietti = "";
 
 if ($connectionOk) {
     // SELECT * FROM Biglietto join Utente join Film WHERE Utente.email = '$email'
-    $biglietti = $connection->get("SELECT * FROM Biglietto join Film join Proiezione");
+    $biglietti = $connection->get("SELECT nome, Biglietto.id, orario FROM Biglietto join Film join Proiezione");
     $connection->closeConnection();
     if ($biglietti != null) {
         $listaBiglietti .= "<ul>";
         foreach ($biglietti as $biglietto) {
             $listaBiglietti .=
-                "<li class=\ticket\"><p><span class=\"ticket-up\">" . $biglietto["nome"] .
-                "</span><span class=\"ticket-up\">" . $biglietto["id"] .
-                "</span></p><p><span class=\"ticket-low\">" . $biglietto["orario"] .
+                "<li class=\"ticket\"><p><span class=\"ticket-up\">" . $biglietti["nome"] . // usa biglietto?
+                "</span><span class=\"ticket-up\">#" . $biglietti["id"] .
+                "</span></p><p><span class=\"ticket-low\">" . $biglietti["orario"] .
                 "</span></p></li>";
         }
+        unset($biglietto);
         $listaBiglietti .= "</ul>";
     } else {
         $listaBiglietti .= "<p>Errore load biglietti</p>";
