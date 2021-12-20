@@ -44,7 +44,7 @@ if(isset($_POST["method"])) {
     header("HTTP/1.1 303 See Other");
     header("Location: ./home.php");
 } else /* GET */ {
-    $htmlPage = file_get_contents("../HTML/home.html");
+    $htmlPage = file_get_contents("../HTML/Home.html");
 
     // show login/register/logout results
     Login::set_login_contents($htmlPage);
