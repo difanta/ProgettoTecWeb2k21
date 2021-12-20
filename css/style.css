@@ -1223,6 +1223,8 @@ li.filmPopolare a{
 
 
 #tornaSu {
+    height: 3em;
+    width: 3em;
     overflow-y: auto;
     position: fixed;
     bottom: 2em;
@@ -1231,19 +1233,23 @@ li.filmPopolare a{
     border: none;
     outline: none;
     background-color: var(--main-color-light);
-    padding: 0.8em;
     border-radius: 10px;
     opacity: 0.9;
 }
 
 #tornaSu a {
-    width: 10px;
-    height: 10px;
-}
+    display: block;
+    margin: 0;
+    height: 3em;
+    border-radius: 10px;
+} 
 
 #tornaSu a img {
+    display: block;
     width: 35px;
     height: auto;
+    margin: auto;
+    padding-top: 0.46em;
 }
 
 #tornaSu:hover {
