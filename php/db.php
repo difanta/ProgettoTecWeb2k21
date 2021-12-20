@@ -4,13 +4,12 @@ namespace DB;
 
 class DBAccess {
 	private const HOST_DB = "127.0.0.1";
-	private const DB_NAME = "tdifant";
-	private const DB_USER = "tdifant";
 
 	private $connection;
 	
 	public function openDB() {
-		$this->connection = mysqli_connect(DBAccess::HOST_DB, DBAccess::DB_USER, trim(file_get_contents("../../../pwd_db_2021-22.txt")), DBAccess::DB_NAME);
+		$config = json_decode(file_get_contents("config.json"));
+		$this->connection = mysqli_connect(DBAccess::HOST_DB, $config["db_username"], trim(file_get_contents($config["pwd_filename"])), $config["db_username"]);
 		if(mysqli_errno($this->connection)) {
 			return false;
 		} else {
