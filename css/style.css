@@ -69,6 +69,11 @@ form input{
     margin-top: 0;
     margin-bottom: 1em;
 }
+
+form input[type=file]{
+    width: auto;
+}
+
 form .button {
     /* Più bottoni submit stanno sulla stessa riga, anche perchè non avendo label dovrebbero stare bene su una riga sola */
     display: inline; 
