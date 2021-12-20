@@ -47,7 +47,6 @@ class Login {
     private static $p_if_not_register_success = "ifnotregistersuccess"; // show if register failed
 
     private static function display_account_buttons(&$htmlPage, $_is_logged) {
-        $htmlPage = str_replace("placeholder", "style", $htmlPage);
         if($_is_logged) {
             $htmlPage = str_replace(Login::$p_if_logged     , ""              ,    $htmlPage); // show
             $htmlPage = str_replace(Login::$p_if_not_logged , "display: none" ,    $htmlPage); // hide

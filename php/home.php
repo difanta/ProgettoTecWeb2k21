@@ -24,7 +24,7 @@ function printFilmPopolari(&$htmlPage) {
             $template = file_get_contents("templateFilmPopolare.html");
 
             foreach($result as $indice => $film) {
-                if($indice > 2 || !isset($film["nome"])) break; // only the first 3 and check if film is correctly defined
+                if($indice > 2) break; // only the first 3 films
                 $at_least_one = true;
                 $film_html = str_replace("titolofilm", $film["nome"], $template);
                 $htmlPage  = str_replace($p_filmPopolare, $film_html . $p_filmPopolare, $htmlPage);
@@ -55,6 +55,8 @@ if(isset($_POST["method"])) {
     // show login/register/logout results
     Login::set_login_contents($htmlPage);
     printFilmPopolari($htmlPage);
+
+    $htmlPage = str_replace("placeholder", "style", $htmlPage);
 
     echo $htmlPage;
 }
