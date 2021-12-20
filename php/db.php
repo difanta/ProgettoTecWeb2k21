@@ -22,17 +22,13 @@ class DBAccess {
 		mysqli_close($this->connection);
 	}
 	
-	public function get($stringa, $always_array_of_arrays = false) {
+	public function get($stringa) {
 		$queryResult = mysqli_query($this->connection, $stringa);
 
 		if(!$queryResult || mysqli_num_rows($queryResult) == 0) 
 		{
 			return null;
-		} 
-		elseif(!$always_array_of_arrays && mysqli_num_rows($queryResult) == 1) 
-		{
-            return mysqli_fetch_assoc($queryResult);
-        } 
+		}
 		else 
 		{
 			$result = array();
