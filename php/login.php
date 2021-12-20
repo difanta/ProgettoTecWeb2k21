@@ -86,7 +86,7 @@ class Login {
 
         if($connectionOk) {
             $result = $connection->get("SELECT admin FROM Utente WHERE Utente.id = '" . $_SESSION["login"] . "'");
-            if($result && ($result["admin"] == 1)) 
+            if($result && result[0] && ($result[0]["admin"] == 1)) 
             { return true; }
             else 
             { return false; }
@@ -108,8 +108,8 @@ class Login {
 
                 if($connectionOk) {
                     $result = $connection->get("SELECT * FROM Utente WHERE Utente.email = '$email'");
-                    if($result && ($result["password"] == $password)) 
-                         { $_SESSION["success"] = true  ; $_SESSION["login"] = $result["id"]; $_SESSION["is_admin"] = $result["admin"]; } 
+                    if($result && $result[0] && ($result[0]["password"] == $password)) 
+                         { $_SESSION["success"] = true  ; $_SESSION["login"] = $result[0]["id"]; $_SESSION["is_admin"] = $result[0]["admin"]; } 
                     else { $_SESSION["success"] = false ; }
                     $connection->closeConnection();
                 } 
