@@ -12,7 +12,13 @@ function printFilmPopolari(&$htmlPage) {
     $at_least_one = false;
 
     if($connectionOk) {
-        $result = $connection->get("SELECT * from Film join (SELECT Film, count(*) as Likes FROM _Like group by Film) as _likes on Film.id = _likes.Film where Film.in_gara = '1' order by Likes desc");
+        $result = $connection->get("SELECT * from Film 
+                                                  join 
+                                                  (SELECT Film, count(*) as Likes FROM _Like group by Film) as _likes 
+                                                  on Film.id = _likes.Film 
+                                                  where Film.in_gara = '1' 
+                                                  order by Likes desc"
+                                                  );
         
         if($result) {
             $template = file_get_contents("templateFilmPopolare.html");
@@ -44,7 +50,7 @@ if(isset($_POST["method"])) {
     header("HTTP/1.1 303 See Other");
     header("Location: ./home.php");
 } else /* GET */ {
-    $htmlPage = file_get_contents("../HTML/Home.html");
+    $htmlPage = file_get_contents("../HTML/home.html");
 
     // show login/register/logout results
     Login::set_login_contents($htmlPage);
