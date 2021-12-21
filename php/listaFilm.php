@@ -82,9 +82,9 @@ function printFilms(&$htmlPage) {
                 $film_html = str_replace("titolofilm", $film["nome"], $template);
                 $film_html = str_replace("regista", $film["regista"], $film_html);
                 if($film["in_gara"]) {
-                    $film_html = str_replace("ifingara", "", $film_html);
-                 } else {
-                    $film_html = str_replace("ifingara", "display: none", $film_html);
+                    Login::showElement("<ifingara>", "</ifingara>", $film_html);
+                } else {
+                    Login::hideElement("<ifingara>", "</ifingara>", $film_html);
                 }
                 $htmlPage  = str_replace($p_filmPreview, $film_html . $p_filmPreview, $htmlPage);
             }

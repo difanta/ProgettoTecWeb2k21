@@ -37,61 +37,39 @@ class Login {
     private static $p_login_section = "<div id=\"loginSection\" class=\"slidableIn";
     private static $p_signup_section = "<div id=\"signupSection\" class=\"slidableIn";
 
-    private static $p_if_logged = "iflogged";                           // show if logged
-    private static $p_if_not_logged = "ifnotlogged";                    // show if not logged
+    private static $p_if_logged_open = "<iflogged>";                    // show if logged
+    private static $p_if_logged_close = "</iflogged>";
+    
+    private static $p_if_not_logged_open = "<ifnotlogged>";             // show if not logged
+    private static $p_if_not_logged_close = "</ifnotlogged>";
 
-    private static $p_if_login_success = "ifloginsuccess";              // show if login succeded
-    private static $p_if_not_login_success = "ifnotloginsuccess";       // show if login failed
+    private static $p_if_login_success_open = "<ifloginsuccess>";
+    private static $p_if_login_success_close = "</ifloginsuccess>";
+    
+    private static $p_if_not_login_success_open = "<ifnotloginsuccess>";
+    private static $p_if_not_login_success_close = "</ifnotloginsuccess>";
+    
+    private static $p_if_register_success_open = "<ifregistersuccess>";
+    private static $p_if_register_success_close = "</ifregistersuccess>";
 
-    private static $p_if_register_success = "ifregistersuccess";        // show if register succeded
-    private static $p_if_not_register_success = "ifnotregistersuccess"; // show if register failed
+    private static $p_if_not_register_success_open = "<ifnotregistersuccess>";
+    private static $p_if_not_register_success_close = "</ifnotregistersuccess>";
 
-    private static function display_account_buttons(&$htmlPage, $_is_logged) {
-        if($_is_logged) {
-            $htmlPage = str_replace(Login::$p_if_logged     , ""              ,    $htmlPage); // show
-            $htmlPage = str_replace(Login::$p_if_not_logged , "display: none" ,    $htmlPage); // hide
-        } else {
-            $htmlPage = str_replace(Login::$p_if_logged     , "display: none" ,    $htmlPage); // hide
-            $htmlPage = str_replace(Login::$p_if_not_logged , ""              ,    $htmlPage); // show
-        }
+    public static function showElement($open, $close, &$string) {
+        $string = str_replace($open, "", $string);
+        $string = str_replace($close, "", $string);
+    }
+    
+    public static function hideElement($open, $close, &$string) {
+        $string = preg_replace("#".$open."[\s\S]*?".$close."#", "", $string);
     }
 
     public static function is_logged() {
         return isset($_SESSION["login"]);
-
-        // no need to verify with db since $_SESSION is not modifiable by the user
-
-        /*$connection = new DBAccess();
-        $connectionOk = $connection->openDB();
-
-        if($connectionOk) {
-            $result = $connection->get("SELECT count(*) as num FROM Utente WHERE Utente.id = '" . $_SESSION["login"] . "'");
-            if($result && ($result["num"] == 1)) 
-            { return true; }
-            else 
-            { return false; }
-        } else {
-            echo "connection error";
-        }*/
     }
 
     public static function is_logged_admin() {
         return (Login::is_logged() && $_SESSION["is_admin"] == true);
-
-        // no need to verify with db since $_SESSION is not modifiable by the user
-
-        /*$connection = new DBAccess();
-        $connectionOk = $connection->openDB();
-
-        if($connectionOk) {
-            $result = $connection->get("SELECT admin FROM Utente WHERE Utente.id = '" . $_SESSION["login"] . "'");
-            if($result && result[0] && ($result[0]["admin"] == 1)) 
-            { return true; }
-            else 
-            { return false; }
-        } else {
-            echo "connection error";
-        }*/
     }
 
     public static function handle_login() {
@@ -180,11 +158,11 @@ class Login {
                     $htmlPage = str_replace(Login::$p_login_section,    Login::$p_login_section    . " slideIn\"",          $htmlPage);
                     
                     if($success) {
-                        $htmlPage = str_replace(Login::$p_if_login_success     , ""              , $htmlPage);
-                        $htmlPage = str_replace(Login::$p_if_not_login_success , "display: none" , $htmlPage);
+                        Login::showElement(Login::$p_if_login_success_open, Login::$p_if_login_success_close, $htmlPage);
+                        Login::hideElement(Login::$p_if_not_login_success_open, Login::$p_if_not_login_success_close, $htmlPage);
                     } else {
-                        $htmlPage = str_replace(Login::$p_if_login_success     , "display: none" , $htmlPage);
-                        $htmlPage = str_replace(Login::$p_if_not_login_success , ""              , $htmlPage);
+                        Login::hideElement(Login::$p_if_login_success_open, Login::$p_if_login_success_close, $htmlPage);
+                        Login::showElement(Login::$p_if_not_login_success_open, Login::$p_if_not_login_success_close, $htmlPage);
                     }                 
                     
                     if(!$success) {
@@ -199,11 +177,11 @@ class Login {
                     $htmlPage = str_replace(Login::$p_signup_section,   Login::$p_signup_section   . " slideIn\"",          $htmlPage);
                     
                     if($success) {
-                        $htmlPage = str_replace(Login::$p_if_register_success     , ""              , $htmlPage);
-                        $htmlPage = str_replace(Login::$p_if_not_register_success , "display: none" , $htmlPage);
+                        Login::showElement(Login::$p_if_register_success_open, Login::$p_if_register_success_close, $htmlPage);
+                        Login::hideElement(Login::$p_if_not_register_success_open, Login::$p_if_not_register_success_close, $htmlPage);
                     } else {
-                        $htmlPage = str_replace(Login::$p_if_register_success     , "display: none" , $htmlPage);
-                        $htmlPage = str_replace(Login::$p_if_not_register_success , ""              , $htmlPage);
+                        Login::hideElement(Login::$p_if_register_success_open, Login::$p_if_register_success_close, $htmlPage);
+                        Login::showElement(Login::$p_if_not_register_success_open, Login::$p_if_not_register_success_close, $htmlPage);
                     }
 
                     if(!$success) {
@@ -224,13 +202,20 @@ class Login {
             unset($_SESSION["success"]);
         }
 
-        $htmlPage = str_replace(Login::$p_if_login_success        , "display: none" , $htmlPage);
-        $htmlPage = str_replace(Login::$p_if_not_login_success    , ""              , $htmlPage);
-        $htmlPage = str_replace(Login::$p_if_register_success     , "display: none" , $htmlPage);
-        $htmlPage = str_replace(Login::$p_if_not_register_success , ""              , $htmlPage);
+        // default is fail from both login and register
+        Login::hideElement(Login::$p_if_login_success_open, Login::$p_if_login_success_close, $htmlPage);
+        Login::showElement(Login::$p_if_not_login_success_open, Login::$p_if_not_login_success_close, $htmlPage);
+        Login::hideElement(Login::$p_if_register_success_open, Login::$p_if_register_success_close, $htmlPage);
+        Login::showElement(Login::$p_if_not_register_success_open, Login::$p_if_not_register_success_close, $htmlPage);
 
-        // in all cases set login button status
-        Login::display_account_buttons($htmlPage, Login::is_logged());
+        // substitute based on login status
+        if(Login::is_logged()) {
+            Login::showElement(Login::$p_if_logged_open, Login::$p_if_logged_close, $htmlPage);
+            Login::hideElement(Login::$p_if_not_logged_open, Login::$p_if_not_logged_close, $htmlPage);
+        } else {
+            Login::hideElement(Login::$p_if_logged_open, Login::$p_if_logged_close, $htmlPage);
+            Login::showElement(Login::$p_if_not_logged_open, Login::$p_if_not_logged_close, $htmlPage);
+        }
     }
 
 }
