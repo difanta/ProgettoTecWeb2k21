@@ -740,12 +740,12 @@ li.filmPopolare a{
 /* Acquisto biglietti ------------------------------------------------------------- */
 
 
-#content_AcquistoBiglietti h1 {
+#content_acquistoBiglietti h1 {
     text-align: center;
     margin-bottom: 1.2em;
 }
 
-#content_AcquistoBiglietti h2 {
+#content_acquistoBiglietti h2 {
     padding-bottom: 0.5em;
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
 }
@@ -779,17 +779,17 @@ li.filmPopolare a{
     background-color: rgba(150, 150, 150, 0.822);
 }
 
-#content_AcquistoBiglietti #contentLogin,
-#content_AcquistoBiglietti #contentSignin {
+#content_acquistoBiglietti #contentLogin,
+#content_acquistoBiglietti #contentSignin {
     display: none;
 }
 
-#content_AcquistoBiglietti #contentLogin.show,
-#content_AcquistoBiglietti #contentSignin.show {
+#content_acquistoBiglietti #contentLogin.show,
+#content_acquistoBiglietti #contentSignin.show {
     display: block;
 }
 
-#content_AcquistoBiglietti #ordine {
+#content_acquistoBiglietti #ordine {
     font-size: 1.2em;
     width: 20em;
     margin: auto;
@@ -801,7 +801,7 @@ li.filmPopolare a{
     box-shadow: 1px 1px 4px black;
 }
 
-#content_AcquistoBiglietti #ordine h3 {
+#content_acquistoBiglietti #ordine h3 {
     text-align: center;
     margin-bottom: 0.5em;
     margin-top: 0;
@@ -810,34 +810,34 @@ li.filmPopolare a{
     font-size: 1.3em;
 }
 
-#content_AcquistoBiglietti #ordine p {
+#content_acquistoBiglietti #ordine p {
     margin-top: 0.5em;
     margin-bottom: 0;
 }
 
-#content_AcquistoBiglietti #ordine p > span {
+#content_acquistoBiglietti #ordine p > span {
     display: inline-block;
     margin-left: 0.5em;
     margin-right: 0.5em;
     margin-top: 0.5em;
 }
 
-#content_AcquistoBiglietti #form-intro {
+#content_acquistoBiglietti #form-intro {
     text-align: center;
     font-style: italic;
 }
 
-#content_AcquistoBiglietti #pagamento {
+#content_acquistoBiglietti #pagamento {
     text-align: center;
     margin-bottom: 2em;
 }
 
-#content_AcquistoBiglietti #pagamento input:not([type="submit"]) {
+#content_acquistoBiglietti #pagamento input:not([type="submit"]) {
     position: absolute;
     left: -10000%;
 }
 
-#content_AcquistoBiglietti #pagamento label {
+#content_acquistoBiglietti #pagamento label {
     display: inline-block;
     cursor: pointer;
     margin: 0.5em;   
@@ -851,16 +851,16 @@ li.filmPopolare a{
     transition: border 0.3s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-#content_AcquistoBiglietti #pagamento label:hover {
+#content_acquistoBiglietti #pagamento label:hover {
     border: 2px solid rgb(113, 170, 0);
 }
 
-#content_AcquistoBiglietti #pagamento label.selected {
+#content_acquistoBiglietti #pagamento label.selected {
     background-color: rgb(171, 219, 74);
     border: 2px solid rgb(113, 170, 0);
 }
 
-#content_AcquistoBiglietti #pagamento input[type="submit"] {
+#content_acquistoBiglietti #pagamento input[type="submit"] {
     display: block;
     width: initial;
     margin: auto;
@@ -872,7 +872,7 @@ li.filmPopolare a{
 
 /*Pagina Utente ------------------------------------------------------------------- */
 
-#content_PaginaUtente div:first-of-type{
+#content_paginaUtente div:first-of-type{
     margin: auto;
     margin-top: 2em;
     margin-bottom: 2em;
@@ -881,7 +881,7 @@ li.filmPopolare a{
     border: solid black 1px;
 }
 
-#content_PaginaUtente form fieldset:first-child{
+#content_paginaUtente form fieldset:first-child{
     padding-bottom: 0;
     margin-bottom: 1em;  
 }
@@ -935,7 +935,7 @@ li.filmPopolare a{
 #ristorazione h2{
     margin-top:70px;
 }
-#content_ComeTrovarci #gmaps{
+#content_comeTrovarci #gmaps{
     max-width: 200px;
     float:left;
     margin: 0 20px 30px 0;
@@ -943,18 +943,18 @@ li.filmPopolare a{
 #ComeRaggiungerci{
     clear:both;
 }
-#content_ComeTrovarci dl{
+#content_comeTrovarci dl{
     padding:0;
     margin:0;
 }
-#content_ComeTrovarci dt{
+#content_comeTrovarci dt{
     color:black;
     text-align: left;
     text-shadow: 1px 1px 7px #afafaf;
     font-size: 1.4em;
     margin-bottom:0;
 }
-#content_ComeTrovarci dd{
+#content_comeTrovarci dd{
     margin:0;
 }
 
@@ -1074,18 +1074,18 @@ li.filmPopolare a{
 
 /* Admin Lista Film / Lista Proiezioni  --------------------------------------------------------------------- */
 
-#content_admin_listaFilm *,
-#content_admin_proiezioni * {
+#content_adminListaFilm *,
+#content_adminProiezioni * {
     width: initial;
 }
 
-#content_admin_listaFilm h2,
-#content_admin_proiezioni h2 {
+#content_adminListaFilm h2,
+#content_adminProiezioni h2 {
     margin-top: 1.5em;
 }
 
-#content_admin_listaFilm form,
-#content_admin_proiezioni form {
+#content_adminListaFilm form,
+#content_adminProiezioni form {
     margin-top: 0;
     margin-bottom: 1em;
     padding-bottom: 1.5em;
@@ -1094,40 +1094,40 @@ li.filmPopolare a{
     border-bottom: 2px solid black;
 }
 
-#content_admin_listaFilm form input,
-#content_admin_proiezioni form input {
+#content_adminListaFilm form input,
+#content_adminProiezioni form input {
     margin-top: 0.5em;
 }
 
-#content_admin_listaFilm form input[type="submit"],
-#content_admin_proiezioni form input[type="submit"] {
+#content_adminListaFilm form input[type="submit"],
+#content_adminProiezioni form input[type="submit"] {
     display: inline-block;
     margin-right: 0.6em;
     margin-top: 0.8em;
 }
 
-#content_admin_listaFilm select,
-#content_admin_proiezioni select {
+#content_adminListaFilm select,
+#content_adminProiezioni select {
     margin-top: 1em;
     margin-left: 0.6em;
     margin-bottom: 0.5em;
 }
 
-#content_admin_listaFilm form input[type="checkbox"] {
+#content_adminListaFilm form input[type="checkbox"] {
     margin-left: 0.5em;
     margin-right: 0.5em;
     display: inline-block;
 }
 
-#content_admin_listaFilm form label.inline {
+#content_adminListaFilm form label.inline {
     display: inline;
 }
 
-#content_admin_proiezioni form input[type="submit"] {
+#content_adminProiezioni form input[type="submit"] {
     margin-top: 1.2em;
 }
 
-#content_admin_proiezioni form select {
+#content_adminProiezioni form select {
     margin-left: 0;
     margin-top: 0.5em;
     margin-bottom: 1em;
@@ -1283,8 +1283,8 @@ footer p {
     text-align: center;
 }
 #listaSponsor img{
-    max-width: 300px;
-    max-height: 120px;
+    max-width: 180px;
+    max-height: 80px;
 }
 footer a {
     display: block;
