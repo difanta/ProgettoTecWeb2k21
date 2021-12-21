@@ -111,7 +111,5 @@ if (isset($_POST["method"])) {
     Login::set_login_contents($htmlPage);
     submitContest($htmlPage);
 
-    $htmlPage = str_replace("placeholder", "style", $htmlPage);
-
     echo $htmlPage;
 }

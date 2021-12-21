@@ -5,7 +5,6 @@ use DB\DBAccess;
 
 /* Input control feedback messages
 
-// placeholders
 $p_login_email_message = "";
 $p_login_password_message = "";
 $p_login_general_message = "";

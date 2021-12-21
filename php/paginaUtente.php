@@ -180,8 +180,6 @@ if (isset($_POST["method"])) {
     printBiglietti($htmlPage);
     updateInfoUtente($htmlPage);
 
-    $htmlPage = str_replace("placeholder", "style", $htmlPage);
-
     echo $htmlPage;
 }
 

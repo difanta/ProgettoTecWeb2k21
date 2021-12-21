@@ -114,8 +114,6 @@ if(isset($_POST["method"])) {
     Login::set_login_contents($htmlPage);
     printFilms($htmlPage);
 
-    $htmlPage = str_replace("placeholder", "style", $htmlPage);
-
     echo $htmlPage;
 }
 
