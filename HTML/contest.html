@@ -6,155 +6,180 @@
 <html lang="it">
 
 <head>
-	<meta charset="utf-8" />
-	
-	<title>FestivalDiCinema</title>
-	
-	<meta name="keywords" content="cinema, constest, festival, padova, indipendente" />
-	<meta name="description" content="sito ufficiale del contenst del FestivalDiCinema" />
-    <meta name="author" content="TW2021" />
+    <meta charset="utf-8"/>
+
+    <title>FestivalDiCinema</title>
+
+    <meta name="keywords" content="cinema, constest, festival, padova, indipendente"/>
+    <meta name="description" content="sito ufficiale del contenst del FestivalDiCinema"/>
+    <meta name="author" content="TW2021"/>
 
     <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 600px)">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
-   	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
     <script src="../js/scripts.js"></script>
 </head>
-    
-<body> 
-    <header>
-        <a class="goToContent" href="#content_contest">Vai al contenuto</a>
 
-        <h1>FestivalDiCinema</h1>
-        
-        <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span></button>
-        <div id="accountDropdown">
-            <div id="accountSection" class="slidableOut">
-                <button title="login" id="loginBtn" onclick="openLogin()">Login</button>
-                <button title="sign up" id="signupBtn" onclick="openSignup()">Registrati</button>
-                <button id="logout">Logout</button>
-                <a href="PaginaUtente.html">Il mio Profilo</a>
-            </div>
-    
-            <div id="loginSection" class="slidableIn">
-                <header>
-                    <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span></button>
-                </header>
-                <form id="login">
-                    <label for="loginEmail">Email</label>
-                    <input id="loginEmail" name="email" type="email" autocomplete="username">
-                    <label for="loginPassword">Password</label>
-                    <input id="loginPassword" name="password" type="password" autocomplete="current-password">
+<body>
+<header>
+    <a class="goToContent" href="#content_contest">Vai al contenuto</a>
 
-                    <button>accedi</button>
-                </form>
-            </div>
-    
-            <div id="signupSection" class="slidableIn">
-                <header>
-                    <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span></button>
-                </header>
-                <form id="signup">
-                    <label for="signupNome">Nome</label>
-                    <input id="signupNome" name="nome" type="text" autocomplete="name">
-                    <label for="signupCognome">Cognome</label>
-                    <input id="signupCognome" name="cognome" type="text" autocomplete="family-name">
-                    <label for="signupDataNascita">Data di nascita</label>
-                    <input id="signupDataNascita" name="dataNascita" type="text" autocomplete="bday">
-                    
-                    <label for="signupEmail">Email</label>
-                    <input id="signupEmail" name="email" type="email" autocomplete="home email">
-                    <label for="signupPassword">Password</label>
-                    <input id="signupPassword" name="password" type="password" autocomplete="new-password">
-                    <label for="signupPassword2">ridigita la password</label>
-                    <input id="signupPassword2" name="password" type="password" autocomplete="new-password">
-        
-                    <button>registrati</button>
-                </form>
-            </div>
+    <h1>FestivalDiCinema</h1>
+
+    <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span>
+    </button>
+    <div id="accountDropdown">
+        <div id="accountSection" class="slidableOut">
+            <button id="loginBtn" onclick="openLogin()" placeholder="ifnotlogged">Login</button>
+            <button id="signupBtn" onclick="openSignup()" placeholder="ifnotlogged">Registrati</button>
+            <form id="logout" method="post" style="display: none;"></form>
+            <button name="method" value="logout" form="logout" placeholder="iflogged">Logout</button>
+            <a href="PaginaUtente.html" placeholder="iflogged">Il mio Profilo</a>
         </div>
 
-        <nav id="menu">
-            <ul>
-                <li lang="en"><a href="Home.html">Home</a></li>
-                <li lang="en"><a href="AboutUs.html">About us</a></li>
-                <li><a href="ListaFilm.html">Film</a></li>
-                <li><a href="Proiezioni.html">Programma</a></li>
-                <li><a href="ComeTrovarci.html">Come Trovarci</a></li>
-                <li><a href="Contest.html">Il Contest</a></li>
-            </ul>
-        </nav>
+        <div id="loginSection" class="slidableIn">
+            <header>
+                <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span>
+                </button>
+            </header>
+            <form id="login" method="post" placeholder="ifnotloginsuccess">
+                <label for="loginEmail">Email</label>
+                <input id="loginEmail" name="email" type="email" autocomplete="username">
+                <label for="loginPassword">Password</label>
+                <input id="loginPassword" name="password" type="password" autocomplete="current-password">
 
-        <nav id="breadcrumb">
-            <p>Ti trovi in: <a href="Home.html" lang="en">Home</a> &gt; &gt; Il Contest </p>
-        </nav>
-
-    </header>
-    
-    <div id="content_contest" class="content">
-        <h1>Il Contest</h1>
-        <p>Anche quest'anno, FestivalDiCinema organizza il Contest, occasione per scoprire nuovi talenti del cinema.</p>
-
-        <h2>Regolamento</h2>
-        <p>Per partecipare al contest, compila la form che trovi in fondo a questa pagina, nella sezione "Candidatura". Prima però leggi bene il regolamento:</p>
-        <ul>
-            <li><p>Devi detenere tutti i diritti del prodotto che vuoi candidare</p></li>
-            <li><p>Il prodotto deve avere una durata compresa tra i 60 ed i 180 minuti. Non sono quindi ammessi cortometraggi.</p></li>
-            <li><p>Non ci sono restrizioni sulla lingua, ma è richiesta la presenza di sottotitoli se necessari alla comprensione.</p></li>
-            <li><p>Non ci sono restrizioni sulla data di produzione o distribuzione.</p></li>
-            <li><p>Restrizioni d'età al pubblico saranno applicate a discrezione del'organizzazione del festival</p></li>
-            <li><p>Sono ammessi anche prodotti d'animazione, stop-motion, <abbr title="eccetera">ecc</abbr>..</p></li>
-        </ul>
-        <p>Una volta presentata la candidatura, si riceverà entro 4 giorni lavorativi una mail di conferma di ricezione della candidatura. Il rifiuto della candidatura verrà notificato tramite mail. Se viene passata la prima fase di approvazione si verrà contattati per un incontro e la visione completa del film candidato.</p>
-
-        <h2>Candidatura</h2>
-        <p>Nel presentare la candidatura è fondamentale inserire il link <span lang="en">youtube</span> ad un trailer o una clip del film, la durata del video non può superare i 3 minuti. Il video può essere pubbilico o "non in elenco", basta che sia accessibile tramite il link. E' consigliato inserire alcune informazioni nella descrizione del video <span lang="en">youtube</span> riguardanti il film.</p>
-
-        <div id="contestForm">
-            <messaggi/>
-            <form action="contest.php" method="post">
-                <fieldset>
-                    <label for="titolo">Titolo</label>
-                    <input type="text" name="titolo" id="titolo"/>
-                    <label for="descrizione">Descrizione</label>
-                    <textarea name="descrizione" id="descrizione" cols="40" rows="8"></textarea>
-                    <label for="linkyt">Link <span lang="en">youtube</span></label>
-                    <input type="text" name="linkyt" id="linkyt"/>
-                    <label for="imgFilm">Immagine film</label>
-                    <input type="file" name="imgFilm" id="imgFilm" accept="image/png, image/jpeg"/>
-                    <label for="email">Email</label>
-                    <input type="text" name="email" id="email">
-                    <input class="button" type="submit" name="submit" value="Invia Candidatura">
-                    <input class="button" type="reset" value="Reset">
-                </fieldset>
+                <button name="method" value="login">accedi</button>
             </form>
+            <p placeholder="ifloginsuccess">Loggato con successo!</p>
+        </div>
+
+        <div id="signupSection" class="slidableIn">
+            <header>
+                <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span>
+                </button>
+            </header>
+            <form id="signup" method="post" placeholder="ifnotregistersuccess">
+                <label for="signupNome">Nome</label>
+                <input id="signupNome" name="nome" type="text" autocomplete="name">
+                <label for="signupCognome">Cognome</label>
+                <input id="signupCognome" name="cognome" type="text" autocomplete="family-name">
+                <label for="signupDataNascita">Data di nascita</label>
+                <input id="signupDataNascita" name="data_di_nascita" type="date" autocomplete="bday">
+
+                <label for="signupEmail">Email</label>
+                <input id="signupEmail" name="email" type="email" autocomplete="home email">
+                <label for="signupPassword">Password</label>
+                <input id="signupPassword" name="password" type="password" autocomplete="new-password">
+                <label for="signupPassword2">ridigita la password</label>
+                <input id="signupPassword2" name="" type="password" autocomplete="new-password">
+
+                <button name="method" value="register">registrati</button>
+            </form>
+            <p placeholder="ifregistersuccess">Registrato con successo! Ora effettua il Login</p>
         </div>
     </div>
 
-    <div id="tornaSu">
-        <a href="#content_contest" target="_self"><img src="../images/arrow_upward_white_24dp.svg" alt="Torna su"/></a>
-    </div>
+    <nav id="menu">
+        <ul>
+            <li lang="en"><a href="Home.html">Home</a></li>
+            <li lang="en"><a href="AboutUs.html">About us</a></li>
+            <li><a href="ListaFilm.html">Film</a></li>
+            <li><a href="Proiezioni.html">Programma</a></li>
+            <li><a href="ComeTrovarci.html">Come Trovarci</a></li>
+            <li><a href="Contest.html">Il Contest</a></li>
+        </ul>
+    </nav>
 
-    <footer>
-        <a href="Admin.html">Pannello admin</a>
-        <ul title="sponsors" id="listaSponsor">
-            <li>
-                <img id="imgSponsor1" src="../images/sponsor/la_dolce_vita.png" alt="La dolce vita"/>
-            </li>
-            <li>
-                <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
-            </li>
-            <li>
-                <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
-            </li>
-        </ul>
-        <ul id="studenti">
-            <li>Alberto</li>
-            <li>Giovanni</li>
-            <li>Luca</li>
-            <li>Tommaso</li>
-        </ul>
-        <p>&copy; Copyright 2021</p>
-    </footer>
+    <nav id="breadcrumb">
+        <p>Ti trovi in: <span lang="en">Home</span></p>
+    </nav>
+
+</header>
+
+<div id="content_contest" class="content">
+    <h1>Il Contest</h1>
+    <p>Anche quest'anno, FestivalDiCinema organizza il Contest, occasione per scoprire nuovi talenti del cinema.</p>
+
+    <h2>Regolamento</h2>
+    <p>Per partecipare al contest, compila la form che trovi in fondo a questa pagina, nella sezione "Candidatura".
+        Prima però leggi bene il regolamento:</p>
+    <ul>
+        <li><p>Devi detenere tutti i diritti del prodotto che vuoi candidare</p></li>
+        <li><p>Il prodotto deve avere una durata compresa tra i 60 ed i 180 minuti. Non sono quindi ammessi
+            cortometraggi.</p></li>
+        <li><p>Non ci sono restrizioni sulla lingua, ma è richiesta la presenza di sottotitoli se necessari alla
+            comprensione.</p></li>
+        <li><p>Non ci sono restrizioni sulla data di produzione o distribuzione.</p></li>
+        <li><p>Restrizioni d'età al pubblico saranno applicate a discrezione del'organizzazione del festival</p></li>
+        <li><p>Sono ammessi anche prodotti d'animazione, stop-motion, <abbr title="eccetera">ecc</abbr>..</p></li>
+    </ul>
+    <p>Una volta presentata la candidatura, si riceverà entro 4 giorni lavorativi una mail di conferma di ricezione
+        della candidatura. Il rifiuto della candidatura verrà notificato tramite mail. Se viene passata la prima fase di
+        approvazione si verrà contattati per un incontro e la visione completa del film candidato.</p>
+
+    <h2>Candidatura</h2>
+    <p>Nel presentare la candidatura è fondamentale inserire il link <span lang="en">youtube</span> ad un trailer o una
+        clip del film, la durata del video non può superare i 3 minuti. Il video può essere pubbilico o "non in elenco",
+        basta che sia accessibile tramite il link. E' consigliato inserire alcune informazioni nella descrizione del
+        video <span lang="en">youtube</span> riguardanti il film.</p>
+
+    <div id="contestForm">
+        <messaggi/>
+        <form action="../php/contest.php" method="post" placeholder="iflogged">
+            <fieldset>
+                <label for="titolo">Titolo</label>
+                <input type="text" name="titolo" id="titolo"/>
+                <label for="descrizione">Descrizione</label>
+                <textarea name="descrizione" id="descrizione" cols="40" rows="8"></textarea>
+                <label for="linkyt">Link <span lang="en">youtube</span></label>
+                <input type="text" name="linkyt" id="linkyt"/>
+                <label for="imgFilm">Immagine film</label>
+                <input type="file" name="imgFilm" id="imgFilm" accept="image/png, image/jpeg"/>
+                <label for="durata">Durata</label>
+                <input type="text" name="durata" id="durata"/>
+                <label for="anno">Anno</label>
+                <input type="number" name="anno" id="anno"/>
+                <label for="regista">Regista</label>
+                <input type="text" name="regista" id="regista"/>
+                <label for="produttore">Produttore</label>
+                <input type="text" name="produttore" id="produttore"/>
+                <label for="cast">Cast</label>
+                <textarea name="cast" id="cast" cols="40" rows="8"></textarea>
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email">
+                <input class="button" type="submit" name="submit" value="Invia Candidatura">
+                <input class="button" type="reset" value="Reset">
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div id="tornaSu">
+    <a href="#content_contest" target="_self"><img src="../images/arrow_upward_white_24dp.svg" alt="Torna su"/></a>
+</div>
+
+<footer>
+    <a href="Admin.html">Pannello admin</a>
+    <ul title="sponsors" id="listaSponsor">
+        <li>
+            <img id="imgSponsor1" src="../images/sponsor/la_dolce_vita.png" alt="La dolce vita"/>
+        </li>
+        <li>
+            <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
+        </li>
+        <li>
+            <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
+        </li>
+    </ul>
+    <ul id="studenti">
+        <li>Alberto</li>
+        <li>Giovanni</li>
+        <li>Luca</li>
+        <li>Tommaso</li>
+    </ul>
+    <p>&copy; Copyright 2021</p>
+</footer>
 </body>
 </html>
