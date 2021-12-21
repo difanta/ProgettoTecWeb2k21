@@ -49,7 +49,7 @@ if (isset($_POST["method"])) {
     header("HTTP/1.1 303 See Other");
     header("Location: ./PaginaUtente.php");
 } else /* GET */ {
-    $htmlPage = file_get_contents("../HTML/PaginaUtente.html");
+    $htmlPage = file_get_contents("../HTML/paginaUtente.html");
 
     // show login/register/logout results
     Login::set_login_contents($htmlPage);
