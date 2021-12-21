@@ -48,25 +48,25 @@ function submitContest(&$htmlPage)
 
             if (strlen($anno) == 0) {
                 $messaggi = "<li>Anno non presente<li/>";
-            } elseif (preg_match('/^([SW])\w+([0-9]{4})$/', $titolo)) {
+            } elseif (preg_match('/^([SW])\w+([0-9]{4})$/', $anno)) {
                 $messaggi = "<li>Anno può essere solo un numero di 4 cifre<li/>";
             }
 
             if (strlen($regista) == 0) {
                 $messaggi = "<li>Resgista non presente<li/>";
-            } elseif (preg_match('/\d/', $titolo)) {
+            } elseif (preg_match('/\d/', $regista)) {
                 $messaggi = "<li>Regista non può contenere numeri<li/>";
             }
 
             if (strlen($produttore) == 0) {
                 $messaggi = "<li>Produttore non presente<li/>";
-            } elseif (preg_match('/\d/', $titolo)) {
+            } elseif (preg_match('/\d/', $produttore)) {
                 $messaggi = "<li>Produttore non può contenere numeri<li/>";
             }
 
             if (strlen($cast) == 0) {
                 $messaggi = "<li>Cast non presente<li/>";
-            } elseif (preg_match('/\d/', $titolo)) {
+            } elseif (preg_match('/\d/', $cast)) {
                 $messaggi = "<li>Cast non può contenere numeri<li/>";
             }
 
@@ -75,7 +75,7 @@ function submitContest(&$htmlPage)
                 $connection = new DBAccess();
                 $connectionOk = $connection->openDB();
 
-                if ($connectionOk) { // TODO
+                if ($connectionOk) {
                     if ($connection->insert("insert into Film(id ,nome, descrizione, durata, anno, regista, produttore, cast, in_gara, approvato, candidatore) 
                                           values (DEFAULT, '$titolo','$descrizione','$durata','$anno', '$regista', '$produttore', '$cast', 1, 0," . $_SESSION["login"] . ");")) {
                         $messaggi = "<p>Film aggiunto con successo<p/>";

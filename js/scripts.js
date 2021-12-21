@@ -67,3 +67,13 @@ function paymentSelectionChanged() {
     if(paypal_st) { if(!lpaypal.classList.contains('selected')) lpaypal.classList.add('selected'); }
     else lpaypal.classList.remove('selected'); 
 }
+
+/* Pagina Utente ----------------------------------- */
+
+function setEditOn() {
+    document.getElementById('nome').setAttribute('readonly', false);
+    document.getElementById('cognome').setAttribute('readonly', false);
+    document.getElementById('dataNascita').setAttribute('readonly', false);
+    document.getElementById('email').setAttribute('readonly', false);
+    document.getElementById('password').setAttribute('readonly', false);
+}
