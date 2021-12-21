@@ -47,7 +47,7 @@ if (isset($_POST["method"])) {
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     header("HTTP/1.1 303 See Other");
-    header("Location: ./PaginaUtente.php");
+    header("Location: ./paginaUtente.php");
 } else /* GET */ {
     $htmlPage = file_get_contents("../HTML/paginaUtente.html");
 
