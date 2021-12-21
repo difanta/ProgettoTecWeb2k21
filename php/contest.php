@@ -76,7 +76,7 @@ function submitContest(&$htmlPage)
                 $connectionOk = $connection->openDB();
 
                 if ($connectionOk) { // TODO
-                    if ($connection->get("insert into Film(id ,nome, descrizione, durata, anno, regista, produttore, cast, in_gara, approvato, candidatore) 
+                    if ($connection->insert("insert into Film(id ,nome, descrizione, durata, anno, regista, produttore, cast, in_gara, approvato, candidatore) 
                                           values (DEFAULT, '$titolo','$descrizione','$durata','$anno', '$regista', '$produttore', '$cast', 1, 0," . $_SESSION["login"] . ");")) {
                         $messaggi = "<p>Film aggiunto con successo<p/>";
                     } else {
