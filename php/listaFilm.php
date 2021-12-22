@@ -48,6 +48,7 @@ function printFilms(&$htmlPage) {
     if($connectionOk) {
         $filters = array();
         
+        // add in gara filters
         switch ($in_gara) {
             case 'tutti':
                 break;
@@ -59,10 +60,12 @@ function printFilms(&$htmlPage) {
             break;
         }
 
+        // add nome film filters
         if($nomeFilm != "") {
             array_push($filters, "Film.nome like '%" . $nomeFilm . "%'");
         }
 
+        // add filters to query
         $query = "SELECT * from Film";
         foreach($filters as $index => $filter) {
             if($index == 0) {
@@ -77,6 +80,7 @@ function printFilms(&$htmlPage) {
         if($result) {
             $template = file_get_contents("templateFilmPreview.html");
 
+            // create and substitute films based on template
             foreach($result as $indice => $film) {
                 $at_least_one = true;
                 $film_html = str_replace("titolofilm", $film["nome"], $template);

@@ -96,7 +96,7 @@ function printProiezioni(&$htmlPage) {
         if($result) {
             $template = file_get_contents("templateProiezione.html");
 
-            // create and substitute proiezione from template
+            // create and substitute proiezione based on template
             foreach($result as $indice => $film) {
                 $at_least_one = true;
                 $proiezione_html = str_replace("titolofilm", $film["nome"], $template);
