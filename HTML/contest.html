@@ -138,32 +138,34 @@
 
     <div id="contestForm">
         <messaggi/>
-        <form action="../php/contest.php" method="post" placeholder="iflogged">
-            <fieldset>
-                <label for="titolo">Titolo</label>
-                <input type="text" name="titolo" id="titolo"/>
-                <label for="descrizione">Descrizione</label>
-                <textarea name="descrizione" id="descrizione" cols="40" rows="8"></textarea>
-                <label for="linkyt">Link <span lang="en">youtube</span></label>
-                <input type="text" name="linkyt" id="linkyt"/>
-                <label for="imgFilm">Immagine film</label>
-                <input type="file" name="imgFilm" id="imgFilm" accept="image/png, image/jpeg"/>
-                <label for="durata">Durata</label>
-                <input type="text" name="durata" id="durata"/>
-                <label for="anno">Anno</label>
-                <input type="number" name="anno" id="anno"/>
-                <label for="regista">Regista</label>
-                <input type="text" name="regista" id="regista"/>
-                <label for="produttore">Produttore</label>
-                <input type="text" name="produttore" id="produttore"/>
-                <label for="cast">Cast</label>
-                <textarea name="cast" id="cast" cols="40" rows="8"></textarea>
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email">
-                <input class="button" type="submit" name="method" value="Invia Candidatura">
-                <input class="button" type="reset" value="Reset">
-            </fieldset>
-        </form>
+        <iflogged>
+            <form action="../php/contest.php" method="post">
+                <fieldset>
+                    <label for="titolo">Titolo</label>
+                    <input type="text" name="titolo" id="titolo"/>
+                    <label for="descrizione">Descrizione</label>
+                    <textarea name="descrizione" id="descrizione" cols="40" rows="8"></textarea>
+                    <label for="linkyt">Link <span lang="en">youtube</span></label>
+                    <input type="text" name="linkyt" id="linkyt"/>
+                    <label for="imgFilm">Immagine film</label>
+                    <input type="file" name="imgFilm" id="imgFilm" accept="image/png, image/jpeg"/>
+                    <label for="durata">Durata</label>
+                    <input type="text" name="durata" id="durata"/>
+                    <label for="anno">Anno</label>
+                    <input type="number" name="anno" id="anno"/>
+                    <label for="regista">Regista</label>
+                    <input type="text" name="regista" id="regista"/>
+                    <label for="produttore">Produttore</label>
+                    <input type="text" name="produttore" id="produttore"/>
+                    <label for="cast">Cast</label>
+                    <textarea name="cast" id="cast" cols="40" rows="8"></textarea>
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email">
+                    <input class="button" type="submit" name="method" value="Invia Candidatura">
+                    <input class="button" type="reset" value="Reset">
+                </fieldset>
+            </form>
+        </iflogged>
     </div>
 </div>
 
