@@ -6,6 +6,7 @@ include "login.php";
 use DB\DBAccess;
 
 function printProiezioni(&$htmlPage) {
+    $p_nomifilm = "<nomifilm/>";
     $p_proiezione= "<proiezione/>";
     $p_nomeFilmFilter = "inputnomefilm";
     $p_dataProiezioneFilter = "inputdata";
@@ -55,6 +56,7 @@ function printProiezioni(&$htmlPage) {
     if($connectionOk) {
         $filters = array();
         
+        // add in gara filters
         switch ($in_gara) {
             case 'tutti':
                 break;
@@ -66,10 +68,12 @@ function printProiezioni(&$htmlPage) {
             break;
         }
 
+        // add nome film filters
         if($nomeFilm != "") {
             array_push($filters, "Film.nome like '%" . $nomeFilm . "%'");
         }
 
+        // add filters to query
         $query = "SELECT * from Film";
         foreach($filters as $index => $filter) {
             if($index == 0) {
@@ -79,6 +83,7 @@ function printProiezioni(&$htmlPage) {
             }
         }
 
+        // finish query
         if($dataProiezione != "") {
             $query = "SELECT *, Proiezione.id as pid, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora from Proiezione join ($query) as Film on Proiezione.film = Film.id where CAST(orario AS DATE) = '$dataProiezione' order by orario asc";
         } else {
@@ -91,6 +96,7 @@ function printProiezioni(&$htmlPage) {
         if($result) {
             $template = file_get_contents("templateProiezione.html");
 
+            // create and substitute proiezione from template
             foreach($result as $indice => $film) {
                 $at_least_one = true;
                 $proiezione_html = str_replace("titolofilm", $film["nome"], $template);
@@ -101,7 +107,17 @@ function printProiezioni(&$htmlPage) {
                 $htmlPage  = str_replace($p_proiezione, $proiezione_html . $p_proiezione, $htmlPage);
             }
         }
+        
+        // set datalist
+        $template = "<option value=\"nomefilm\">";
+        $stringa = "";
+        $films = $connection->get("SELECT nome from Film");
+        foreach($films as $film) {
+            $stringa .= str_replace("nomefilm", $film["nome"], $template);
+        }
+        $htmlPage = str_replace($p_nomifilm, $stringa, $htmlPage);
     } else {
+        $htmlPage = str_replace($p_nomifilm, "", $htmlPage);
         echo "connection error";
     }
 
