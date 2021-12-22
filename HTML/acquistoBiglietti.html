@@ -3,106 +3,124 @@
 <html lang="it">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
 
     <title>Acquisto biglietti</title>
 
     <meta name="keywords" content="biglietti, acquisto, comprare biglietti"/>
 
-    <meta name="description" content="" />
+    <meta name="description" content=""/>
 
-    <meta name="author" content="" />
+    <meta name="author" content=""/>
 
 
-        <link rel="stylesheet" href="../css/small.css" media="screen and (max-width: 600px)">
+    <link rel="stylesheet" href="../css/small.css" media="screen and (max-width: 600px)">
     <link rel="stylesheet" href="../css/medium.css" media="screen and (min-width: 601px) and (max-width: 1024px)">
     <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 1025px)">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
-   	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
     <script src="../js/scripts.js"></script>
 </head>
 
 <body>
-    <header>
-        <a class="goToContent" href="#content_acquistoBiglietti">Vai al contenuto</a>
+<header>
+    <a class="goToContent" href="#content_acquistoBiglietti">Vai al contenuto</a>
 
-        <h1>FestivalDiCinema</h1>
+    <h1>FestivalDiCinema</h1>
 
-        <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span></button>
-        <div id="accountDropdown">
-            <div id="accountSection" class="slidableOut">
-                <button title="login" id="loginBtn" onclick="openLogin()">Login</button>
-                <button title="sign up" id="signupBtn" onclick="openSignup()">Registrati</button>
-                <button id="logout">Logout</button>
+    <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span>
+    </button>
+    <div id="accountDropdown">
+        <div id="accountSection" class="slidableOut">
+            <ifnotlogged>
+                <button id="loginBtn" onclick="openLogin()">Login</button>
+                <button id="signupBtn" onclick="openSignup()">Registrati</button>
+            </ifnotlogged>
+            <iflogged>
+                <form id="logout" method="post"></form>
+                <button name="method" value="logout" form="logout">Logout</button>
                 <a href="paginaUtente.html">Il mio Profilo</a>
-            </div>
+            </iflogged>
+        </div>
 
-            <div id="loginSection" class="slidableIn">
-                <header>
-                    <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span></button>
-                </header>
-                <form id="login">
+        <div id="loginSection" class="slidableIn">
+            <header>
+                <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span>
+                </button>
+            </header>
+            <ifnotloginsuccess>
+                <form id="login" method="post">
                     <label for="loginEmail">Email</label>
                     <input id="loginEmail" name="email" type="email" autocomplete="username">
                     <label for="loginPassword">Password</label>
                     <input id="loginPassword" name="password" type="password" autocomplete="current-password">
 
-                    <button>accedi</button>
+                    <button name="method" value="login">accedi</button>
                 </form>
-            </div>
+            </ifnotloginsuccess>
+            <ifloginsuccess>
+                <p>Loggato con successo!</p>
+            </ifloginsuccess>
+        </div>
 
-            <div id="signupSection" class="slidableIn">
-                <header>
-                    <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span></button>
-                </header>
-                <form id="signup">
+        <div id="signupSection" class="slidableIn">
+            <header>
+                <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span>
+                </button>
+            </header>
+            <ifnotregistersuccess>
+                <form id="signup" method="post">
                     <label for="signupNome">Nome</label>
                     <input id="signupNome" name="nome" type="text" autocomplete="name">
                     <label for="signupCognome">Cognome</label>
                     <input id="signupCognome" name="cognome" type="text" autocomplete="family-name">
                     <label for="signupDataNascita">Data di nascita</label>
-                    <input id="signupDataNascita" name="dataNascita" type="text" autocomplete="bday">
+                    <input id="signupDataNascita" name="data_di_nascita" type="date" autocomplete="bday">
 
                     <label for="signupEmail">Email</label>
                     <input id="signupEmail" name="email" type="email" autocomplete="home email">
                     <label for="signupPassword">Password</label>
                     <input id="signupPassword" name="password" type="password" autocomplete="new-password">
                     <label for="signupPassword2">ridigita la password</label>
-                    <input id="signupPassword2" name="password" type="password" autocomplete="new-password">
+                    <input id="signupPassword2" name="" type="password" autocomplete="new-password">
 
-                    <button>registrati</button>
+                    <button name="method" value="register">registrati</button>
                 </form>
-            </div>
+            </ifnotregistersuccess>
+            <ifregistersuccess>
+                <p>Registrato con successo! Ora effettua il Login</p>
+            </ifregistersuccess>
         </div>
+    </div>
 
-        <nav id="menu">
-            <ul>
-                <li lang="en"><a href="Home.html">Home</a></li>
-                <li lang="en"><a href="aboutUs.html">About us</a></li>
-                <li><a href="listaFilm.html">Film</a></li>
-                <li><a href="Proiezioni.html">Programma</a></li>
-                <li><a href="comeTrovarci.html">Come Trovarci</a></li>
-                <li><a href="contest.html">Il Contest</a></li>
-            </ul>
-        </nav>
+    <nav id="menu">
+        <ul>
+            <li lang="en"><a href="home.html">Home</a></li>
+            <li lang="en"><a href="aboutUs.html">About us</a></li>
+            <li><a href="listaFilm.html">Film</a></li>
+            <li><a href="Proiezioni.html">Programma</a></li>
+            <li><a href="comeTrovarci.html">Come Trovarci</a></li>
+            <li><a href="contest.html">Il Contest</a></li>
+        </ul>
+    </nav>
 
-        <nav id="breadcrumb">
-            <p>Ti trovi in: <a href="Home.html" lang="en">Home</a> &gt; &gt; <a href="Proiezioni.html">Proiezioni</a> &gt; &gt; Acquisto biglietti</p>
-        </nav>
+    <nav id="breadcrumb">
+        <p>Ti trovi in: <span lang="en">Home</span></p>
+    </nav>
 
-    </header>
+</header>
 
-    <div id="content_acquistoBiglietti" class="content">
-        <h1>Acquisto biglietti</h1>
+<div id="content_acquistoBiglietti" class="content">
+    <h1>Acquisto biglietti</h1>
 
-        <!-- da nasondere o mostrare se l'utente è loggato o meno -->
-
+    <iflogged>
         <div id="login-container">
             <p>Per poter acquistare un biglietto devi prima effettuare il login</p>
 
             <button onclick="acquistoBigliettiLogin()">Login</button>
-             oppure
+            oppure
             <button onclick="acquistoBigliettiSignup()">Registrati</button>
             <form id="contentLogin">
                 <label for="contentLoginEmail">Email</label>
@@ -129,61 +147,65 @@
                 <button>registrati</button>
             </form>
         </div>
+    </iflogged>
 
-        <h2>Riepilogo ordine</h2>
+    <h2>Riepilogo ordine</h2>
 
-        <!-- i dati seguenti verrano poi inseriti dinmicamente -->
-
-        <div id="ordine">
-            <h3 title="Titolo">Gilberto Filé, l'addio</h3>
-            <em title="Registi">Alessandro Sperduti e Caterina Sartori</em>
-            <p>
-                <span class="data">25/12/2021</span>
-                <span class="ora">21:00</span>
-                <span class="luogo">Sala 1</span>
-                <br>
-                <span class="prezzo">7.00€</span>
-            </p>
-        </div>
-
-        <p id="form-intro">Seleziona il metodo di pagamento:</p>
-        <form id="pagamento" action="" method="post">
-            <input type="radio" id="carta_di_credito" name="metodo_pagamento" value="Carta di credito" onchange="paymentSelectionChanged()"/>
-            <label for="carta_di_credito" id="label-carta_di_credito">Carta di credito</label>
-
-            <input type="radio" id="paypal" name="metodo_pagamento" value="PayPal" onchange="paymentSelectionChanged()">
-            <label for="paypal" id="label-paypal">PayPal</label>
-
-            <input type="radio" id="satispay" name="metodo_pagamento" value="satispay" onchange="paymentSelectionChanged()">
-            <label for="satispay" id="label-satispay">Satispay</label>
-
-            <input type="submit" value="Vai al pagamento">
-        </form>
-
+    <!-- i dati seguenti verrano poi inseriti dinmicamente -->
+    <messaggi/>
+    <ordine/>
+    <!--
+    <div id="ordine">
+        <h3 title="Titolo">Gilberto Filé, l'addio</h3>
+        <em title="Registi">Alessandro Sperduti e Caterina Sartori</em>
+        <p>
+            <span class="data">25/12/2021</span>
+            <span class="ora">21:00</span>
+            <span class="luogo">Sala 1</span>
+            <br>
+            <span class="prezzo">7.00€</span>
+        </p>
     </div>
+-->
+    <p id="form-intro">Seleziona il metodo di pagamento:</p>
+    <form id="pagamento" action="../php/acquistoBiglietti.php" method="post">
+        <input type="radio" id="carta_di_credito" name="metodo_pagamento" value="Carta di credito"
+               onchange="paymentSelectionChanged()"/>
+        <label for="carta_di_credito" id="label-carta_di_credito">Carta di credito</label>
 
-    <footer>
-        <a href="admin.html">Pannello admin</a>
-        <p>I nostri sponsor:</p> 
-        <ul title="sponsors" id="listaSponsor">
-            <li>
-                <img id="imgSponsor1" src="../images/sponsor/la_dolce_vita.png" alt="La dolce vita"/>
-            </li>
-            <li>
-                <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
-            </li>
-            <li>
-                <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
-            </li>
-        </ul>
-        <ul id="studenti">
-            <li>Alberto</li>
-            <li>Giovanni</li>
-            <li>Luca</li>
-            <li>Tommaso</li>
-        </ul>
-        <p>&copy; Copyright 2021</p>
-    </footer>
+        <input type="radio" id="paypal" name="metodo_pagamento" value="PayPal" onchange="paymentSelectionChanged()">
+        <label for="paypal" id="label-paypal">PayPal</label>
+
+        <input type="radio" id="satispay" name="metodo_pagamento" value="satispay" onchange="paymentSelectionChanged()">
+        <label for="satispay" id="label-satispay">Satispay</label>
+
+        <input class="button" type="submit" value="Vai al pagamento">
+    </form>
+
+</div>
+
+<footer>
+    <a href="admin.html">Pannello admin</a>
+    <p>I nostri sponsor:</p>
+    <ul title="sponsors" id="listaSponsor">
+        <li>
+            <img id="imgSponsor1" src="../images/sponsor/la_dolce_vita.png" alt="La dolce vita"/>
+        </li>
+        <li>
+            <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
+        </li>
+        <li>
+            <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
+        </li>
+    </ul>
+    <ul id="studenti">
+        <li>Alberto</li>
+        <li>Giovanni</li>
+        <li>Luca</li>
+        <li>Tommaso</li>
+    </ul>
+    <p>&copy; Copyright 2021</p>
+</footer>
 </body>
 
 </html>

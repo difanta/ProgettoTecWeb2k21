@@ -132,12 +132,17 @@ function printBiglietti(&$htmlPage)
     $listaBiglietti = "";
 
     if (Login::is_logged()) {
+        $utente = $_SESSION["login"];
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
 
         if ($connectionOk) {
-            $biglietti = $connection->get("SELECT Film.nome, Biglietto.id, orario FROM Biglietto join Film join Proiezione join Utente on " . $_SESSION["login"]);
+            $biglietti = $connection->get("SELECT Film.nome, Biglietto.id, orario 
+                                            FROM Utente join Biglietto on Utente.id=Biglietto.utente
+                                            join Proiezione on Proiezione.id=Biglietto.proiezione
+                                            join Film on Film.id= Proiezione.film 
+                                            where Utente.id='$utente'");
             $connection->closeConnection();
             if ($biglietti != null) {
                 $listaBiglietti .= "<ul>";
@@ -151,7 +156,7 @@ function printBiglietti(&$htmlPage)
                 unset($biglietto);
                 $listaBiglietti .= "</ul>";
             } else {
-                $listaBiglietti .= "<p>Errore load biglietti</p>";
+                $listaBiglietti .= "<p>Non sono presenti biglietti</p>";
             }
         } else {
             $listaBiglietti .= "<p>Errore connessione db</p>";
@@ -165,7 +170,7 @@ function printBiglietti(&$htmlPage)
 
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
-    Login::handle_login();
+    Login::handleLogin();
     $htmlPage = file_get_contents("../HTML/paginaUtente.html");
     updateInfoUtente($htmlPage);
 
@@ -176,7 +181,7 @@ if (isset($_POST["method"])) {
     $htmlPage = file_get_contents("../HTML/paginaUtente.html");
 
     // show login/register/logout results
-    Login::set_login_contents($htmlPage);
+    Login::printLogin($htmlPage);
     printInfoUtente($htmlPage);
     printBiglietti($htmlPage);
 
