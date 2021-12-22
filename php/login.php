@@ -56,7 +56,8 @@ class Login {
 
     public static function showElement($open, $close, &$string) {
         $string = str_replace($open, "", $string);
-        $string = str_replace($close, "", $string);
+        if($open != $close) 
+        { $string = str_replace($close, "", $string); }
     }
     
     public static function hideElement($open, $close, &$string) {
@@ -71,60 +72,62 @@ class Login {
         return (Login::is_logged() && $_SESSION["is_admin"] == true);
     }
 
-    public static function handle_login() {
+    public static function handleLogin() {
         if(!Login::is_logged()) // if not logged try to login or register
         {
             if($_POST["method"] == "login") 
             {
-                $email = $_POST["email"];
+                $email    = $_POST["email"];
                 $password = $_POST["password"];
 
-                $connection = new DBAccess();
+                $connection   = new DBAccess();
                 $connectionOk = $connection->openDB();
+
+                $_SESSION["success"] = false;
 
                 if($connectionOk) {
                     $result = $connection->get("SELECT * FROM Utente WHERE Utente.email = '$email'");
                     if($result && $result[0] && ($result[0]["password"] == $password)) 
-                         { $_SESSION["success"] = true  ; $_SESSION["login"] = $result[0]["id"]; $_SESSION["is_admin"] = $result[0]["admin"]; } 
-                    else { $_SESSION["success"] = false ; }
+                    {
+                        $_SESSION["success"]  = true;
+                        $_SESSION["login"]    = $result[0]["id"]; 
+                        $_SESSION["is_admin"] = $result[0]["admin"]; 
+                    } 
                     $connection->closeConnection();
                 } 
-                else /* Connection not Ok */
-                { $_SESSION["success"] = false; }
 
                 if($_SESSION["success"] == false) 
                 {   /* save data to avoid form reset */
-                    $_SESSION["email"] = $_POST["email"];
+                    $_SESSION["email"] = $email;
                 }
             } 
             elseif ($_POST["method"] == "register") 
             {
-                $nome = $_POST["nome"];
-                $cognome = $_POST["cognome"];
+                $nome            = $_POST["nome"];
+                $cognome         = $_POST["cognome"];
                 $data_di_nascita = $_POST["data_di_nascita"];
-                $email = $_POST["email"];
-                $password = $_POST["password"];
+                $email           = $_POST["email"];
+                $password        = $_POST["password"];
 
                 $connection = new DBAccess();
                 $connectionOk = $connection->openDB();
+
+                $_SESSION["success"] = false;
 
                 if($connectionOk) 
                 {
                     if($connection->insert("INSERT INTO Utente(nome, cognome, data_di_nascita, email, password, admin)
                                             VALUES ('$nome', '$cognome', '$data_di_nascita', '$email', '$password', '0')"))
-                         { $_SESSION["success"] = true  ; } 
-                    else { $_SESSION["success"] = false ; }
+                    { $_SESSION["success"] = true; } 
                     $connection->closeConnection();
-                } 
-                else /* Connection not Ok */
-                { $_SESSION["success"] = false; }
+                }
 
                 if($_SESSION["success"] == false) 
                 {   /* save data to avoid form reset */
-                    $_SESSION["nome"] = $_POST["nome"];
-                    $_SESSION["cognome"] = $_POST["cognome"];
-                    $_SESSION["data_di_nascita"] = $_POST["data_di_nascita"];
-                    $_SESSION["email"] = $_POST["email"];
+                    $_SESSION["nome"]            = $nome;
+                    $_SESSION["cognome"]         = $cognome;
+                    $_SESSION["data_di_nascita"] = $data_di_nascita;
+                    $_SESSION["email"]           = $email;
                 }
             }
         } 
@@ -143,7 +146,7 @@ class Login {
         }
     }
 
-    public static function set_login_contents(&$htmlPage) {
+    public static function printLogin(&$htmlPage) {
         if(isset($_SESSION["method"]))
         {
             $method = $_SESSION["method"];
@@ -157,13 +160,14 @@ class Login {
                     $htmlPage = str_replace(Login::$p_login_section,    Login::$p_login_section    . " slideIn\"",          $htmlPage);
                     
                     if($success) {
-                        Login::showElement(Login::$p_if_login_success_open, Login::$p_if_login_success_close, $htmlPage);
+                        Login::showElement(Login::$p_if_login_success_open,     Login::$p_if_login_success_close,     $htmlPage);
                         Login::hideElement(Login::$p_if_not_login_success_open, Login::$p_if_not_login_success_close, $htmlPage);
                     } else {
-                        Login::hideElement(Login::$p_if_login_success_open, Login::$p_if_login_success_close, $htmlPage);
+                        Login::hideElement(Login::$p_if_login_success_open,     Login::$p_if_login_success_close,     $htmlPage);
                         Login::showElement(Login::$p_if_not_login_success_open, Login::$p_if_not_login_success_close, $htmlPage);
-                    }                 
+                    }
                     
+                    // only if it didn't succeed the variables were saved, look at handleLogin()
                     if(!$success) {
                         unset($_SESSION["email"]);
                     }
@@ -176,10 +180,10 @@ class Login {
                     $htmlPage = str_replace(Login::$p_signup_section,   Login::$p_signup_section   . " slideIn\"",          $htmlPage);
                     
                     if($success) {
-                        Login::showElement(Login::$p_if_register_success_open, Login::$p_if_register_success_close, $htmlPage);
+                        Login::showElement(Login::$p_if_register_success_open,     Login::$p_if_register_success_close,     $htmlPage);
                         Login::hideElement(Login::$p_if_not_register_success_open, Login::$p_if_not_register_success_close, $htmlPage);
                     } else {
-                        Login::hideElement(Login::$p_if_register_success_open, Login::$p_if_register_success_close, $htmlPage);
+                        Login::hideElement(Login::$p_if_register_success_open,     Login::$p_if_register_success_close,     $htmlPage);
                         Login::showElement(Login::$p_if_not_register_success_open, Login::$p_if_not_register_success_close, $htmlPage);
                     }
 
@@ -201,18 +205,18 @@ class Login {
             unset($_SESSION["success"]);
         }
 
-        // default is fail from both login and register
-        Login::hideElement(Login::$p_if_login_success_open, Login::$p_if_login_success_close, $htmlPage);
-        Login::showElement(Login::$p_if_not_login_success_open, Login::$p_if_not_login_success_close, $htmlPage);
-        Login::hideElement(Login::$p_if_register_success_open, Login::$p_if_register_success_close, $htmlPage);
+        // default: show not_success items
+        Login::hideElement(Login::$p_if_login_success_open,        Login::$p_if_login_success_close,        $htmlPage);
+        Login::showElement(Login::$p_if_not_login_success_open,    Login::$p_if_not_login_success_close,    $htmlPage);
+        Login::hideElement(Login::$p_if_register_success_open,     Login::$p_if_register_success_close,     $htmlPage);
         Login::showElement(Login::$p_if_not_register_success_open, Login::$p_if_not_register_success_close, $htmlPage);
 
-        // substitute based on login status
+        // login conditional structs
         if(Login::is_logged()) {
-            Login::showElement(Login::$p_if_logged_open, Login::$p_if_logged_close, $htmlPage);
+            Login::showElement(Login::$p_if_logged_open,     Login::$p_if_logged_close,     $htmlPage);
             Login::hideElement(Login::$p_if_not_logged_open, Login::$p_if_not_logged_close, $htmlPage);
         } else {
-            Login::hideElement(Login::$p_if_logged_open, Login::$p_if_logged_close, $htmlPage);
+            Login::hideElement(Login::$p_if_logged_open,     Login::$p_if_logged_close,     $htmlPage);
             Login::showElement(Login::$p_if_not_logged_open, Login::$p_if_not_logged_close, $htmlPage);
         }
     }
