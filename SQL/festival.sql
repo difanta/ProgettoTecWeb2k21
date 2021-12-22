@@ -30,7 +30,7 @@ values (1, "utente", "utente", 2000 - 01 - 01, "utente@utente.com", "utente123",
 create table Film
 (
     id          int         not null auto_increment primary key,
-    nome        varchar(20) not null,
+    nome        varchar(50) not null,
     descrizione text        not null,
     durata      int         not null,
     anno        smallint    not null,
