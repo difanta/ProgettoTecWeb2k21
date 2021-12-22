@@ -12,7 +12,7 @@ function submitContest(&$htmlPage)
 
     if (Login::is_logged()) {
 
-        if (isset($_POST["submit"])) {
+        if ($_POST["method"] == "Invia Candidatura") {
             $titolo = $_POST["titolo"];
             $descrizione = $_POST["descrizione"];
             $linkyt = $_POST["linkyt"];
@@ -79,19 +79,24 @@ function submitContest(&$htmlPage)
                     if ($connection->insert("insert into Film(id ,nome, descrizione, durata, anno, regista, produttore, cast, in_gara, approvato, candidatore) 
                                           values (DEFAULT, '$titolo','$descrizione','$durata','$anno', '$regista', '$produttore', '$cast', 1, 0," . $_SESSION["login"] . ");")) {
                         $messaggi = "<p>Film aggiunto con successo<p/>";
+                        $_SESSION["success"] = true;
                     } else {
                         $messaggi = "<p>Errore nell aggiunta<p/>";
+                        $_SESSION["success"] = false;
                     }
                     $connection->closeConnection();
                 } else {
                     $messaggi = "<li>problemi db<li/>";
+                    $_SESSION["success"] = false;
                 }
             } else {
                 $messaggi = "<ul>" . $messaggi . "<ul/>";
+                $_SESSION["success"] = false;
             }
         }
     } else { // not logged
         $messaggi .= "<li>Utente non loggato<li/>";
+        $_SESSION["success"] = false;
     }
 
     $htmlPage = str_replace("<messaggi/>", $messaggi, $htmlPage);
@@ -100,6 +105,7 @@ function submitContest(&$htmlPage)
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
+    submitContest($htmlPage);
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     header("HTTP/1.1 303 See Other");
@@ -109,7 +115,6 @@ if (isset($_POST["method"])) {
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
-    submitContest($htmlPage); // TODO move to POST
 
     echo $htmlPage;
 }

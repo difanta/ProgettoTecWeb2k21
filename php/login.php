@@ -147,7 +147,7 @@ class Login {
     }
 
     public static function printLogin(&$htmlPage) {
-        if(isset($_SESSION["method"]))
+        if(isset($_SESSION["method"]) && ($_SESSION["method"] == "login" || $_SESSION["method"] == "logout" || $_SESSION["method"] == "register"))
         {
             $method = $_SESSION["method"];
             $success = $_SESSION["success"];
