@@ -6,7 +6,7 @@ include "login.php";
 
 use DB\DBAccess;
 
-function printIntoUtente(&$htmlPage)
+function printInfoUtente(&$htmlPage)
 {
     $form = "";
 
@@ -19,32 +19,32 @@ function printIntoUtente(&$htmlPage)
             $results = $connection->get("SELECT * FROM  Utente where id = " . $_SESSION["login"]);
             $connection->closeConnection();
             if ($results != null) {
-                $nome = isset($results[0]["nome"]) ? $results[0]["nome"] : '';
-                $cognome = isset($results[0]["cognome"]) ? $results[0]["cognome"] : '';
-                $dataNascita = isset($results[0]["data_di_nascita"]) ? $results[0]["data_di_nascita"] : '';
-                $email = isset($results[0]["email"]) ? $results[0]["email"] : '';
-                $password = isset($results[0]["password"]) ? $results[0]["password"] : '';
+                $nome = $results[0]["nome"];
+                $cognome = $results[0]["cognome"];
+                $dataNascita = $results[0]["data_di_nascita"];
+                $email = $results[0]["email"];
+                $password = $results[0]["password"];
 
                 $form = "<form action=\"../php/paginaUtente.php\" method=\"post\">
                             <fieldset>
                                 <legend>Informazioni Personali</legend>
                                 <label for=\"nome\">Nome</label>
-                                <input id=\"nome\" name=\"nome\" type=\"text\" value='$nome' readonly=\"true\">
+                                <input id=\"nome\" name=\"nome\" type=\"text\" value='$nome' disabled>
                                 <label for=\"cognome\">Cognome</label>
-                                <input id=\"cognome\" name=\"cognome\" type=\"text\" value='$cognome' readonly=\"true\">
+                                <input id=\"cognome\" name=\"cognome\" type=\"text\" value='$cognome' disabled>
                                 <label for=\"dataNascita\">Data di nascita</label>
-                                <input id=\"dataNascita\" name=\"dataNascita\" type=\"date\" value='$dataNascita' readonly=\"true\">
+                                <input id=\"dataNascita\" name=\"dataNascita\" type=\"date\" value='$dataNascita' disabled>
                             </fieldset>
                 
                             <fieldset>
                                 <legend>Informazioni Account</legend>
                                 <label for=\"email\">Email</label>
-                                <input id=\"email\" name=\email\" type=\"email\" value='$email' readonly=\"true\">
+                                <input id=\"email\" name=\"email\" type=\"email\" value='$email' disabled>
                                 <label for=\"password\">Password</label>
-                                <input id=\"password\" name=\"password\" type=\"password\" value='$password' readonly=\"true\">
-                                <input class=\"button\" type=\"submit\" value=\"OK\">
+                                <input id=\"password\" name=\"password\" type=\"password\" value='$password' disabled>
+                                <input class=\"button\" type=\"submit\" name=\"method\" value=\"invia\">
                                 <input class=\"button\" type=\"reset\" value=\"Reset\">
-                                <button id=\"modificaInfo\" onclick=\"setEditOn()\">Modifica</button>
+                                <button id=\"modificaInfo\" type=\"button\" onclick=\"setEditOn()\">Modifica</button>
                             </fieldset>
                         </form>";
 
@@ -76,29 +76,28 @@ function updateInfoUtente(&$htmlPage)
 
 
             if (strlen($nome) == 0) {
-                $messaggi = "<li>Nome non present<li/>";
+                $messaggi .= "<li>Nome non present<li/>";
             } elseif (preg_match('/\d/', $nome)) {
-                $messaggi = "<li>Nome non può contenere numeri<li/>";
+                $messaggi .= "<li>Nome non può contenere numeri<li/>";
             }
 
             if (strlen($cognome) == 0) {
-                $messaggi = "<li>Cognome non presente<li/>";
+                $messaggi .= "<li>Cognome non presente<li/>";
             } elseif (preg_match('/\d/', $cognome)) {
-                $messaggi = "<li>Cognome non può contenere numeri<li/>";
+                $messaggi .= "<li>Cognome non può contenere numeri<li/>";
             }
 
             if (strlen($dataNascita) == 0) { // add controlli
-                $messaggi = "<li>Data di nascita non presente<li/>";
+                $messaggi .= "<li>Data di nascita non presente<li/>";
             }
 
             if (strlen($email) == 0) {
-                $messaggi = "<li>Email non presente<li/>";
+                $messaggi .= "<li>Email non presente<li/>";
             }
 
             if (strlen($password) == 0) {
-                $messaggi = "<li>Password non presente<li/>";
+                $messaggi .= "<li>Password non presente<li/>";
             }
-
 
             if ($messaggi == "") {
 
@@ -106,16 +105,16 @@ function updateInfoUtente(&$htmlPage)
                 $connectionOk = $connection->openDB();
 
                 if ($connectionOk) {
-                    if ($connection->insert("update table Utente 
-                                                    set nome = '$nome', cognome = '$cognome', data_di_nascita = '$dataNascita', email = '$email', password = '$password'
-                                                    where id = " . $_SESSION["login"] . ";")) {
-                        $messaggi = "<p>Utente modificato con successo<p/>";
+                    if ($connection->get("update Utente 
+                                            set nome =" . $nome . ", cognome=" . $cognome . ", data_di_nascita=" . $dataNascita . ", email=" . $email . ", password=" . $password . "
+                                            where id=" . $_SESSION["login"])) {
+                        $messaggi .= "<p>Utente modificato con successo<p/>";
                     } else {
-                        $messaggi = "<p>Errore nella modifica<p/>";
+                        $messaggi .= "<p>Errore nella modifica<p/>";
                     }
                     $connection->closeConnection();
                 } else {
-                    $messaggi = "<li>problemi db<li/>";
+                    $messaggi .= "<li>problemi db<li/>";
                 }
             } else {
                 $messaggi = "<ul>" . $messaggi . "<ul/>";
@@ -133,12 +132,17 @@ function printBiglietti(&$htmlPage)
     $listaBiglietti = "";
 
     if (Login::is_logged()) {
+        $utente = $_SESSION["login"];
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
 
         if ($connectionOk) {
-            $biglietti = $connection->get("SELECT Film.nome, Biglietto.id, orario FROM Biglietto join Film join Proiezione join Utente on " . $_SESSION["login"]);
+            $biglietti = $connection->get("SELECT Film.nome, Biglietto.id, orario 
+                                            FROM Utente join Biglietto on Utente.id=Biglietto.utente
+                                            join Proiezione on Proiezione.id=Biglietto.proiezione
+                                            join Film on Film.id= Proiezione.film 
+                                            where Utente.id='$utente'");
             $connection->closeConnection();
             if ($biglietti != null) {
                 $listaBiglietti .= "<ul>";
@@ -152,7 +156,7 @@ function printBiglietti(&$htmlPage)
                 unset($biglietto);
                 $listaBiglietti .= "</ul>";
             } else {
-                $listaBiglietti .= "<p>Errore load biglietti</p>";
+                $listaBiglietti .= "<p>Non sono presenti biglietti</p>";
             }
         } else {
             $listaBiglietti .= "<p>Errore connessione db</p>";
@@ -167,6 +171,8 @@ function printBiglietti(&$htmlPage)
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
+    $htmlPage = file_get_contents("../HTML/paginaUtente.html");
+    updateInfoUtente($htmlPage);
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     header("HTTP/1.1 303 See Other");
@@ -176,9 +182,10 @@ if (isset($_POST["method"])) {
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
-    printIntoUtente($htmlPage);
+    printInfoUtente($htmlPage);
     printBiglietti($htmlPage);
-    updateInfoUtente($htmlPage);
+
+    $htmlPage = str_replace("placeholder", "style", $htmlPage);
 
     echo $htmlPage;
 }

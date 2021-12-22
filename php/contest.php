@@ -109,7 +109,7 @@ if (isset($_POST["method"])) {
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
-    submitContest($htmlPage);
+    submitContest($htmlPage); // TODO move to POST
 
     echo $htmlPage;
 }

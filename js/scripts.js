@@ -71,9 +71,9 @@ function paymentSelectionChanged() {
 /* Pagina Utente ----------------------------------- */
 
 function setEditOn() {
-    document.getElementById('nome').setAttribute('readonly', false);
-    document.getElementById('cognome').setAttribute('readonly', false);
-    document.getElementById('dataNascita').setAttribute('readonly', false);
-    document.getElementById('email').setAttribute('readonly', false);
-    document.getElementById('password').setAttribute('readonly', false);
+    document.getElementById("nome").removeAttribute('disabled');
+    document.getElementById("cognome").removeAttribute('disabled');
+    document.getElementById('dataNascita').removeAttribute('disabled');
+    document.getElementById('email').removeAttribute('disabled');
+    document.getElementById('password').removeAttribute('disabled');
 }

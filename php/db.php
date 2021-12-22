@@ -47,6 +47,10 @@ class DBAccess {
 			return false;
 		}
 	}
+
+    public function update($stringa){
+        return $query = mysqli_query($this->connection, $stringa) === true;
+    }
 }
 
 

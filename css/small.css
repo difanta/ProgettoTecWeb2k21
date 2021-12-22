@@ -49,7 +49,7 @@ form input, form textarea {
 }
 form input{
     display: block;
-    width: 80%;
+    width: 90%;
     padding: 0.4em;
     margin-top: 0;
     margin-bottom: 1em;
@@ -59,7 +59,7 @@ form .button {
 }
 form textarea{
     display: block;
-    width: 80%;
+    width: 90%;
     padding: 0.4em;
     margin-top: 0;
     margin-bottom: 1em;
@@ -327,16 +327,38 @@ div.content{
     margin-bottom:0;
 }
 #contatti ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     list-style-type: none;
-    padding:0;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1em;
 }
 #contatti li{
-	background-position: left center;
-	background-size: 30px;
+    display: block;
+    height: 100px;
+    width: 70px;
+	background-position: center bottom;
+	background-size: 70px;
 	background-repeat: no-repeat;
-    vertical-align: center;
-    padding:8px 0 8px 43px;
+    margin: 0;
 }
+
+#contatti li p{
+    text-indent: -9999em;
+    margin: 0; 
+}
+
+#contatti li a{
+    display:block;
+    height: 70px;
+    width: 70px;
+    text-indent: -9999em;
+    padding-top: 5px;
+    margin: 0;
+}
+
 #contatti #social_ig{
 	background-image: url(../images/social/instagram.png);
 }
@@ -554,9 +576,6 @@ li.filmPopolare a{
 /* Lista Film / Proiezioni ---------------------------------------------------------*/
 #content_listaFilm{
     padding:0;
-}
-#content_listaFilm h1{
-    padding:40px;
 }
 .filters {
     text-align: center;
@@ -823,7 +842,7 @@ li.filmPopolare a{
     margin: auto;
     margin-top: 2em;
     margin-bottom: 2em;
-    width: 60%;
+    width: 100%;
     padding: 0 1% 1% 1%;
     border: solid black 1px;
 }
@@ -923,7 +942,7 @@ li.filmPopolare a{
 
 #content_contest div:first-of-type{
     margin: 2em auto;
-    width: 60%;
+    width: 100%;
     padding: 0 1% 1% 1%;
 }
  
