@@ -555,6 +555,9 @@ li.filmPopolare a{
 #content_listaFilm{
     padding:0;
 }
+#content_listaFilm h1{
+    padding:40px;
+}
 .filters {
     text-align: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);

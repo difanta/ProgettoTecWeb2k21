@@ -48,6 +48,7 @@ function printFilms(&$htmlPage) {
     if($connectionOk) {
         $filters = array();
         
+        // add in gara filters
         switch ($in_gara) {
             case 'tutti':
                 break;
@@ -59,10 +60,12 @@ function printFilms(&$htmlPage) {
             break;
         }
 
+        // add nome film filters
         if($nomeFilm != "") {
             array_push($filters, "Film.nome like '%" . $nomeFilm . "%'");
         }
 
+        // add filters to query
         $query = "SELECT * from Film";
         foreach($filters as $index => $filter) {
             if($index == 0) {
@@ -77,6 +80,7 @@ function printFilms(&$htmlPage) {
         if($result) {
             $template = file_get_contents("templateFilmPreview.html");
 
+            // create and substitute films based on template
             foreach($result as $indice => $film) {
                 $at_least_one = true;
                 $film_html = str_replace("titolofilm", $film["nome"], $template);
@@ -102,7 +106,7 @@ function printFilms(&$htmlPage) {
 
 if(isset($_POST["method"])) {
     // handle login/register/logout POST request
-    Login::handle_login();
+    Login::handleLogin();
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     header("HTTP/1.1 303 See Other");
@@ -111,7 +115,7 @@ if(isset($_POST["method"])) {
     $htmlPage = file_get_contents("../HTML/listaFilm.html");
 
     // show login/register/logout results
-    Login::set_login_contents($htmlPage);
+    Login::printLogin($htmlPage);
     printFilms($htmlPage);
 
     echo $htmlPage;

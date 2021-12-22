@@ -44,7 +44,7 @@ function printFilmPopolari(&$htmlPage) {
 
 if(isset($_POST["method"])) {
     // handle login/register/logout POST request
-    Login::handle_login();
+    Login::handleLogin();
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     header("HTTP/1.1 303 See Other");
@@ -53,7 +53,7 @@ if(isset($_POST["method"])) {
     $htmlPage = file_get_contents("../HTML/home.html");
 
     // show login/register/logout results
-    Login::set_login_contents($htmlPage);
+    Login::printLogin($htmlPage);
     printFilmPopolari($htmlPage);
 
     echo $htmlPage;
