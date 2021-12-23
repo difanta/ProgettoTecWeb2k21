@@ -42,7 +42,7 @@ function printInfoUtente(&$htmlPage)
                                 <input id=\"email\" name=\"email\" type=\"email\" value='$email' disabled>
                                 <label for=\"password\">Password</label>
                                 <input id=\"password\" name=\"password\" type=\"password\" value='$password' disabled>
-                                <input class=\"button\" type=\"submit\" name=\"method\" value=\"invia\">
+                                <input class=\"button\" type=\"submit\" name=\"method\" value=\"Invia\">
                                 <input class=\"button\" type=\"reset\" value=\"Reset\">
                                 <button id=\"modificaInfo\" type=\"button\" onclick=\"setEditOn()\">Modifica</button>
                             </fieldset>
@@ -61,13 +61,11 @@ function printInfoUtente(&$htmlPage)
     $htmlPage = str_replace("<contestForm/>", $form, $htmlPage);
 }
 
-function updateInfoUtente(&$htmlPage)
+function updateInfoUtente()
 {
     $messaggi = "";
-
     if (Login::is_logged()) {
-
-        if (isset($_POST["submit"])) {
+        if ($_POST["method"] == "Invia") {
             $nome = $_POST["nome"];
             $cognome = $_POST["cognome"];
             $dataNascita = $_POST["dataNascita"];
@@ -105,26 +103,43 @@ function updateInfoUtente(&$htmlPage)
                 $connectionOk = $connection->openDB();
 
                 if ($connectionOk) {
-                    if ($connection->get("update Utente 
-                                            set nome =" . $nome . ", cognome=" . $cognome . ", data_di_nascita=" . $dataNascita . ", email=" . $email . ", password=" . $password . "
-                                            where id=" . $_SESSION["login"])) {
+                    $id = $_SESSION["login"];
+                    if ($connection->insert("update Utente 
+                                            set nome ='$nome', cognome='$cognome', data_di_nascita='$dataNascita', email='$email', password='$password'
+                                            where id='$id'")) {
                         $messaggi .= "<p>Utente modificato con successo<p/>";
+                        $_SESSION["success"] = true;
                     } else {
                         $messaggi .= "<p>Errore nella modifica<p/>";
+                        $_SESSION["success"] = false;
                     }
                     $connection->closeConnection();
                 } else {
                     $messaggi .= "<li>problemi db<li/>";
+                    $_SESSION["success"] = false;
                 }
             } else {
                 $messaggi = "<ul>" . $messaggi . "<ul/>";
+                $_SESSION["success"] = true;
             }
         }
     } else { // not logged
         $messaggi .= "<li>Utente non loggato<li/>";
+        $_SESSION["success"] = false;
     }
+    $_SESSION["messaggi"] = $messaggi;
+}
 
-    $htmlPage = str_replace("<messaggi/>", $messaggi, $htmlPage);
+function printUpdateInfoUtente(&$htmlPage)
+{
+    if (isset($_SESSION["method"]) && $_SESSION["method"] == "Invia") {
+
+        $messaggi = isset($_SESSION["messaggi"]) ? $_SESSION["messaggi"] : "";
+        $htmlPage = str_replace("<messaggi/>", $messaggi, $htmlPage);
+
+        unset($_SESSION["method"]);
+        unset($_SESSION["success"]);
+    }
 }
 
 function printBiglietti(&$htmlPage)
@@ -171,8 +186,7 @@ function printBiglietti(&$htmlPage)
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
-    $htmlPage = file_get_contents("../HTML/paginaUtente.html");
-    updateInfoUtente($htmlPage);
+    updateInfoUtente();
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     header("HTTP/1.1 303 See Other");
@@ -184,6 +198,7 @@ if (isset($_POST["method"])) {
     Login::printLogin($htmlPage);
     printInfoUtente($htmlPage);
     printBiglietti($htmlPage);
+    printUpdateInfoUtente($htmlPage);
 
     echo $htmlPage;
 }
