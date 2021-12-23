@@ -54,28 +54,30 @@ function printProiezioni(&$htmlPage) {
     $at_least_one = false;
 
     if($connectionOk) {
-        $filters = array();
+        $filmFilters = array();
+
+        array_push($filmFilters, "Film.approvato = '1'");
         
         // add in gara filters
         switch ($in_gara) {
             case 'tutti':
                 break;
             case 'gara':
-                array_push($filters, "Film.in_gara = '1'");
+                array_push($filmFilters, "Film.in_gara = '1'");
             break;
             case 'noGara':
-                array_push($filters, "Film.in_gara = '0'");
+                array_push($filmFilters, "Film.in_gara = '0'");
             break;
         }
 
         // add nome film filters
         if($nomeFilm != "") {
-            array_push($filters, "Film.nome like '%" . $nomeFilm . "%'");
+            array_push($filmFilters, "Film.nome like '%" . $nomeFilm . "%'");
         }
 
         // add filters to query
         $query = "SELECT * from Film";
-        foreach($filters as $index => $filter) {
+        foreach($filmFilters as $index => $filter) {
             if($index == 0) {
                 $query = "$query where $filter";
             } else {
@@ -95,7 +97,7 @@ function printProiezioni(&$htmlPage) {
                         order by orario asc";
         }
 
-        unset($filters);
+        unset($filmFilters);
         $result = $connection->get($query);
 
         if($result) {
@@ -104,11 +106,11 @@ function printProiezioni(&$htmlPage) {
             // create and substitute proiezione based on template
             foreach($result as $indice => $film) {
                 $at_least_one = true;
-                $proiezione_html = str_replace("titolofilm", $film["nome"], $template);
-                $proiezione_html = str_replace("regista", $film["regista"], $proiezione_html);
-                $proiezione_html = str_replace("data", $film["data"], $proiezione_html);
-                $proiezione_html = str_replace("ora", $film["ora"], $proiezione_html);
-                $proiezione_html = str_replace("id", $film["pid"], $proiezione_html);
+                $proiezione_html = str_replace("titolofilm",   $film["nome"],    $template);
+                $proiezione_html = str_replace("regista",      $film["regista"], $proiezione_html);
+                $proiezione_html = str_replace("data",         $film["data"],    $proiezione_html);
+                $proiezione_html = str_replace("ora",          $film["ora"],     $proiezione_html);
+                $proiezione_html = str_replace("idproiezione", $film["pid"],     $proiezione_html);
                 $htmlPage  = str_replace($p_proiezione, $proiezione_html . $p_proiezione, $htmlPage);
             }
         }

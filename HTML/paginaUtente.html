@@ -110,6 +110,7 @@
 <div id="content_paginaUtente" class="content">
     <div>
         <h1>Informazioni Account</h1>
+        <messaggi/>
         <contestForm/>
         <!--
         <form action="../php/paginaUtente.php" method="post">
@@ -140,44 +141,46 @@
         -->
     </div>
 
-    <div id="biglietti" placeholder="iflogged">
-        <h1>I tuoi biglietti</h1>
-        <listaBiglietti/>
-        <!--
-        <ul>
-            <li class="ticket">
-                <p>
-                    <span class="ticket-up">film1</span>
-                    <span class="ticket-up">#numero biglietto1</span>
-                </p>
-                <p>
-                    <span class="ticket-low">Luogo1</span>
-                    <span class="ticket-low">Orario1</span>
-                </p>
-            </li>
-            <li class="ticket">
-                <p>
-                    <span class="ticket-up">film2</span>
-                    <span class="ticket-up">#numero biglietto2</span>
-                </p>
-                <p>
-                    <span class="ticket-low">Luogo2</span>
-                    <span class="ticket-low">Orario2</span>
-                </p>
-            </li>
-            <li class="ticket">
-                <p>
-                    <span class="ticket-up">film2</span>
-                    <span class="ticket-up">#numero biglietto2</span>
-                </p>
-                <p>
-                    <span class="ticket-low">Luogo2</span>
-                    <span class="ticket-low">Orario2</span>
-                </p>
-            </li>
-        </ul>
-        -->
-    </div>
+    <iflogged>
+        <div id="biglietti">
+            <h1>I tuoi biglietti</h1>
+            <listaBiglietti/>
+            <!--
+            <ul>
+                <li class="ticket">
+                    <p>
+                        <span class="ticket-up">film1</span>
+                        <span class="ticket-up">#numero biglietto1</span>
+                    </p>
+                    <p>
+                        <span class="ticket-low">Luogo1</span>
+                        <span class="ticket-low">Orario1</span>
+                    </p>
+                </li>
+                <li class="ticket">
+                    <p>
+                        <span class="ticket-up">film2</span>
+                        <span class="ticket-up">#numero biglietto2</span>
+                    </p>
+                    <p>
+                        <span class="ticket-low">Luogo2</span>
+                        <span class="ticket-low">Orario2</span>
+                    </p>
+                </li>
+                <li class="ticket">
+                    <p>
+                        <span class="ticket-up">film2</span>
+                        <span class="ticket-up">#numero biglietto2</span>
+                    </p>
+                    <p>
+                        <span class="ticket-low">Luogo2</span>
+                        <span class="ticket-low">Orario2</span>
+                    </p>
+                </li>
+            </ul>
+            -->
+        </div>
+    </iflogged>
 </div>
 
 <div id="tornaSu">

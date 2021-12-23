@@ -47,6 +47,8 @@ function printFilms(&$htmlPage) {
 
     if($connectionOk) {
         $filters = array();
+
+        array_push($filters, "Film.approvato = '1'");
         
         // add in gara filters
         switch ($in_gara) {
@@ -83,12 +85,12 @@ function printFilms(&$htmlPage) {
             // create and substitute films based on template
             foreach($result as $indice => $film) {
                 $at_least_one = true;
-                $film_html = str_replace("titolofilm", $film["nome"], $template);
-                $film_html = str_replace("regista", $film["regista"], $film_html);
+                $film_html = str_replace("titolofilm", $film["nome"]   , $template);
+                $film_html = str_replace("regista"   , $film["regista"], $film_html);
                 if($film["in_gara"]) {
-                    Login::showElement("<ifingara>", "</ifingara>", $film_html);
+                    Login::showElement("<ifingara>"  , "</ifingara>"   , $film_html);
                 } else {
-                    Login::hideElement("<ifingara>", "</ifingara>", $film_html);
+                    Login::hideElement("<ifingara>"  , "</ifingara>"   , $film_html);
                 }
                 $htmlPage  = str_replace($p_filmPreview, $film_html . $p_filmPreview, $htmlPage);
             }
