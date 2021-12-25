@@ -25,27 +25,29 @@ function printInfoUtente(&$htmlPage)
                 $email = $results[0]["email"];
                 $password = $results[0]["password"];
 
-                $form = "<form action=\"../php/paginaUtente.php\" method=\"post\">
+                $form = "<form id='infoUtenteForm' action=\"../php/paginaUtente.php\" method=\"post\" onsubmit=\"return validateForm(getInfoutenteFormDetails());\">
                             <fieldset>
                                 <legend>Informazioni Personali</legend>
                                 <label for=\"nome\">Nome</label>
-                                <input id=\"nome\" name=\"nome\" type=\"text\" value='$nome' disabled>
+                                <input id=\"nome\" name=\"nome\" type=\"text\" value='$nome' required disabled>
                                 <label for=\"cognome\">Cognome</label>
-                                <input id=\"cognome\" name=\"cognome\" type=\"text\" value='$cognome' disabled>
+                                <input id=\"cognome\" name=\"cognome\" type=\"text\" value='$cognome' required disabled>
                                 <label for=\"dataNascita\">Data di nascita</label>
-                                <input id=\"dataNascita\" name=\"dataNascita\" type=\"date\" value='$dataNascita' disabled>
+                                <input id=\"dataNascita\" name=\"dataNascita\" type=\"date\" value='$dataNascita' required disabled>
                             </fieldset>
                 
                             <fieldset>
                                 <legend>Informazioni Account</legend>
                                 <label for=\"email\">Email</label>
-                                <input id=\"email\" name=\"email\" type=\"email\" value='$email' disabled>
+                                <input id=\"email\" name=\"email\" type=\"email\" value='$email' required disabled>
                                 <label for=\"password\">Password</label>
-                                <input id=\"password\" name=\"password\" type=\"password\" value='$password' disabled>
-                                <input class=\"button\" type=\"submit\" name=\"method\" value=\"Invia\">
-                                <input class=\"button\" type=\"reset\" value=\"Reset\">
-                                <button id=\"modificaInfo\" type=\"button\" onclick=\"setEditOn()\">Modifica</button>
+                                <input id=\"password\" name=\"password\" type=\"password\" value='$password' required disabled>
+                                <input class=\"button\" id=\"buttonInvia\" type=\"submit\" name=\"method\" value=\"Invia\" style=\"display: none;\">
+                                <input class=\"button\" id=\"buttonAnnulla\" type=\"button\" onclick=\"setEditOff()\" value='Annulla' style=\"display: none;\">
+                                <input class=\"button\" id=\"buttonReset\" type=\"reset\" value=\"Reset\" style=\"display: none;\">
+                                <input class=\"button\" id=\"buttonModifica\" type=\"button\" onclick=\"setEditOn()\" value='Modifica'>
                             </fieldset>
+                            <input class=\"button\" id=\"buttonDelete\" type=\"submit\" name=\"method\" value=\"Elimina Account\">
                         </form>";
 
             } else {
@@ -142,6 +144,33 @@ function printUpdateInfoUtente(&$htmlPage)
     }
 }
 
+function deleteInfoUtente()
+{
+    if (Login::is_logged()) {
+        if ($_POST["method"] == "Elimina Account") {
+            $connection = new DBAccess();
+            $connectionOk = $connection->openDB();
+
+            if ($connectionOk) {
+                $id = $_SESSION["login"];
+                if ($connection->insert("delete from Utente where id='$id'")) {
+                    session_unset();
+                    session_destroy();
+                    session_start();
+                    $_SESSION["success"] = true;
+                } else {
+                    $_SESSION["success"] = false;
+                }
+                $connection->closeConnection();
+            } else {
+                $_SESSION["success"] = false;
+            }
+        }
+    } else { // not logged
+        $_SESSION["success"] = false;
+    }
+}
+
 function printBiglietti(&$htmlPage)
 {
     $listaBiglietti = "";
@@ -187,6 +216,11 @@ if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
     updateInfoUtente();
+    if($_POST["method"] == "Elimina Account") {
+        deleteInfoUtente();
+        header("Location: home.php");
+        die();
+    }
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     header("HTTP/1.1 303 See Other");

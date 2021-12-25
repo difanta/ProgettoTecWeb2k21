@@ -142,29 +142,30 @@
             <form action="../php/contest.php" method="post">
                 <fieldset>
                     <label for="titolo">Titolo</label>
-                    <input type="text" name="titolo" id="titolo"/>
+                    <input type="text" name="titolo" id="titolo" required/>
                     <label for="descrizione">Descrizione</label>
-                    <textarea name="descrizione" id="descrizione" cols="40" rows="8"></textarea>
+                    <textarea name="descrizione" id="descrizione" cols="40" rows="8" required></textarea>
                     <label for="linkyt">Link <span lang="en">youtube</span></label>
-                    <input type="text" name="linkyt" id="linkyt"/>
+                    <input type="text" name="linkyt" id="linkyt" required/>
                     <label for="imgFilm">Immagine film</label>
-                    <input type="file" name="imgFilm" id="imgFilm" accept="image/png, image/jpeg"/>
+                    <input type="file" name="imgFilm" id="imgFilm" accept="image/png, image/jpeg" required/>
                     <label for="durata">Durata</label>
-                    <input type="text" name="durata" id="durata"/>
+                    <input type="number" name="durata" id="durata" required/>
                     <label for="anno">Anno</label>
-                    <input type="number" name="anno" id="anno"/>
+                    <input type="number" name="anno" id="anno" required/>
                     <label for="regista">Regista</label>
-                    <input type="text" name="regista" id="regista"/>
+                    <input type="text" name="regista" id="regista" required/>
                     <label for="produttore">Produttore</label>
-                    <input type="text" name="produttore" id="produttore"/>
+                    <input type="text" name="produttore" id="produttore" required/>
                     <label for="cast">Cast</label>
-                    <textarea name="cast" id="cast" cols="40" rows="8"></textarea>
+                    <textarea name="cast" id="cast" cols="40" rows="8" required></textarea>
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="email">
+                    <input type="text" name="email" id="email" required>
                     <input class="button" type="submit" name="method" value="Invia Candidatura">
                     <input class="button" type="reset" value="Reset">
                 </fieldset>
             </form>
+            <div id="response" ></div>
         </iflogged>
     </div>
 </div>
