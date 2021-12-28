@@ -2,7 +2,7 @@
 
 session_start();
 
-include "login.php";
+include "../php/login.php";
 
 use DB\DBAccess;
 
@@ -124,7 +124,7 @@ if (isset($_POST["method"])) {
     header("HTTP/1.1 303 See Other");
     header("Location: ./contest.php");
 } else /* GET */ {
-    $htmlPage = file_get_contents("../HTML/contest.html");
+    $htmlPage = file_get_contents("template/contest.html");
 
     // show login/register/logout results
     Login::printLogin($htmlPage);

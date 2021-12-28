@@ -2,7 +2,7 @@
 
 session_start();
 
-include "login.php";
+include "../php/login.php";
 
 use DB\DBAccess;
 
@@ -93,7 +93,7 @@ if (isset($_POST["method"])) {
     header("HTTP/1.1 303 See Other");
     header("Location: ./acquistoBiglietti.php");
 } else /* GET */ {
-    $htmlPage = file_get_contents("../HTML/acquistoBiglietti.html");
+    $htmlPage = file_get_contents("template/acquistoBiglietti.html");
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
