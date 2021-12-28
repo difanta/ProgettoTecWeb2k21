@@ -20,10 +20,8 @@ class DBAccess {
 	public function closeConnection() {
 		mysqli_close($this->connection);
 	}
-	
-	public function get($stringa) {
-		$queryResult = mysqli_query($this->connection, $stringa);
 
+	private function formatGetResult($queryResult) {
 		if(!$queryResult || mysqli_num_rows($queryResult) == 0) 
 		{
 			return null;
@@ -37,25 +35,23 @@ class DBAccess {
 			return $result;
 		}
 	}
+	
+	public function get($stringa) {
+		return formatGetResult(mysqli_query($this->connection, $stringa));
+	}
 
 	public function getUser($email) {
 		$stmt = $this->connection->prepare("SELECT * FROM Utente WHERE Utente.email = ?");
 		$stmt->bind_param("s", $email);
 		$stmt->execute();
-		$queryResult = $stmt->get_result();
-		
-		if(!$queryResult || mysqli_num_rows($queryResult) == 0) 
-		{
-			return null;
-		}
-		else 
-		{
-			$result = array();
-			while($row = mysqli_fetch_assoc($queryResult)) {
-				array_push($result, $row);
-			}
-			return $result;
-		}
+		return formatGetResult($stmt->get_result());
+	}
+
+	public function getFilm($nomeFilm) {
+		$stmt = $this->connection->prepare("SELECT * from Film where Film.nome = ?")
+		$stmt->bind_param("s", $nomeFilm);
+		$stmt->execute();
+		return formatGetResult($stmt->get_result());
 	}
 
 	public function insert($stringa) {

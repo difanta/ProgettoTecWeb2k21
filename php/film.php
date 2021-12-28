@@ -15,7 +15,7 @@ function printFilm(&$htmlPage) {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            $result = $connection->get("SELECT * from Film where Film.nome = '$nomeFilm'");
+            $result = $connection->getFilm($nomeFilm);
     
             if($result) {    
                 $film = $result[0];
