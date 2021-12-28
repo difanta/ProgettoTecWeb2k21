@@ -6,7 +6,7 @@ include "login.php";
 
 use DB\DBAccess;
 
-function submitContest(&$htmlPage)
+function submitContest()
 {
     $messaggi = "";
 
@@ -98,14 +98,27 @@ function submitContest(&$htmlPage)
         $messaggi .= "<li>Utente non loggato<li/>";
         $_SESSION["success"] = false;
     }
+    $_SESSION["messaggi"] = $messaggi;
 
-    $htmlPage = str_replace("<messaggi/>", $messaggi, $htmlPage);
+}
+
+function printSubmitContest(&$htmlPage)
+{
+    if (isset($_SESSION["method"]) && $_SESSION["method"] == "Invia Candidatura") {
+        echo 'printupdate dentro';
+
+        $messaggi = isset($_SESSION["messaggi"]) ? $_SESSION["messaggi"] : " ";
+        $htmlPage = str_replace("<messaggi/>", $messaggi, $htmlPage);
+
+        unset($_SESSION["method"]);
+        unset($_SESSION["success"]);
+    }
 }
 
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
-    submitContest($htmlPage);
+    submitContest();
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     header("HTTP/1.1 303 See Other");
@@ -115,6 +128,7 @@ if (isset($_POST["method"])) {
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
+    printSubmitContest($htmlPage);
 
     echo $htmlPage;
 }
