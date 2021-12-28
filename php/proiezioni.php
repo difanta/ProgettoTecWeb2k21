@@ -125,7 +125,6 @@ function printProiezioni(&$htmlPage) {
         $htmlPage = str_replace($p_nomifilm, $stringa, $htmlPage);
     } else {
         $htmlPage = str_replace($p_nomifilm, "", $htmlPage);
-        echo "connection error";
     }
 
     if($at_least_one) {
