@@ -95,8 +95,6 @@ function printFilms(&$htmlPage) {
                 $htmlPage  = str_replace($p_filmPreview, $film_html . $p_filmPreview, $htmlPage);
             }
         }
-    } else {
-        echo "connection error";
     }
 
     if($at_least_one) {

@@ -91,30 +91,35 @@
     </header>
 
     <div id="content_templateFilm" class="content">
-        <h1>titolofilm</h1>
-        <h2>regista</h2>
-        <dl>
-            <dt>Regia</dt>
-            <dd>NomeRegista</dd>
-            <dt>Cast</dt>
-            <dd>
-                <ul>
-                    <li>Attore1</li>
-                    <li>Attore2</li>
-                    <li>Attore3</li>
-                    <li>...</li>
-                </ul>
-            </dd>
-            <dt>Produttore</dt>
-            <dd>nomeproduttore</dd>
-            <dt>Anno di pubblicazione</dt>
-            <dd>annodipubblicazione</dd>
-            <dt>Durata</dt>
-            <dd>duratafilm</dd>
-        </dl>
-        <p title="descrizione">descrizionefilm</p>
-        <img src="percorsoimmagine" alt="descrizioneimmagine">
-        <a href="Proiezioni.html?nomeFilm=titolofilm">Proiezioni</a>
+        <iffilmfound>
+            <h1>titolofilm</h1>
+            <h2>regista</h2>
+            <dl>
+                <dt>Regia</dt>
+                <dd>regista</dd>
+                <dt>Cast</dt>
+                <dd>
+                    <ul>
+                        <li>Attore1</li>
+                        <li>Attore2</li>
+                        <li>Attore3</li>
+                        <li>...</li>
+                    </ul>
+                </dd>
+                <dt>Produttore</dt>
+                <dd>nomeproduttore</dd>
+                <dt>Anno di pubblicazione</dt>
+                <dd>annodipubblicazione</dd>
+                <dt>Durata</dt>
+                <dd>duratafilm min</dd>
+            </dl>
+            <p title="descrizione">descrizionefilm</p>
+            <img src="percorsoimmagine" alt="descrizioneimmagine">
+            <a href="Proiezioni.html?nomeFilm=titolofilm">Proiezioni</a>
+        </iffilmfound>
+        <iffilmnotfound>
+            <p>Nessun Film trovato!</p>
+        </iffilmnotfound>
     </div>
 
     <footer>
