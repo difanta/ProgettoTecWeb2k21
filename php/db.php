@@ -38,6 +38,26 @@ class DBAccess {
 		}
 	}
 
+	public function getUser($email) {
+		$stmt = $this->connection->prepare("SELECT * FROM Utente WHERE Utente.email = ?");
+		$stmt->bind_param("s", $email);
+		$stmt->execute();
+		$queryResult = $stmt->get_result();
+		
+		if(!$queryResult || mysqli_num_rows($queryResult) == 0) 
+		{
+			return null;
+		}
+		else 
+		{
+			$result = array();
+			while($row = mysqli_fetch_assoc($queryResult)) {
+				array_push($result, $row);
+			}
+			return $result;
+		}
+	}
+
 	public function insert($stringa) {
 		$query = mysqli_query($this->connection, $stringa);
 
