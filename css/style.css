@@ -29,7 +29,8 @@ body {
 /* General Input Styles */
 
 button, input, textarea, select {
-    font-size: 0.8em; 
+    font-size: 0.8em;
+    border-radius: 4px;
 }
 select {
     /* Select più carino */
@@ -41,7 +42,7 @@ select {
 /* Form Style */
 form {
     /* Non lo so, mi sembra carino ma non sono sicuro */
-    padding: 1em; 
+    padding: 1em;
 }
 form input, form textarea {
     /* Per separare dal testo sovrastante */
@@ -826,11 +827,13 @@ li.filmPopolare a{
     width: 60%;
     padding: 0 1% 1% 1%;
     border: solid black 1px;
+    border-radius: 4px;
 }
 
-#content_paginaUtente form fieldset:first-child{
+#content_paginaUtente form fieldset{
     padding-bottom: 0;
-    margin-bottom: 1em;  
+    margin-bottom: 1em;
+    border-radius: 4px;
 }
 
 #biglietti{
@@ -838,6 +841,7 @@ li.filmPopolare a{
     border: solid black 1px;
     margin: auto;
     margin-bottom: 2em;
+    border-radius: 4px;
 }
 
 #biglietti h1{
@@ -858,6 +862,7 @@ li.filmPopolare a{
 .ticket{
     background-color: var(--main-color-light);
     border: solid black 1px;
+    border-radius: 4px;
     padding-left: 1em;
     padding-right: 1em;
     margin: 1em 0 1em 0;
