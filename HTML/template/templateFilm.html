@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
-    <title>404</title>
+    <meta charset="utf-8">
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width"/>
-
-    <meta name="title" content="404"/>
-    <meta name="description" content="Pagina dell'errore 404."/>
-    <meta name="keywords" content="errore, 404"/>
-    <meta name="language" content="italian it"/>
-    <meta name="author" content="TODO"/><!--TODO nome autore-->
+    <title>titolofilm</title>
+    <meta name="keywords" content="titolofilm, regista, annodipubblicazione"/>
+    <meta name="description" content="informazioni film titolofilm di regista">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="TODO">
 
 
-    <link rel="stylesheet" href="../css/style.css" media="screen">
     <link rel="stylesheet" href="../css/small.css" media="screen and (max-width: 600px)">
     <link rel="stylesheet" href="../css/medium.css" media="screen and (min-width: 601px) and (max-width: 1024px)">
+    <link rel="stylesheet" href="../css/style.css" media="screen and (min-width: 1025px)">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet">
-    <script src="../js/scripts.js"></script>
+    <script src="../../js/scripts.js"></script>
 </head>
-<body>
 
+<body>
 <header>
-    <a class="goToContent" href="#content_404">Vai al contenuto</a>
+    <a class="goToContent" href="#content_templateFilm">Vai al contenuto</a>
 
     <h1>FestivalDiCinema</h1>
 
@@ -36,7 +34,7 @@
             <button title="login" id="loginBtn" onclick="openLogin()">Login</button>
             <button title="sign up" id="signupBtn" onclick="openSignup()">Registrati</button>
             <button id="logout">Logout</button>
-            <a href="paginaUtente.php">Il mio Profilo</a>
+            <a href="paginaUtente.html">Il mio Profilo</a>
         </div>
 
         <div id="loginSection" class="slidableIn">
@@ -91,18 +89,42 @@
     </nav>
 
     <nav id="breadcrumb">
-        <p>Ti trovi in: <a href="Home.html" lang="en">Home</a> &gt; &gt; Come Trovarci </p>
+        <p>Ti trovi in: <a href="Home.html" lang="en">Home</a> &gt; &gt; <a href="listaFilm.html">Lista Film</a> &gt;
+            &gt; titolofilm</p>
     </nav>
 
 </header>
 
-<div id="content_404" class="content">
-    <div id="404"> <!--TODO fix -->
-        <h1>404</h1>
-        <h2>Pagina non trovata.</h2>
-        <p>La pagina che stai cercando non è presente o non è disponibile, alternativamente raggiungi la <a
-                href="Home.html" lang="en">HOME.</a></p>
-    </div>
+<div id="content_templateFilm" class="content">
+    <iffilmfound>
+        <h1>titolofilm</h1>
+        <h2>regista</h2>
+        <dl>
+            <dt>Regia</dt>
+            <dd>regista</dd>
+            <dt>Cast</dt>
+            <dd>
+                <ul>
+                    <li>Attore1</li>
+                    <li>Attore2</li>
+                    <li>Attore3</li>
+                    <li>...</li>
+                </ul>
+            </dd>
+            <dt>Produttore</dt>
+            <dd>nomeproduttore</dd>
+            <dt>Anno di pubblicazione</dt>
+            <dd>annodipubblicazione</dd>
+            <dt>Durata</dt>
+            <dd>duratafilm min</dd>
+        </dl>
+        <p title="descrizione">descrizionefilm</p>
+        <img src="percorsoimmagine" alt="descrizioneimmagine">
+        <a href="Proiezioni.html?nomeFilm=titolofilm">Proiezioni</a>
+    </iffilmfound>
+    <iffilmnotfound>
+        <p>Nessun Film trovato!</p>
+    </iffilmnotfound>
 </div>
 
 <footer>
@@ -113,10 +135,11 @@
             <img id="imgSponsor1" src="../images/sponsor/la_dolce_vita.png" alt="La dolce vita"/>
         </li>
         <li>
-            <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
+            <img id="imgSponsor2" src="../../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
         </li>
         <li>
-            <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
+            <img id="imgSponsor3" src="../../images/sponsor/the_grand_budapest_hotel.png"
+                 alt="The Grand Budapest Hotel"/>
         </li>
     </ul>
     <ul id="studenti">
@@ -128,4 +151,5 @@
     <p>&copy; Copyright 2021</p>
 </footer>
 </body>
+
 </html>

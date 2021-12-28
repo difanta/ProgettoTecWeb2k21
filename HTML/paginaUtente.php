@@ -2,7 +2,7 @@
 
 session_start();
 
-include "login.php";
+include "../php/login.php";
 
 use DB\DBAccess;
 
@@ -25,29 +25,7 @@ function printInfoUtente(&$htmlPage)
                 $email = $results[0]["email"];
                 $password = $results[0]["password"];
 
-                $form = "<form id='infoUtenteForm' action=\"../php/paginaUtente.php\" method=\"post\" onsubmit=\"return validateForm(getInfoutenteFormDetails());\">
-                            <fieldset>
-                                <legend>Informazioni Personali</legend>
-                                <label for=\"nome\">Nome</label>
-                                <input id=\"nome\" name=\"nome\" type=\"text\" value='$nome' required disabled>
-                                <label for=\"cognome\">Cognome</label>
-                                <input id=\"cognome\" name=\"cognome\" type=\"text\" value='$cognome' required disabled>
-                                <label for=\"dataNascita\">Data di nascita</label>
-                                <input id=\"dataNascita\" name=\"dataNascita\" type=\"date\" value='$dataNascita' required disabled>
-                            </fieldset>
-                
-                            <fieldset>
-                                <legend>Informazioni Account</legend>
-                                <label for=\"email\">Email</label>
-                                <input id=\"email\" name=\"email\" type=\"email\" value='$email' required disabled>
-                                <label for=\"password\">Password</label>
-                                <input id=\"password\" name=\"password\" type=\"password\" value='$password' required disabled>
-                                <input class=\"button\" id=\"buttonInvia\" type=\"submit\" name=\"method\" value=\"Invia\" style=\"display: none;\">
-                                <input class=\"button\" id=\"buttonAnnulla\" type=\"button\" onclick=\"setEditOff()\" value='Annulla' style=\"display: none;\">
-                                <input class=\"button\" id=\"buttonReset\" type=\"reset\" value=\"Reset\" style=\"display: none;\">
-                                <input class=\"button\" id=\"buttonModifica\" type=\"button\" onclick=\"setEditOn()\" value='Modifica'>
-                            </fieldset>
-                            <input class=\"button\" id=\"buttonDelete\" type=\"submit\" name=\"method\" value=\"Elimina Account\">
+                $form = ">
                         </form>";
 
             } else {
@@ -226,7 +204,7 @@ if (isset($_POST["method"])) {
     header("HTTP/1.1 303 See Other");
     header("Location: " . $_SERVER["REQUEST_URI"]);
 } else /* GET */ {
-    $htmlPage = file_get_contents("../HTML/paginaUtente.html");
+    $htmlPage = file_get_contents("template/paginaUtente.html");
 
     // show login/register/logout results
     Login::printLogin($htmlPage);

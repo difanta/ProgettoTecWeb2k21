@@ -2,7 +2,7 @@
 
 session_start();
 
-include "login.php";
+include "../php/login.php";
 use DB\DBAccess;
 
 function printFilms(&$htmlPage) {
@@ -49,7 +49,7 @@ function printFilms(&$htmlPage) {
         $result = $connection->getFilms($in_gara, $nomeFilm);
 
         if($result) {
-            $template = file_get_contents("templateFilmPreview.html");
+            $template = file_get_contents("template/templateFilmPreview.html");
 
             // create and substitute films based on template
             foreach($result as $indice => $film) {
@@ -81,7 +81,7 @@ if(isset($_POST["method"])) {
     header("HTTP/1.1 303 See Other");
     header("Location: " . $_SERVER["REQUEST_URI"]);
 } else /* GET */ {
-    $htmlPage = file_get_contents("../HTML/listaFilm.html");
+    $htmlPage = file_get_contents("template/listaFilm.html");
 
     // show login/register/logout results
     Login::printLogin($htmlPage);

@@ -2,7 +2,8 @@
 
 session_start();
 
-include "login.php";
+include "../php/login.php";
+
 use DB\DBAccess;
 
 function printFilmPopolari(&$htmlPage) {
@@ -15,7 +16,7 @@ function printFilmPopolari(&$htmlPage) {
         $result = $connection->getFilmPopolari();
         
         if($result) {
-            $template = file_get_contents("templateFilmPopolare.html");
+            $template = file_get_contents("template/templateFilmPopolare.html");
 
             foreach($result as $indice => $film) {
                 if($indice > 2) break; // only the first 3 films
@@ -44,7 +45,7 @@ if(isset($_POST["method"])) {
     header("HTTP/1.1 303 See Other");
     header("Location: " . $_SERVER["REQUEST_URI"]);
 } else /* GET */ {
-    $htmlPage = file_get_contents("../HTML/home.html");
+    $htmlPage = file_get_contents("template/home.html");
 
     // show login/register/logout results
     Login::printLogin($htmlPage);

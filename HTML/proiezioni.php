@@ -2,7 +2,7 @@
 
 session_start();
 
-include "login.php";
+include "../php/login.php";
 use DB\DBAccess;
 
 function printProiezioni(&$htmlPage) {
@@ -57,7 +57,7 @@ function printProiezioni(&$htmlPage) {
         $result = $connection->getProiezioni($in_gara, $nomeFilm, $dataProiezione);
 
         if($result) {
-            $template = file_get_contents("templateProiezione.html");
+            $template = file_get_contents("template/templateProiezione.html");
 
             // create and substitute proiezione based on template
             foreach($result as $indice => $film) {
@@ -98,7 +98,7 @@ if(isset($_POST["method"])) {
     header("HTTP/1.1 303 See Other");
     header("Location: " . $_SERVER["REQUEST_URI"]);
 } else /* GET */ {
-    $htmlPage = file_get_contents("../HTML/proiezioni.html");
+    $htmlPage = file_get_contents("template/proiezioni.html");
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
