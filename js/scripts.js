@@ -27,6 +27,19 @@ function signupBack() {
     document.getElementById('signupSection').classList.toggle('slideIn');
 }
 
+function toggleMenuDropdown(){
+    if(document.getElementsByClassName('secondaryMenuItem')[0].style.display == "none"){
+        document.getElementsByClassName('secondaryMenuItem')[0].style.display = "block";
+        document.getElementsByClassName('secondaryMenuItem')[1].style.display = "block";
+        document.getElementsByClassName('secondaryMenuItem')[2].style.display = "block";
+    }
+    else{
+        document.getElementsByClassName('secondaryMenuItem')[0].style.display = "none";
+        document.getElementsByClassName('secondaryMenuItem')[1].style.display = "none";
+        document.getElementsByClassName('secondaryMenuItem')[2].style.display = "none";
+    }
+}
+
 /* Lista Film ---------------------------------------- */
 
 function listaFilmLike(checked, id) {

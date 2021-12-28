@@ -54,51 +54,7 @@ function printProiezioni(&$htmlPage) {
     $at_least_one = false;
 
     if($connectionOk) {
-        $filmFilters = array();
-
-        array_push($filmFilters, "Film.approvato = '1'");
-        
-        // add in gara filters
-        switch ($in_gara) {
-            case 'tutti':
-                break;
-            case 'gara':
-                array_push($filmFilters, "Film.in_gara = '1'");
-            break;
-            case 'noGara':
-                array_push($filmFilters, "Film.in_gara = '0'");
-            break;
-        }
-
-        // add nome film filters
-        if($nomeFilm != "") {
-            array_push($filmFilters, "Film.nome like '%" . $nomeFilm . "%'");
-        }
-
-        // add filters to query
-        $query = "SELECT * from Film";
-        foreach($filmFilters as $index => $filter) {
-            if($index == 0) {
-                $query = "$query where $filter";
-            } else {
-                $query = "$query and $filter";
-            }
-        }
-
-        // finish query
-        if($dataProiezione != "") {
-            $query = "SELECT *, Proiezione.id as pid, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora 
-                        from Proiezione join ($query) as Film on Proiezione.film = Film.id 
-                        where CAST(orario AS DATE) = '$dataProiezione' 
-                        order by orario asc";
-        } else {
-            $query = "SELECT *, Proiezione.id as pid, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora 
-                        from Proiezione join ($query) as Film on Proiezione.film = Film.id 
-                        order by orario asc";
-        }
-
-        unset($filmFilters);
-        $result = $connection->get($query);
+        $result = $connection->getProiezioni($in_gara, $nomeFilm, $dataProiezione);
 
         if($result) {
             $template = file_get_contents("template/templateProiezione.html");
@@ -118,7 +74,7 @@ function printProiezioni(&$htmlPage) {
         // set datalist
         $template = "<option value=\"nomefilm\">";
         $stringa = "";
-        $films = $connection->get("SELECT nome from Film");
+        $films = $connection->getNomiFilm();
         foreach($films as $film) {
             $stringa .= str_replace("nomefilm", $film["nome"], $template);
         }
@@ -140,7 +96,7 @@ if(isset($_POST["method"])) {
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     header("HTTP/1.1 303 See Other");
-    header("Location: ./proiezioni.php");
+    header("Location: " . $_SERVER["REQUEST_URI"]);
 } else /* GET */ {
     $htmlPage = file_get_contents("template/proiezioni.html");
 

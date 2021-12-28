@@ -131,6 +131,9 @@ header h1 {
 }
 
 /* Nav Menu */
+header #menu #menuButton{
+    display: none;
+}
 
 header #menu ul {
     display: flex;

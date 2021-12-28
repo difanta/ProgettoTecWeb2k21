@@ -1,5 +1,70 @@
+body {
+    --main-color: #0f709a;
+    --main-color-light: #34A0A4;
+    --main-color-light-halfopacity: #168aad77;
+    --main-color-lighter: #74d9dd;
+    --main-color-lightest: #b2f8fa;
+    --main-color-dark: #1E6091;
+    --main-color-darker:#143c5a;
+    --main-color-background: #e7fbff;
+    --main-color-background-light: #ffffff;
+
+    --login-color: #f8f8f8;
+    --login-color-hover: #aaaaaa;
+    --login-color-09opacity: #f8f8f8e7;
+    --login-color-hover-09opacity: #aaaaaae7;
+
+    --footer-color: #15516b;
+}
+
 form input, form textarea{
     width: 90%;
+}
+
+.content h1, .content h2{
+    text-align: center;  
+}
+
+/* ----------------------- MENU' ------------------------ */
+
+header #menu{
+    border-top: 1px solid var(--main-color-dark);
+}
+
+header #menu #menuButton{
+    display: block;
+    float: left;
+    background-color: var(--main-color-light);
+    border-radius: 3px;
+    margin-top: 0.45em;
+    margin-left: 0.45em;
+}
+
+header #menu ul {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 82%;
+    margin: 0;
+    margin-left: 3em;
+}
+
+header #menu li{
+    width: 6.6em;
+    margin: 0;
+}
+
+header #menu li a{
+    border: none;
+}
+
+header #menu li.secondaryMenuItem{
+    display: none;
+}
+
+/* CONTENT */
+/*----------------------- img social ------------------- */ 
+#contatti h3:last-of-type{
+    text-align: center;
 }
 
 #contatti ul{
@@ -9,13 +74,14 @@ form input, form textarea{
     list-style-type: none;
     padding: 0;
     margin: 0;
+    margin-top: 0.5em;
     margin-bottom: 1em;
 }
 #contatti li{
     display: block;
-    height: 100px;
+    height: 70px;
     width: 70px;
-	background-position: center bottom;
+	background-position: center; 
 	background-size: 70px;
 	background-repeat: no-repeat;
     margin: 0;
@@ -23,7 +89,7 @@ form input, form textarea{
 
 #contatti li p{
     text-indent: -9999em;
-    margin: 0; 
+    margin: 0;
 }
 
 #contatti li a{
@@ -31,10 +97,13 @@ form input, form textarea{
     height: 70px;
     width: 70px;
     text-indent: -9999em;
-    padding-top: 5px;
-    margin: 0;
+    padding: 0;
+    position: relative;
+    right: 21px;
+    bottom: 23px;
 }
 
+/* -------------------------------------- form ------------------------------------- */
 #content_paginaUtente div:first-of-type, #content_contest div:first-of-type{
     width: 100%;
 }

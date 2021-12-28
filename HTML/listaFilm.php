@@ -46,38 +46,7 @@ function printFilms(&$htmlPage) {
     $at_least_one = false;
 
     if($connectionOk) {
-        $filters = array();
-
-        array_push($filters, "Film.approvato = '1'");
-        
-        // add in gara filters
-        switch ($in_gara) {
-            case 'tutti':
-                break;
-            case 'gara':
-                array_push($filters, "Film.in_gara = '1'");
-            break;
-            case 'noGara':
-                array_push($filters, "Film.in_gara = '0'");
-            break;
-        }
-
-        // add nome film filters
-        if($nomeFilm != "") {
-            array_push($filters, "Film.nome like '%" . $nomeFilm . "%'");
-        }
-
-        // add filters to query
-        $query = "SELECT * from Film";
-        foreach($filters as $index => $filter) {
-            if($index == 0) {
-                $query = "$query where $filter";
-            } else {
-                $query = "$query and $filter";
-            }
-        }
-        unset($filters);
-        $result = $connection->get($query);
+        $result = $connection->getFilm($in_gara, $nomeFilm);
 
         if($result) {
             $template = file_get_contents("template/templateFilmPreview.html");
@@ -110,7 +79,7 @@ if(isset($_POST["method"])) {
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     header("HTTP/1.1 303 See Other");
-    header("Location: ./listaFilm.php");
+    header("Location: " . $_SERVER["REQUEST_URI"]);
 } else /* GET */ {
     $htmlPage = file_get_contents("template/listaFilm.html");
 
