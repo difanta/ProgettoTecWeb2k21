@@ -46,7 +46,7 @@ function printFilms(&$htmlPage) {
     $at_least_one = false;
 
     if($connectionOk) {
-        $result = $connection->getFilm($in_gara, $nomeFilm);
+        $result = $connection->getFilms($in_gara, $nomeFilm);
 
         if($result) {
             $template = file_get_contents("templateFilmPreview.html");
