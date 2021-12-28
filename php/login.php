@@ -116,8 +116,7 @@ class Login {
 
                 if($connectionOk) 
                 {
-                    if($connection->insert("INSERT INTO Utente(nome, cognome, data_di_nascita, email, password, admin)
-                                            VALUES ('$nome', '$cognome', '$data_di_nascita', '$email', '$password', '0')"))
+                    if(insertUser($nome, $cognome, $data_di_nascita, $email, $password))
                     { $_SESSION["success"] = true; } 
                     $connection->closeConnection();
                 }

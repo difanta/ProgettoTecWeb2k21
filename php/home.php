@@ -12,13 +12,7 @@ function printFilmPopolari(&$htmlPage) {
     $at_least_one = false;
 
     if($connectionOk) {
-        $result = $connection->get("SELECT * from Film 
-                                                  join 
-                                                  (SELECT Film, count(*) as Likes FROM _Like group by Film) as _likes 
-                                                  on Film.id = _likes.Film 
-                                                  where Film.in_gara = '1' 
-                                                  order by Likes desc"
-                                                  );
+        $result = $connection->getFilmPopolari();
         
         if($result) {
             $template = file_get_contents("templateFilmPopolare.html");
@@ -48,7 +42,7 @@ if(isset($_POST["method"])) {
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     header("HTTP/1.1 303 See Other");
-    header("Location: ./home.php");
+    header("Location: " . $_SERVER["REQUEST_URI"]);
 } else /* GET */ {
     $htmlPage = file_get_contents("../HTML/home.html");
 
