@@ -27,16 +27,18 @@ function signupBack() {
     document.getElementById('signupSection').classList.toggle('slideIn');
 }
 
-function toggleMenuDropdown(){
+function expandMenu(){
     if(document.getElementsByClassName('secondaryMenuItem')[0].style.display == "none"){
         document.getElementsByClassName('secondaryMenuItem')[0].style.display = "block";
         document.getElementsByClassName('secondaryMenuItem')[1].style.display = "block";
         document.getElementsByClassName('secondaryMenuItem')[2].style.display = "block";
+        document.getElementById("expandMenuArrow").textContent = "expand_less";
     }
     else{
         document.getElementsByClassName('secondaryMenuItem')[0].style.display = "none";
         document.getElementsByClassName('secondaryMenuItem')[1].style.display = "none";
         document.getElementsByClassName('secondaryMenuItem')[2].style.display = "none";
+        document.getElementById("expandMenuArrow").textContent = "expand_more";
     }
 }
 

@@ -16,7 +16,7 @@ function printInfoUtente(&$htmlPage)
         $connectionOk = $connection->openDB();
 
         if ($connectionOk) {
-            $results = $connection->get("SELECT * FROM  Utente where id = " . $_SESSION["login"]);
+            $results = $connection->getUserById();
             $connection->closeConnection();
             if ($results != null) {
                 $nome = $results[0]["nome"];
@@ -25,9 +25,30 @@ function printInfoUtente(&$htmlPage)
                 $email = $results[0]["email"];
                 $password = $results[0]["password"];
 
-                $form = ">
-                        </form>";
-
+                $form = "<form id='infoUtenteForm' method=\"post\" onsubmit=\"return validateForm(getInfoutenteFormDetails());\">
+                            <fieldset>
+                                <legend>Informazioni Personali</legend>
+                                <label for=\"nome\">Nome</label>
+                                <input id=\"nome\" name=\"nome\" type=\"text\" value='$nome' required disabled>
+                                <label for=\"cognome\">Cognome</label>
+                                <input id=\"cognome\" name=\"cognome\" type=\"text\" value='$cognome' required disabled>
+                                <label for=\"dataNascita\">Data di nascita</label>
+                                <input id=\"dataNascita\" name=\"dataNascita\" type=\"date\" value='$dataNascita' required disabled>
+                            </fieldset>
+                
+                            <fieldset>
+                                <legend>Informazioni Account</legend>
+                                <label for=\"email\">Email</label>
+                                <input id=\"email\" name=\"email\" type=\"email\" value='$email' required disabled>
+                                <label for=\"password\">Password</label>
+                                <input id=\"password\" name=\"password\" type=\"password\" value='$password' required disabled>
+                                <input class=\"button\" id=\"buttonInvia\" type=\"submit\" name=\"method\" value=\"Invia\" style=\"display: none;\">
+                                <input class=\"button\" id=\"buttonAnnulla\" type=\"button\" onclick=\"setEditOff()\" value='Annulla' style=\"display: none;\">
+                                <input class=\"button\" id=\"buttonReset\" type=\"reset\" value=\"Reset\" style=\"display: none;\">
+                                <input class=\"button\" id=\"buttonModifica\" type=\"button\" onclick=\"setEditOn()\" value='Modifica'>
+                            </fieldset>
+                            <input class=\"button\" id=\"buttonDelete\" type=\"submit\" name=\"method\" value=\"Elimina Account\">
+                            </form>";
             } else {
                 $form .= "<p>Errore load Info</p>";
             }
@@ -83,10 +104,7 @@ function updateInfoUtente()
                 $connectionOk = $connection->openDB();
 
                 if ($connectionOk) {
-                    $id = $_SESSION["login"];
-                    if ($connection->insert("update Utente 
-                                            set nome ='$nome', cognome='$cognome', data_di_nascita='$dataNascita', email='$email', password='$password'
-                                            where id='$id'")) {
+                    if ($connection->updateUser($nome, $cognome, $dataNascita, $email, $password)) {
                         $messaggi .= "<p>Utente modificato con successo<p/>";
                         $_SESSION["success"] = true;
                     } else {
@@ -130,8 +148,7 @@ function deleteInfoUtente()
             $connectionOk = $connection->openDB();
 
             if ($connectionOk) {
-                $id = $_SESSION["login"];
-                if ($connection->insert("delete from Utente where id='$id'")) {
+                if ($connection->deleteUser()) {
                     session_unset();
                     session_destroy();
                     session_start();
@@ -154,17 +171,12 @@ function printBiglietti(&$htmlPage)
     $listaBiglietti = "";
 
     if (Login::is_logged()) {
-        $utente = $_SESSION["login"];
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
 
         if ($connectionOk) {
-            $biglietti = $connection->get("SELECT Film.nome, Biglietto.id, orario 
-                                            FROM Utente join Biglietto on Utente.id=Biglietto.utente
-                                            join Proiezione on Proiezione.id=Biglietto.proiezione
-                                            join Film on Film.id= Proiezione.film 
-                                            where Utente.id='$utente'");
+            $biglietti = $connection->getUserTickets();
             $connection->closeConnection();
             if ($biglietti != null) {
                 $listaBiglietti .= "<ul>";
@@ -194,7 +206,7 @@ if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
     updateInfoUtente();
-    if($_POST["method"] == "Elimina Account") {
+    if ($_POST["method"] == "Elimina Account") {
         deleteInfoUtente();
         header("Location: home.php");
         die();
