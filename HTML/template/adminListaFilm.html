@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!-- 
-    meming allowed
-    mantenere Cavalli & Segugi pls
--->
+
 <html lang="it">
 
 <head>
@@ -14,18 +11,18 @@
 	<meta name="description" content="sito ufficiale del FestivalDiCinema" />
     <meta name="author" content="TW2021" />
 
-    <link rel="stylesheet" href="../../css/style.css" media="screen">
-    <link rel="stylesheet" href="../../css/small.css" media="screen and (max-width: 600px)">
-    <link rel="stylesheet" href="../../css/medium.css" media="screen and (min-width: 601px) and (max-width: 1024px)">
+    <link rel="stylesheet" href="../css/style.css" media="screen">
+    <link rel="stylesheet" href="../css/small.css" media="screen and (max-width: 600px)">
+    <link rel="stylesheet" href="../css/medium.css" media="screen and (min-width: 601px) and (max-width: 1024px)">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
    	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script src="../../js/scripts.js"></script>
+    <script src="../js/scripts.js"></script>
 </head>
     
 <body> 
     <header>
-        <a class="goToContent" href="#content_home">Vai al contenuto</a>
+        <a class="goToContent" href="#content_adminListaFilm">Vai al contenuto</a>
 
         <h1>FestivalDiCinema</h1>
 
@@ -94,97 +91,77 @@
         <nav id="menu">
             <ul>
                 <li lang="en"><a href="home.php">Home</a></li>
-                <li class="secondaryMenuItem" lang="en"><a href="aboutUs.html">About us</a></li>
-                <li class="secondaryMenuItem"><a href="listaFilm.php">Film</a></li>
+                <li lang="en"><a href="aboutUs.html">About us</a></li>
+                <li><a href="listaFilm.php">Film</a></li>
                 <li><a href="proiezioni.php">Programma</a></li>
                 <li><a href="comeTrovarci.html">Come Trovarci</a></li>
-                <li class="secondaryMenuItem"><a href="contest.php">Il Contest</a></li>
+                <li><a href="contest.php">Il Contest</a></li>
             </ul>
-            <button title="menu" id="menuButton" onclick="expandMenu()"><span id="expandMenuArrow" class="material-icons-outlined">expand_more</span></button>
         </nav>
 
         <nav id="breadcrumb">
-            <p>Ti trovi in: <span lang="en">Home</span></p>
+            <p>Ti trovi in: <a href="home.php" lang="en">Home</a> &gt; &gt; <a href="admin.php" lang="en">Admin</a> &gt; &gt; Lista Film</p>
         </nav>
 
     </header>
         
-    <div id="content_home" class="content">
-        <p id="homeDescription">
-            Il festival di cinema indipendente di Padova, dal 12 al 18 settembre 2022
-        </p>
+    <div id="content_adminListaFilm" class="content">        
+        <h1>Admin Lista Film</h1>
 
-        <h2>I Film in concorso più popolari</h2>
-
-        <ol id="filmPopolari">
-            <!--<li  id="filmPopolare1" class="filmPopolare">
-                <p id="filmPopolare1Titolo">Film popolare 1</p>
-                <a href="listaFilm.php" id="filmPopolare1Link"></a>
-            </li>
-            <li  id="filmPopolare2" class="filmPopolare">
-                <p id="filmPopolare2Titolo">Film popolare 1</p>
-                <a href="listaFilm.php" id="filmPopolare2Link"></a>
-            </li>
-            <li  id="filmPopolare3" class="filmPopolare">
-                <p id="filmPopolare3Titolo">Film popolare 1</p>
-                <a href="listaFilm.php" id="filmPopolare3Link"></a>
-            </li>
-            <li id="filmPopolareLink">
-                <a id="linkFilmPopolari" href="listafilm.html">Vai alla lista completa dei film</a>
-            </li>-->
-            <filmPopolare/>
-        </ol>
-
-        <h2>Acquisto biglietti</h2>
-        <ol id="acquistoBiglietti">
-            <li><p class="dayNum">12</p><p class="Month">settembre</p></li>
-            <li><p class="dayNum">13</p><p class="Month">settembre</p></li>
-            <li><p class="dayNum">14</p><p class="Month">settembre</p></li>
-            <li><p class="dayNum">15</p><p class="Month">settembre</p></li>
-            <li><p class="dayNum">16</p><p class="Month">settembre</p></li>
-            <li><p class="dayNum">17</p><p class="Month">settembre</p></li>
-            <li><p class="dayNum">18</p><p class="Month">settembre</p></li>
-        </ol>
-        
-        <h2>Dicono di noi</h2>
-        <ul id="listaRecensioni">
-            <li>
-                <article>
-                    <h3>Corriere della sera</h3>
-                    <p><em>Padova sa come apprezzare il cinema</em></p>
-                </article>
-            </li>
-            <li>
-                <article>
-                    <h3>Padova Oggi</h3>
-                    <p><em>Nulla di meglio di una serata al FestivalDiCinema seguita da un buon aperitivo</em></p>
-                </article>
-            </li>
-            <li>
-                <article>
-                    <h3>Cavalli &amp; Segugi</h3>
-                    <p><em>Programmazione sempre più interessante ed innovativa, peccato per la carenza di cavalli e segugi nelle pellicole proposte.</em></p>
-                </article>
-            </li>
-        </ul>
-    </div>
-
-    <div id="tornaSu">
-        <a href="#content_home" target="_self"><img src="../../images/arrow_upward_white_24dp.svg" alt="Torna su"/></a>
+        <ifloggedadmin>
+            <h2>Aggiungi Film</h2>
+            <form id="alfAggiungi">
+                <label for="alfaTitolo">Titolo:</label>
+                <input type="text" name="titolo" id="alfaTitolo" value="agg_titolofilm"/>
+                <label for="alfaRegisti">Registi:</label>
+                <input type="text" name="registi" id="alfaRegisti"/>
+                <label for="alfaDurata">Durata(min):</label>
+                <input type="number" id="alfaDurata" name="durata" value="90">
+                <label for="alfaDescrizione">Descrizione:</label>
+                <textarea name="descrizione" id="alfaDescrizione" cols="26" rows="5"></textarea>
+                <input type="checkbox" id="alfaGara" value="Gara">
+                <label for="alfaGara" class="inline">In Gara</label><br>
+                <input type="submit" value="Aggiungi film">
+                <input type="submit" value="Reset">
+            </form>
+            
+            <h2>Modifica Film</h2>
+            <label for="alfSelect">Seleziona un film da modificare</label>
+            <select id="alfSelect">
+                <option value="alfOp01">Il Padrino</option>
+                <option value="alfOp02">Filè Addio</option>
+            </select>
+            <form id="alfModifica">
+                <label for="alfmTitolo">Titolo:</label>
+                <input type="text" name="titolo" id="alfmTitolo" value="mod_titolofilm"/>
+                <label for="alfmRegisti">Registi:</label>
+                <input type="text" name="registi" id="alfmRegisti" value="mod_regista"/>
+                <label for="alfmDurata">Durata(min):</label>
+                <input type="number" id="alfmDurata" name="durata" value="mod_duratafilm">
+                <label for="alfmDescrizione">Descrizione:</label>
+                <textarea name="descrizione" id="alfmDescrizione" cols="26" rows="5" value="mod_descrizionefilm"></textarea>
+                <input type="checkbox" id="alfmGara" name="proGara" value="Gara" mod_filmingara>
+                <label for="alfmGara" class="inline">In Gara</label><br>
+                <input type="submit" value="Modifica">
+                <input type="submit" value="Cancella film">
+            </form>
+        </ifloggedadmin>
+        <ifnotloggedadmin>
+            <p><iflogged>Non sei Admin!</iflogged><ifnotlogged>Non Loggato!</ifnotlogged> Per accedere a questa pagina serve loggarsi con un account admin.</p>
+        </ifnotloggedadmin>
     </div>
 
     <footer>
-        <a href="admin.php">Pannello admin</a>
         <p>I nostri sponsor:</p> 
         <ul title="sponsors" id="listaSponsor">
             <li>
-                <img id="imgSponsor1" src="../../images/sponsor/La_dolce_vita.png" alt="La dolce vita"/>
+                <img id="imgSponsor1" src="../images/sponsor/La_dolce_vita.png" alt="La dolce vita"/>
             </li>
             <li>
-                <img id="imgSponsor2" src="../../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
+                <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
             </li>
             <li>
-                <img id="imgSponsor3" src="../../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
+                <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
             </li>
         </ul>
         <ul id="studenti">
