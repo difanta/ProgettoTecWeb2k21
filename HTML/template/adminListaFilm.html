@@ -147,7 +147,7 @@
             </form>
         </ifloggedadmin>
         <ifnotloggedadmin>
-            <p>Non Loggato! Per accedere a questa pagina serve loggarsi con un account admin.</p>
+            <p><iflogged>Non sei Admin!</iflogged><ifnotlogged>Non Loggato!</ifnotlogged> Per accedere a questa pagina serve loggarsi con un account admin.</p>
         </ifnotloggedadmin>
     </div>
 
