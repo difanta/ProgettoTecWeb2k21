@@ -85,7 +85,7 @@
         </nav>
 
         <nav id="breadcrumb">
-            <p>Ti trovi in: <a href="home.php" lang="en">Home</a> &gt; &gt; <a href="admin.html" lang="en">Admin</a> &gt; &gt; Lista Film</p>
+            <p>Ti trovi in: <a href="home.php" lang="en">Home</a> &gt; &gt; <a href="admin.php" lang="en">Admin</a> &gt; &gt; Lista Film</p>
         </nav>
 
     </header>
@@ -96,7 +96,7 @@
         <h2>Aggiungi Film</h2>
         <form id="alfAggiungi">
             <label for="alfaTitolo">Titolo:</label>
-            <input type="text" name="titolo" id="alfaTitolo"/>
+            <input type="text" name="titolo" id="alfaTitolo" value="agg_titolofilm"/>
             <label for="alfaRegisti">Registi:</label>
             <input type="text" name="registi" id="alfaRegisti"/>
             <label for="alfaDurata">Durata(min):</label>
@@ -117,14 +117,14 @@
         </select>
         <form id="alfModifica">
             <label for="alfmTitolo">Titolo:</label>
-            <input type="text" name="titolo" id="alfmTitolo"/>
+            <input type="text" name="titolo" id="alfmTitolo" value="mod_titolofilm"/>
             <label for="alfmRegisti">Registi:</label>
-            <input type="text" name="registi" id="alfmRegisti"/>
+            <input type="text" name="registi" id="alfmRegisti" value="mod_regista"/>
             <label for="alfmDurata">Durata(min):</label>
-            <input type="number" id="alfmDurata" name="durata" value="90">
+            <input type="number" id="alfmDurata" name="durata" value="mod_duratafilm">
             <label for="alfmDescrizione">Descrizione:</label>
-            <textarea name="descrizione" id="alfmDescrizione" cols="26" rows="5"></textarea>
-            <input type="checkbox" id="alfmGara" name="proGara" value="Gara">
+            <textarea name="descrizione" id="alfmDescrizione" cols="26" rows="5" value="mod_descrizionefilm"></textarea>
+            <input type="checkbox" id="alfmGara" name="proGara" value="Gara" mod_filmingara>
             <label for="alfmGara" class="inline">In Gara</label><br>
             <input type="submit" value="Modifica">
             <input type="submit" value="Cancella film">

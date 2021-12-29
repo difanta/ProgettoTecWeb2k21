@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-
+<!-- 
+    meming allowed
+    mantenere Cavalli & Segugi pls
+-->
 <html lang="it">
 
 <head>
@@ -22,7 +25,7 @@
     
 <body> 
     <header>
-        <a class="goToContent" href="#content_adminProiezioni">Vai al contenuto</a>
+        <a class="goToContent" href="#content_admin_home">Vai al contenuto</a>
 
         <h1>FestivalDiCinema</h1>
 
@@ -85,49 +88,27 @@
         </nav>
 
         <nav id="breadcrumb">
-            <p>Ti trovi in: <a href="home.php" lang="en">Home</a> &gt; &gt; <a href="admin.html" lang="en">Admin</a> &gt; &gt; Proiezioni</p>
+            <p>Ti trovi in: <a href="home.php" lang="en">Home</a> &gt; &gt; Admin</p>
         </nav>
 
     </header>
         
-    <div id="content_adminProiezioni" class="content">
-        <h1>Proiezioni</h1>
-
-        <h2>Aggiungi Proiezione</h2>
-        <form id="aprAggiungi" method="post">
-            <label for="apraSelect">Film</label>
-            <select id="apraSelect">
-                <option value="apraOp01">Il Padrino</option>
-                <option value="apraOp02">Filè Addio</option>
-            </select>
-            <label for="apraData">Data e Ora</label>
-            <input type="datetime-local" id="apraData">
-            <input type="submit" value="Aggiungi Proiezione">
-            <input type="submit" value="Reset">
-        </form>
-        
-        <h2>Modifica Proiezione</h2>
-        <label for="alfSelect">Seleziona un film</label>
-        <select id="alfSelect">
-            <option value="alfOp01">Il Padrino</option>
-            <option value="alfOp02">Filè Addio</option>
-        </select><br>
-        <label for="alfSelectP">Seleziona una proiezione</label>
-        <select id="alfSelectP">
-            <option value="alfOp01">21 set - 20:30</option>
-            <option value="alfOp02">22 set - 21:00</option>
-        </select>
-        <form id="aprModifica" method="post">
-            <label for="aprmSelect">Film</label>
-            <select id="aprmSelect">
-                <option value="aprmOp01">Il Padrino</option>
-                <option value="aprmOp02">Filè Addio</option>
-            </select>
-            <label for="aprmData">Data e Ora</label>
-            <input type="datetime-local" id="aprmData">
-            <input type="submit" value="Conferma modifiche">
-            <input type="submit" value="Elimina proiezione">
-        </form>
+    <div id="content_admin_home" class="content_admin">
+        <div id="adminDashboard">
+            <a href="adminCandidature.html">Candidature</a>
+            <a href="adminProiezioni.php">Proiezioni</a>
+            <a href="adminListaFilm.php">Lista Film</a>
+        </div>
+        <dl id="adminInfo">
+            <dt>Utenti registrati: </dt>
+            <dd>13</dd>
+            <dt>Totale biglietti venduti: </dt>
+            <dd>126</dd>
+            <dt>Media biglietti venduti per proiezione:</dt>
+            <dd>7</dd>
+            <dt>Totale Like dati ai film: </dt>
+            <dd>256</dd>
+        </dl>
     </div>
 
     <footer>
