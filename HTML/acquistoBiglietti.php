@@ -18,13 +18,11 @@ function printOrdine(&$htmlPage)
         $data = "";
         $ora = "";
 
-        // get data from db
-
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
 
         if ($connectionOk) {
-            $results = $connection->get("SELECT nome, regista, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora FROM Proiezione join Film on film WHERE Proiezione.id='$id' and Proiezione.film = Film.id");
+            $results = $connection->getProiezioneRecap($id);
             $nome = $results[0]["nome"];
             $regista = $results[0]["regista"];
             $data = $results[0]["data"];
@@ -59,16 +57,14 @@ function insertOrdine(&$htmlPage)
     $messaggi = "";
 
     if (Login::is_logged()) {
-        if (isset($_POST["submit"])) {
+        if ($_POST["method"] == "Acquista") {
             $proiezione = $_GET["id"];
-            $utente = $_SESSION["login"];
 
             $connection = new DBAccess();
             $connectionOk = $connection->openDB();
 
             if ($connectionOk) {
-                if ($connection->insert("insert into Biglietto(id, utente, proiezione) 
-                                          values (DEFAULT,'$utente', '$proiezione');")) {
+                if ($connection->insertTicket($proiezione)) {
                     $messaggi = "<p>Biglietto acquistato con successo<p/>";
                 } else {
                     $messaggi = "<p>Errore nell aggiunta<p/>";

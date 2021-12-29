@@ -115,7 +115,7 @@
 <div id="content_acquistoBiglietti" class="content">
     <h1>Acquisto biglietti</h1>
 
-    <iflogged>
+    <ifnotlogged>
         <div id="login-container">
             <p>Per poter acquistare un biglietto devi prima effettuare il login</p>
 
@@ -147,7 +147,7 @@
                 <button>registrati</button>
             </form>
         </div>
-    </iflogged>
+    </ifnotlogged>
 
     <h2>Riepilogo ordine</h2>
 
@@ -179,7 +179,7 @@
         <input type="radio" id="satispay" name="metodo_pagamento" value="satispay" onchange="paymentSelectionChanged()">
         <label for="satispay" id="label-satispay">Satispay</label>
 
-        <input class="button" type="submit" value="Vai al pagamento">
+        <input class="button" type="submit" name="method" value="Acquista">
     </form>
 
 </div>
