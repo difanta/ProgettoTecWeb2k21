@@ -137,6 +137,15 @@ class DBAccess
         return $this->formatGetResult($stmt->get_result());
     }
 
+    public function getProiezione($proiezione) {
+        $stmt = $this->connection->prepare("SELECT nome, orario 
+                                            FROM Proiezione join Film on Proiezione.film = Film.id 
+                                            WHERE Proiezione.id = ?");
+        $stmt->bind_param("s", $proiezione);
+        $stmt->execute();
+        return $this->formatGetResult($stmt->get_result());
+    }
+
     public function getNomiFilm()
     {
         return $this->formatGetResult($this->connection->query("SELECT nome from Film"));

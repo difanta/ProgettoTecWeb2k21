@@ -186,6 +186,50 @@ function validateForm() {
         if (!validazioneCampo(input)) {
             return false;
         }
-        return true;
     }
+    return true;
+}
+
+/* Admin Proiezioni */
+
+function mod_FilmSelected(elem) {
+    if(!elem.options[elem.selectedIndex]) return;
+
+    let request = new XMLHttpRequest();
+    request.onload = (e) => {
+        if (request.readyState === request.DONE) {
+            let select = document.getElementById("apSelectP");
+            if (request.status === 200) {
+                select.innerHTML = request.responseText;
+            } else {
+                select.innerHTML = "";
+            }
+            mod_ProiezioneSelected(select);
+        }
+    };
+    request.onerror = (e) => {
+        document.getElementById("apSelectP").innerHTML = "";
+    }
+    request.open("POST", window.location.href);
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.send(encodeURIComponent(elem.getAttribute("name")) + "=" + encodeURIComponent(elem.options[elem.selectedIndex].getAttribute("value")));
+}
+
+function mod_ProiezioneSelected(elem) {
+    if(!elem.options[elem.selectedIndex]) return;
+
+    let request = new XMLHttpRequest();
+    request.onload = (e) => {
+        if (request.readyState === request.DONE) {
+            if (request.status === 200) {
+                console.log(request.responseText);
+            } else {    
+            }
+        }
+    };
+    request.onerror = (e) => {
+    }
+    request.open("POST", window.location.href);
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.send(encodeURIComponent(elem.getAttribute("name")) + "=" + encodeURIComponent(elem.options[elem.selectedIndex].getAttribute("value")));
 }
