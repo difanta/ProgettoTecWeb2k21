@@ -514,6 +514,12 @@ li.filmPopolare a{
     /* padding-left:8px; */
 }
 
+/* hide a tag */
+#acquistoBiglietti a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: black;
+}
+
 /* Lista recensioni --------------------------------------------------------------------------------------------------*/
 
 #listaRecensioni {
