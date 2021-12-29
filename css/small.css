@@ -33,23 +33,24 @@ header #menu{
 
 header #menu #menuButton{
     display: block;
-    float: left;
-    background-color: var(--main-color-light);
-    border-radius: 3px;
-    margin-top: 0.45em;
-    margin-left: 0.45em;
+    background-color: var(--main-color-dark);
+    border-radius: 0;
+    border: none;
+    margin: auto;
+    height: 1.5em;
+    width: 100%;
+    padding: 0;
 }
 
 header #menu ul {
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 82%;
+    width: 100%;
     margin: 0;
-    margin-left: 3em;
 }
 
 header #menu li{
-    width: 6.6em;
+    width: 7em;
     margin: 0;
 }
 
@@ -62,6 +63,18 @@ header #menu li.secondaryMenuItem{
 }
 
 /* CONTENT */
+/* Lista recensioni*/
+
+#listaRecensioni li{
+    width: 20em;
+    max-width: 70%;
+}
+
+#listaRecensioni p{
+    width: 100%;
+    height: fit-content;
+}
+
 /*----------------------- img social ------------------- */ 
 #contatti h3:last-of-type{
     text-align: center;
@@ -106,4 +119,26 @@ header #menu li.secondaryMenuItem{
 /* -------------------------------------- form ------------------------------------- */
 #content_paginaUtente div:first-of-type, #content_contest div:first-of-type{
     width: 100%;
+}
+
+/**/
+footer #listaSponsor{
+    flex-wrap: nowrap;
+}
+
+footer #listaSponsor li{
+    padding: 0.5em;
+}
+
+footer #listaSponsor li img{
+    width: 100%;
+    height: auto;
+}
+
+footer #listaSponsor li #imgSponsor1{
+    min-width: 60px;
+}
+
+footer #listaSponsor li #imgSponsor2, footer #listaSponsor li #imgSponsor3{
+    min-width: 120px;
 }
