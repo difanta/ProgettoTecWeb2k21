@@ -19,36 +19,15 @@ function printInfoUtente(&$htmlPage)
             $results = $connection->getUserById();
             $connection->closeConnection();
             if ($results != null) {
-                $nome = $results[0]["nome"];
-                $cognome = $results[0]["cognome"];
-                $dataNascita = $results[0]["data_di_nascita"];
-                $email = $results[0]["email"];
-                $password = $results[0]["password"];
 
-                $form = "<form id='infoUtenteForm' method=\"post\" onsubmit=\"return validateForm(getInfoutenteFormDetails());\">
-                            <fieldset>
-                                <legend>Informazioni Personali</legend>
-                                <label for=\"nome\">Nome</label>
-                                <input id=\"nome\" name=\"nome\" type=\"text\" value='$nome' required disabled>
-                                <label for=\"cognome\">Cognome</label>
-                                <input id=\"cognome\" name=\"cognome\" type=\"text\" value='$cognome' required disabled>
-                                <label for=\"dataNascita\">Data di nascita</label>
-                                <input id=\"dataNascita\" name=\"dataNascita\" type=\"date\" value='$dataNascita' required disabled>
-                            </fieldset>
-                
-                            <fieldset>
-                                <legend>Informazioni Account</legend>
-                                <label for=\"email\">Email</label>
-                                <input id=\"email\" name=\"email\" type=\"email\" value='$email' required disabled>
-                                <label for=\"password\">Password</label>
-                                <input id=\"password\" name=\"password\" type=\"password\" value='$password' required disabled>
-                                <input class=\"button\" id=\"buttonInvia\" type=\"submit\" name=\"method\" value=\"Invia\" style=\"display: none;\">
-                                <input class=\"button\" id=\"buttonAnnulla\" type=\"button\" onclick=\"setEditOff()\" value='Annulla' style=\"display: none;\">
-                                <input class=\"button\" id=\"buttonReset\" type=\"reset\" value=\"Reset\" style=\"display: none;\">
-                                <input class=\"button\" id=\"buttonModifica\" type=\"button\" onclick=\"setEditOn()\" value='Modifica'>
-                            </fieldset>
-                            <input class=\"button\" id=\"buttonDelete\" type=\"submit\" name=\"method\" value=\"Elimina Account\">
-                            </form>";
+                $form = file_get_contents("template/formInfoUtente.html");
+
+                $form = str_replace("pNome", $results[0]["nome"], $form);
+                $form = str_replace("pCognome", $results[0]["cognome"], $form);
+                $form = str_replace("pDataDiNascita", $results[0]["data_di_nascita"], $form);
+                $form = str_replace("pEmail", $results[0]["email"], $form);
+                $form = str_replace("pPassword", $results[0]["password"], $form);
+
             } else {
                 $form .= "<p>Errore load Info</p>";
             }
@@ -75,27 +54,27 @@ function updateInfoUtente()
 
 
             if (strlen($nome) == 0) {
-                $messaggi .= "<li>Nome non present<li/>";
+                $messaggi .= "<li>Nome non present</li>";
             } elseif (preg_match('/\d/', $nome)) {
-                $messaggi .= "<li>Nome non può contenere numeri<li/>";
+                $messaggi .= "<li>Nome non può contenere numeri</li>";
             }
 
             if (strlen($cognome) == 0) {
-                $messaggi .= "<li>Cognome non presente<li/>";
+                $messaggi .= "<li>Cognome non presente</li>";
             } elseif (preg_match('/\d/', $cognome)) {
-                $messaggi .= "<li>Cognome non può contenere numeri<li/>";
+                $messaggi .= "<li>Cognome non può contenere numeri</li>";
             }
 
             if (strlen($dataNascita) == 0) { // add controlli
-                $messaggi .= "<li>Data di nascita non presente<li/>";
+                $messaggi .= "<li>Data di nascita non presente</li>";
             }
 
             if (strlen($email) == 0) {
-                $messaggi .= "<li>Email non presente<li/>";
+                $messaggi .= "<li>Email non presente</li>";
             }
 
             if (strlen($password) == 0) {
-                $messaggi .= "<li>Password non presente<li/>";
+                $messaggi .= "<li>Password non presente</li>";
             }
 
             if ($messaggi == "") {
@@ -113,16 +92,17 @@ function updateInfoUtente()
                     }
                     $connection->closeConnection();
                 } else {
-                    $messaggi .= "<li>problemi db<li/>";
+                    $messaggi .= "<li>problemi db</li>";
                     $_SESSION["success"] = false;
                 }
             } else {
-                $messaggi = "<ul>" . $messaggi . "<ul/>";
+                $messaggi = "<ul>" . $messaggi . "</ul>";
                 $_SESSION["success"] = true;
             }
         }
     } else { // not logged
-        $messaggi .= "<li>Utente non loggato<li/>";
+        $messaggi = "<ul>" . $messaggi . "</ul>";
+        $messaggi .= "<ul><li>Utente non loggato</li></ul>";
         $_SESSION["success"] = false;
     }
     $_SESSION["messaggi"] = $messaggi;
@@ -181,11 +161,11 @@ function printBiglietti(&$htmlPage)
             if ($biglietti != null) {
                 $listaBiglietti .= "<ul>";
                 foreach ($biglietti as $biglietto) {
-                    $listaBiglietti .=
-                        "<li class=\"ticket\"><p><span class=\"ticket-up\">" . $biglietto["nome"] .
-                        "</span><span class=\"ticket-up\">#" . $biglietto["id"] .
-                        "</span></p><p><span class=\"ticket-low\">" . $biglietto["orario"] .
-                        "</span></p></li>";
+                    $listaBiglietti .= file_get_contents("template/templateTicketUtente.html");
+
+                    $listaBiglietti = str_replace("pNome", $biglietto["nome"], $listaBiglietti);
+                    $listaBiglietti = str_replace("pId", $biglietto["id"], $listaBiglietti);
+                    $listaBiglietti = str_replace("pOrario", $biglietto["data"] . " " . $biglietto["ora"], $listaBiglietti);
                 }
                 unset($biglietto);
                 $listaBiglietti .= "</ul>";

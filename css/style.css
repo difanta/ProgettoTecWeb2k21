@@ -514,6 +514,12 @@ li.filmPopolare a{
     /* padding-left:8px; */
 }
 
+/* hide a tag */
+#acquistoBiglietti a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: black;
+}
+
 /* Lista recensioni --------------------------------------------------------------------------------------------------*/
 
 #listaRecensioni {
@@ -874,6 +880,7 @@ li.filmPopolare a{
     padding-left: 1em;
     padding-right: 1em;
     margin: 1em 0 1em 0;
+    color: white;
     width: 25%;
     min-width: 200px;
 }
@@ -885,10 +892,6 @@ li.filmPopolare a{
 
 .ticket-low:first-child{
     font-style: italic;
-}
-
-.ticket-low:first-child::after{
-    content: ",";
 }
 
 /* Come Trovarci --------------------------------------------------------------------------------------------------*/
