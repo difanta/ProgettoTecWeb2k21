@@ -112,9 +112,8 @@
             <h2>Aggiungi Proiezione</h2>
             <form id="aprAggiungi" method="post">
                 <label for="apraSelect">Film</label>
-                <select id="apraSelect">
-                    <option value="apraOp01">Il Padrino</option>
-                    <option value="apraOp02">Filè Addio</option>
+                <select id="apraSelect" name="agg_nomeFilm">
+                    <nomifilm/>
                 </select>
                 <label for="apraData">Data e Ora</label>
                 <input type="datetime-local" id="apraData">
@@ -123,21 +122,20 @@
             </form>
             
             <h2>Modifica Proiezione</h2>
-            <label for="alfSelect">Seleziona un film</label>
-            <select id="alfSelect">
-                <option value="alfOp01">Il Padrino</option>
-                <option value="alfOp02">Filè Addio</option>
+            <form id="mod_selectFilm" method="get"></form>
+            <label for="alfSelect" form="mod_selectFilm">Seleziona un film</label>
+            <select id="alfSelect" name="mod_nomeFilm">
+                <nomifilm/>
             </select><br>
+            <form method="get"></form>
             <label for="alfSelectP">Seleziona una proiezione</label>
             <select id="alfSelectP">
-                <option value="alfOp01">21 set - 20:30</option>
-                <option value="alfOp02">22 set - 21:00</option>
+                <proiezioni/>
             </select>
             <form id="aprModifica" method="post">
                 <label for="aprmSelect">Film</label>
-                <select id="aprmSelect">
-                    <option value="aprmOp01">Il Padrino</option>
-                    <option value="aprmOp02">Filè Addio</option>
+                <select id="aprmSelect" name="mod_nomeNuovoFilm">
+                    <nomifilm/>
                 </select>
                 <label for="aprmData">Data e Ora</label>
                 <input type="datetime-local" id="aprmData">
