@@ -84,6 +84,7 @@ function insertOrdine(&$htmlPage)
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
+    insertOrdine($htmlPage);
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     header("HTTP/1.1 303 See Other");
@@ -93,9 +94,7 @@ if (isset($_POST["method"])) {
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
-    insertOrdine($htmlPage);
     printOrdine($htmlPage);
-
 
     echo $htmlPage;
 }
