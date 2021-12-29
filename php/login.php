@@ -42,6 +42,12 @@ class Login {
     private static $p_if_not_logged_open = "<ifnotlogged>";             // show if not logged
     private static $p_if_not_logged_close = "</ifnotlogged>";
 
+    private static $p_if_logged_admin_open = "<ifloggedadmin>";
+    private static $p_if_logged_admin_close = "</ifloggedadmin>";
+
+    private static $p_if_not_logged_admin_open = "<ifnotloggedadmin>";
+    private static $p_if_not_logged_admin_close = "</ifnotloggedadmin>";
+
     private static $p_if_login_success_open = "<ifloginsuccess>";
     private static $p_if_login_success_close = "</ifloginsuccess>";
     
@@ -218,8 +224,15 @@ class Login {
             Login::hideElement(Login::$p_if_logged_open,     Login::$p_if_logged_close,     $htmlPage);
             Login::showElement(Login::$p_if_not_logged_open, Login::$p_if_not_logged_close, $htmlPage);
         }
-    }
 
+        if(Login::is_logged_admin()) {
+            Login::showElement(Login::$p_if_logged_admin_open,     Login::$p_if_logged_admin_close,     $htmlPage);
+            Login::hideElement(Login::$p_if_not_logged_admin_open, Login::$p_if_not_logged_admin_close, $htmlPage);
+        } else {
+            Login::hideElement(Login::$p_if_logged_admin_open,     Login::$p_if_logged_admin_close,     $htmlPage);
+            Login::showElement(Login::$p_if_not_logged_admin_open, Login::$p_if_not_logged_admin_close, $htmlPage);
+        }
+    }
 }
 
 ?>

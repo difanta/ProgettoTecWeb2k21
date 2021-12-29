@@ -32,47 +32,62 @@
         <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span></button>
         <div id="accountDropdown">
             <div id="accountSection" class="slidableOut">
-                <button title="login" id="loginBtn" onclick="openLogin()">Login</button>
-                <button title="sign up" id="signupBtn" onclick="openSignup()">Registrati</button>
-                <button id="logout">Logout</button>
-                <a href="../php/paginaUtente.php">Il mio Profilo</a>
+                <ifnotlogged>
+                    <button id="loginBtn" onclick="openLogin()">Login</button>
+                    <button id="signupBtn" onclick="openSignup()">Registrati</button>
+                </ifnotlogged>
+                <iflogged>
+                    <form id="logout" method="post"></form>
+                    <button name="method" value="logout" form="logout">Logout</button>
+                    <a href="paginaUtente.php">Il mio Profilo</a>
+                </iflogged>
             </div>
     
             <div id="loginSection" class="slidableIn">
                 <header>
                     <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span></button>
                 </header>
-                <form id="login">
-                    <label for="loginEmail">Email</label>
-                    <input id="loginEmail" name="email" type="email" autocomplete="username">
-                    <label for="loginPassword">Password</label>
-                    <input id="loginPassword" name="password" type="password" autocomplete="current-password">
-
-                    <button>accedi</button>
-                </form>
+                <ifnotloginsuccess>
+                    <form id="login" method="post">
+                        <label for="loginEmail">Email</label>
+                        <input id="loginEmail" name="email" type="email" autocomplete="username">
+                        <label for="loginPassword">Password</label>
+                        <input id="loginPassword" name="password" type="password" autocomplete="current-password">
+    
+                        <button name="method" value="login">accedi</button>
+                    </form>
+                </ifnotloginsuccess>
+                <ifloginsuccess>
+                    <p>Loggato con successo!</p>
+                </ifloginsuccess>
             </div>
     
             <div id="signupSection" class="slidableIn">
                 <header>
                     <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span></button>
                 </header>
-                <form id="signup">
-                    <label for="signupNome">Nome</label>
-                    <input id="signupNome" name="nome" type="text" autocomplete="name">
-                    <label for="signupCognome">Cognome</label>
-                    <input id="signupCognome" name="cognome" type="text" autocomplete="family-name">
-                    <label for="signupDataNascita">Data di nascita</label>
-                    <input id="signupDataNascita" name="dataNascita" type="text" autocomplete="bday">
-                    
-                    <label for="signupEmail">Email</label>
-                    <input id="signupEmail" name="email" type="email" autocomplete="home email">
-                    <label for="signupPassword">Password</label>
-                    <input id="signupPassword" name="password" type="password" autocomplete="new-password">
-                    <label for="signupPassword2">ridigita la password</label>
-                    <input id="signupPassword2" name="password" type="password" autocomplete="new-password">
-        
-                    <button>registrati</button>
-                </form>
+                <ifnotregistersuccess>
+                    <form id="signup" method="post">
+                        <label for="signupNome">Nome</label>
+                        <input id="signupNome" name="nome" type="text" autocomplete="name">
+                        <label for="signupCognome">Cognome</label>
+                        <input id="signupCognome" name="cognome" type="text" autocomplete="family-name">
+                        <label for="signupDataNascita">Data di nascita</label>
+                        <input id="signupDataNascita" name="data_di_nascita" type="date" autocomplete="bday">
+                        
+                        <label for="signupEmail">Email</label>
+                        <input id="signupEmail" name="email" type="email" autocomplete="home email">
+                        <label for="signupPassword">Password</label>
+                        <input id="signupPassword" name="password" type="password" autocomplete="new-password">
+                        <label for="signupPassword2">ridigita la password</label>
+                        <input id="signupPassword2" name="" type="password" autocomplete="new-password">
+            
+                        <button name="method" value="register">registrati</button>
+                    </form>
+                </ifnotregistersuccess>
+                <ifregistersuccess>
+                    <p>Registrato con successo! Ora effettua il Login</p>
+                </ifregistersuccess>
             </div>
         </div>
 
@@ -94,21 +109,26 @@
     </header>
         
     <div id="content_admin_home" class="content_admin">
-        <div id="adminDashboard">
-            <a href="adminCandidature.html">Candidature</a>
-            <a href="adminProiezioni.php">Proiezioni</a>
-            <a href="adminListaFilm.php">Lista Film</a>
-        </div>
-        <dl id="adminInfo">
-            <dt>Utenti registrati: </dt>
-            <dd>13</dd>
-            <dt>Totale biglietti venduti: </dt>
-            <dd>126</dd>
-            <dt>Media biglietti venduti per proiezione:</dt>
-            <dd>7</dd>
-            <dt>Totale Like dati ai film: </dt>
-            <dd>256</dd>
-        </dl>
+        <ifloggedadmin>
+            <div id="adminDashboard">
+                <a href="adminCandidature.html">Candidature</a>
+                <a href="adminProiezioni.php">Proiezioni</a>
+                <a href="adminListaFilm.php">Lista Film</a>
+            </div>
+            <dl id="adminInfo">
+                <dt>Utenti registrati: </dt>
+                <dd>13</dd>
+                <dt>Totale biglietti venduti: </dt>
+                <dd>126</dd>
+                <dt>Media biglietti venduti per proiezione:</dt>
+                <dd>7</dd>
+                <dt>Totale Like dati ai film: </dt>
+                <dd>256</dd>
+            </dl>
+        </ifloggedadmin>
+        <ifnotloggedadmin>
+            <p>Non Loggato! Per accedere a questa pagina serve loggarsi con un account admin.</p>
+        </ifnotloggedadmin>
     </div>
 
     <footer>
