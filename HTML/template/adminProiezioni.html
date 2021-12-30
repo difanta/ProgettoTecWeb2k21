@@ -20,7 +20,7 @@
     <script src="../js/scripts.js"></script>
 </head>
     
-<body> 
+<body onload="mod_FilmSelected(document.getElementById('apSelect'))"> 
     <header>
         <a class="goToContent" href="#content_adminProiezioni">Vai al contenuto</a>
 
@@ -122,13 +122,12 @@
             </form>
             
             <h2>Modifica Proiezione</h2>
-            <label for="alfSelect" form="mod_selectFilm">Seleziona un film</label>
-            <select id="alfSelect" name="mod_nomeFilm">
+            <label for="apSelect" form="mod_selectFilm">Seleziona un film</label>
+            <select id="apSelect" name="mod_nomeFilm" onchange="mod_FilmSelected(this)">
                 <nomifilm/>
             </select><br>
-            <label for="alfSelectP">Seleziona una proiezione</label>
-            <select id="alfSelectP">
-                <proiezioni/>
+            <label for="apSelectP">Seleziona una proiezione</label>
+            <select id="apSelectP" name="mod_idProiezione" onchange="mod_ProiezioneSelected(this)">
             </select>
             <form id="aprModifica" method="post">
                 <label for="aprmSelect">Film</label>

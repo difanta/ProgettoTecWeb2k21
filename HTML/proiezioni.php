@@ -72,7 +72,7 @@ function printProiezioni(&$htmlPage) {
         }
         
         // set datalist
-        $template = "<option value=\"nomefilm\">";
+        $template = "<option value=\"nomefilm\"></option>";
         $stringa = "";
         $films = $connection->getNomiFilm();
         foreach($films as $film) {
