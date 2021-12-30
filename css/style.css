@@ -82,6 +82,10 @@ form button:hover, .button:hover{
     background-color: var(--main-color-dark);
 }
 
+form button:disabled, .button:disabled{
+    background-color: darkgray;
+}
+
 /*--------------------------- Material Icons ------------------------------*/
 span.material-icons-outlined.md18 {
     font-size: 18px;
@@ -1009,10 +1013,7 @@ li.filmPopolare a{
     display:block;
     text-align:center;
 }
-#acnSospese li label, #acnSospese li textarea{
-    margin-left:10px;
-    margin-bottom:4px;
-}
+
 #acnSospese li .ancsAccetta, #acnSospese li .ancsRifiuta{
     background-color: rgb(255, 163, 57);
     margin-left:8px;
@@ -1033,6 +1034,67 @@ li.filmPopolare a{
 #aprAggiungi,#aprModifica{
     display:block;
     border:darkmagenta solid;  
+}
+
+/* Admin Candidature ------------------------------------*/
+
+.toggle {
+    display: none;
+}
+
+.text-toggle {
+    display: block;
+    font-size: 1.2rem;
+    text-align: center;
+
+    padding: 1rem;
+
+    color: white;
+    background: var(--main-color-light);
+
+    cursor: pointer;
+
+    transition: all 0.25s ease-out;
+}
+
+.text-toggle::before {
+    content: ' ';
+    display: inline-block;
+
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid currentColor;
+    vertical-align: middle;
+    margin-right: .7rem;
+    transform: translateY(-2px);
+
+    transition: transform .2s ease-out;
+}
+
+.toggle:checked + .text-toggle::before {
+    transform: rotate(90deg) translateX(-3px);
+}
+
+.candidatura {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height .25s ease-in-out;
+}
+
+.toggle:checked + .text-toggle + .candidatura {
+    max-height: 100vh;
+}
+
+.toggle:checked + .text-toggle {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.candidatura .candidatura-inner {
+    background: rgba(250, 224, 66, .2);
+    border-bottom: 1px solid rgba(250, 224, 66, .45);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
 }
 
 /* Admin Lista Film / Lista Proiezioni  --------------------------------------------------------------------- */

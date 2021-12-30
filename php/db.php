@@ -160,6 +160,10 @@ class DBAccess
         return $this->checkInsert($stmt->get_result());
     }
 
+
+    /**
+     * @used_in contest.php
+     */
     public function insertContestFilm($titolo, $descrizione, $durata, $anno, $regista, $produttore, $cast)
     {
         $stmt = $this->connection->prepare("INSERT INTO Film(nome, descrizione, durata, anno, regista, produttore, cast, in_gara, approvato, candidatore)
@@ -169,6 +173,9 @@ class DBAccess
         return $this->checkInsert($stmt->get_result());
     }
 
+    /**
+     * @used_in paginaUtente.php
+     */
     public function getUserById()
     {
         $stmt = $this->connection->prepare("SELECT * FROM Utente WHERE Utente.id = ?");
@@ -177,6 +184,9 @@ class DBAccess
         return $this->formatGetResult($stmt->get_result());
     }
 
+    /**
+     * @used_in paginaUtente.php
+     */
     public function updateUser($nome, $cognome, $dataNascita, $email, $password)
     {
         $stmt = $this->connection->prepare("UPDATE Utente
@@ -187,6 +197,9 @@ class DBAccess
         return $this->checkInsert($stmt->get_result());
     }
 
+    /**
+     * @used_in paginaUtente.php
+     */
     public function deleteUser()
     {
         $stmt = $this->connection->prepare("DELETE FROM Utente WHERE id= ?");
@@ -195,6 +208,9 @@ class DBAccess
         return $this->checkInsert($stmt->get_result());
     }
 
+    /**
+     * @used_in paginaUtente.php
+     */
     public function getUserTickets()
     {
         $stmt = $this->connection->prepare("SELECT Film.nome, Biglietto.id, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora 
@@ -207,6 +223,9 @@ class DBAccess
         return $this->formatGetResult($stmt->get_result());
     }
 
+    /**
+     * @used_in acquistoBiglietti.php
+     */
     public function insertTicket($proiezione)
     {
         $stmt = $this->connection->prepare("INSERT INTO Biglietto(utente, proiezione) 
@@ -216,6 +235,9 @@ class DBAccess
         return $this->checkInsert($stmt->get_result());
     }
 
+    /**
+     * @used_in acquistoBiglietti.php
+     */
     public function getProiezioneRecap($proiezione){
         $stmt = $this->connection->prepare("SELECT nome, regista, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora
                                             FROM Proiezione join Film on film 
@@ -223,6 +245,51 @@ class DBAccess
         $stmt->bind_param("s", $proiezione);
         $stmt->execute();
         return $this->formatGetResult($stmt->get_result());
+    }
+
+    /**
+     * @used_in adminCandidature.php
+     */
+    public function getCandidatureAndEmail($filter_candidatura){
+
+        $query = "SELECT Film.nome, Film.descrizione, Film.durata, Film.anno, Film.regista, Film.produttore, Film.cast, Utente.email
+                  FROM Film Join Utente on (Film.candidatore = Utente.id)
+                  WHERE candidatore IS NOT NULL";
+
+        // add filters
+        switch ($filter_candidatura) {
+            case 'Sospesa':
+                $query .= " and Film.approvato = 0";
+                break;
+            case 'Approvata':
+                $query .= " and Film.approvato = 1";
+                break;
+        }
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+        return $this->formatGetResult($stmt->get_result());
+    }
+
+    /**
+     * @used_in adminCandidature.php
+     */
+    public function deleteCandidatura($titolo){
+        $stmt = $this->connection->prepare("DELETE FROM Film WHERE nome= ?");
+        $stmt->bind_param("s", $titolo);
+        $stmt->execute();
+        return $this->checkInsert($stmt->get_result());
+    }
+
+    /**
+     * @used_in adminCandidature.php
+     */
+    public function approvaCandidatura($titolo){
+        $stmt = $this->connection->prepare("UPDATE Film
+                                            SET approvato = '1'
+                                            WHERE nome= ?");
+        $stmt->bind_param("s", $titolo);
+        $stmt->execute();
+        return $this->checkInsert($stmt->get_result());
     }
 }
 
