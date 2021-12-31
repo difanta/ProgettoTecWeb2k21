@@ -364,9 +364,11 @@ div.content{
 #homeDescription{
     text-align: center;
     font-size: 1.8em;
+    max-width: 95%;
+    margin: auto;
 }
 #content_home{
-    padding:40px 0;
+    padding: 40px 0;
 }
 #content_home h2{
     padding:40px;
