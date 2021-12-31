@@ -25,49 +25,49 @@ function submitContest()
 
 
             if (strlen($titolo) == 0) {
-                $messaggi = "<li>Titolo non present<li/>";
+                $messaggi = "<li>Titolo non present</li>";
             } elseif (preg_match('/\d/', $titolo)) {
-                $messaggi = "<li>Nome non può contenere numeri<li/>";
+                $messaggi = "<li>Nome non può contenere numeri</li>";
             }
 
             if (strlen($descrizione) == 0) {
-                $messaggi = "<li>Descrizione non presente<li/>";
+                $messaggi = "<li>Descrizione non presente</li>";
             }
 
             if (strlen($linkyt) == 0) {
-                $messaggi = "<li>Link yt non presente<li/>";
+                $messaggi = "<li>Link yt non presente</li>";
             }
 
             if (strlen($email) == 0) {
-                $messaggi = "<li>Email non presente<li/>";
+                $messaggi = "<li>Email non presente</li>";
             }
 
             if (strlen($durata) == 0) {
-                $messaggi = "<li>Durata non presente<li/>";
+                $messaggi = "<li>Durata non presente</li>";
             }
 
             if (strlen($anno) == 0) {
-                $messaggi = "<li>Anno non presente<li/>";
+                $messaggi = "<li>Anno non presente</li>";
             } elseif (preg_match('/^([SW])\w+([0-9]{4})$/', $anno)) {
-                $messaggi = "<li>Anno può essere solo un numero di 4 cifre<li/>";
+                $messaggi = "<li>Anno può essere solo un numero di 4 cifre</li>";
             }
 
             if (strlen($regista) == 0) {
-                $messaggi = "<li>Resgista non presente<li/>";
+                $messaggi = "<li>Resgista non presente</li>";
             } elseif (preg_match('/\d/', $regista)) {
-                $messaggi = "<li>Regista non può contenere numeri<li/>";
+                $messaggi = "<li>Regista non può contenere numeri</li>";
             }
 
             if (strlen($produttore) == 0) {
-                $messaggi = "<li>Produttore non presente<li/>";
+                $messaggi = "<li>Produttore non presente</li>";
             } elseif (preg_match('/\d/', $produttore)) {
-                $messaggi = "<li>Produttore non può contenere numeri<li/>";
+                $messaggi = "<li>Produttore non può contenere numeri</li>";
             }
 
             if (strlen($cast) == 0) {
-                $messaggi = "<li>Cast non presente<li/>";
+                $messaggi = "<li>Cast non presente</li>";
             } elseif (preg_match('/\d/', $cast)) {
-                $messaggi = "<li>Cast non può contenere numeri<li/>";
+                $messaggi = "<li>Cast non può contenere numeri</li>";
             }
 
             if ($messaggi == "") {
@@ -77,24 +77,24 @@ function submitContest()
 
                 if ($connectionOk) {
                     if ($connection->insertContestFilm($titolo, $descrizione, $durata, $anno, $regista, $produttore, $cast)) {
-                        $messaggi = "<p>Film aggiunto con successo<p/>";
+                        $messaggi = "<p>Film aggiunto con successo</p>";
                         $_SESSION["success"] = true;
                     } else {
-                        $messaggi = "<p>Errore nell aggiunta<p/>";
+                        $messaggi = "<p>Errore nell aggiunta</p>";
                         $_SESSION["success"] = false;
                     }
                     $connection->closeConnection();
                 } else {
-                    $messaggi = "<li>problemi db<li/>";
+                    $messaggi = "<li>problemi db</li>";
                     $_SESSION["success"] = false;
                 }
             } else {
-                $messaggi = "<ul>" . $messaggi . "<ul/>";
+                $messaggi = "<ul>" . $messaggi . "</ul>";
                 $_SESSION["success"] = false;
             }
         }
     } else { // not logged
-        $messaggi .= "<li>Utente non loggato<li/>";
+        $messaggi .= "<li>Utente non loggato</li>";
         $_SESSION["success"] = false;
     }
     $_SESSION["messaggi"] = $messaggi;

@@ -13,39 +13,26 @@ function printOrdine(&$htmlPage)
 
     if (isset($_GET["id"])) {
         $id = $_GET["id"];
-        $nome = "";
-        $regista = "";
-        $data = "";
-        $ora = "";
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
 
         if ($connectionOk) {
             $results = $connection->getProiezioneRecap($id);
-            $nome = $results[0]["nome"];
-            $regista = $results[0]["regista"];
-            $data = $results[0]["data"];
-            $ora = $results[0]["ora"];
-
             $connection->closeConnection();
+
+            $ordine = file_get_contents("template/templateProiezioneAcquisto.html");
+
+            $ordine = str_replace("pNome", $results[0]["nome"], $ordine);
+            $ordine = str_replace("pRegista", $results[0]["regista"], $ordine);
+            $ordine = str_replace("pData", $results[0]["data"], $ordine);
+            $ordine = str_replace("pOra", $results[0]["ora"], $ordine);
+            
         } else {
-            $messaggi .= "<li>problemi db<li/>";
+            $messaggi .= "<li>problemi db</li>";
         }
-
-        $ordine = "<div id=\"ordine\">
-        <h3 title=\"Titolo\">" . $nome . "</h3>
-        <em title=\"Registi\">" . $regista . "</em>
-        <p>
-            <span class=\"data\">" . $data . "</span>
-            <span class=\"ora\">" . $ora . "</span>
-            <br>
-            <span class=\"prezzo\">7.00€</span>
-        </p>
-        </div>";
-
     } else {
-        $messaggi = "<p>proiezione non selezionata<p/>";
+        $messaggi = "<p>proiezione non selezionata</p>";
     }
 
     $htmlPage = str_replace("<messaggi/>", $messaggi, $htmlPage);
@@ -65,17 +52,17 @@ function insertOrdine(&$htmlPage)
 
             if ($connectionOk) {
                 if ($connection->insertTicket($proiezione)) {
-                    $messaggi = "<p>Biglietto acquistato con successo<p/>";
+                    $messaggi = "<p>Biglietto acquistato con successo</p>";
                 } else {
-                    $messaggi = "<p>Errore nell aggiunta<p/>";
+                    $messaggi = "<p>Errore nell aggiunta</p>";
                 }
                 $connection->closeConnection();
             } else {
-                $messaggi = "<li>problemi db<li/>";
+                $messaggi = "<li>problemi db</li>";
             }
         }
     } else { // not logged
-        $messaggi .= "<li>Utente non loggato<li/>";
+        $messaggi .= "<li>Utente non loggato</li>";
     }
 
     $htmlPage = str_replace("<messaggi/>", $messaggi, $htmlPage);
