@@ -192,8 +192,28 @@ function validateForm() {
 
 /* Admin Proiezioni */
 
-function mod_FilmSelected(elem) {
+function agg_initFilm() {
+    elem = document.getElementById("apraSelect");
+
     if(!elem.options[elem.selectedIndex]) return;
+
+    if(elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+        elem.options[elem.selectedIndex].selected = false;
+        [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
+        elem.setAttribute("selection", "");
+    }
+}
+
+function mod_FilmSelected() {
+    elem = document.getElementById("apSelect");
+
+    if(!elem.options[elem.selectedIndex]) return;
+
+    if(elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+        elem.options[elem.selectedIndex].selected = false;
+        [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
+        elem.setAttribute("selection", "");
+    }
 
     let request = new XMLHttpRequest();
     request.onload = (e) => {
@@ -212,24 +232,39 @@ function mod_FilmSelected(elem) {
     }
     request.open("POST", window.location.href);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.send(encodeURIComponent(elem.getAttribute("name")) + "=" + encodeURIComponent(elem.options[elem.selectedIndex].getAttribute("value")));
+    request.send(encodeURIComponent(elem.getAttribute("name")) + "=" + encodeURIComponent(elem.value));
 }
 
-function mod_ProiezioneSelected(elem) {
-    if(!elem.options[elem.selectedIndex]) return;
+function mod_ProiezioneSelected() {
+    elem = document.getElementById("apSelectP");
 
-    let request = new XMLHttpRequest();
-    request.onload = (e) => {
-        if (request.readyState === request.DONE) {
-            if (request.status === 200) {
-                console.log(request.responseText);
-            } else {    
-            }
-        }
-    };
-    request.onerror = (e) => {
+    let selectedFilm = document.getElementById("apSelect").value;
+    let selectedDate = "";
+
+    if(!elem.options[elem.selectedIndex]) {
+        elem.setAttribute("selection", "");
     }
-    request.open("POST", window.location.href);
-    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.send(encodeURIComponent(elem.getAttribute("name")) + "=" + encodeURIComponent(elem.options[elem.selectedIndex].getAttribute("value")));
+
+    if(elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+        elem.options[elem.selectedIndex].selected = false;
+        [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
+        elem.setAttribute("selection", "");
+    }
+
+    if(elem.options[elem.selectedIndex]) {
+        selectedDate = elem.options[elem.selectedIndex].getAttribute("orario").replace(/\s/g, 'T');
+    }
+
+    if(selectedFilm && selectedFilm != "") { 
+        const selectFilm = document.getElementById("aprmSelect");
+        selectFilm.options[selectFilm.selectedIndex].selected = false;
+        [].filter.call(selectFilm.options, option => (option.value == selectedFilm))[0].selected = true;
+    }
+
+    if(selectedDate && selectedDate != "") {
+        document.getElementById("aprmData").value = selectedDate;
+    } else {
+        document.getElementById("aprmData").value = "";
+    }
+
 }

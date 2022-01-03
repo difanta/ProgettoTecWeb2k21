@@ -141,7 +141,7 @@ class DBAccess
         $stmt = $this->connection->prepare("SELECT nome, orario 
                                             FROM Proiezione join Film on Proiezione.film = Film.id 
                                             WHERE Proiezione.id = ?");
-        $stmt->bind_param("s", $proiezione);
+        $stmt->bind_param("i", $proiezione);
         $stmt->execute();
         return $this->formatGetResult($stmt->get_result());
     }
@@ -169,6 +169,33 @@ class DBAccess
         return $this->checkInsert($stmt->get_result());
     }
 
+    /**
+     * @used_in adminProiezioni.php
+     */
+
+    public function addProiezione($nomeFilm, $data) {
+        $stmt = $this->connection->prepare("INSERT INTO Proiezione(orario, film) 
+                                            VALUES (?, (SELECT id from Film where Film.nome = ?))");
+        $stmt->bind_param("ss", $data, $nomeFilm);
+        $stmt->execute();
+        return $this->checkInsert($stmt->get_result());
+    }
+
+    public function modifyProiezione($idProiezione, $nomeFilm, $data) {
+        $stmt = $this->connection->prepare("UPDATE Proiezione
+                                            set orario = ?, film = (SELECT id from Film where Film.nome = ?)
+                                            where Proiezione.id = ?");
+        $stmt->bind_param("ssi", $data, $nomeFilm, $idProiezione);
+        $stmt->execute();
+        return $this->checkInsert($stmt->get_result());
+    }
+
+    public function deleteProiezione($idProiezione) {
+        $stmt = $this->connection->prepare("DELETE from Proiezione where Proiezione.id = ?");
+        $stmt->bind_param("i", $idProiezione);
+        $stmt->execute();
+        return $this->checkInsert($stmt->get_result());
+    }
 
     /**
      * @used_in contest.php
@@ -188,7 +215,7 @@ class DBAccess
     public function getUserById()
     {
         $stmt = $this->connection->prepare("SELECT * FROM Utente WHERE Utente.id = ?");
-        $stmt->bind_param("s", $_SESSION["login"]);
+        $stmt->bind_param("i", $_SESSION["login"]);
         $stmt->execute();
         return $this->formatGetResult($stmt->get_result());
     }
@@ -201,7 +228,7 @@ class DBAccess
         $stmt = $this->connection->prepare("UPDATE Utente
                                             SET nome = ?, cognome= ?, data_di_nascita= ?, email= ?, password= ?
                                             where id= ?");
-        $stmt->bind_param("ssssss", $nome, $cognome, $dataNascita, $email, $password, $_SESSION["login"]);
+        $stmt->bind_param("sssssi", $nome, $cognome, $dataNascita, $email, $password, $_SESSION["login"]);
         $stmt->execute();
         return $this->checkInsert($stmt->get_result());
     }
@@ -212,7 +239,7 @@ class DBAccess
     public function deleteUser()
     {
         $stmt = $this->connection->prepare("DELETE FROM Utente WHERE id= ?");
-        $stmt->bind_param("s", $_SESSION["login"]);
+        $stmt->bind_param("i", $_SESSION["login"]);
         $stmt->execute();
         return $this->checkInsert($stmt->get_result());
     }
@@ -227,7 +254,7 @@ class DBAccess
                                             join Proiezione on Proiezione.id=Biglietto.proiezione
                                             join Film on Film.id= Proiezione.film 
                                             where Utente.id= ?");
-        $stmt->bind_param("s", $_SESSION["login"]);
+        $stmt->bind_param("i", $_SESSION["login"]);
         $stmt->execute();
         return $this->formatGetResult($stmt->get_result());
     }
@@ -239,7 +266,7 @@ class DBAccess
     {
         $stmt = $this->connection->prepare("INSERT INTO Biglietto(utente, proiezione) 
                                             VALUES (? , ?)");
-        $stmt->bind_param("ss", $_SESSION["login"], $proiezione);
+        $stmt->bind_param("ii", $_SESSION["login"], $proiezione);
         $stmt->execute();
         return $this->checkInsert($stmt->get_result());
     }
@@ -251,7 +278,7 @@ class DBAccess
         $stmt = $this->connection->prepare("SELECT nome, regista, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora
                                             FROM Proiezione join Film on film 
                                             WHERE Proiezione.id= ? and Proiezione.film = Film.id");
-        $stmt->bind_param("s", $proiezione);
+        $stmt->bind_param("i", $proiezione);
         $stmt->execute();
         return $this->formatGetResult($stmt->get_result());
     }
