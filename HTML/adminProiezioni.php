@@ -18,22 +18,23 @@ function returnProiezioni() {
     $connectionOk = $connection->openDB();
 
     if($connectionOk) {
-        $template = "<option value=\"idproiezione\">data ora</option>";
+        $template = "<option value=\"idproiezione\" orario=\"datetime\">data time</option>";
         $stringa = "";
         $proiezioni = $connection->getProiezioni("tutti", $mod_nomeFilm, "");
         if($proiezioni) {
             foreach($proiezioni as $proiezione) {
-                $p = str_replace("idproiezione" , $proiezione["pid"]  , $template);
-                $p = str_replace("data"         , $proiezione["data"] , $p);
-                $p = str_replace("ora"          , $proiezione["ora"]  , $p);
+                $p = str_replace("idproiezione" , $proiezione["pid"]    , $template);
+                $p = str_replace("datetime"     , $proiezione["orario"] , $p);
+                $p = str_replace("data"         , $proiezione["data"]   , $p);
+                $p = str_replace("time"         , $proiezione["ora"]    , $p);
                 $stringa .= $p;
             }
         } else {
-            return "nope";
+            header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
         }
         return $stringa;
     } else {
-        return "";
+        header($_SERVER["SERVER_PROTOCOL"]." 500 Server Error");
     }
 }
 
@@ -93,7 +94,7 @@ if(!isset($_POST["method"]) && isset($_POST["mod_nomeFilm"])) {
         Login::handleLogin();
     
         // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
-        header("HTTP/1.1 303 See Other");
+        header($_SERVER["SERVER_PROTOCOL"]." 303 See Other");
         header("Location: " . $_SERVER["REQUEST_URI"]);
     } else /* GET */ {
         $htmlPage = file_get_contents("template/adminProiezioni.html");
