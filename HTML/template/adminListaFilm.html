@@ -111,40 +111,73 @@
 
         <ifloggedadmin>
             <h2>Aggiungi Film</h2>
-            <form id="alfAggiungi">
+            <form id="alfAggiungi" method="post">
                 <label for="alfaTitolo">Titolo:</label>
-                <input type="text" name="titolo" id="alfaTitolo" value="agg_titolofilm"/>
+                <input type="text" id="alfaTitolo" name="agg_nomeFilm" value="agg_nomefilm" required/>
+                
+                <label for="alfaProduttore">Produttore:</label>
+                <input type="text" id="alfaProduttore" name="agg_Produttore" value="agg_produttore" required/>
+                
                 <label for="alfaRegisti">Registi:</label>
-                <input type="text" name="registi" id="alfaRegisti" value="agg_regista"/>
+                <input type="text" id="alfaRegisti" name="agg_Regista" value="agg_regista" required/>
+                
+                <label for="alfaAnno">Anno di Pubblicazione:</label>
+                <input type="number" id="alfaAnno" name="agg_Anno" value="agg_annofilm" required>
+                
                 <label for="alfaDurata">Durata(min):</label>
-                <input type="number" id="alfaDurata" name="durata" value="90" value="agg_duratafilm">
+                <input type="number" id="alfaDurata" name="agg_Durata" value="agg_duratafilm" required>
+                
                 <label for="alfaDescrizione">Descrizione:</label>
-                <textarea name="descrizione" id="alfaDescrizione" cols="26" rows="5">agg_descrizionefilm</textarea>
-                <input type="checkbox" id="alfaGara" value="Gara" agg_filmingara>
+                <textarea id="alfaDescrizione" cols="26" rows="5" name="agg_descrizioneFilm" required>agg_descrizionefilm</textarea>
+                
+                <label for="alfaCast">Cast:</label>
+                <textarea id="alfaCast" cols="26" rows="5" name="agg_Cast" required>agg_cast</textarea>
+                
+                <input type="checkbox" id="alfaGara" name="agg_inGara" agg_filmingara>
                 <label for="alfaGara" class="inline">In Gara</label>
+
+                <input type="checkbox" id="alfaApprovato" name="agg_Approvato" agg_approvato>
+                <label for="alfaApprovato" class="inline">Approvato</label>
                 <br>
-                <input type="submit" value="Aggiungi film">
-                <input type="submit" value="Reset">
+                <input type="submit" name="method" value="Aggiungi Film">
+                <input type="submit" name="method" value="Reset">
             </form>
             
             <h2>Modifica Film</h2>
             <label for="alfSelect">Seleziona un film da modificare</label>
-            <select id="alfSelect" name="mod_nomeFilm" form="alfModifica" selection="mod_nomefilmselezionato" onchange="mod_onFilmChanged()">
+            <select id="alfSelect" name="mod_oldNomeFilm" form="alfModifica" selection="mod_nomefilmselezionato" onchange="mod_onFilmChanged()">
                 <nomifilm/>
             </select>
-            <form id="alfModifica">
+            <form id="alfModifica" method="post">
                 <label for="alfmTitolo">Titolo:</label>
-                <input type="text" name="titolo" id="alfmTitolo" value="mod_titolofilm"/>
+                <input type="text" id="alfmTitolo" name="mod_nomeFilm" value="mod_nomefilm"/>
+                
+                <label for="alfmProduttore">Produttore:</label>
+                <input type="text" id="alfmProduttore" name="mod_Produttore" value="mod_produttore"/>
+
                 <label for="alfmRegisti">Registi:</label>
-                <input type="text" name="registi" id="alfmRegisti" value="mod_regista"/>
+                <input type="text" id="alfmRegisti" name="mod_Registi" value="mod_regista"/>
+                
+                <label for="alfmAnno">Anno di Pubblicazione:</label>
+                <input type="number" id="alfmAnno" name="mod_Anno" value="mod_anno" required>
+
                 <label for="alfmDurata">Durata(min):</label>
-                <input type="number" id="alfmDurata" name="durata" value="mod_duratafilm">
+                <input type="number" id="alfmDurata" name="mod_Durata" value="mod_durata">
+                
                 <label for="alfmDescrizione">Descrizione:</label>
-                <textarea name="descrizione" id="alfmDescrizione" cols="26" rows="5">mod_descrizionefilm</textarea>
-                <input type="checkbox" id="alfmGara" name="proGara" value="Gara" mod_filmingara>
+                <textarea id="alfmDescrizione" cols="26" rows="5" name="mod_descrizioneFilm">mod_descrizionefilm</textarea>
+                
+                <label for="alfmCast">Cast:</label>
+                <textarea id="alfmCast" cols="26" rows="5" name="mod_Cast">mod_cast</textarea>
+                
+                <input type="checkbox" id="alfmGara" name="mod_inGara" mod_ingara>
                 <label for="alfmGara" class="inline">In Gara</label><br>
-                <input type="submit" value="Modifica">
-                <input type="submit" value="Cancella film">
+
+                <input type="checkbox" id="alfmApprovato" name="mod_Approvato" mod_approvato>
+                <label for="alfmApprovato" class="inline">Approvato</label><br>
+                
+                <input type="submit" name="method" value="Modifica Film">
+                <input type="submit" name="method" value="Elimina Film">
             </form>
         </ifloggedadmin>
         <ifnotloggedadmin>

@@ -162,9 +162,49 @@ class DBAccess
 
     public function insertUser($nome, $cognome, $data_di_nascita, $email, $password)
     {
-        $stmt = $this->connection->prepare("	INSERT INTO Utente(nome, cognome, data_di_nascita, email, password, admin)
-										VALUES (?, ?, ?, ?, ?, '0')");
+        $stmt = $this->connection->prepare("INSERT INTO Utente(nome, cognome, data_di_nascita, email, password, admin)
+										    VALUES (?, ?, ?, ?, ?, '0')");
         $stmt->bind_param("sssss", $nome, $cognome, $data_di_nascita, $email, $password);
+        $stmt->execute();
+        return $this->checkInsert($stmt->get_result());
+    }
+
+    /**
+     * @used_in adminListaFilm.php
+    */
+
+    function addFilm($nomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato) {
+        if($inGara) { $inGara = 1; }
+        else { $inGara = 0; }
+
+        if($approvato) { $approvato = 1; }
+        else { $approvato = 0; }
+
+        $stmt = $this->connection->prepare("INSERT INTO Film(nome, produttore, regista, anno, durata, descrizione, cast, in_gara, approvato) 
+                                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssss", $nomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato);
+        $stmt->execute();
+        return $this->checkInsert($stmt->get_result());
+    }
+
+    public function modifyFilm($oldNomeFilm, $newNomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato) {
+        if($inGara) { $inGara = 1; }
+        else { $inGara = 0; }
+
+        if($approvato) { $approvato = 1; }
+        else { $approvato = 0; }
+
+        $stmt = $this->connection->prepare("UPDATE Film
+                                            set nome = ?, produttore = ?, regista = ?, anno = ?, durata = ?, descrizione = ?, cast = ?, in_gara = ?, approvato = ?  
+                                            where Film.nome = ?");
+        $stmt->bind_param("ssssssssss", $newNomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato, $oldNomeFilm);
+        $stmt->execute();
+        return $this->checkInsert($stmt->get_result());
+    }
+
+    public function deleteFilm($nomeFilm) {
+        $stmt = $this->connection->prepare("DELETE from Film where Film.nome = ?");
+        $stmt->bind_param("s", $nomeFilm);
         $stmt->execute();
         return $this->checkInsert($stmt->get_result());
     }

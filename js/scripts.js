@@ -204,8 +204,20 @@ function mod_initFilm() {
         elem.options[elem.selectedIndex].selected = false;
         [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
         elem.setAttribute("selection", "");
-        mod_onFilmChanged();
     }
+    mod_onFilmChanged();
+}
+
+function resetAlfm() {
+    document.getElementById("alfmTitolo").setAttribute("value", "");
+    document.getElementById("alfmProduttore").setAttribute("value", "");
+    document.getElementById("alfmRegisti").setAttribute("value", "");
+    document.getElementById("alfmAnno").setAttribute("value", "");
+    document.getElementById("alfmDurata").setAttribute("value", "");
+    document.getElementById("alfmDescrizione").innerHTML = "";
+    document.getElementById("alfmCast").innerHTML = "";
+    document.getElementById("alfmGara").checked = false;
+    document.getElementById("alfmApprovato").checked = false;
 }
 
 function mod_onFilmChanged() {
@@ -217,18 +229,29 @@ function mod_onFilmChanged() {
     request.onload = (e) => {
         if (request.readyState === request.DONE) {
             if (request.status === 200) {
-
+                let obj = JSON.parse(request.response);
+                document.getElementById("alfmTitolo").setAttribute("value", obj["nome"]);
+                document.getElementById("alfmProduttore").setAttribute("value", obj["produttore"]);
+                document.getElementById("alfmRegisti").setAttribute("value", obj["regista"]);
+                document.getElementById("alfmAnno").setAttribute("value", obj["anno"]);
+                document.getElementById("alfmDurata").setAttribute("value", obj["durata"]);
+                document.getElementById("alfmDescrizione").innerHTML = obj["descrizione"];
+                document.getElementById("alfmCast").innerHTML = obj["cast"];
+                document.getElementById("alfmGara").checked = (obj["in_gara"] == 1);
+                document.getElementById("alfmApprovato").checked = (obj["approvato"] == 1);
             } else {
-
+                resetAlfm();
             }
         }
     };
     request.onerror = (e) => {
-
+        resetAlfm();
     }
     request.open("POST", window.location.href);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send(encodeURIComponent(elem.getAttribute("name")) + "=" + encodeURIComponent(elem.value));
+
+    resetAlfm();
 }
  
 /* Admin Proiezioni */
@@ -252,7 +275,7 @@ function mod_FilmSelected() {
 
     if(elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
+        const option = [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
         elem.setAttribute("selection", "");
     }
 
@@ -274,6 +297,8 @@ function mod_FilmSelected() {
     request.open("POST", window.location.href);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send(encodeURIComponent(elem.getAttribute("name")) + "=" + encodeURIComponent(elem.value));
+
+    document.getElementById("apSelectP").innerHTML = "";
 }
 
 function mod_ProiezioneSelected() {
@@ -302,9 +327,9 @@ function mod_ProiezioneSelected() {
 
     // load default date if at least one proiezione is available and if attribute orario is defined
     if(elem.options[elem.selectedIndex] && elem.options[elem.selectedIndex].getAttribute("orario") && elem.options[elem.selectedIndex].getAttribute("orario") != "") {
-        document.getElementById("aprmData").value = elem.options[elem.selectedIndex].getAttribute("orario").replace(/\s/g, 'T');
+        document.getElementById("aprmData").setAttribute("value", elem.options[elem.selectedIndex].getAttribute("orario").replace(/\s/g, 'T'));
     } else {
-        document.getElementById("aprmData").value = "";
+        document.getElementById("aprmData").setAttribute("value", "");
     }
 
 }
