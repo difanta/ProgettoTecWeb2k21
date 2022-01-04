@@ -98,7 +98,7 @@ if (isset($_POST["method"])) {
     approvaCandidatura();
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
-    header($_SERVER["SERVER_PROTOCOL"]." 303 See Other");
+    http_response_code(303);
     header("Location: " . $_SERVER["REQUEST_URI"]);
 } else /* GET */ {
     $htmlPage = file_get_contents("template/adminCandidature.html");

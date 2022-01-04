@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
-    <meta charset="utf-8">
+    <title>404</title>
 
-    <title>Proiezioni</title>
-    <meta name="keywords" content="proiezioni, acquista, filtra"/>
-    <meta name="description" content="lista delle proiezioni nel programma prossimamente">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="TODO">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+
+    <meta name="title" content="404"/>
+    <meta name="description" content="Pagina dell'errore 404."/>
+    <meta name="keywords" content="errore, 404"/>
+    <meta name="language" content="italian it"/>
+    <meta name="author" content="TODO"/><!--TODO nome autore-->
 
 
     <link rel="stylesheet" href="../css/style.css" media="screen">
@@ -19,15 +21,14 @@
           rel="stylesheet">
     <script src="../js/scripts.js"></script>
 </head>
-
 <body>
+
 <header>
-    <a class="goToContent" href="#content_proiezioni">Vai al contenuto</a>
+    <a class="goToContent" href="#content_404">Vai al contenuto</a>
 
     <h1>FestivalDiCinema</h1>
 
-    <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span>
-    </button>
+    <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span></button>
     <div id="accountDropdown">
         <div id="accountSection" class="slidableOut">
             <ifnotlogged>
@@ -43,8 +44,7 @@
 
         <div id="loginSection" class="slidableIn">
             <header>
-                <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span>
-                </button>
+                <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span></button>
             </header>
             <ifnotloginsuccess>
                 <form id="login" method="post">
@@ -63,8 +63,7 @@
 
         <div id="signupSection" class="slidableIn">
             <header>
-                <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span>
-                </button>
+                <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span></button>
             </header>
             <ifnotregistersuccess>
                 <form id="signup" method="post">
@@ -74,14 +73,14 @@
                     <input id="signupCognome" name="cognome" type="text" autocomplete="family-name">
                     <label for="signupDataNascita">Data di nascita</label>
                     <input id="signupDataNascita" name="data_di_nascita" type="date" autocomplete="bday">
-
+                    
                     <label for="signupEmail">Email</label>
                     <input id="signupEmail" name="email" type="email" autocomplete="home email">
                     <label for="signupPassword">Password</label>
                     <input id="signupPassword" name="password" type="password" autocomplete="new-password">
                     <label for="signupPassword2">ridigita la password</label>
                     <input id="signupPassword2" name="" type="password" autocomplete="new-password">
-
+        
                     <button name="method" value="register">registrati</button>
                 </form>
             </ifnotregistersuccess>
@@ -103,46 +102,18 @@
     </nav>
 
     <nav id="breadcrumb">
-        <p>Ti trovi in: <a href="home.php" lang="en">Home</a> &gt; &gt; Proiezioni</p>
+        <p>Ti trovi in: <a href="home.php" lang="en">Home</a> &gt; &gt; Come Trovarci </p>
     </nav>
 
 </header>
 
-<div id="content_proiezioni" class="content">
-    <h1>Proiezioni</h1>
-
-    <div class="filters">
-        <p>Filtra per</p>
-
-        <form id="filtriProiezioni">
-            <label for="nomeFilm">Nome Film</label>
-            <input list="film" name="nomeFilm" id="nomeFilm" value="inputnomefilm">
-            <datalist id="film">
-                <nomifilm/>
-            </datalist>
-
-            <label for="data">Data</label>
-            <input type="date" name="data" id="data" value="inputdata"/>
-
-            <label for="gara">Tipo Film</label>
-            <select name="gara" id="gara">
-                <option value="tutti" tuttiselected>Tutti</option>
-                <option value="gara" garaselected>In gara</option>
-                <option value="noGara" nogaraselected>Non in gara</option>
-            </select>
-
-            <button type="submit" form="filtriProiezioni">Filtra</button>
-        </form>
+<div id="content_404" class="content">
+    <div id="404"> <!--TODO fix -->
+        <h1>404</h1>
+        <h2>Pagina non trovata.</h2>
+        <p>La pagina che stai cercando non è presente o non è disponibile, alternativamente raggiungi la <a
+                href="home.php" lang="en">HOME.</a></p>
     </div>
-
-    <ul id="listaProiezioni" class="boxesList">
-        <proiezione/>
-    </ul>
-</div>
-
-<div id="tornaSu">
-    <a href="#content_proiezioni" target="_self"><img src="../images/arrow_upward_white_24dp.svg"
-                                                      alt="Torna su"/></a>
 </div>
 
 <footer>
@@ -156,8 +127,7 @@
             <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
         </li>
         <li>
-            <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png"
-                 alt="The Grand Budapest Hotel"/>
+            <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
         </li>
     </ul>
     <ul id="studenti">

@@ -14,12 +14,13 @@ if(isset($_POST["method"])) {
     http_response_code(303);
     header("Location: " . $_SERVER["REQUEST_URI"]);
 } else /* GET */ {
-    $htmlPage = file_get_contents("template/adminListaFilm.html");
+    $htmlPage = file_get_contents("template/404.html");
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
 
     echo $htmlPage;
 }
+
 
 ?>

@@ -32,7 +32,7 @@ function returnProiezioni() {
         }
         return $stringa;
     } else {
-        header($_SERVER["SERVER_PROTOCOL"]." 500 Server Error");
+        http_response_code(500);
     }
 }
 
@@ -177,7 +177,7 @@ if(!isset($_POST["method"]) && isset($_POST["mod_nomeFilm"])) {
         modificaProiezione();
     
         // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
-        header($_SERVER["SERVER_PROTOCOL"]." 303 See Other");
+        http_response_code(303);
         header("Location: " . $_SERVER["REQUEST_URI"]);
     } else /* GET */ {
         $htmlPage = file_get_contents("template/adminProiezioni.html");

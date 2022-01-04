@@ -3,14 +3,17 @@
 <html lang="it">
 
 <head>
-	<meta charset="utf-8" />
-	
-	<title>FestivalDiCinema</title>
-	
-	<meta name="keywords" content="cinema, festival, padova, indipendente" />
-	<meta name="description" content="sito ufficiale del FestivalDiCinema" />
-    <meta name="author" content="TW2021" />
+    <meta charset="utf-8" />
 
+    <title>About us</title>
+
+    <meta name="keywords" content="storia, contatti, chi siamo"/>
+
+    <meta name="description" content="" />
+
+    <meta name="author" content="" />
+
+    
     <link rel="stylesheet" href="../css/style.css" media="screen">
     <link rel="stylesheet" href="../css/small.css" media="screen and (max-width: 600px)">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
@@ -18,10 +21,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="../js/scripts.js"></script>
 </head>
-    
-<body> 
+
+<body>
     <header>
-        <a class="goToContent" href="#content_adminListaFilm">Vai al contenuto</a>
+        <a class="goToContent" href="#content_ aboutUs">Vai al contenuto</a>
 
         <h1>FestivalDiCinema</h1>
 
@@ -99,60 +102,66 @@
         </nav>
 
         <nav id="breadcrumb">
-            <p>Ti trovi in: <a href="home.php" lang="en">Home</a> &gt; &gt; <a href="admin.php" lang="en">Admin</a> &gt; &gt; Lista Film</p>
+            <p>Ti trovi in: <a href="home.php" lang="en">Home</a> &gt; &gt; <span lang="en">About us</span></p>
         </nav>
 
     </header>
-        
-    <div id="content_adminListaFilm" class="content">
-        <a class="tornaDashboard" href="admin.php">Torna al menu admin</a>
- 
-        <h1>Admin Lista Film</h1>
 
-        <ifloggedadmin>
-            <h2>Aggiungi Film</h2>
-            <form id="alfAggiungi">
-                <label for="alfaTitolo">Titolo:</label>
-                <input type="text" name="titolo" id="alfaTitolo" value="agg_titolofilm"/>
-                <label for="alfaRegisti">Registi:</label>
-                <input type="text" name="registi" id="alfaRegisti"/>
-                <label for="alfaDurata">Durata(min):</label>
-                <input type="number" id="alfaDurata" name="durata" value="90">
-                <label for="alfaDescrizione">Descrizione:</label>
-                <textarea name="descrizione" id="alfaDescrizione" cols="26" rows="5"></textarea>
-                <input type="checkbox" id="alfaGara" value="Gara">
-                <label for="alfaGara" class="inline">In Gara</label><br>
-                <input type="submit" value="Aggiungi film">
-                <input type="submit" value="Reset">
-            </form>
-            
-            <h2>Modifica Film</h2>
-            <label for="alfSelect">Seleziona un film da modificare</label>
-            <select id="alfSelect">
-                <option value="alfOp01">Il Padrino</option>
-                <option value="alfOp02">Filè Addio</option>
-            </select>
-            <form id="alfModifica">
-                <label for="alfmTitolo">Titolo:</label>
-                <input type="text" name="titolo" id="alfmTitolo" value="mod_titolofilm"/>
-                <label for="alfmRegisti">Registi:</label>
-                <input type="text" name="registi" id="alfmRegisti" value="mod_regista"/>
-                <label for="alfmDurata">Durata(min):</label>
-                <input type="number" id="alfmDurata" name="durata" value="mod_duratafilm">
-                <label for="alfmDescrizione">Descrizione:</label>
-                <textarea name="descrizione" id="alfmDescrizione" cols="26" rows="5" value="mod_descrizionefilm"></textarea>
-                <input type="checkbox" id="alfmGara" name="proGara" value="Gara" mod_filmingara>
-                <label for="alfmGara" class="inline">In Gara</label><br>
-                <input type="submit" value="Modifica">
-                <input type="submit" value="Cancella film">
-            </form>
-        </ifloggedadmin>
-        <ifnotloggedadmin>
-            <p><iflogged>Non sei Admin!</iflogged><ifnotlogged>Non Loggato!</ifnotlogged> Per accedere a questa pagina serve loggarsi con un account admin.</p>
-        </ifnotloggedadmin>
+    <div id="content_ aboutUs" class="content">
+        <h1 lang="en">About us</h1>
+
+        <h2>Chi siamo</h2>
+        <p>
+            <strong>FestivalDiCinema</strong> è una realtà padovana sostenuta da un vivace gruppo di appasionati di cinema. Questa passione ci spinge ogni anno a creare questo festival, con lo scopo di promuovere la settima arte e avvicinare chi ne è affascinato o semplicemente incuriosito. Ci adoperiamo con due modalità e proposte differenti: le proiezioni ed il concorso <abbr>Fdc</abbr>Contest.
+        </p>
+        <p>
+            Le <a href="proiezioni.php">proiezioni</a>: Durante tutto l'anno ci informiamo, studiamo e ragioniamo per arrivare ad una programmazzione durante le settimane del festival di film che possano emozionare gli spettatori. Ci impegniamo a portare sui nostri schermi la giusta dose di varietà, spaziando tra grandi classici, capolavori contemporanei, e chicche da scoprire.
+        </p>
+        <p>
+            <a href="contest.php"><abbr>Fdc</abbr>Contest</a>: un concorso a cui ogni anno partecipano vari registi indipendenti che ancora non hanno avuto la possibilità di essere apprezzati dal grande pubblico. Diamo spazio a queste piccole realtà con la curiosità di scoprire ogni anno nuovi talenti, o nuove pellicole di autori già noti. Se interessati a partecipare, vistare la pagina del regolamento.
+        </p>
+
+        <h2>La nostra storia</h2>
+        <p>
+            Il gruppo che muove le redini del festival si è formato nel gruppo facebook "Motore, spritz, azione!". I giovani appasionati di cinema che lo frequentavano, spesso si ritrovavano per andare al cinema e fare un aperitivo a termine della visione. Durante uno di questi aperitivi è nata l'idea di creare un evento che riportasse all'esperienza collettiva della visione del film, in declino dall'avvento di servizi di streaming e televisori ultra-<abbr>hd</abbr>.
+        </p>
+        <p>
+            La prima edizione di FestivalDiCinema si è svolta nel settembre 2014, con alcune serate di proiezione di film. Fin da subito la proposta è stata ben accolta dalla popolazione padovana ed il gruppo originario si subito arricchito di collaboratori, nuovi amici e simpatizzanti.
+            La cresità è sempre stata costante, sia in termini di partecipanti, sia in termini di qualità nelle proiezioni proposte.
+        </p>
+        <p>
+            Dal 2018 si è creato il FdcContest per far conoscere i registi emergenti della zona e proporre visioni di film sempre più innovativi.
+        </p>
+
+
+        <div id="contatti">
+
+            <h2>Contatti</h2>
+
+            <h3>Per info sulle proiezioni:</h3>
+            <a href="mailto:info.fdc@gmail.com">info.fdc@gmail.com</a>
+
+            <h3>Per info sul concorso:</h3>
+            <a href="mailto:contest.fdc@gmail.com">contest.fdc@gmail.com</a>
+
+            <h3>Social:</h3>
+            <ul>
+                <li id="social_ig"><p>Instagram: <a href="">@festivaldelcinema</a></p></li>
+                <li id="social_fb"><p>Facebook: <a href="">festival del cinema padova</a></p></li>
+                <li id="social_yt"><p>Youtube: <a href="">fdc padova</a></p></li>
+            </ul>
+
+            <p id="aiutaci">Vuoi aiutarci nell'organizzazione del festival? Contattaci pure sui social!</p>
+        </div>
+
+    </div>
+
+    <div id="tornaSu">
+        <a href="#content_ aboutUs" target="_self"><img src="../images/arrow_upward_white_24dp.svg" alt="Torna su"/></a>
     </div>
 
     <footer>
+        <ifloggedadmin><a href="admin.php">Pannello admin</a></ifloggedadmin>
         <p>I nostri sponsor:</p> 
         <ul title="sponsors" id="listaSponsor">
             <li>
@@ -173,5 +182,7 @@
         </ul>
         <p>&copy; Copyright 2021</p>
     </footer>
+
 </body>
+
 </html>
