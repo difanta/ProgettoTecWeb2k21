@@ -381,10 +381,6 @@ div.content{
 
 /* film popolari ---------------------------------------------------------------------------------------------*/
 
-#filmPopolare1 a{ background-image: url(../images/filmPopolare1.jpg);}
-#filmPopolare2 a{ background-image: url(../images/filmPopolare2.jpg);}
-#filmPopolare3 a{ background-image: url(../images/filmPopolare3.jpg);}
-
 #filmPopolari{
     display: flex;
     flex-direction: row;

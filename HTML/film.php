@@ -23,10 +23,12 @@ function printFilm(&$htmlPage) {
                     $found = true;
                     $htmlPage = str_replace("titolofilm"          , $film["nome"]        , $htmlPage);
                     $htmlPage = str_replace("regista"             , $film["regista"]     , $htmlPage);
+                    $htmlPage = str_replace("elencoattori" , $film["cast"]        , $htmlPage);
                     $htmlPage = str_replace("annodipubblicazione" , $film["anno"]        , $htmlPage);
                     $htmlPage = str_replace("nomeproduttore"      , $film["produttore"]  , $htmlPage);
                     $htmlPage = str_replace("duratafilm"          , $film["durata"]      , $htmlPage);
                     $htmlPage = str_replace("descrizionefilm"     , $film["descrizione"] , $htmlPage);
+                    $htmlPage = str_replace("percorsoimmagine"     , "..\images\\film\\film".$film["id"].".jpg" , $htmlPage);
                 }
             }
         }
