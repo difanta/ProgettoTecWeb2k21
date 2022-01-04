@@ -190,12 +190,53 @@ function validateForm() {
     return true;
 }
 
+/* Admin Lista Film */
+
+function mod_initFilm() {
+    elem = document.getElementById("alfSelect");
+
+    if(!elem.options[elem.selectedIndex]) {
+        elem.setAttribute("selection", "");
+        return;
+    }
+
+    if(elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+        elem.options[elem.selectedIndex].selected = false;
+        [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
+        elem.setAttribute("selection", "");
+        mod_onFilmChanged();
+    }
+}
+
+function mod_onFilmChanged() {
+    elem = document.getElementById("alfSelect");
+
+    if(!elem.options[elem.selectedIndex]) { return; }
+
+    let request = new XMLHttpRequest();
+    request.onload = (e) => {
+        if (request.readyState === request.DONE) {
+            if (request.status === 200) {
+
+            } else {
+
+            }
+        }
+    };
+    request.onerror = (e) => {
+
+    }
+    request.open("POST", window.location.href);
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.send(encodeURIComponent(elem.getAttribute("name")) + "=" + encodeURIComponent(elem.value));
+}
+ 
 /* Admin Proiezioni */
 
 function agg_initFilm() {
     elem = document.getElementById("apraSelect");
 
-    if(!elem.options[elem.selectedIndex]) return;
+    if(!elem.options[elem.selectedIndex]) { return; }
 
     if(elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
@@ -207,7 +248,7 @@ function agg_initFilm() {
 function mod_FilmSelected() {
     elem = document.getElementById("apSelect");
 
-    if(!elem.options[elem.selectedIndex]) return;
+    if(!elem.options[elem.selectedIndex]) { return; }
 
     if(elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
@@ -238,31 +279,30 @@ function mod_FilmSelected() {
 function mod_ProiezioneSelected() {
     elem = document.getElementById("apSelectP");
 
-    let selectedFilm = document.getElementById("apSelect").value;
-    let selectedDate = "";
-
+    // no proiezioni available -> cancel proiezione selection
     if(!elem.options[elem.selectedIndex]) {
         elem.setAttribute("selection", "");
     }
 
+    // load default proiezione
     if(elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
         [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
         elem.setAttribute("selection", "");
     }
 
-    if(elem.options[elem.selectedIndex]) {
-        selectedDate = elem.options[elem.selectedIndex].getAttribute("orario").replace(/\s/g, 'T');
-    }
+    let selectedFilm = document.getElementById("apSelect").value;
 
+    // load default film
     if(selectedFilm && selectedFilm != "") { 
         const selectFilm = document.getElementById("aprmSelect");
         selectFilm.options[selectFilm.selectedIndex].selected = false;
         [].filter.call(selectFilm.options, option => (option.value == selectedFilm))[0].selected = true;
     }
 
-    if(selectedDate && selectedDate != "") {
-        document.getElementById("aprmData").value = selectedDate;
+    // load default date if at least one proiezione is available and if attribute orario is defined
+    if(elem.options[elem.selectedIndex] && elem.options[elem.selectedIndex].getAttribute("orario") && elem.options[elem.selectedIndex].getAttribute("orario") != "") {
+        document.getElementById("aprmData").value = elem.options[elem.selectedIndex].getAttribute("orario").replace(/\s/g, 'T');
     } else {
         document.getElementById("aprmData").value = "";
     }

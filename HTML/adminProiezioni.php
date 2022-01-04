@@ -109,7 +109,6 @@ function modificaProiezione() {
 
 function printFilms(&$htmlPage) {
     $p_nomifilm = "<nomifilm/>";
-    $p_proiezioni = "<proiezioni/>";
 
     $connection = new DBAccess();
     $connectionOk = $connection->openDB();
@@ -123,7 +122,6 @@ function printFilms(&$htmlPage) {
         }
         $htmlPage = str_replace($p_nomifilm, $stringa, $htmlPage);
     } else {
-        $htmlPage = str_replace($p_proiezioni, "", $htmlPage);
         $htmlPage = str_replace($p_nomifilm, "", $htmlPage);
     }
 }
