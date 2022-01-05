@@ -204,8 +204,9 @@ function mod_initFilm() {
         elem.options[elem.selectedIndex].selected = false;
         [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
         elem.setAttribute("selection", "");
+    } else {
+        mod_onFilmChanged();
     }
-    mod_onFilmChanged();
 }
 
 function resetAlfm() {
