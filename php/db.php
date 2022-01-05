@@ -153,7 +153,7 @@ class DBAccess
 
     private function checkInsert($queryResult)
     {
-        if ($queryResult && mysqli_affected_rows($this->connection) > 0) {
+        if ($queryResult) {
             return true;
         } else {
             return false;
