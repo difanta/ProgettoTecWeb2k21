@@ -63,7 +63,7 @@ class DBAccess
         return $this->formatGetResult($stmt->get_result());
     }
 
-    public function getFilms($in_gara, $nomeFilm)
+    public function getFilmsApprovati($in_gara, $nomeFilm)
     {
         $query = "SELECT * from Film where Film.approvato = '1'";
 

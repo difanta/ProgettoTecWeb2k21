@@ -3,6 +3,7 @@
 session_start();
 
 include "../php/login.php";
+include "../php/fs.php";
 use DB\DBAccess;
 
 function printFilm(&$htmlPage) {
@@ -28,7 +29,7 @@ function printFilm(&$htmlPage) {
                     $htmlPage = str_replace("nomeproduttore"      , $film["produttore"]  , $htmlPage);
                     $htmlPage = str_replace("duratafilm"          , $film["durata"]      , $htmlPage);
                     $htmlPage = str_replace("descrizionefilm"     , $film["descrizione"] , $htmlPage);
-                    $htmlPage = str_replace("percorsoimmagine"     , "..\images\\film\\film".$film["id"].".jpg" , $htmlPage);
+                    $htmlPage = str_replace("percorsoimmagine"    , FS::findImage($film["nome"]), $htmlPage);
                 }
             }
         }

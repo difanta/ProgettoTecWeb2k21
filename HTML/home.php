@@ -3,6 +3,7 @@
 session_start();
 
 include "../php/login.php";
+include "../php/fs.php";
 
 use DB\DBAccess;
 
@@ -22,7 +23,7 @@ function printFilmPopolari(&$htmlPage) {
                 if($indice > 2) break; // only the first 3 films
                 $at_least_one = true;
                 $film_html = str_replace("titolofilm"       , $film["nome"]     , $template);
-                $film_html = str_replace("percorsoimmagine" , "../images/film/film".$film["id"].".jpg" , $film_html);
+                $film_html = str_replace("percorsoimmagine" , FS::findImage($film["nome"]) , $film_html);
                 $htmlPage  = str_replace($p_filmPopolare, $film_html . $p_filmPopolare, $htmlPage);
             }
         }
