@@ -5,11 +5,11 @@ use DB\DBAccess;
 
 class FS {
 
-    static $extensions = array(".jpg", ".png");
+    const EXTS = array(".jpg", ".png");
 
     static function writeImage($filmName, $ext, $data) 
     {
-        if(!in_array($ext, FS::$extensions)) { return false; }
+        if(!in_array($ext, FS::EXTS)) { return false; }
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
@@ -37,7 +37,7 @@ class FS {
         if($connectionOk) {
             $result = $connection->getFilm($filmName);
             if($result && $result[0]) {
-                foreach(FS::$extensions as $ext) {
+                foreach(FS::EXTS as $ext) {
                     if(file_exists("../images/film/film" . $result[0]["id"] . $ext)) { 
                         $path =    "../images/film/film" . $result[0]["id"] . $ext;
                         break;
