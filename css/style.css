@@ -957,16 +957,16 @@ li.filmPopolare a{
     margin-bottom: 4px;
 }
 #adminDashboard a{
-    background-color: #f44336;
+    background-color: var(--main-color);
     color: white;
     padding: 14px 20px;
     text-align: center;
     display: inline-block;
     width: 30%;
-    border: 3px solid #a12c23;
+    border: 3px solid var(--main-color-darker);
 }
 #adminDashboard a:hover{
-    background-color: #f36e65;
+    background-color: var(--main-color-light);
     color: white;
 }
 #adminInfo{
@@ -976,12 +976,12 @@ li.filmPopolare a{
     margin-bottom: 30px;
 }
 #adminInfo dt{
-    background-color: #e6847d;
+    background-color: var(--main-color-lighter);
     text-align: center;
     display: block;
 }
 #adminInfo dd{
-    background-color: rgb(219, 185, 182);
+    background-color: var(--main-color-lightest);
     margin:0;
     text-align: center;
     display: block;
@@ -1022,6 +1022,9 @@ li.filmPopolare a{
 }
 #acnRifiutate{
     display:none;
+}
+.ancsDescrizione{
+    font-style: italic;
 }
 
 #alfModifica,#alfAggiungi{
