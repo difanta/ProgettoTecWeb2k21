@@ -57,11 +57,7 @@ function aggiungiFilm() {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            if($connection->addFilm($agg_nomeFilm, $agg_Produttore, $agg_Regista, $agg_Anno, $agg_Durata, $agg_descrizioneFilm, $agg_Cast, $agg_inGara, $agg_Approvato)) {
-                $_SESSION["success"] = true;
-            } else {
-                $_SESSION["success"] = false;
-            }
+            $_SESSION["success"] = $connection->addFilm($agg_nomeFilm, $agg_Produttore, $agg_Regista, $agg_Anno, $agg_Durata, $agg_descrizioneFilm, $agg_Cast, $agg_inGara, $agg_Approvato);
         } else {
             $_SESSION["success"] = false;
         }
@@ -83,7 +79,7 @@ function modificaFilm() {
 
     if(isset($_POST["method"]) && $_POST["method"] == "Modifica Film") {
         $mod_oldNomeFilm      = $_POST["mod_oldNomeFilm"]     ;
-        $mod_nomeFilm         = $_POST["mod_nomeFilm"]     ;
+        $mod_nomeFilm         = $_POST["mod_nomeFilm"]        ;
         $mod_Produttore       = $_POST["mod_Produttore"]      ;
         $mod_Regista          = $_POST["mod_Registi"]         ;
         $mod_Anno             = $_POST["mod_Anno"]            ;
@@ -106,11 +102,7 @@ function modificaFilm() {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            if($connection->modifyFilm($mod_oldNomeFilm, $mod_nomeFilm, $mod_Produttore, $mod_Regista, $mod_Anno, $mod_Durata, $mod_descrizioneFilm, $mod_Cast, $mod_inGara, $mod_Approvato)) {
-                $_SESSION["success"] = true;
-            } else {
-                $_SESSION["success"] = false;
-            }
+            $_SESSION["success"] = $connection->modifyFilm($mod_oldNomeFilm, $mod_nomeFilm, $mod_Produttore, $mod_Regista, $mod_Anno, $mod_Durata, $mod_descrizioneFilm, $mod_Cast, $mod_inGara, $mod_Approvato);
         } else {
             $_SESSION["success"] = false;
         }
@@ -126,7 +118,18 @@ function modificaFilm() {
         $_SESSION["mod_filmingara"]       = $mod_inGara          ;
         $_SESSION["mod_approvato"]        = $mod_Approvato       ;
     } else if(isset($_POST["method"]) && $_POST["method"] == "Elimina Film") {
+        $connection = new DBAccess();
+        $connectionOk = $connection->openDB();
+    
+        $mod_oldNomeFilm = $_POST["mod_oldNomeFilm"];
 
+        if($connectionOk) {
+            $_SESSION["success"] = $connection->deleteFilm($mod_oldNomeFilm);
+        } else {
+            $_SESSION["success"] = false;
+        }
+
+        $_SESSION["mod_oldnomefilm"] = $mod_oldNomeFilm;
     }
 }
 
@@ -197,8 +200,13 @@ function printAggiungiFilm(&$htmlPage) {
 }
 
 function printModificaFilm(&$htmlPage) {
-    if(isset($_SESSION["method"]) && $_SESSION["method"] == "Modifica Film") {  
-        $htmlPage = str_replace("mod_nomefilmselezionato" , $_SESSION["mod_nomefilm"]        , $htmlPage); // se non ha avuto successo invece dovrebbe sostituire il oldNomeFilm
+    if(isset($_SESSION["method"]) && $_SESSION["method"] == "Modifica Film") 
+    {  
+        if(isset($_SESSION["method"]) && $_SESSION["method"] == "Modifica Film" && $_SESSION["success"] == false)
+        { $htmlPage = str_replace("mod_nomefilmselezionato" , $_SESSION["mod_oldNomeFilm"] , $htmlPage); }
+        else
+        { $htmlPage = str_replace("mod_nomefilmselezionato" , $_SESSION["mod_nomefilm"]    , $htmlPage); }
+
         $htmlPage = str_replace("mod_nomefilm"            , $_SESSION["mod_nomefilm"]        , $htmlPage);
         $htmlPage = str_replace("mod_produttore"          , $_SESSION["mod_produttore"]      , $htmlPage);
         $htmlPage = str_replace("mod_regista"             , $_SESSION["mod_regista"]         , $htmlPage);
@@ -226,14 +234,17 @@ function printModificaFilm(&$htmlPage) {
         unset($_SESSION["mod_annofilm"]);
         unset($_SESSION["mod_duratafilm"]);
         unset($_SESSION["mod_descrizionefilm"]);
-        unset($_SESSION["mod_ingara"]);
         unset($_SESSION["mod_filmingara"]);
         unset($_SESSION["mod_approvato"]);
 
         unset($_SESSION["method"]);
         unset($_SESSION["success"]);
-    } else { // anche il caso di $_SESSION["method"] == "Elimina Film"
-        $htmlPage = str_replace("mod_nomefilmselezionato" , "" , $htmlPage);
+    } else {
+        if(isset($_SESSION["method"]) && $_SESSION["method"] == "Elimina Film" && $_SESSION["success"] == false)
+        { $htmlPage = str_replace("mod_nomefilmselezionato" , $_SESSION["mod_oldNomeFilm"] , $htmlPage); }
+        else
+        { $htmlPage = str_replace("mod_nomefilmselezionato" , ""                           , $htmlPage); }
+        
         $htmlPage = str_replace("mod_nomefilm"            , "" , $htmlPage);
         $htmlPage = str_replace("mod_produttore"          , "" , $htmlPage);
         $htmlPage = str_replace("mod_regista"             , "" , $htmlPage);
