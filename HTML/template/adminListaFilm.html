@@ -110,7 +110,9 @@
         <h1>Admin Lista Film</h1>
 
         <ifloggedadmin>
-            <h2>Aggiungi Film</h2>
+            <h2><label for="fcollapse">Aggiungi Film</label></h2>
+            <input id="fcollapse" type="checkbox">
+
             <form id="alfAggiungi" method="post">
                 <label for="alfaTitolo">Titolo:</label>
                 <input type="text" id="alfaTitolo" name="agg_nomeFilm" value="agg_nomefilm" required/>
