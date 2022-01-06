@@ -42,6 +42,19 @@ function expandMenu(){
     }
 }
 
+/* Scroll -------------------------------------------- */
+
+window.onscroll = scrollFunction;
+
+function scrollFunction() {
+    elem = document.getElementById("tornaSu");
+    if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+        elem.style.display = "block";
+    } else {
+        elem.style.display = "none";
+    }
+}
+
 /* Lista Film ---------------------------------------- */
 
 function listaFilmLike(checked, nomeFilm) {

@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     --main-color: #0f709a;
     --main-color-light: #34A0A4;
@@ -1324,6 +1328,7 @@ li.filmPopolare a{
 
 
 #tornaSu {
+    display: none;
     height: 3em;
     width: 3em;
     overflow-y: auto;
