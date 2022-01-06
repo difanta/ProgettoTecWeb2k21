@@ -1105,51 +1105,95 @@ li.filmPopolare a{
     width: initial;
 }
 
+/* Collapsible Headers */
+
 #content_adminListaFilm h2,
 #content_adminProiezioni h2 {
     margin-top: 1.5em;
 }
 
-#content_adminListaFilm #fcollapse {
-    display: none;
+#content_adminListaFilm h2 label,
+#content_adminProiezioni h2 label {
+    padding-bottom: 3px;
+    border-bottom: 3px solid transparent;
+
+    transition: border-bottom 0.5s ease-out;
+}
+
+#content_adminListaFilm h2 label::after,
+#content_adminProiezioni h2 label::after {
+    content: ' ';
+    display: inline-block;
+
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid currentColor;
+    vertical-align: middle;
+    margin-left: .7rem;
+    transform: rotate(90deg) translateX(-3px);
+
+    transition: transform .2s ease-out;
+}
+
+#content_adminListaFilm #fcollapse:checked + h2 label,
+#content_adminListaFilm #mcollapse:checked + h2 label{
+    border-bottom: 3px solid var(--main-color-dark);
+}
+
+#content_adminListaFilm #fcollapse:checked + h2 label::after,
+#content_adminListaFilm #mcollapse:checked + h2 label::after {
+    transform: translateY(-2px);
+}
+
+#content_adminListaFilm #fcollapse,
+#content_adminListaFilm #mcollapse {
+    position: absolute;
+    left: -10000%;
 }
 
 #content_adminListaFilm form,
 #content_adminProiezioni form {
-    visibility: hidden;
-    opacity: 0;
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+    visibility: visible;
+    opacity: 1;
+    max-height: 100vh;
+    overflow: hidden;
+
+    padding-bottom: 1.5em;
 
     margin-top: 0;
     margin-bottom: 1em;
-
-    overflow: hidden;
-
+    
     border: none;
     border-bottom: 2px solid black;
 
     transition: 0.5s ease-in-out;
 }
 
-#content_adminListaFilm #fcollapse:checked + #alfAggiungi {
-    visibility: visible;
-    opacity: 1;
-    max-height: 100vh;
-    padding-top: 1em;
-    padding-bottom: 1.5em;
+#content_adminListaFilm #fcollapse:checked ~ #alfAggiungi,
+#content_adminListaFilm #mcollapse:checked ~ #alfModifica {
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
-#content_adminListaFilm input,
-#content_adminProiezioni input {
-    margin-top: 0.5em;
+/* -Collapsible Headers */
+
+#content_adminListaFilm #alfSelect {
+    display: inline-block;
+    margin-bottom: 2em;
 }
 
 #content_adminListaFilm label,
 #content_adminProiezioni label {
     display: inline-block;
     min-width: 6em;
+}
+
+#content_adminListaFilm input,
+#content_adminProiezioni input {
+    margin-top: 0.5em;
 }
 
 #content_adminListaFilm select,
@@ -1161,13 +1205,13 @@ li.filmPopolare a{
     max-width: 15em;
 }
 
-#content_adminListaFilm input[type="checkbox"] {
-    margin-left: 0.5em;
-    margin-right: 0.5em;
+#content_adminProiezioni input[type="datetime-local"] {
     display: inline-block;
 }
 
-#content_adminProiezioni input[type="datetime-local"] {
+#content_adminListaFilm input[type="checkbox"] {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
     display: inline-block;
 }
 
@@ -1184,11 +1228,8 @@ li.filmPopolare a{
     margin-top: 2em;
 }
 
-#content_adminListaFilm .inline {
-    display: inline-block;
-}
-
 /* Pagina film ---------------------------------------------------------------------------------------------- */
+
 #content_templateFilm{
     display: grid;
     grid-template-areas:    "c a"

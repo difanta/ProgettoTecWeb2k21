@@ -154,7 +154,8 @@ function printFilms(&$htmlPage) {
 }
 
 function printAggiungiFilm(&$htmlPage) {
-    if(isset($_SESSION["method"]) && $_SESSION["method"] == "Aggiungi Film") {        
+    if(isset($_SESSION["method"]) && $_SESSION["method"] == "Aggiungi Film") {   
+        $htmlPage = str_replace("aggiungiposted"      , ""                               , $htmlPage);
         $htmlPage = str_replace("agg_nomefilm"        , $_SESSION["agg_nomefilm"]        , $htmlPage);
         $htmlPage = str_replace("agg_produttore"      , $_SESSION["agg_produttore"]      , $htmlPage);
         $htmlPage = str_replace("agg_regista"         , $_SESSION["agg_regista"]         , $htmlPage);
@@ -188,15 +189,16 @@ function printAggiungiFilm(&$htmlPage) {
         unset($_SESSION["method"]);
         unset($_SESSION["success"]);
     } else {
-        $htmlPage = str_replace("agg_nomefilm"        , "" , $htmlPage);
-        $htmlPage = str_replace("agg_produttore"      , "" , $htmlPage);
-        $htmlPage = str_replace("agg_regista"         , "" , $htmlPage);
-        $htmlPage = str_replace("agg_annofilm"        , "" , $htmlPage);
-        $htmlPage = str_replace("agg_duratafilm"      , "" , $htmlPage);
-        $htmlPage = str_replace("agg_descrizionefilm" , "" , $htmlPage);
-        $htmlPage = str_replace("agg_cast"            , "" , $htmlPage);
-        $htmlPage = str_replace("agg_filmingara"      , "" , $htmlPage);
-        $htmlPage = str_replace("agg_approvato"       , "" , $htmlPage);
+        $htmlPage = str_replace("aggiungiposted"      , "checked" , $htmlPage);
+        $htmlPage = str_replace("agg_nomefilm"        , ""        , $htmlPage);
+        $htmlPage = str_replace("agg_produttore"      , ""        , $htmlPage);
+        $htmlPage = str_replace("agg_regista"         , ""        , $htmlPage);
+        $htmlPage = str_replace("agg_annofilm"        , ""        , $htmlPage);
+        $htmlPage = str_replace("agg_duratafilm"      , ""        , $htmlPage);
+        $htmlPage = str_replace("agg_descrizionefilm" , ""        , $htmlPage);
+        $htmlPage = str_replace("agg_cast"            , ""        , $htmlPage);
+        $htmlPage = str_replace("agg_filmingara"      , ""        , $htmlPage);
+        $htmlPage = str_replace("agg_approvato"       , ""        , $htmlPage);
     }
 }
 
@@ -208,6 +210,7 @@ function printModificaFilm(&$htmlPage) {
         else
         { $htmlPage = str_replace("mod_nomefilmselezionato" , $_SESSION["mod_nomefilm"]    , $htmlPage); }
 
+        $htmlPage = str_replace("modificaposted"          , ""                               , $htmlPage);
         $htmlPage = str_replace("mod_nomefilm"            , $_SESSION["mod_nomefilm"]        , $htmlPage);
         $htmlPage = str_replace("mod_produttore"          , $_SESSION["mod_produttore"]      , $htmlPage);
         $htmlPage = str_replace("mod_regista"             , $_SESSION["mod_regista"]         , $htmlPage);
@@ -251,16 +254,17 @@ function printModificaFilm(&$htmlPage) {
         unset($_SESSION["method"]);
         unset($_SESSION["success"]);
     } else {
-        $htmlPage = str_replace("mod_nomefilmselezionato" , "" , $htmlPage);
-        $htmlPage = str_replace("mod_nomefilm"            , "" , $htmlPage);
-        $htmlPage = str_replace("mod_produttore"          , "" , $htmlPage);
-        $htmlPage = str_replace("mod_regista"             , "" , $htmlPage);
-        $htmlPage = str_replace("mod_annofilm"            , "" , $htmlPage);
-        $htmlPage = str_replace("mod_duratafilm"          , "" , $htmlPage);
-        $htmlPage = str_replace("mod_descrizionefilm"     , "" , $htmlPage);
-        $htmlPage = str_replace("mod_cast"                , "" , $htmlPage);
-        $htmlPage = str_replace("mod_filmingara"          , "" , $htmlPage);
-        $htmlPage = str_replace("mod_approvato"           , "" , $htmlPage);
+        $htmlPage = str_replace("modificaposted"          , "checked" , $htmlPage);
+        $htmlPage = str_replace("mod_nomefilmselezionato" , ""        , $htmlPage);
+        $htmlPage = str_replace("mod_nomefilm"            , ""        , $htmlPage);
+        $htmlPage = str_replace("mod_produttore"          , ""        , $htmlPage);
+        $htmlPage = str_replace("mod_regista"             , ""        , $htmlPage);
+        $htmlPage = str_replace("mod_annofilm"            , ""        , $htmlPage);
+        $htmlPage = str_replace("mod_duratafilm"          , ""        , $htmlPage);
+        $htmlPage = str_replace("mod_descrizionefilm"     , ""        , $htmlPage);
+        $htmlPage = str_replace("mod_cast"                , ""        , $htmlPage);
+        $htmlPage = str_replace("mod_filmingara"          , ""        , $htmlPage);
+        $htmlPage = str_replace("mod_approvato"           , ""        , $htmlPage);
     }
 }
 
