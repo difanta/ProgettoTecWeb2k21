@@ -55,6 +55,20 @@ class DBAccess
         return $this->formatGetResult($stmt->get_result());
     }
 
+    public function getLike($utente, $nomeFilm) {
+        $stmt = $this->connection->prepare("SELECT count(*) as num FROM _Like WHERE utente = ? and film = (SELECT id from Film where Film.nome = ?)");
+        $stmt->bind_param("ss", $utente, $nomeFilm);
+        $stmt->execute();
+        return $this->formatGetResult($stmt->get_result());
+    }
+
+    public function insertLike($utente, $nomeFilm) {
+        $stmt = $this->connection->prepare("INSERT INTO _Like(utente, film) VALUES
+                                            (?, (SELECT id from Film where Film.nome = ?)");
+        $stmt->bind_param("ss", $utente, $nomeFilm);
+        return $stmt->execute();
+    }
+
     public function getFilm($nomeFilm)
     {
         $stmt = $this->connection->prepare("SELECT * from Film where Film.nome = ?");
@@ -125,14 +139,23 @@ class DBAccess
 						order by orario asc";
         }
 
+        $types = "";
+        $array_of_values = array();
+
         $stmt = $this->connection->prepare($query);
+
         if ($nomeFilm != "") {
-            $nomeFilm = "%$nomeFilm%";
-            $stmt->bind_param("s", $nomeFilm);
+            $types .= "s";
+            array_push($array_of_values, "%$nomeFilm%");
         }
         if ($dataProiezione != "") {
-            $stmt->bind_param("s", $dataProiezione);
+            $types .= "s";
+            array_push($array_of_values, $dataProiezione);
         }
+        if($types != "") {
+            $stmt->bind_param($types, ...$array_of_values);
+        }
+        
         $stmt->execute();
         return $this->formatGetResult($stmt->get_result());
     }
