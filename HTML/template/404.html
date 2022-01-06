@@ -28,53 +28,65 @@
 
     <h1>FestivalDiCinema</h1>
 
-    <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span>
-    </button>
+    <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span></button>
     <div id="accountDropdown">
         <div id="accountSection" class="slidableOut">
-            <button title="login" id="loginBtn" onclick="openLogin()">Login</button>
-            <button title="sign up" id="signupBtn" onclick="openSignup()">Registrati</button>
-            <button id="logout">Logout</button>
-            <a href="paginaUtente.php">Il mio Profilo</a>
+            <ifnotlogged>
+                <button id="loginBtn" onclick="openLogin()">Login</button>
+                <button id="signupBtn" onclick="openSignup()">Registrati</button>
+            </ifnotlogged>
+            <iflogged>
+                <form id="logout" method="post"></form>
+                <button name="method" value="logout" form="logout">Logout</button>
+                <a href="paginaUtente.php">Il mio Profilo</a>
+            </iflogged>
         </div>
 
         <div id="loginSection" class="slidableIn">
             <header>
-                <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span>
-                </button>
+                <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span></button>
             </header>
-            <form id="login">
-                <label for="loginEmail">Email</label>
-                <input id="loginEmail" name="email" type="email" autocomplete="username">
-                <label for="loginPassword">Password</label>
-                <input id="loginPassword" name="password" type="password" autocomplete="current-password">
+            <ifnotloginsuccess>
+                <form id="login" method="post">
+                    <label for="loginEmail">Email</label>
+                    <input id="loginEmail" name="email" type="email" autocomplete="username">
+                    <label for="loginPassword">Password</label>
+                    <input id="loginPassword" name="password" type="password" autocomplete="current-password">
 
-                <button>accedi</button>
-            </form>
+                    <button name="method" value="login">accedi</button>
+                </form>
+            </ifnotloginsuccess>
+            <ifloginsuccess>
+                <p>Loggato con successo!</p>
+            </ifloginsuccess>
         </div>
 
         <div id="signupSection" class="slidableIn">
             <header>
-                <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span>
-                </button>
+                <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span></button>
             </header>
-            <form id="signup">
-                <label for="signupNome">Nome</label>
-                <input id="signupNome" name="nome" type="text" autocomplete="name">
-                <label for="signupCognome">Cognome</label>
-                <input id="signupCognome" name="cognome" type="text" autocomplete="family-name">
-                <label for="signupDataNascita">Data di nascita</label>
-                <input id="signupDataNascita" name="dataNascita" type="text" autocomplete="bday">
-
-                <label for="signupEmail">Email</label>
-                <input id="signupEmail" name="email" type="email" autocomplete="home email">
-                <label for="signupPassword">Password</label>
-                <input id="signupPassword" name="password" type="password" autocomplete="new-password">
-                <label for="signupPassword2">ridigita la password</label>
-                <input id="signupPassword2" name="password" type="password" autocomplete="new-password">
-
-                <button>registrati</button>
-            </form>
+            <ifnotregistersuccess>
+                <form id="signup" method="post">
+                    <label for="signupNome">Nome</label>
+                    <input id="signupNome" name="nome" type="text" autocomplete="name">
+                    <label for="signupCognome">Cognome</label>
+                    <input id="signupCognome" name="cognome" type="text" autocomplete="family-name">
+                    <label for="signupDataNascita">Data di nascita</label>
+                    <input id="signupDataNascita" name="data_di_nascita" type="date" autocomplete="bday">
+                    
+                    <label for="signupEmail">Email</label>
+                    <input id="signupEmail" name="email" type="email" autocomplete="home email">
+                    <label for="signupPassword">Password</label>
+                    <input id="signupPassword" name="password" type="password" autocomplete="new-password">
+                    <label for="signupPassword2">ridigita la password</label>
+                    <input id="signupPassword2" name="" type="password" autocomplete="new-password">
+        
+                    <button name="method" value="register">registrati</button>
+                </form>
+            </ifnotregistersuccess>
+            <ifregistersuccess>
+                <p>Registrato con successo! Ora effettua il Login</p>
+            </ifregistersuccess>
         </div>
     </div>
 
@@ -107,7 +119,7 @@
 </div>
 
 <footer>
-    <a href="admin.php">Pannello admin</a>
+    <ifloggedadmin><a href="admin.php">Pannello admin</a></ifloggedadmin>
     <p>I nostri sponsor:</p>
     <ul title="sponsors" id="listaSponsor">
         <li>

@@ -3,6 +3,7 @@
 session_start();
 
 include "../php/login.php";
+include "../php/fs.php";
 
 use DB\DBAccess;
 
@@ -22,7 +23,7 @@ function printFilmPopolari(&$htmlPage) {
                 if($indice > 2) break; // only the first 3 films
                 $at_least_one = true;
                 $film_html = str_replace("titolofilm"       , $film["nome"]     , $template);
-                //$film_html = str_replace("percorsoimmagine" , $film["immagine"] , $template);
+                $film_html = str_replace("percorsoimmagine" , FS::findImage($film["nome"]) , $film_html);
                 $htmlPage  = str_replace($p_filmPopolare, $film_html . $p_filmPopolare, $htmlPage);
             }
         }
@@ -41,7 +42,7 @@ if(isset($_POST["method"])) {
     Login::handleLogin();
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
-    header("HTTP/1.1 303 See Other");
+    http_response_code(303);
     header("Location: " . $_SERVER["REQUEST_URI"]);
 } else /* GET */ {
     $htmlPage = file_get_contents("template/home.html");

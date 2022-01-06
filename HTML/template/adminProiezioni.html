@@ -19,7 +19,7 @@
     <script src="../js/scripts.js"></script>
 </head>
     
-<body onload="mod_FilmSelected(document.getElementById('apSelect'))"> 
+<body onload="mod_FilmSelected(); agg_initFilm();"> 
     <header>
         <a class="goToContent" href="#content_adminProiezioni">Vai al contenuto</a>
 
@@ -90,10 +90,10 @@
         <nav id="menu">
             <ul>
                 <li lang="en"><a href="home.php">Home</a></li>
-                <li lang="en"><a href="aboutUs.html">About us</a></li>
+                <li lang="en"><a href="aboutUs.php">About us</a></li>
                 <li><a href="listaFilm.php">Film</a></li>
                 <li><a href="proiezioni.php">Programma</a></li>
-                <li><a href="comeTrovarci.html">Come Trovarci</a></li>
+                <li><a href="comeTrovarci.php">Come Trovarci</a></li>
                 <li><a href="contest.php">Il Contest</a></li>
             </ul>
         </nav>
@@ -105,38 +105,45 @@
     </header>
         
     <div id="content_adminProiezioni" class="content">
+        <a class="tornaDashboard" href="admin.php">Torna al menu admin</a>
+
         <h1>Proiezioni</h1>
 
         <ifloggedadmin>
             <h2>Aggiungi Proiezione</h2>
             <form id="aprAggiungi" method="post">
                 <label for="apraSelect">Film</label>
-                <select id="apraSelect" name="agg_nomeFilm">
+                <select id="apraSelect" name="agg_nomeFilm" selection="agg_nomefilmselezionato" required>
                     <nomifilm/>
                 </select>
+                <br>
                 <label for="apraData">Data e Ora</label>
-                <input type="datetime-local" id="apraData">
-                <input type="submit" value="Aggiungi Proiezione">
+                <input type="datetime-local" id="apraData" name="agg_data" value="agg_dataselezionata" required>
+                <br>
+                <input type="submit" name="method" value="Aggiungi Proiezione">
                 <input type="submit" value="Reset">
             </form>
             
             <h2>Modifica Proiezione</h2>
             <label for="apSelect" form="mod_selectFilm">Seleziona un film</label>
-            <select id="apSelect" name="mod_nomeFilm" onchange="mod_FilmSelected(this)">
+            <select id="apSelect" name="mod_nomeFilm" form="aprModifica" selection="mod_nomefilmselezionato" onchange="mod_FilmSelected()" required>
                 <nomifilm/>
-            </select><br>
+            </select>
+            <br>
             <label for="apSelectP">Seleziona una proiezione</label>
-            <select id="apSelectP" name="mod_idProiezione" onchange="mod_ProiezioneSelected(this)">
+            <select id="apSelectP" name="mod_idProiezione" form="aprModifica" selection="mod_idproiezioneselezionata" onchange="mod_ProiezioneSelected()" required>
             </select>
             <form id="aprModifica" method="post">
                 <label for="aprmSelect">Film</label>
-                <select id="aprmSelect" name="mod_nomeNuovoFilm">
+                <select id="aprmSelect" name="mod_nomeNuovoFilm" required>
                     <nomifilm/>
                 </select>
+                <br>
                 <label for="aprmData">Data e Ora</label>
-                <input type="datetime-local" id="aprmData">
-                <input type="submit" value="Conferma modifiche">
-                <input type="submit" value="Elimina proiezione">
+                <input type="datetime-local" id="aprmData" name="mod_nuovaData" required>
+                <br>
+                <input type="submit" name="method" value="Modifica Proiezione">
+                <input type="submit" name="method" value="Elimina Proiezione">
             </form>
         </ifloggedadmin>
         <ifnotloggedadmin>
