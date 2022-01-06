@@ -56,7 +56,9 @@ class DBAccess
     }
 
     public function getLike($utente, $nomeFilm) {
-        $stmt = $this->connection->prepare("SELECT count(*) as num FROM _Like WHERE utente = ? and film = (SELECT id from Film where Film.nome = ?)");
+        $stmt = $this->connection->prepare("SELECT count(*) as num 
+                                            FROM _Like 
+                                            WHERE utente = ? and film = (SELECT id from Film where Film.nome = ?)");
         $stmt->bind_param("ss", $utente, $nomeFilm);
         $stmt->execute();
         return $this->formatGetResult($stmt->get_result());
@@ -64,7 +66,14 @@ class DBAccess
 
     public function insertLike($utente, $nomeFilm) {
         $stmt = $this->connection->prepare("INSERT INTO _Like(utente, film) VALUES
-                                            (?, (SELECT id from Film where Film.nome = ?)");
+                                            (?, (SELECT id from Film where Film.nome = ?))");
+        $stmt->bind_param("ss", $utente, $nomeFilm);
+        return $stmt->execute();
+    }
+
+    public function removeLike($utente, $nomeFilm) {
+        $stmt = $this->connection->prepare("DELETE from _Like
+                                            where utente = ? and film = (SELECT id from Film where Film.nome = ?)");
         $stmt->bind_param("ss", $utente, $nomeFilm);
         return $stmt->execute();
     }

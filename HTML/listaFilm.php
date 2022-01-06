@@ -54,11 +54,27 @@ function printFilms(&$htmlPage) {
             // create and substitute films based on template
             foreach($result as $indice => $film) {
                 $at_least_one = true;
-                $film_html = str_replace("titolofilm", $film["nome"]   , $template);
-                $film_html = str_replace("regista"   , $film["regista"], $film_html);
-                if($film["in_gara"]) {
+                $film_html = str_replace("titoloescaped"     , addslashes($film["nome"]) , $template);
+                $film_html = str_replace("titolofilm"        , $film["nome"]             , $film_html);
+                $film_html = str_replace("regista"           , $film["regista"]          , $film_html);
+                if($film["in_gara"]) 
+                {
                     Login::showElement("<ifingara>"  , "</ifingara>"   , $film_html);
-                } else {
+                    
+                    if(Login::is_logged()) {
+                        $result = $connection->getLike($_SESSION["login"], $film["nome"]);
+                        if($result && $result[0] && ($result[0]["num"] > 0)) {
+                            $film_html = str_replace("liked"    , "checked"  , $film_html);
+                            $film_html = str_replace("likeicon" , "favorite" , $film_html);
+                        } else {
+                            $film_html = str_replace("liked"    , ""                , $film_html);
+                            $film_html = str_replace("likeicon" , "favorite_border" , $film_html);
+                        }
+                    }
+
+                } 
+                else 
+                {
                     Login::hideElement("<ifingara>"  , "</ifingara>"   , $film_html);
                 }
                 $htmlPage  = str_replace($p_filmPreview, $film_html . $p_filmPreview, $htmlPage);
@@ -84,8 +100,8 @@ if(isset($_POST["method"])) {
     $htmlPage = file_get_contents("template/listaFilm.html");
 
     // show login/register/logout results
-    Login::printLogin($htmlPage);
     printFilms($htmlPage);
+    Login::printLogin($htmlPage);
 
     echo $htmlPage;
 }

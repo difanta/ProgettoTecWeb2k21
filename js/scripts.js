@@ -44,13 +44,31 @@ function expandMenu(){
 
 /* Lista Film ---------------------------------------- */
 
-function listaFilmLike(checked, id) {
-    elem = document.getElementById('label-' + id);
-    if (checked) {
+function listaFilmLike(checked, nomeFilm) {
+    elem = document.getElementById('label-like-' + nomeFilm);
+    if (checked == true) {
         elem.innerHTML = elem.innerHTML.replace('favorite_border', 'favorite');
     } else {
         elem.innerHTML = elem.innerHTML.replace('favorite', 'favorite_border');
     }
+
+    let request = new XMLHttpRequest();
+    request.onload = (e) => {
+        if (request.readyState === request.DONE) {
+            let select = document.getElementById("apSelectP");
+            if (request.status === 200) {
+                console.log('label-like-' + nomeFilm + " successful");
+            } else {
+            }
+        }
+    };
+    request.onerror = (e) => {
+    }
+    request.open("POST", "like.php");
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.send(encodeURIComponent("nomeFilm") + "=" + encodeURIComponent(nomeFilm) 
+                 + "&" + 
+                 encodeURIComponent("like") + "=" + encodeURIComponent(checked));
 }
 
 /* Acquisto biglietti -------------------------------- */
@@ -226,6 +244,8 @@ function mod_onFilmChanged() {
 
     if(!elem.options[elem.selectedIndex]) { return; }
 
+    resetAlfm();
+
     let request = new XMLHttpRequest();
     request.onload = (e) => {
         if (request.readyState === request.DONE) {
@@ -241,18 +261,14 @@ function mod_onFilmChanged() {
                 document.getElementById("alfmGara").checked = (obj["in_gara"] == 1);
                 document.getElementById("alfmApprovato").checked = (obj["approvato"] == 1);
             } else {
-                resetAlfm();
             }
         }
     };
     request.onerror = (e) => {
-        resetAlfm();
     }
     request.open("POST", window.location.href);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send(encodeURIComponent(elem.getAttribute("name")) + "=" + encodeURIComponent(elem.value));
-
-    resetAlfm();
 }
  
 /* Admin Proiezioni */
@@ -280,6 +296,8 @@ function mod_FilmSelected() {
         elem.setAttribute("selection", "");
     }
 
+    document.getElementById("apSelectP").innerHTML = "";
+
     let request = new XMLHttpRequest();
     request.onload = (e) => {
         if (request.readyState === request.DONE) {
@@ -287,19 +305,15 @@ function mod_FilmSelected() {
             if (request.status === 200) {
                 select.innerHTML = request.responseText;
             } else {
-                select.innerHTML = "";
             }
             mod_ProiezioneSelected(select);
         }
     };
     request.onerror = (e) => {
-        document.getElementById("apSelectP").innerHTML = "";
     }
     request.open("POST", window.location.href);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send(encodeURIComponent(elem.getAttribute("name")) + "=" + encodeURIComponent(elem.value));
-
-    document.getElementById("apSelectP").innerHTML = "";
 }
 
 function mod_ProiezioneSelected() {
