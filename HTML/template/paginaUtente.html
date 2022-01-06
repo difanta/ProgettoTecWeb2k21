@@ -90,16 +90,18 @@
         </div>
     </div>
 
-    <nav id="menu">
-        <ul>
-            <li lang="en"><a href="home.php">Home</a></li>
-            <li lang="en"><a href="aboutUs.html">About us</a></li>
-            <li><a href="listaFilm.php">Film</a></li>
-            <li><a href="proiezioni.php">Programma</a></li>
-            <li><a href="comeTrovarci.html">Come Trovarci</a></li>
-            <li><a href="contest.php">Il Contest</a></li>
-        </ul>
-    </nav>
+<nav id="menu">
+            <ul>
+                <li lang="en"><a href="home.php">Home</a></li>
+                <li class="secondaryMenuItem" lang="en"><a href="aboutUs.html">About us</a></li>
+                <li class="secondaryMenuItem"><a href="listaFilm.php">Film</a></li>
+                <li><a href="proiezioni.php">Programma</a></li>
+                <li><a href="comeTrovarci.html">Come Trovarci</a></li>
+                <li class="secondaryMenuItem"><a href="contest.php">Il Contest</a></li>
+            </ul>
+            <button title="menu" id="menuButton" onclick="expandMenu()"><span id="expandMenuArrow" class="material-icons-outlined">expand_more</span></button>
+        </nav>
+
 
     <nav id="breadcrumb">
         <p>Ti trovi in: <span lang="en">Home</span></p>
