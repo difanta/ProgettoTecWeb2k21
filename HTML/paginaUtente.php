@@ -188,7 +188,7 @@ if (isset($_POST["method"])) {
     updateInfoUtente();
     if ($_POST["method"] == "Elimina Account") {
         deleteInfoUtente();
-        header("Location: home.php");
+        header("Location: index.php");
         die();
     }
 
