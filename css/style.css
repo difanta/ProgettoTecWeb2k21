@@ -419,7 +419,8 @@ li.filmPopolare {
 }
 
 li.filmPopolare p{
-    font-size: 1.8em;
+    font-size: 1.4em;
+    height:12%;
     margin: 0;
     /* margin-bottom: 0.4em; */
     padding-top: 5%;
@@ -433,7 +434,7 @@ li.filmPopolare a{
     display: block;
     margin: 0;
     width: 100%;
-    height: 90%;
+    height: 88%;
     border-radius: 0 0 8px 8px;
     background-size: cover;
     background-position: 50% 50%;
@@ -708,6 +709,16 @@ li.filmPopolare a{
 
 .boxesList a:visited {
     color: initial;
+}
+
+.filmInGara{
+    display:block;
+    padding-top:5px;
+    color:var(--main-color);
+}
+
+.filmNonInGara{
+    display:none;
 }
 
 /* Acquisto biglietti ------------------------------------------------------------- */

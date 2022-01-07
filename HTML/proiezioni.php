@@ -67,6 +67,10 @@ function printProiezioni(&$htmlPage) {
                 $proiezione_html = str_replace("data",         $film["data"],    $proiezione_html);
                 $proiezione_html = str_replace("ora",          $film["ora"],     $proiezione_html);
                 $proiezione_html = str_replace("idproiezione", $film["pid"],     $proiezione_html);
+                if($film["in_gara"]){
+                    $proiezione_html = str_replace("filmNonInGara" , "filmInGara" , $proiezione_html);
+                }
+
                 $htmlPage  = str_replace($p_proiezione, $proiezione_html . $p_proiezione, $htmlPage);
             }
         }
