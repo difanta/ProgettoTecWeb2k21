@@ -711,6 +711,16 @@ li.filmPopolare a{
     color: initial;
 }
 
+.filmInGara{
+    display:block;
+    padding-top:5px;
+    color:var(--main-color);
+}
+
+.filmNonInGara{
+    display:none;
+}
+
 /* Acquisto biglietti ------------------------------------------------------------- */
 
 

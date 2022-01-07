@@ -71,6 +71,7 @@ function printFilms(&$htmlPage) {
                             $film_html = str_replace("likeicon" , "favorite_border" , $film_html);
                         }
                     }
+                    $film_html = str_replace("filmNonInGara" , "filmInGara" , $film_html);
 
                 } 
                 else 
