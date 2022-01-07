@@ -112,7 +112,9 @@
         <h1>Proiezioni</h1>
 
         <ifloggedadmin>
-            <h2>Aggiungi Proiezione</h2>
+            <input id="acollapse" class="collapse" type="checkbox" aggiungiposted>
+            <h2><label for="acollapse">Aggiungi Proiezione</label></h2>
+
             <form id="aprAggiungi" method="post">
                 <label for="apraSelect">Film</label>
                 <select id="apraSelect" name="agg_nomeFilm" selection="agg_nomefilmselezionato" required>
@@ -126,16 +128,19 @@
                 <input type="submit" value="Reset">
             </form>
             
-            <h2>Modifica Proiezione</h2>
-            <label for="apSelect" form="mod_selectFilm">Seleziona un film</label>
-            <select id="apSelect" name="mod_nomeFilm" form="aprModifica" selection="mod_nomefilmselezionato" onchange="mod_FilmSelected()" required>
-                <nomifilm/>
-            </select>
-            <br>
-            <label for="apSelectP">Seleziona una proiezione</label>
-            <select id="apSelectP" name="mod_idProiezione" form="aprModifica" selection="mod_idproiezioneselezionata" onchange="mod_ProiezioneSelected()" required>
-            </select>
+            <input id="mcollapse" class="collapse" type="checkbox" modificaposted>
+            <h2><label for="mcollapse">Modifica Proiezione</label></h2>
+
             <form id="aprModifica" method="post">
+                <label for="apSelect" form="mod_selectFilm">Seleziona un film</label>
+                <select id="apSelect" name="mod_nomeFilm" selection="mod_nomefilmselezionato" onchange="mod_FilmSelected()" required>
+                    <nomifilm/>
+                </select>
+                <br>
+                <label for="apSelectP">Seleziona una proiezione</label>
+                <select id="apSelectP" name="mod_idProiezione" selection="mod_idproiezioneselezionata" onchange="mod_ProiezioneSelected()" required>
+                </select>
+                <br>
                 <label for="aprmSelect">Film</label>
                 <select id="aprmSelect" name="mod_nomeNuovoFilm" required>
                     <nomifilm/>

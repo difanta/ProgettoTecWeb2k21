@@ -44,7 +44,7 @@ function expandMenu(){
 
 /* Scroll -------------------------------------------- */
 
-// Remove after #
+/* // Remove after # in the url
 document.addEventListener("DOMContentLoaded", () => { 
     console.log("onload");
 
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof window.history.replaceState == 'function') {
         history.replaceState({}, '', window.location.href.slice(0, -1));
     }
-});
+});*/
 
 // display and hide tornaSu based on scoll distance from top
 window.onscroll = () => {

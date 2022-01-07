@@ -1146,18 +1146,18 @@ li.filmPopolare a{
     transition: transform .2s ease-out;
 }
 
-#content_adminListaFilm #fcollapse:checked + h2 label,
-#content_adminListaFilm #mcollapse:checked + h2 label{
+#content_adminListaFilm .collapse:checked + h2 label,
+#content_adminProiezioni .collapse:checked + h2 label{
     border-bottom: 3px solid var(--main-color-dark);
 }
 
-#content_adminListaFilm #fcollapse:checked + h2 label::after,
-#content_adminListaFilm #mcollapse:checked + h2 label::after {
+#content_adminListaFilm .collapse:checked + h2 label::after,
+#content_adminProiezioni .collapse:checked + h2 label::after {
     transform: translateY(-2px);
 }
 
-#content_adminListaFilm #fcollapse,
-#content_adminListaFilm #mcollapse {
+#content_adminListaFilm input[type="checkbox"].collapse,
+#content_adminProiezioni input[type="checkbox"].collapse {
     position: absolute;
     left: -10000%;
 }
@@ -1180,8 +1180,14 @@ li.filmPopolare a{
     transition: 0.5s ease-in-out;
 }
 
-#content_adminListaFilm #fcollapse:checked ~ #alfAggiungi,
-#content_adminListaFilm #mcollapse:checked ~ #alfModifica {
+#content_adminProiezioni form {
+    max-height: 20em;
+}
+
+#content_adminListaFilm #acollapse:checked ~ #alfAggiungi,
+#content_adminListaFilm #mcollapse:checked ~ #alfModifica,
+#content_adminProiezioni #acollapse:checked ~ #aprAggiungi,
+#content_adminProiezioni #mcollapse:checked ~ #aprModifica {
     visibility: hidden;
     opacity: 0;
     max-height: 0;
@@ -1237,6 +1243,10 @@ li.filmPopolare a{
 
 #content_adminProiezioni input[type="submit"] {
     margin-top: 2em;
+}
+
+#content_adminProiezioni #apSelectP {
+    margin-bottom: 2em;
 }
 
 /* Pagina film ---------------------------------------------------------------------------------------------- */

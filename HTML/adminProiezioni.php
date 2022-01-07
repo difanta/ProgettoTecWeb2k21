@@ -130,6 +130,7 @@ function printAggiungiProiezione(&$htmlPage) {
     if(isset($_SESSION["method"]) && $_SESSION["method"] == "Aggiungi Proiezione") {
         $htmlPage = str_replace("agg_nomefilmselezionato" , $_SESSION["agg_nomefilmselezionato"] , $htmlPage);
         $htmlPage = str_replace("agg_dataselezionata"     , $_SESSION["agg_dataselezionata"]     , $htmlPage);
+        $htmlPage = str_replace("aggiungiposted"          , ""                                   , $htmlPage);
 
         $htmlPage = " agg successo: " . $_SESSION["success"] . $htmlPage;
 
@@ -138,15 +139,17 @@ function printAggiungiProiezione(&$htmlPage) {
         unset($_SESSION["method"]);
         unset($_SESSION["success"]);
     } else {
-        $htmlPage = str_replace("agg_nomefilmselezionato" , "" , $htmlPage);
-        $htmlPage = str_replace("agg_dataselezionata"     , "" , $htmlPage);
+        $htmlPage = str_replace("aggiungiposted"          , "checked" , $htmlPage);
+        $htmlPage = str_replace("agg_nomefilmselezionato" , ""        , $htmlPage);
+        $htmlPage = str_replace("agg_dataselezionata"     , ""        , $htmlPage);
     }
 }
 
 function printModificaProiezione(&$htmlPage) {
     if(isset($_SESSION["method"]) && ($_SESSION["method"] == "Modifica Proiezione" || $_SESSION["method"] == "Elimina Proiezione")) {
         $htmlPage = str_replace("mod_nomefilmselezionato" , $_SESSION["mod_nomefilmselezionato"] , $htmlPage);
-        
+        $htmlPage = str_replace("modificaposted"          , ""                                   , $htmlPage);
+
         if($_SESSION["method"] == "Elimina Proiezione") {
             $htmlPage = str_replace("mod_idproiezioneselezionata" , "" , $htmlPage);
         } else {
@@ -160,8 +163,9 @@ function printModificaProiezione(&$htmlPage) {
         unset($_SESSION["method"]);
         unset($_SESSION["success"]);
     } else {
-        $htmlPage = str_replace("mod_nomefilmselezionato"     , "" , $htmlPage);
-        $htmlPage = str_replace("mod_idproiezioneselezionata" , "" , $htmlPage);
+        $htmlPage = str_replace("modificaposted"              , "checked" , $htmlPage);
+        $htmlPage = str_replace("mod_nomefilmselezionato"     , ""        , $htmlPage);
+        $htmlPage = str_replace("mod_idproiezioneselezionata" , ""        , $htmlPage);
     }
 }
 
