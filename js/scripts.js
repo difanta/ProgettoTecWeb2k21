@@ -44,9 +44,20 @@ function expandMenu(){
 
 /* Scroll -------------------------------------------- */
 
-window.onscroll = scrollFunction;
+// Remove after #
+document.addEventListener("DOMContentLoaded", () => { 
+    console.log("onload");
 
-function scrollFunction() {
+    window.location.replace("#");
+
+    // slice off the remaining '#' in HTML5:    
+    if (typeof window.history.replaceState == 'function') {
+        history.replaceState({}, '', window.location.href.slice(0, -1));
+    }
+});
+
+// display and hide tornaSu based on scoll distance from top
+window.onscroll = () => {
     elem = document.getElementById("tornaSu");
     if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
         elem.style.display = "block";

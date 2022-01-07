@@ -316,6 +316,11 @@ header button:active {
 
 /* CONTENT */
 
+div#first {
+    position: relative;
+    top: -3.9em;
+}
+
 div.content{
     background-color: var(--main-color-background-light);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.267);
