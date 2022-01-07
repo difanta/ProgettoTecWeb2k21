@@ -169,7 +169,8 @@ class DBAccess
         return $this->formatGetResult($stmt->get_result());
     }
 
-    public function getProiezione($proiezione) {
+    public function getProiezione($proiezione)
+    {
         $stmt = $this->connection->prepare("SELECT nome, orario 
                                             FROM Proiezione join Film on Proiezione.film = Film.id 
                                             WHERE Proiezione.id = ?");
@@ -326,7 +327,8 @@ class DBAccess
     /**
      * @used_in acquistoBiglietti.php
      */
-    public function getProiezioneRecap($proiezione){
+    public function getProiezioneRecap($proiezione)
+    {
         $stmt = $this->connection->prepare("SELECT nome, regista, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora
                                             FROM Proiezione join Film on film 
                                             WHERE Proiezione.id= ? and Proiezione.film = Film.id");
@@ -338,7 +340,8 @@ class DBAccess
     /**
      * @used_in adminCandidature.php
      */
-    public function getCandidatureAndEmail($filter_candidatura){
+    public function getCandidatureAndEmail($filter_candidatura)
+    {
 
         $query = "SELECT Film.nome, Film.descrizione, Film.durata, Film.anno, Film.regista, Film.produttore, Film.cast, Utente.email
                   FROM Film Join Utente on (Film.candidatore = Utente.id)
@@ -361,7 +364,8 @@ class DBAccess
     /**
      * @used_in adminCandidature.php
      */
-    public function deleteCandidatura($titolo){
+    public function deleteCandidatura($titolo)
+    {
         $stmt = $this->connection->prepare("DELETE FROM Film WHERE nome= ?");
         $stmt->bind_param("s", $titolo);
         return $stmt->execute();
@@ -370,12 +374,37 @@ class DBAccess
     /**
      * @used_in adminCandidature.php
      */
-    public function approvaCandidatura($titolo){
+    public function approvaCandidatura($titolo)
+    {
         $stmt = $this->connection->prepare("UPDATE Film
                                             SET approvato = '1'
                                             WHERE nome= ?");
         $stmt->bind_param("s", $titolo);
         return $stmt->execute();
+    }
+
+    /**
+     * @used_in admin.php
+     */
+    public function getNoUtenti()
+    {
+        return $this->formatGetResult($this->connection->query("SELECT COUNT(id) as no FROM Utente"));
+    }
+
+    /**
+     * @used_in admin.php
+     */
+    public function getNoBiglietti()
+    {
+        return $this->formatGetResult($this->connection->query("SELECT COUNT(id) as no FROM Biglietto"));
+    }
+
+    /**
+     * @used_in admin.php
+     */
+    public function getNoLike()
+    {
+        return $this->formatGetResult($this->connection->query("SELECT COUNT(*) as no FROM _Like"));
     }
 }
 

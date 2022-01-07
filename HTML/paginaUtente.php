@@ -38,7 +38,7 @@ function printInfoUtente(&$htmlPage)
         $form .= "<p>Utente non loggato</p>";
     }
 
-    $htmlPage = str_replace("<contestForm/>", $form, $htmlPage);
+    $htmlPage = str_replace("<utenteForm/>", $form, $htmlPage);
 }
 
 function updateInfoUtente()

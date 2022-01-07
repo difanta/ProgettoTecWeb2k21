@@ -6,6 +6,22 @@ include "../php/login.php";
 
 use DB\DBAccess;
 
+function printAdminStats(&$htmlPage){
+    $connection = new DBAccess();
+    $connectionOk = $connection->openDB();
+
+    if ($connectionOk) {
+        $n_utenti = $connection->getNoUtenti();
+        $n_biglietti = $connection->getNoBiglietti();
+        $n_like = $connection->getNoLike();
+        $connection->closeConnection();
+
+        $htmlPage = str_replace("pUtentiRegistrati", $n_utenti[0]["no"], $htmlPage);
+        $htmlPage = str_replace("pBigliettiVenduti", $n_biglietti[0]["no"], $htmlPage);
+        $htmlPage = str_replace("pLike", $n_like[0]["no"], $htmlPage);
+    }
+}
+
 if(isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
@@ -18,6 +34,7 @@ if(isset($_POST["method"])) {
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
+    printAdminStats($htmlPage);
 
     echo $htmlPage;
 }
