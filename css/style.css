@@ -1126,6 +1126,8 @@ li.filmPopolare a{
     padding-bottom: 3px;
     border-bottom: 3px solid transparent;
 
+    cursor: pointer;
+
     transition: border-bottom 0.5s ease-out;
 }
 
@@ -1164,7 +1166,7 @@ li.filmPopolare a{
 #content_adminProiezioni form {
     visibility: visible;
     opacity: 1;
-    max-height: 100vh;
+    max-height: 60em;
     overflow: hidden;
 
     padding-bottom: 1.5em;
