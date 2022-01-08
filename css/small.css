@@ -5,6 +5,17 @@ form input, form textarea{
 .content h1, .content h2{
     text-align: center;  
 }
+/* HEADER ---------------------------------*/
+header h1{
+    font-size: 1.8em;
+    padding-top: 1.5em;
+    padding-bottom: 0.5em;
+}
+
+header #accountButton {
+    top: 5%;
+    right: 2.5%;
+}
 
 /* ----------------------- MENU' ------------------------ */
 
@@ -28,15 +39,18 @@ header #menu ul {
     justify-content: space-around;
     width: 100%;
     margin: 0;
+    padding: 5px 0 5px 0;
 }
 
 header #menu li{
-    width: 6em;
+    width: 6.6em;
     margin: 0;
+    padding: 5px 0 5px 0;
 }
 
 header #menu li a{
     border: none;
+    padding: 0;
 }
 
 header #menu li.secondaryMenuItem{
@@ -44,6 +58,19 @@ header #menu li.secondaryMenuItem{
 }
 
 /* CONTENT */
+div.content{
+    padding: 20px;
+}
+
+/* content headers */
+#content_home h2{
+    padding: 40px 40px 20px 40px;
+}
+
+.content h1{
+font-size: 1.8em;
+}
+
 /* Lista recensioni*/
 
 #listaRecensioni li{
@@ -123,4 +150,25 @@ footer #listaSponsor li #imgSponsor1{
 
 footer #listaSponsor li #imgSponsor2, footer #listaSponsor li #imgSponsor3{
     min-width: 120px;
+}
+
+/* Lista Film / Proiezioni -------------------*/
+#content_listaFilm{
+    padding: 1em;
+}
+
+.boxesList{
+    padding: 0;
+}
+
+.boxesList li{
+    margin: 0;
+    margin-top:2em;
+    padding: 1em;
+    height: fit-content;
+}
+
+.boxesList a.acquista{
+    position: static;
+    float: right;
 }
