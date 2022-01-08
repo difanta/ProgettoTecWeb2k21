@@ -326,6 +326,18 @@ div.content{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.267);
     padding:40px;
 }
+.content a{
+    color:var(--main-color);
+    text-decoration: underline;
+}
+.content a:visited{
+    color:purple;
+    text-decoration: underline;
+}
+.content a:hover{
+    color:var(--main-color-darker);
+    text-decoration: underline;
+}
 .content h1{
     color:var(--main-color-darker);
     text-align: left;
