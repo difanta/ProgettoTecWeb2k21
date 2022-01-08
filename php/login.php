@@ -92,7 +92,7 @@ class Login {
                 $_SESSION["success"] = false;
 
                 if($connectionOk) {
-                    $result = $connection->getUser($email);
+                    $result = $connection->getUserByEmail($email);
                     if($result && $result[0] && ($result[0]["password"] == $password)) 
                     {
                         $_SESSION["success"]  = true;

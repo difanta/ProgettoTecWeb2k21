@@ -47,7 +47,7 @@ class DBAccess
 																order by Likes desc"));
     }
 
-    public function getUser($email)
+    public function getUserByEmail($email)
     {
         $stmt = $this->connection->prepare("SELECT * FROM Utente WHERE Utente.email = ?");
         $stmt->bind_param("s", $email);
@@ -268,10 +268,21 @@ class DBAccess
     /**
      * @used_in paginaUtente.php
      */
-    public function getUserById()
+    public function getUser()
     {
         $stmt = $this->connection->prepare("SELECT * FROM Utente WHERE Utente.id = ?");
         $stmt->bind_param("i", $_SESSION["login"]);
+        $stmt->execute();
+        return $this->formatGetResult($stmt->get_result());
+    }
+
+    /**
+     * @used_in adminUtenti.php
+     */
+    public function getUserById($id)
+    {
+        $stmt = $this->connection->prepare("SELECT * FROM Utente WHERE Utente.id = ?");
+        $stmt->bind_param("i", $id);
         $stmt->execute();
         return $this->formatGetResult($stmt->get_result());
     }
@@ -405,6 +416,38 @@ class DBAccess
     public function getNoLike()
     {
         return $this->formatGetResult($this->connection->query("SELECT COUNT(*) as no FROM _Like"));
+    }
+
+    /**
+     * @used_in admin.php
+     */
+    public function getMediaBigliettiPerProieizione()
+    {
+        return $this->formatGetResult($this->connection->query("")); // TODO
+    }
+
+    /**
+     * @used_in adminUtenti.php
+     */
+    public function getUserTicketsByEmail($email)
+    {
+        $stmt = $this->connection->prepare("SELECT Film.nome, Biglietto.id, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora 
+                                            FROM Utente join Biglietto on Utente.id=Biglietto.utente
+                                            join Proiezione on Proiezione.id=Biglietto.proiezione
+                                            join Film on Film.id= Proiezione.film 
+                                            where Utente.email= ?");
+        $stmt->bind_param("i", $email);
+        $stmt->execute();
+        return $this->formatGetResult($stmt->get_result());
+    }
+
+    /**
+     * @used_in adminUtente.php
+     */
+    public function getEmailUtenti(){
+        $stmt = $this->connection->prepare("SELECT email FROM Utente");
+        $stmt->execute();
+        return $this->formatGetResult($stmt->get_result());
     }
 }
 
