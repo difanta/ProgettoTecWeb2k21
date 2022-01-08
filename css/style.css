@@ -948,15 +948,6 @@ li.filmPopolare a{
     margin-top:16px;
 }
 
-/* 404 --------------------------------------------------------------------------------------------------*/
-
-#404{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
 /* Contest --------------------------------------------------------------------------------------------------*/
 
 #content_contest div:first-of-type{
@@ -1419,12 +1410,13 @@ footer {
     padding:30px;
 }
 footer ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
     margin-top:8px;
     list-style-type: none;
-    padding: 0;
+    text-align: center;
+}
+footer ul li{
+    display:inline;
+    margin: 5em 1.8em;
 }
 footer p {
     text-align: center;
