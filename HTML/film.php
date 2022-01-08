@@ -30,6 +30,12 @@ function printFilm(&$htmlPage) {
                     $htmlPage = str_replace("duratafilm"          , $film["durata"]      , $htmlPage);
                     $htmlPage = str_replace("descrizionefilm"     , $film["descrizione"] , $htmlPage);
                     $htmlPage = str_replace("percorsoimmagine"    , FS::findImage($film["nome"]), $htmlPage);
+                    if($film["in_gara"]){
+                        $htmlPage = str_replace("filmingara" , "sì" , $htmlPage);
+                    }
+                    else{
+                        $htmlPage = str_replace("filmingara" , "no" , $htmlPage);
+                    }
                 }
             }
         }
