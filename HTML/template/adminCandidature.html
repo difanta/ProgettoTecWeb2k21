@@ -91,12 +91,17 @@
     <nav id="breadcrumb">
         <p>Ti trovi in: <span lang="en">Home</span></p>
     </nav>
-
+    <div id="adminMenu"><ul>
+        <li><a href="admin.php">Home admin</a></li>
+        <li class="adminCurrentPage">Candidature</li>
+        <li><a href="adminProiezioni.php">Proiezioni</a></li>
+        <li><a href="adminListaFilm.php">Lista Film</a></li>
+        <li><a href="adminUtenti.php">Utenti</a></li>
+    </ul></div>
 </header>
 
 
 <div id="content_adminCandidature" class="content_admin">
-    <a class="tornaDashboard" href="admin.php">Torna al menu admin</a>
 
     <ifloggedadmin>
         <form id="filtraCandidature">

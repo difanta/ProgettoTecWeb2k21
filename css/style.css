@@ -973,30 +973,35 @@ li.filmPopolare a{
 
 /* Admin --------------------------------------------------------------------------------------------------*/
 
-#adminDashboard{
-    width: 76%;
-    margin: auto;
-    border: 3px solid black;
-    display: flex;
-    margin-top: 30px;
-    margin-bottom: 4px;
+.content_admin{
+    margin-left:200px;
+    background-color: var(--main-color-background-light);
+    padding:20px;
 }
-#adminDashboard a{
-    background-color: var(--main-color);
-    color: white;
-    padding: 14px 20px;
-    text-align: center;
-    display: inline-block;
-    width: 30%;
-    border: 3px solid var(--main-color-darker);
+
+header #adminMenu ul {
+    width:150px;
+    position: sticky;
+    background-color: var(--main-color-lighter);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.267);
+    padding: 4px 10px;
+    margin-top:2px;
+    float:left;
+    list-style: none;
+    text-align:left;
+    color:black;
 }
-#adminDashboard a:hover{
-    background-color: var(--main-color-light);
-    color: white;
+#adminMenu li.adminCurrentPage {
+    color:var(--main-color-darker);
 }
+#adminMenu li a:hover {
+    color:var(--main-color-darker);
+    text-decoration: underline;
+}
+
 #adminInfo{
-    width: 70%;
-    margin: auto;
+    max-width: 500px;
+    margin:auto;
     border: 3px solid black;
     margin-bottom: 30px;
 }
@@ -1012,57 +1017,26 @@ li.filmPopolare a{
     display: block;
 }
 
-.tornaDashboard{
-    display: block;
-    margin: 8px 0 10px 4px;
-}
+/* Admin Candidature ------------------------------------*/
+
 
 #acnSospese li{
-    border:darkblue solid;
+    border:var(--main-color-dark) solid;
+    background-color: var(--main-color-background);
     max-width: 400px;
     list-style-type: none;
     margin:5px 0;
     padding:0;
 }
-#acnSospese li h2{
-    background-color: rgb(255, 163, 57);
-    padding:0;
-    margin:0;
-}
-#acnSospese li pre{
-    text-align: center;
-}
-#acnSospese li a{
-    display:block;
-    text-align:center;
-}
 
-#acnSospese li .ancsAccetta, #acnSospese li .ancsRifiuta{
-    background-color: rgb(255, 163, 57);
-    margin-left:8px;
-    margin-bottom:4px;
-}
-#acnApprovate{
-    display:none;
-}
-#acnRifiutate{
-    display:none;
-}
 .ancsDescrizione{
     font-style: italic;
 }
 
-#alfModifica,#alfAggiungi{
-    display:block;
-    border:darkmagenta solid;
-}
 
-#aprAggiungi,#aprModifica{
-    display:block;
-    border:darkmagenta solid;  
+#content_adminCandidature input{
+    margin-top:30px;
 }
-
-/* Admin Candidature ------------------------------------*/
 
 .toggle {
     display: none;
