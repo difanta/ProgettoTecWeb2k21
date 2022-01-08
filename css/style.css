@@ -170,7 +170,9 @@ header #menu li a {
     color: white;
     transition: background-color 0.5s ease-out;
 }
-
+header #menu li a.currentPage {
+    background-color: var(--main-color-dark);
+}
 header #menu li a:hover {
     background-color: var(--main-color-dark);
 }
