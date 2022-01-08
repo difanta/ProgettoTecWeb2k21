@@ -16,7 +16,7 @@ function printInfoUtente(&$htmlPage)
         $connectionOk = $connection->openDB();
 
         if ($connectionOk) {
-            $results = $connection->getUserById();
+            $results = $connection->getUser();
             $connection->closeConnection();
             if ($results != null) {
 

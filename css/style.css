@@ -1107,6 +1107,23 @@ li.filmPopolare a{
     border-bottom-right-radius: 7px;
 }
 
+/* Admin Utenti ---------------------------------------------------------------------------------------*/
+
+#content_adminUtenti div:first-of-type{
+    margin: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 60%;
+    padding: 0 1% 1% 1%;
+    border: solid black 1px;
+    border-radius: 4px;
+}
+
+.boxUtente{
+    background: white;
+    border-radius: 8px;
+}
+
 /* Admin Lista Film / Lista Proiezioni  --------------------------------------------------------------------- */
 
 #content_adminListaFilm *,

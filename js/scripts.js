@@ -232,6 +232,34 @@ function validateForm() {
     return true;
 }
 
+/* Admin Utenti */
+
+function onUtenteSelected() {
+    var elem = document.getElementById('utentiSelect');
+
+    if (elem.value !== "") {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var results = JSON.parse(xmlhttp.responseText);
+                console.log(results[0][0]);
+                console.log(results[0][0].id);
+                // utente
+                document.getElementById("id").innerHTML = "id: " + results[0][0].id;
+                document.getElementById("email").innerHTML = "email: " + results[0][0].email;
+                document.getElementById("nome").innerHTML = "nome: " + results[0][0].nome;
+                document.getElementById("cognome").innerHTML = "cognome: " + results[0][0].cognome;
+
+                // tickets
+                //document.getElementById("strumentoProva").value = results[1][0].nome;
+
+            }
+        };
+        xmlhttp.open("GET", "../php/onUtenteSelected.php?email=" + elem.value, true);
+        xmlhttp.send();
+    }
+}
+
 /* Admin Lista Film */
 
 function mod_initFilm() {

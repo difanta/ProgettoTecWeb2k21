@@ -92,23 +92,31 @@
 
 </header>
 
- 
 
 <div id="content_adminCandidature" class="content_admin">
     <a class="tornaDashboard" href="admin.php">Torna al menu admin</a>
 
-    <form id="filtraCandidature">
-        <label for="filterCandidatura">Candidature: </label>
-        <select id="filterCandidatura" name="filterCandidatura">
-            <option value="Sospesa" sospesaSel>In sospeso</option>
-            <option value="Approvata" approvataSel>Approvate</option>
-        </select>
+    <ifloggedadmin>
+        <form id="filtraCandidature">
+            <label for="filterCandidatura">Candidature: </label>
+            <select id="filterCandidatura" name="filterCandidatura">
+                <option value="Sospesa" sospesaSel>In sospeso</option>
+                <option value="Approvata" approvataSel>Approvate</option>
+            </select>
 
-        <input class="button" type="submit" form="filtraCandidature" value="Seleziona">
-    </form>
+            <input class="button" type="submit" form="filtraCandidature" value="Seleziona">
+        </form>
 
-    <h1>Candidature in sospeso</h1>
-    <listaCandidature/>
+        <h1>Candidature in sospeso</h1>
+        <listaCandidature/>
+    </ifloggedadmin>
+    <ifnotloggedadmin>
+        <p>
+            <iflogged>Non sei Admin!</iflogged>
+            <ifnotlogged>Non Loggato!</ifnotlogged>
+            Per accedere a questa pagina serve loggarsi con un account admin.
+        </p>
+    </ifnotloggedadmin>
 </div>
 
 <div id="tornaSu">
