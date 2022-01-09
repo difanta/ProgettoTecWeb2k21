@@ -130,7 +130,7 @@ font-size: 1.8em;
     padding: 0;
 }
 
-/**/
+/* footer */
 footer #listaSponsor{
     flex-wrap: nowrap;
 }
@@ -172,3 +172,46 @@ footer #listaSponsor li #imgSponsor2, footer #listaSponsor li #imgSponsor3{
     position: static;
     float: right;
 }
+
+.filters{
+    padding: 0 0.6em;
+}
+
+.filters > p{
+    margin: auto;
+}
+
+.filters form{
+    display: grid;
+    grid-template-areas:    "a d"
+                            "b e" 
+                            "c f"
+                            "g g";
+    grid-template-columns: max-content;   
+    grid-template-rows: max-content;
+    row-gap: 0.2em;        
+    margin: 0.3em 0;  
+}
+
+.filters > form input{
+    display: block;
+    margin-bottom: 0.3em;
+}
+
+.filters > form label{
+    display: block;
+    margin-left: 0;
+}
+
+.filters > form label[for="nomeFilm"]{grid-area: a;}
+.filters > form label[for="data"]{grid-area: b;}
+.filters > form label[for="gara"]{grid-area: c;}
+.filters > form input[id="nomeFilm"]{grid-area: d;}
+.filters > form input[id="data"]{grid-area: e;}
+.filters > form select[id="gara"]{grid-area: f;}
+.filters > form button[type="submit"]{
+    grid-area: g;
+    margin-top: 0.3em;
+    margin: auto;
+}
+
