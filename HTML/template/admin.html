@@ -105,19 +105,20 @@
         <nav id="breadcrumb">
             <p>Ti trovi in: <a href="index.php" lang="en">Home</a> &gt; &gt; Admin</p>
         </nav>
-
+        <div id="adminMenu"><ul>
+            <li class="adminCurrentPage">Home admin</li>
+            <li><a href="adminCandidature.php">Candidature</a></li>
+            <li><a href="adminProiezioni.php">Proiezioni</a></li>
+            <li><a href="adminListaFilm.php">Lista Film</a></li>
+            <li><a href="adminUtenti.php">Utenti</a></li>
+        </ul></div>
     </header>
 
-     
+    
         
     <div id="content_admin_home" class="content_admin">
         <ifloggedadmin>
-            <div id="adminDashboard">
-                <a href="adminCandidature.php">Candidature</a>
-                <a href="adminProiezioni.php">Proiezioni</a>
-                <a href="adminListaFilm.php">Lista Film</a>
-                <a href="adminUtenti.php">Utenti</a>
-            </div>
+            
             <dl id="adminInfo">
                 <dt>Utenti registrati: </dt>
                 <dd>pUtentiRegistrati</dd>
