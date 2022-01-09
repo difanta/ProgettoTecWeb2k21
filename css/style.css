@@ -553,7 +553,7 @@ li.filmPopolare a{
 }
 
 /* hide a tag */
-#acquistoBiglietti a:link, a:visited, a:hover, a:active {
+#acquistoBiglietti a:link, #acquistoBiglietti a:visited, #acquistoBiglietti a:hover, #acquistoBiglietti a:active {
     text-decoration: none;
     color: black;
 }
