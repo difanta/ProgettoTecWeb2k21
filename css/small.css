@@ -123,6 +123,26 @@ font-size: 1.8em;
     right: 21px;
     bottom: 23px;
 }
+/* acquisto biglietti */
+
+#content_acquistoBiglietti h1{
+    margin-bottom: 0.6em;
+}
+
+#content_acquistoBiglietti #ordine{
+    width: 85%;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+}
+
+#content_acquistoBiglietti #form-intro{
+    margin-bottom: 0;
+}
+
+#content_acquistoBiglietti #pagamento{
+    margin-bottom: 0;
+}
+
 
 /* -------------------------------------- form ------------------------------------- */
 #content_paginaUtente div:first-of-type, #content_contest div:first-of-type, #contestForm form{
@@ -131,6 +151,10 @@ font-size: 1.8em;
 }
 
 /* footer */
+footer{
+    padding: 1em;
+}
+
 footer #listaSponsor{
     flex-wrap: nowrap;
 }
