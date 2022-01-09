@@ -215,3 +215,56 @@ footer #listaSponsor li #imgSponsor2, footer #listaSponsor li #imgSponsor3{
     margin: auto;
 }
 
+/* Pagina film */
+
+#content_templateFilm{
+    grid-template-areas:    "a a"
+                            "b b"
+                            "c c"
+                            "e e"
+                            "d d"
+                            "f f";
+    grid-template-columns: auto;
+    padding: 0;
+    row-gap: 0.5em;
+}
+
+#content_templateFilm p{
+    font-size: 1em;
+    padding: 0;
+    width: 85%;
+}
+
+#content_templateFilm img{
+    padding: 0;
+    width: 100%;
+}
+
+#content_templateFilm dl{
+    padding: 0;
+    width: 85%;
+}
+
+#content_templateFilm dt{
+    width: 100%;
+    display: block;
+    font-weight: 600;
+    padding: 0.3em 0 0.15em 0;
+    margin: 0;
+    float: none;
+    clear: none;
+    border-top: 1px solid var(--main-color-dark);
+    text-align: center;
+}
+
+#content_templateFilm dd{
+    display: block;
+    padding: 0;
+    padding-bottom: 0.3em;
+    margin: auto;
+    text-align: center;
+}
+
+#content_templateFilm dt:first-of-type{
+    border-top: none;
+}
