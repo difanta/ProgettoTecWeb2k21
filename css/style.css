@@ -1405,6 +1405,7 @@ footer ul {
     margin-top:8px;
     list-style-type: none;
     text-align: center;
+    padding: 0;
 }
 footer ul li{
     display:inline;
