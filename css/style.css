@@ -1019,6 +1019,10 @@ header #adminMenu ul {
 
 /* Admin Candidature ------------------------------------*/
 
+#attenzioneRifiuto{
+    font-size: 16px;
+    font-style: italic;
+}
 
 #acnSospese li{
     border:var(--main-color-dark) solid;
@@ -1091,10 +1095,10 @@ header #adminMenu ul {
 }
 
 .candidatura .candidatura-inner {
-    background: rgba(250, 224, 66, .2);
-    border-bottom: 1px solid rgba(250, 224, 66, .45);
+    background: rgba(250, 225, 66, 0.685);
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
+    padding:6px 12px;
 }
 
 /* Admin Utenti ---------------------------------------------------------------------------------------*/
