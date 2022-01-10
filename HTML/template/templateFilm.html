@@ -83,8 +83,8 @@
         <ul>
             <li lang="en"><a href="index.php">Home</a></li>
             <li class="secondaryMenuItem" lang="en"><a href="aboutUs.php">About us</a></li>
-            <li class="secondaryMenuItem"><a href="listaFilm.php">Film</a></li>
-            <li><a class="currentPage">Programma</a></li>
+            <li class="secondaryMenuItem"><a href="listaFilm.php" class="currentPage">Film</a></li>
+            <li><a href="proiezioni.php">Programma</a></li>
             <li><a href="comeTrovarci.php">Come Trovarci</a></li>
             <li class="secondaryMenuItem"><a href="contest.php">Il Contest</a></li>
         </ul>
@@ -102,6 +102,7 @@
 
 <div id="content_templateFilm" class="content">
     <iffilmfound>
+        <img src="percorsoimmagine" alt="descrizioneimmagine">
         <h1>titolofilm</h1>
         <h2>regista</h2>
         <dl>
@@ -119,7 +120,6 @@
             <dd>duratafilm min</dd>
         </dl>
         <p title="descrizione">descrizionefilm</p>
-        <img src="percorsoimmagine" alt="descrizioneimmagine">
         <a href="proiezioni.php?nomeFilm=titolofilm">Proiezioni</a>
     </iffilmfound>
     <iffilmnotfound>

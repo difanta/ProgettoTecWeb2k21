@@ -1411,6 +1411,9 @@ footer {
     font-size: 0.9em;
     padding:30px;
 }
+footer #pannelloadmin{
+    color:white;
+}
 footer ul {
     margin-top:8px;
     list-style-type: none;

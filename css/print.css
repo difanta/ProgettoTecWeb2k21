@@ -27,15 +27,18 @@ header h1{
     margin-bottom:14pt;
 }
 /*--Content------------------------------------------------------*/
-.content h1{
+.content h1, .content_admin h1{
     font-size: 16pt;
 }
-.content h2{
+.content h2, .content_admin h2{
     margin: 16pt 0 8pt;
     font-size: 14pt;
 }
-.content h3{
+.content h3, .content_admin h3{
     font-size: 12pt;
+}
+.content,.content_admin{
+    margin-bottom:18pt;
 }
 /*--Home------------------------------------------------------*/
 ol#filmPopolari{
@@ -70,11 +73,134 @@ ol#filmPopolari{
 #aiutaci #aiutaci{
     display:block;
 }
-
-/*--Footer------------------------------------------------------*/
-footer{
-    margin-top: 18pt;
+/*--Lista Film------------------------------------------------------*/
+#content_listaFilm input[type="checkbox"],
+#content_listaFilm button,
+#content_listaFilm li a.info,
+#content_listaFilm li a.biglietti{
+    display:none;
 }
+#content_listaFilm li#titolofilm{
+    break-inside: avoid;
+}
+/*--Pagina Film------------------------------------------------------*/
+#content_templateFilm h2{
+    font-style: italic;
+}
+#content_templateFilm img{
+    width: 30%;
+    displaY:block;
+    float:right;
+}
+#content_templateFilm dl{
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+#content_templateFilm dt{
+    float: left;
+    width: 35%;
+    padding: 0;
+    margin: 0;
+}
+#content_templateFilm dd{
+    float: left;
+    width: 65%;
+    padding: 0;
+    margin: 0;
+}
+#content_templateFilm p[title="descrizione"]{
+    margin:6pt 4pt;
+    font-style: italic;
+}
+/*--Proiezioni------------------------------------------------------*/
+#content_proiezioni li h2{
+    margin-bottom: 2pt;
+}
+#content_proiezioni button[type="submit"]{
+    display:none;
+}
+/*boxeslist*/
+.boxesList li{
+    display: inline-block;
+    width: 45%;
+    break-inside: avoid;
+}
+.boxesList{
+    display: table;
+    list-style-type: none;
+}
+.boxesList em{
+    display: block;
+}
+.boxesList em.filmNonInGara{
+    display: none;
+}
+/*--Come trovarci------------------------------------------------------*/
+#content_comeTrovarci iframe{
+    display:none;
+}
+/*--Contest------------------------------------------------------*/
+#content_contest{
+    margin:0;
+}
+#content_contest li{
+    padding:2pt 4pt;
+}
+#content_contest #contestForm textarea{
+    height: 15pt;
+    width:30%;
+}
+#content_contest #contestForm *{
+    display:block;
+}
+#content_contest #contestForm{
+    margin-top: 6pt;
+}
+#content_contest h2{
+    margin:1pt;
+}
+/*--Admin------------------------------------------------------*/
+#adminMenu li{
+    display:inline;
+    margin: 0 4pt;
+}
+#adminMenu{
+    margin-bottom:12pt;
+}
+#adminInfo dd{
+    margin-left:6pt;
+}
+/*Admin Candidature*/
+#content_adminCandidature input[type="checkbox"],
+#content_adminCandidature input[type="submit"],
+#content_adminCandidature #attenzioneRifiuto{
+    display:none;
+}
+#content_adminCandidature label{
+    font-size: 14pt;
+    font-weight: bold;
+}
+#content_adminCandidature .candidatura{
+    margin:12pt 0;
+}
+#content_adminCandidature form{
+    break-inside: avoid;
+}
+#content_adminCandidature h1{
+    margin:6pt 0;
+}
+/*Admin proiezioni, lista film, utenti*/
+#content_adminProiezioni input.collapse,
+#content_adminListaFilm input.collapse,
+#content_adminUtenti label[for="utentiSelect"]{
+    display: none;
+}
+#content_adminListaFilm label, #content_adminListaFilm input{
+    display:block;
+}
+/*--Footer------------------------------------------------------*/
 footer #listaSponsor img{
     display:none
 }
