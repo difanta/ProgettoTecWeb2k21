@@ -292,3 +292,26 @@ footer #listaSponsor li #imgSponsor2, footer #listaSponsor li #imgSponsor3{
 #content_templateFilm dt:first-of-type{
     border-top: none;
 }
+
+
+/* Pagina Utente*/
+
+#content_paginaUtente h1{
+    padding: 0;
+}
+
+#content_paginaUtente ul{
+    padding: 0;
+}
+
+#biglietti{
+    width: 100%;
+}
+
+.ticket{
+    width: 75%;
+}
+
+#content_paginaUtente h1:first-of-type{
+    margin-bottom: 0;
+}
