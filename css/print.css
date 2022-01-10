@@ -1,0 +1,66 @@
+* {
+	padding : 0;
+	margin : 0;
+}
+html,body { 
+	font-size: 12pt; 
+	font-family: "Times New Roman", Times, serif;
+	margin: auto;
+}
+
+/*--Header------------------------------------------------------*/
+.goToContent, #accountButton, #accountDropdown, #menuButton{
+    display:none;
+}
+header h1{
+    margin:10pt 0;
+}
+#menu li{
+    display:inline;
+    padding: 0 4pt;
+}
+#breadcrumb{
+    color:rgb(71, 71, 71);
+    margin-bottom:14pt;
+}
+/*--Content------------------------------------------------------*/
+.content h2{
+    margin: 16pt 0 8pt;
+}
+/*--Home------------------------------------------------------*/
+ol#filmPopolari{
+    list-style-type: decimal;
+}
+#acquistoBiglietti *{
+    display: inline;
+    padding: 0 3pt;
+    font-size: 10pt;
+}
+#listaRecensioni h3{
+    font-size: 12pt;
+}
+#listaRecensioni li{
+    margin-bottom:6pt;
+}
+
+
+/*--Footer------------------------------------------------------*/
+footer #listaSponsor img{
+    display:none
+}
+footer p{
+    color:black;
+}
+#listaSponsor *{
+    display: inline;  
+    padding: 0 3pt;
+    font-size: 16pt;
+}
+#studenti{
+    margin-top:4pt;
+}
+#studenti li, footer p{
+    display:inline;
+    color:rgb(71, 71, 71);
+    text-align:center;
+}
