@@ -8,8 +8,9 @@ form input, form textarea{
 /* HEADER ---------------------------------*/
 header h1{
     font-size: 1.8em;
-    padding-top: 1.5em;
-    padding-bottom: 0.5em;
+    padding-top: 2.3em;
+    padding-bottom: 0;
+    background-size: 65%;
 }
 
 header #accountButton {
