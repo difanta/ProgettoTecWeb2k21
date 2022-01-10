@@ -7,6 +7,9 @@ html,body {
 	font-family: "Times New Roman", Times, serif;
 	margin: auto;
 }
+#tornaSu{
+    display:none;
+}
 
 /*--Header------------------------------------------------------*/
 .goToContent, #accountButton, #accountDropdown, #menuButton{
@@ -24,8 +27,15 @@ header h1{
     margin-bottom:14pt;
 }
 /*--Content------------------------------------------------------*/
+.content h1{
+    font-size: 16pt;
+}
 .content h2{
     margin: 16pt 0 8pt;
+    font-size: 14pt;
+}
+.content h3{
+    font-size: 12pt;
 }
 /*--Home------------------------------------------------------*/
 ol#filmPopolari{
@@ -39,17 +49,40 @@ ol#filmPopolari{
 #listaRecensioni h3{
     font-size: 12pt;
 }
-#listaRecensioni li{
-    margin-bottom:6pt;
+/*--404------------------------------------------------------*/
+#content_404 h1, #content_404 h2{
+    font-size:15pt;
+}
+/*--About us------------------------------------------------------*/
+#content_aboutUs h3{
+    display:inline;
 }
 
+#contatti{
+    margin-top:4pt;
+}
+#contatti *{
+    display:inline;
+}
+#contatti h2{
+    display:none;
+}
+#aiutaci #aiutaci{
+    display:block;
+}
 
 /*--Footer------------------------------------------------------*/
+footer{
+    margin-top: 18pt;
+}
 footer #listaSponsor img{
     display:none
 }
 footer p{
     color:black;
+}
+footer #pannelloadmin{
+    display:none;
 }
 #listaSponsor *{
     display: inline;  
