@@ -1,14 +1,18 @@
 <!DOCTYPE html>
+
 <html lang="it">
 
 <head>
-    <meta charset="utf-8">
-
-    <title>Proiezioni</title>
-    <meta name="keywords" content="proiezioni, acquista, filtra"/>
-    <meta name="description" content="lista delle proiezioni nel programma prossimamente">
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="TODO">
+
+    <title>Acquisto biglietti</title>
+
+    <meta name="keywords" content="biglietti, acquisto, comprare biglietti"/>
+
+    <meta name="description" content=""/>
+
+    <meta name="author" content=""/>
 
 
     <link rel="stylesheet" href="../css/style.css" media="screen">
@@ -22,7 +26,7 @@
 
 <body>
 <header>
-    <a class="goToContent" href="#content_proiezioni">Vai al contenuto</a>
+    <a class="goToContent" href="#content_acquistoBiglietti">Vai al contenuto</a>
 
     <h1>CinePado</h1>
 
@@ -91,56 +95,32 @@
         </div>
     </div>
 
-        <nav id="menu">
-            <ul>
-                <li lang="en"><a href="index.php">Home</a></li>
-                <li class="secondaryMenuItem" lang="en"><a href="aboutUs.php">About us</a></li>
-                <li class="secondaryMenuItem"><a href="listaFilm.php">Film</a></li>
-                <li><a class="currentPage">Programma</a></li>
-                <li><a href="comeTrovarci.php">Come Trovarci</a></li>
-                <li class="secondaryMenuItem"><a href="contest.php">Il Contest</a></li>
-            </ul>
-            <button title="menu" id="menuButton" onclick="expandMenu()"><span id="expandMenuArrow" class="material-icons-outlined">expand_more</span></button>
-        </nav>
+    <nav id="menu">
+        <ul>
+            <li lang="en"><a href="index.php">Home</a></li>
+            <li class="secondaryMenuItem" lang="en"><a href="aboutUs.php">About us</a></li>
+            <li class="secondaryMenuItem"><a href="listaFilm.php">Film</a></li>
+            <li><a href="proiezioni.php">Programma</a></li>
+            <li><a href="comeTrovarci.php">Come Trovarci</a></li>
+            <li class="secondaryMenuItem"><a href="contest.php">Il Contest</a></li>
+        </ul>
+        <button title="menu" id="menuButton" onclick="expandMenu()"><span id="expandMenuArrow" class="material-icons-outlined">expand_more</span></button>
+    </nav>
 
     <nav id="breadcrumb">
-        <p>Ti trovi in: <a href="index.php" lang="en">Home</a> &gt; &gt; Proiezioni</p>
+        <p>Ti trovi in: <a href="index.php" lang="en">Home</a> &gt; &gt; Proiezioni &gt; &gt; Acquisto Biglietti</p>
     </nav>
 
 </header>
 
  
 
-<div id="content_proiezioni" class="content">
-    <h1>Proiezioni</h1>
+<div id="content_acquistoBiglietti" class="content">
+    <h2>Acquisto completato!</h2>
+    <p>Ti confermiamo che è avvenuto con successo il seguente acquisto:</p>
+    <riepilogoacquisto/>
+    <p>Nella pagina del <a href="paginaUtente.php">tuo profilo</a> puoi vedere tutti i biglietti acquistati.</p>
 
-    <div class="filters">
-        <p>Filtra per</p>
-
-        <form id="filtriProiezioni">
-            <label for="nomeFilm">Nome Film</label>
-            <input list="film" name="nomeFilm" id="nomeFilm" value="inputnomefilm">
-            <datalist id="film">
-                <nomifilm/>
-            </datalist>
-
-            <label for="data">Data</label>
-            <input type="date" name="data" id="data" value="inputdata"/>
-
-            <label for="gara">Tipo Film</label>
-            <select name="gara" id="gara">
-                <option value="tutti" tuttiselected>Tutti</option>
-                <option value="gara" garaselected>In gara</option>
-                <option value="noGara" nogaraselected>Non in gara</option>
-            </select>
-
-            <button type="submit" form="filtriProiezioni">Filtra</button>
-        </form>
-    </div>
-
-    <ul id="listaProiezioni" class="boxesList">
-        <proiezione/>
-    </ul>
 </div>
 
 <div id="tornaSu">
@@ -158,8 +138,7 @@
             <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
         </li>
         <li>
-            <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png"
-                 alt="The Grand Budapest Hotel"/>
+            <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
         </li>
     </ul>
     <ul id="studenti">
@@ -171,4 +150,5 @@
     <p>&copy; Copyright 2021</p>
 </footer>
 </body>
+
 </html>

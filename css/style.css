@@ -115,6 +115,14 @@ header {
     text-align: center;
 }
 
+/*header h1 {
+    margin: auto;
+    font-size: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.582);
+}*/
 header h1 {
     margin: auto;
     font-size: 2em;
@@ -122,8 +130,12 @@ header h1 {
     padding-bottom: 1em;
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.582);
+	background-image: url('../images/logo.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	text-indent: -999999em;
 }
-
 .goToContent {
     background: var(--main-color-dark);
     color: #fff;
@@ -541,7 +553,7 @@ li.filmPopolare a{
 }
 
 /* hide a tag */
-#acquistoBiglietti a:link, a:visited, a:hover, a:active {
+#acquistoBiglietti a:link, #acquistoBiglietti a:visited, #acquistoBiglietti a:hover, #acquistoBiglietti a:active {
     text-decoration: none;
     color: black;
 }
@@ -1019,6 +1031,10 @@ header #adminMenu ul {
 
 /* Admin Candidature ------------------------------------*/
 
+#attenzioneRifiuto{
+    font-size: 16px;
+    font-style: italic;
+}
 
 #acnSospese li{
     border:var(--main-color-dark) solid;
@@ -1091,10 +1107,10 @@ header #adminMenu ul {
 }
 
 .candidatura .candidatura-inner {
-    background: rgba(250, 224, 66, .2);
-    border-bottom: 1px solid rgba(250, 224, 66, .45);
+    background: rgba(250, 225, 66, 0.685);
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
+    padding:6px 12px;
 }
 
 /* Admin Utenti ---------------------------------------------------------------------------------------*/
@@ -1416,7 +1432,6 @@ footer p {
 }
 footer a {
     display: block;
-    color:aliceblue;
     font-size: 2.3em;
     text-align: center;
     background-color: var(--main-color-dark);
