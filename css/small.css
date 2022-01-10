@@ -46,12 +46,12 @@ header #menu ul {
 header #menu li{
     width: 6.6em;
     margin: 0;
-    padding: 5px 0 5px 0;
+    padding: 0;
 }
 
 header #menu li a{
     border: none;
-    padding: 0;
+    padding: 5px 0 5px 0;
 }
 
 header #menu li.secondaryMenuItem{
