@@ -19,8 +19,7 @@ header h1{
     margin:10pt 0;
 }
 #menu li{
-    display:inline;
-    padding: 0 4pt;
+    display:none;
 }
 #breadcrumb{
     color:rgb(71, 71, 71);
@@ -39,6 +38,10 @@ header h1{
 }
 .content,.content_admin{
     margin-bottom:18pt;
+}
+a:link:after, a:visited:after{
+    content: " [" attr(href) "] ";
+    font-size:90%;
 }
 /*--Home------------------------------------------------------*/
 ol#filmPopolari{
@@ -148,26 +151,58 @@ ol#filmPopolari{
 #content_contest li{
     padding:2pt 4pt;
 }
+#content_contest ul{
+    margin:0 16pt;
+    list-style-type: disc;
+}
 #content_contest #contestForm textarea{
     height: 15pt;
     width:30%;
 }
 #content_contest #contestForm *{
     display:block;
+    padding-top:4pt;
+    margin:2pt 0;
+}
+#content_contest #contestForm input.button{
+    display:none;
+}
+#content_contest #contestForm input{
+    max-height: 14pt;
+    margin-top:2pt;
+}
+#content_contest #contestForm label {
+    text-align: right;
+    clear: both;
+    float:left;
+    margin-right:4pt;
 }
 #content_contest #contestForm{
     margin-top: 6pt;
+    margin-bottom:0;
 }
 #content_contest h2{
-    margin:1pt;
+    margin-top:10pt;
+}
+/*--Pagina utente------------------------------------------------------*/
+#content_paginaUtente #infoUtenteForm input.button{
+    display:none;
+}
+#content_paginaUtente #infoUtenteForm fieldset{
+    margin:8pt;
+    width:30%;
+    padding:3pt;
+}
+#content_paginaUtente #infoUtenteForm label{
+    display:block;
+    border:0;
+}
+#content_paginaUtente #biglietti li{
+    margin:16pt;
 }
 /*--Admin------------------------------------------------------*/
 #adminMenu li{
-    display:inline;
-    margin: 0 4pt;
-}
-#adminMenu{
-    margin-bottom:12pt;
+    display:none;
 }
 #adminInfo dd{
     margin-left:6pt;
