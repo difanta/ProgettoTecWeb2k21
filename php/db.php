@@ -436,7 +436,7 @@ class DBAccess
                                             join Proiezione on Proiezione.id=Biglietto.proiezione
                                             join Film on Film.id= Proiezione.film 
                                             where Utente.email= ?");
-        $stmt->bind_param("i", $email);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         return $this->formatGetResult($stmt->get_result());
     }
