@@ -205,6 +205,15 @@ header #accountButton {
     right: 5%;
 }
 
+header #accountButton span[class="material-icons-outlined"] {
+    vertical-align: middle;
+}
+
+header #accountButton span#accountName {
+    display: inline-block;
+    margin-left: 0.4em;
+}
+
 header #accountButton, header #accountDropdown button {
     color: rgb(49, 49, 49);
     cursor: pointer;
