@@ -38,20 +38,17 @@ function printOrdine(&$htmlPage)
     $htmlPage = str_replace("<ordine/>", $ordine, $htmlPage);
 }
 
-function printAcquisto(&$htmlPage){
-
+function printAcquisto(&$htmlPage)
+{
     $acquisto = "";
-echo " print acquisto";
-    if(isset($_SESSION["success"])){ // if bottone acquista clicked
-        echo " success";
-        if($_SESSION["success"]){
+    if (isset($_SESSION["success"])) { // if bottone acquista clicked
+        if ($_SESSION["success"]) {
             $acquisto = file_get_contents("template/templateAcquistoSuccesso.html");
         } else {
             // errore
         }
         unset($_SESSION["success"]);
     } else { // first print
-        echo " first acquisto";
         $acquisto = file_get_contents("template/templateAcquisto.html");
     }
 
@@ -95,8 +92,8 @@ if (isset($_POST["method"])) {
 
     http_response_code(303);
 
-        // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
-        header("Location: " . $_SERVER["REQUEST_URI"]);
+    // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
+    header("Location: " . $_SERVER["REQUEST_URI"]);
 
 } else /* GET */ {
     $htmlPage = file_get_contents("template/acquistoBiglietti.html");
