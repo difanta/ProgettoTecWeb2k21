@@ -55,20 +55,6 @@ document.addEventListener('click', function(e) {
     }
 });
 
-/* Scroll -------------------------------------------- */
-
-/* // Remove after # in the url
-document.addEventListener("DOMContentLoaded", () => { 
-    console.log("onload");
-
-    window.location.replace("#");
-
-    // slice off the remaining '#' in HTML5:    
-    if (typeof window.history.replaceState == 'function') {
-        history.replaceState({}, '', window.location.href.slice(0, -1));
-    }
-});*/
-
 // display and hide tornaSu based on scoll distance from top
 window.onscroll = () => {
     elem = document.getElementById("tornaSu");
