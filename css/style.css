@@ -938,12 +938,14 @@ li.filmPopolare a{
     border-radius: 4px;
 }
 
-#candidature ul#acnSospese{
+.BoxUser ul#acnSospese{
     padding: 1em;
+    margin: 0;
 }
 
-#candidature ul#acnSospese input.button{
+.BoxUser ul#acnSospese input.button{
     margin-top: 1em;
+    margin-bottom: 0;
 }
 
 /* Come Trovarci --------------------------------------------------------------------------------------------------*/
@@ -1362,6 +1364,7 @@ header #adminMenu ul {
 }
 
 #content_templateFilm a{
+    font-size: 1.5em;
     padding: 2%;
     text-align: center;
     grid-area: f;
