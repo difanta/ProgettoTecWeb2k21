@@ -132,7 +132,7 @@
                 </select>
                 <br>
                 <label for="apraData">Data e Ora</label>
-                <input type="datetime-local" id="apraData" name="agg_data" value="agg_dataselezionata" required>
+                <input type="datetime-local" id="apraData" name="agg_data" value="agg_dataselezionata" min="2022-09-12T00:00" max="2022-09-18T00:00" required>
                 <br>
                 <input type="submit" name="method" value="Aggiungi Proiezione">
                 <input type="submit" value="Reset">
@@ -142,7 +142,7 @@
             <h2><label for="mcollapse">Modifica Proiezione</label></h2>
 
             <form id="aprModifica" method="post">
-                <label for="apSelect" form="mod_selectFilm">Seleziona un film</label>
+                <label for="apSelect">Seleziona un film</label>
                 <select id="apSelect" name="mod_nomeFilm" selection="mod_nomefilmselezionato" onchange="mod_FilmSelected()" required>
                     <nomifilm/>
                 </select>
@@ -157,7 +157,7 @@
                 </select>
                 <br>
                 <label for="aprmData">Data e Ora</label>
-                <input type="datetime-local" id="aprmData" name="mod_nuovaData" required>
+                <input id="aprmData" type="datetime-local" name="mod_nuovaData" min="2022-09-12T00:00" max="2022-09-18T00:00" required>
                 <br>
                 <input type="submit" name="method" value="Modifica Proiezione">
                 <input type="submit" name="method" value="Elimina Proiezione">

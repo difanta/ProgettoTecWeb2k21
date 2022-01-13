@@ -116,7 +116,7 @@ function printFilms(&$htmlPage) {
     if($connectionOk) {
         $template = "<option value=\"nomefilm\">nomefilm</option>";
         $stringa = "";
-        $films = $connection->getNomiFilm();
+        $films = $connection->getNomiFilmApprovati();
         foreach($films as $film) {
             $stringa .= str_replace("nomefilm", $film["nome"], $template);
         }

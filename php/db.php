@@ -187,6 +187,11 @@ class DBAccess
         return $this->formatGetResult($this->connection->query("SELECT nome from Film"));
     }
 
+    public function getNomiFilmApprovati()
+    {
+        return $this->formatGetResult($this->connection->query("SELECT nome from Film where Film.approvato = '1'"));
+    }
+
     public function insertUser($nome, $cognome, $data_di_nascita, $email, $password)
     {
         $stmt = $this->connection->prepare("INSERT INTO Utente(nome, cognome, data_di_nascita, email, password, admin)
@@ -254,7 +259,7 @@ class DBAccess
     public function addProiezione($nomeFilm, $data)
     {
         $stmt = $this->connection->prepare("INSERT INTO Proiezione(orario, film) 
-                                            VALUES (?, (SELECT id from Film where Film.nome = ?))");
+                                            VALUES (?, (SELECT id from Film where Film.nome = ? and Film.approvato = '1'))");
         $stmt->bind_param("ss", $data, $nomeFilm);
         return $stmt->execute();
     }
@@ -262,7 +267,7 @@ class DBAccess
     public function modifyProiezione($idProiezione, $nomeFilm, $data)
     {
         $stmt = $this->connection->prepare("UPDATE Proiezione
-                                            set orario = ?, film = (SELECT id from Film where Film.nome = ?)
+                                            set orario = ?, film = (SELECT id from Film where Film.nome = ? and Film.approvato = '1')
                                             where Proiezione.id = ?");
         $stmt->bind_param("ssi", $data, $nomeFilm, $idProiezione);
         return $stmt->execute();

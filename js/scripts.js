@@ -256,7 +256,6 @@ function onUtenteSelected() {
                 var re = results[1];
                 for(let i=0; i<results[1].length; i++){
                     let li = document.createElement("li");
-
                 }
 
             }
@@ -318,7 +317,6 @@ function mod_onFilmChanged() {
                 document.getElementById("alfmCast").innerHTML = obj["cast"];
                 document.getElementById("alfmGara").checked = (obj["in_gara"] == 1);
                 document.getElementById("alfmApprovato").checked = (obj["approvato"] == 1);
-            } else {
             }
         }
     };
