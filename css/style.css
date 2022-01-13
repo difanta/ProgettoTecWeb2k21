@@ -202,7 +202,7 @@ header #breadcrumb p {
 header #accountButton {
     position: absolute;
     top: 10%;
-    right: 5%;
+    right: 4%;
 }
 
 header #accountButton span[class="material-icons-outlined"] {
