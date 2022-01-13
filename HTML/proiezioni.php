@@ -62,11 +62,11 @@ function printProiezioni(&$htmlPage) {
             // create and substitute proiezione based on template
             foreach($result as $indice => $film) {
                 $at_least_one = true;
-                $proiezione_html = str_replace("titolofilm",   $film["nome"],    $template);
-                $proiezione_html = str_replace("regista",      $film["regista"], $proiezione_html);
-                $proiezione_html = str_replace("data",         $film["data"],    $proiezione_html);
-                $proiezione_html = str_replace("ora",          $film["ora"],     $proiezione_html);
-                $proiezione_html = str_replace("idproiezione", $film["pid"],     $proiezione_html);
+                $proiezione_html = str_replace("titolofilm",   Sanitizer::forHtml($film["nome"]),    $template);
+                $proiezione_html = str_replace("regista",      Sanitizer::forHtml($film["regista"]), $proiezione_html);
+                $proiezione_html = str_replace("data",         Sanitizer::forHtml($film["data"]),    $proiezione_html);
+                $proiezione_html = str_replace("ora",          Sanitizer::forHtml($film["ora"]),     $proiezione_html);
+                $proiezione_html = str_replace("idproiezione", Sanitizer::forHtml($film["pid"]),     $proiezione_html);
                 if($film["in_gara"]){
                     $proiezione_html = str_replace("filmNonInGara" , "filmInGara" , $proiezione_html);
                 }
@@ -80,7 +80,7 @@ function printProiezioni(&$htmlPage) {
         $stringa = "";
         $films = $connection->getNomiFilmApprovati();
         foreach($films as $film) {
-            $stringa .= str_replace("nomefilm", $film["nome"], $template);
+            $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
         }
         $htmlPage = str_replace($p_nomifilm, $stringa, $htmlPage);
     } else {

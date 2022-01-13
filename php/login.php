@@ -1,6 +1,7 @@
 <?php
 
 include_once "db.php";
+include_once "sanitizer.php";
 use DB\DBAccess;
 
 /* Input control feedback messages

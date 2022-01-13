@@ -22,13 +22,13 @@ function printFilm(&$htmlPage) {
                 $film = $result[0];
                 if($film) {
                     $found = true;
-                    $htmlPage = str_replace("titolofilm"          , $film["nome"]        , $htmlPage);
-                    $htmlPage = str_replace("regista"             , $film["regista"]     , $htmlPage);
-                    $htmlPage = str_replace("elencoattori"        , $film["cast"]        , $htmlPage);
-                    $htmlPage = str_replace("annodipubblicazione" , $film["anno"]        , $htmlPage);
-                    $htmlPage = str_replace("nomeproduttore"      , $film["produttore"]  , $htmlPage);
-                    $htmlPage = str_replace("duratafilm"          , $film["durata"]      , $htmlPage);
-                    $htmlPage = str_replace("descrizionefilm"     , $film["descrizione"] , $htmlPage);
+                    $htmlPage = str_replace("titolofilm"          , Sanitizer::forHtml($film["nome"])        , $htmlPage);
+                    $htmlPage = str_replace("regista"             , Sanitizer::forHtml($film["regista"])     , $htmlPage);
+                    $htmlPage = str_replace("elencoattori"        , Sanitizer::forHtml($film["cast"])        , $htmlPage);
+                    $htmlPage = str_replace("annodipubblicazione" , Sanitizer::forHtml($film["anno"])        , $htmlPage);
+                    $htmlPage = str_replace("nomeproduttore"      , Sanitizer::forHtml($film["produttore"])  , $htmlPage);
+                    $htmlPage = str_replace("duratafilm"          , Sanitizer::forHtml($film["durata"])      , $htmlPage);
+                    $htmlPage = str_replace("descrizionefilm"     , Sanitizer::forHtml($film["descrizione"]) , $htmlPage);
                     $htmlPage = str_replace("percorsoimmagine"    , FS::findImage($film["nome"]), $htmlPage);
                     if($film["in_gara"]){
                         $htmlPage = str_replace("filmingara" , "sì" , $htmlPage);
