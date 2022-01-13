@@ -25,6 +25,27 @@ function printUtenti(&$htmlPage) {
     }
 }
 
+function printBiglietti() {
+    if(!Login::is_logged_admin()) { return; }
+
+    $p_biglietto = "<biglietto/>";
+
+    $connection = new DBAccess();
+    $connectionOk = $connection->openDB();
+
+    if($connectionOk) {
+        $template = file_get_contents("./template/templateAdminUtentiBiglietto.html");
+        $stringa = "";
+        $utenti = $connection->();
+        foreach($utenti as $utente) {
+            $stringa .= str_replace("utente", $utente["email"], $template);
+        }
+        $htmlPage = str_replace($p_biglietto, $stringa, $htmlPage);
+    } else {
+        $htmlPage = str_replace($p_biglietto, "", $htmlPage);
+    }
+}
+
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
@@ -38,6 +59,7 @@ if (isset($_POST["method"])) {
     // show login/register/logout results
     Login::printLogin($htmlPage);
     printUtenti($htmlPage);
+    printBiglietti();
 
     echo $htmlPage;
 }

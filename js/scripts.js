@@ -260,6 +260,15 @@ function onUtenteSelected() {
     }
 }
 
+function includeUsernameInForm(form, usernameSelect) {
+    if(!form || !usernameSelect || !usernameSelect.value) return false;
+
+    let formData = new FormData(form);
+    formData.append(usernameSelect.name, usernameSelect.value);
+
+    
+}
+
 /* Admin Lista Film */
 
 function mod_initFilm() {
@@ -312,7 +321,6 @@ function mod_onFilmChanged() {
                 document.getElementById("alfmCast").innerHTML = obj["cast"];
                 document.getElementById("alfmGara").checked = (obj["in_gara"] == 1);
                 document.getElementById("alfmApprovato").checked = (obj["approvato"] == 1);
-            } else {
             }
         }
     };

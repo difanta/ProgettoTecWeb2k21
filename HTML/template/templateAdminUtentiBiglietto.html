@@ -1,0 +1,15 @@
+<li>
+    <form action="post" onsubmit="includeUsernameInForm(this, document.getElementById('utentiSelect'))">
+        <label for="m_filmSelect">Seleziona un film</label>
+        <select id="m_filmSelect" name="mod_nomeFilm" selection="mod_nomefilmselezionato" onchange="modUserFilmSelected()" required>
+            <nomifilm/>
+        </select>
+        <br>
+        <label for="m_prSelect">Seleziona una proiezione</label>
+        <select id="m_prSelect" name="mod_idProiezione" selection="mod_idproiezioneselezionata" required>
+        </select>
+        <br>
+        <input type="submit" name="method" value="Modifica Biglietto">
+        <input type="submit" value="Reset">
+    </form>
+</li>
