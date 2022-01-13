@@ -6,6 +6,7 @@ include "../php/login.php";
 use DB\DBAccess;
 
 function printFilms(&$htmlPage) {
+    $p_nomifilm = "<nomifilm/>";
     $p_filmPreview = "<filmPreview/>";
     $p_nomeFilmFilter = "inputnomefilm";
     $p_tuttiFilter = "tuttiselected";
@@ -81,6 +82,17 @@ function printFilms(&$htmlPage) {
                 $htmlPage  = str_replace($p_filmPreview, $film_html . $p_filmPreview, $htmlPage);
             }
         }
+
+        // set datalist
+        $template = "<option value=\"nomefilm\"></option>";
+        $stringa = "";
+        $films = $connection->getNomiFilmApprovati();
+        foreach($films as $film) {
+            $stringa .= str_replace("nomefilm", $film["nome"], $template);
+        }
+        $htmlPage = str_replace($p_nomifilm, $stringa, $htmlPage);
+    } else {
+        $htmlPage = str_replace($p_nomifilm, "", $htmlPage);
     }
 
     if($at_least_one) {

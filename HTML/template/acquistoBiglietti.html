@@ -125,14 +125,15 @@
             <button onclick="acquistoBigliettiLogin()">Login</button>
             oppure
             <button onclick="acquistoBigliettiSignup()">Registrati</button>
-            <form id="contentLogin">
+            <form id="contentLogin" method="post">
                 <label for="contentLoginEmail">Email</label>
                 <input id="contentLoginEmail" name="email" type="email">
                 <label for="contentLoginPassword">Password</label>
                 <input id="contentLoginPassword" name="password" type="password">
-                <button>accedi</button>
+                
+                <button name="method" value="login">accedi</button>
             </form>
-            <form id="contentSignin">
+            <form id="contentSignin" method="post">
                 <label for="contentSingupNome">Nome</label>
                 <input id="contentSingupNome" name="nome" type="text">
                 <label for="contentSingupCognome">Cognome</label>
@@ -147,7 +148,7 @@
                 <label for="contentSingupPassword2">ridigita la password</label>
                 <input id="contentSingupPassword2" name="password2" type="password">
 
-                <button>registrati</button>
+                <button name="method" value="register">registrati</button>
             </form>
         </div>
     </ifnotlogged>

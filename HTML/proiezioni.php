@@ -78,7 +78,7 @@ function printProiezioni(&$htmlPage) {
         // set datalist
         $template = "<option value=\"nomefilm\"></option>";
         $stringa = "";
-        $films = $connection->getNomiFilm();
+        $films = $connection->getNomiFilmApprovati();
         foreach($films as $film) {
             $stringa .= str_replace("nomefilm", $film["nome"], $template);
         }

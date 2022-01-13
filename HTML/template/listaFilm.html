@@ -119,8 +119,11 @@
         <p>Filtra per</p>
 
         <form id="filtriFilm">
-            <label for="nomeFilm">Nome</label>
-            <input type="text" name="nomeFilm" id="nomeFilm" value="inputnomefilm"/>
+            <label for="nomeFilm">Nome Film</label>
+            <input list="film" name="nomeFilm" id="nomeFilm" value="inputnomefilm">
+            <datalist id="film">
+                <nomifilm/>
+            </datalist>
 
             <label for="gara">Tipo Film</label>
             <select name="gara" id="gara">
