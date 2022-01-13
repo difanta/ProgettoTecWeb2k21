@@ -133,8 +133,44 @@
     <h2>Candidatura</h2>
     <p>Nel presentare la candidatura è fondamentale fornire tutte le informazioni richieste. In particolare è richiesto l'upload di una immagine presa da un frame del film che si vuole candidare. Quindi niente locandina o altre immagini che non siano presenti nel film. Dopo l'approvazione, questa immagine verrà pubblicata sul sito assieme alle altre informazioni del prodotto candidato, deve quindi essere rappresentativa del film.</p>
 
+    <ifnotlogged>
+        <div id="login-container">
+            <p>Per poter acquistare un biglietto devi prima effettuare il login</p>
+
+            <button onclick="acquistoBigliettiLogin()">Login</button>
+            oppure
+            <button onclick="acquistoBigliettiSignup()">Registrati</button>
+            <form id="contentLogin" method="post">
+                <label for="contentLoginEmail">Email</label>
+                <input id="contentLoginEmail" name="email" type="email">
+                <label for="contentLoginPassword">Password</label>
+                <input id="contentLoginPassword" name="password" type="password">
+
+                <button name="method" value="login">accedi</button>
+            </form>
+            <form id="contentSignin" method="post">
+                <label for="contentSingupNome">Nome</label>
+                <input id="contentSingupNome" name="nome" type="text">
+                <label for="contentSingupCognome">Cognome</label>
+                <input id="contentSingupCognome" name="cognome" type="text">
+                <label for="contentSingupDataNascita">Data di nascita</label>
+                <input id="contentSingupDataNascita" name="dataNascita" type="text">
+
+                <label for="contentSingupEmail">Email</label>
+                <input id="contentSingupEmail" name="email" type="email">
+                <label for="contentSingupPassword">Password</label>
+                <input id="contentSingupPassword" name="password" type="password">
+                <label for="contentSingupPassword2">ridigita la password</label>
+                <input id="contentSingupPassword2" name="password2" type="password">
+
+                <button name="method" value="register">registrati</button>
+            </form>
+        </div>
+    </ifnotlogged>
+
     <div id="contestForm">
         <messaggi/>
+
         <iflogged>
             <form method="post" onsubmit="return validazioneForm();">
                 <fieldset>
