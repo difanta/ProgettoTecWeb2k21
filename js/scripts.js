@@ -256,7 +256,6 @@ function onUtenteSelected() {
                 var re = results[1];
                 for(let i=0; i<results[1].length; i++){
                     let li = document.createElement("li");
-
                 }
 
             }
@@ -264,15 +263,6 @@ function onUtenteSelected() {
         xmlhttp.open("GET", "../php/onUtenteSelected.php?email=" + elem.value, true);
         xmlhttp.send();
     }
-}
-
-function includeUsernameInForm(form, usernameSelect) {
-    if(!form || !usernameSelect || !usernameSelect.value) return false;
-
-    let formData = new FormData(form);
-    formData.append(usernameSelect.name, usernameSelect.value);
-
-    
 }
 
 /* Admin Lista Film */

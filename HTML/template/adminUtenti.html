@@ -125,7 +125,22 @@
 
             <div id="biglietti">
                 <h1>Biglietti</h1>
-                <ul id="ticketList"></ul>
+                <ul id="ticketList">
+                    <biglietto/>
+                </ul>
+                <form id="aggiungiBiglietto" action="post">
+                    <input type="hidden" name="agg_username" value="">
+                    <label for="a_filmSelect">Seleziona un film</label>
+                    <select id="a_filmSelect" name="agg_nomeFilm" selection="agg_nomefilmselezionato" onchange="aggUserFilmSelected()" required>
+                        <nomifilm/>
+                    </select>
+                    <br>
+                    <label for="a_prSelect">Seleziona una proiezione</label>
+                    <select id="a_prSelect" name="agg_idProiezione" selection="agg_idproiezioneselezionata" required>
+                    </select>
+                    <br>
+                    <input type="submit" name="method" value="Aggiungi Biglietto">
+                </form>
             </div>
         </div>
     </ifloggedadmin>

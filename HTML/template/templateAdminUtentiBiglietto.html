@@ -1,5 +1,6 @@
 <li>
-    <form action="post" onsubmit="includeUsernameInForm(this, document.getElementById('utentiSelect'))">
+    <form action="post">
+        <input type="hidden" name="mod_username" value="">
         <label for="m_filmSelect">Seleziona un film</label>
         <select id="m_filmSelect" name="mod_nomeFilm" selection="mod_nomefilmselezionato" onchange="modUserFilmSelected()" required>
             <nomifilm/>
