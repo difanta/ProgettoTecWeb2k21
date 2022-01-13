@@ -60,6 +60,8 @@ class Login {
     private static $p_if_not_register_success_open = "<ifnotregistersuccess>";
     private static $p_if_not_register_success_close = "</ifnotregistersuccess>";
 
+    private static $p_accountname = "<accountname/>";
+
     public static function showElement($open, $close, &$string) {
         $string = str_replace($open, "", $string);
         if($open != $close) 
@@ -95,9 +97,10 @@ class Login {
                     $result = $connection->getUserByEmail($email);
                     if($result && $result[0] && ($result[0]["password"] == $password)) 
                     {
-                        $_SESSION["success"]  = true;
-                        $_SESSION["login"]    = $result[0]["id"]; 
-                        $_SESSION["is_admin"] = $result[0]["admin"]; 
+                        $_SESSION["success"]     = true;
+                        $_SESSION["login"]       = $result[0]["id"]; 
+                        $_SESSION["accountname"] = $result[0]["email"]; 
+                        $_SESSION["is_admin"]    = $result[0]["admin"]; 
                     } 
                     $connection->closeConnection();
                 } 
@@ -231,6 +234,12 @@ class Login {
         } else {
             Login::hideElement(Login::$p_if_logged_admin_open,     Login::$p_if_logged_admin_close,     $htmlPage);
             Login::showElement(Login::$p_if_not_logged_admin_open, Login::$p_if_not_logged_admin_close, $htmlPage);
+        }
+
+        if(Login::is_logged()) {
+            $htmlPage = str_replace(Login::$p_accountname, "<span id='accountName'>" . $_SESSION["accountname"] . "</span>", $htmlPage);
+        } else {
+            $htmlPage = str_replace(Login::$p_accountname, ""                                                              , $htmlPage);
         }
     }
 }
