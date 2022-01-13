@@ -348,13 +348,12 @@ class DBAccess
     /**
      * @used_in paginaUtente.php
      */
-    public function getUserCandidatureSospese()
+    public function getUserCandidature()
     {
-        $stmt = $this->connection->prepare("SELECT Film.nome, Film.descrizione, Film.durata, Film.anno, Film.regista, Film.produttore, Film.cast, Utente.email
+        $stmt = $this->connection->prepare("SELECT Film.nome, Film.descrizione, Film.durata, Film.anno, Film.regista, Film.produttore, Film.cast, Utente.email, Film.approvato
                                             FROM Utente
                                             join Film on Film.candidatore = Utente.id 
-                                            where Utente.id = ?
-                                            and Film.approvato = 0");
+                                            where Utente.id = ?");
         $stmt->bind_param("i", $_SESSION["login"]);
         $stmt->execute();
         return $this->formatGetResult($stmt->get_result());
