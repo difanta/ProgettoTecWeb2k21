@@ -42,6 +42,19 @@ function expandMenu(){
     }
 }
 
+document.addEventListener('click', function(e) {
+    let accDropdown = document.getElementById("accountDropdown");
+    let accBtn = document.getElementById("accountButton");
+    let target = e.target;
+    while(target && target != accDropdown && target != accBtn) {
+        target = target.parentNode;
+    }
+
+    if(target == null && accDropdown.classList.contains("dropdown")) {
+        toggleAccountDropdown();
+    }
+});
+
 /* Scroll -------------------------------------------- */
 
 /* // Remove after # in the url
