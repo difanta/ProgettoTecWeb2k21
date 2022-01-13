@@ -29,6 +29,21 @@ body {
     font-size: 120%;
 }
 
+.errorSuggestion{
+    color:red;
+    margin:0.5em;
+    display:block;
+    font-size:0.8em;
+    font-style: italic;
+}
+.placeholderText{
+    color:rgb(102, 102, 102);
+    font-style: italic;
+}
+.normalInput{
+    color:black;
+    font-style: normal;
+}
 /*--------------------------- Form e Input ------------------------------*/
 /* General Input Styles */
 
@@ -985,7 +1000,6 @@ li.filmPopolare a{
     width: 60%;
     padding: 0 1% 1% 1%;
 }
- 
 
 /* Admin --------------------------------------------------------------------------------------------------*/
 

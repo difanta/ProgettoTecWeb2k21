@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!-- 
-    meming allowed
-    mantenere Cavalli & Segugi pls
--->
+
 <html lang="it">
 
 <head>
@@ -26,7 +23,7 @@
     <link rel="shortcut icon" type="image/png" href="../images/favicon.ico"/>
 </head>
 
-<body>
+<body  onload="caricamento();"">
 <header>
     <a class="goToContent" href="#content_contest">Vai al contenuto</a>
 
@@ -139,26 +136,26 @@
     <div id="contestForm">
         <messaggi/>
         <iflogged>
-            <form method="post">
+            <form method="post" onsubmit="return validazioneForm();">
                 <fieldset>
                     <label for="titolo">Titolo</label>
-                    <input type="text" name="titolo" id="titolo" required/>
+                    <span><input type="text" name="titolo" id="titolo" required onblur="validazioneTitolo();"/></span>
                     <label for="descrizione">Descrizione</label>
-                    <textarea name="descrizione" id="descrizione" cols="40" rows="8" required></textarea>
+                    <span><textarea name="descrizione" id="descrizione" cols="40" rows="8" required></textarea></span>
                     <label for="imgFilm">Immagine film</label>
-                    <input type="file" name="imgFilm" id="imgFilm" accept="image/png, image/jpeg" required/>
+                    <span><input type="file" name="imgFilm" id="imgFilm" accept="image/png, image/jpeg" required/></span>
                     <label for="durata">Durata</label>
-                    <input type="number" name="durata" id="durata" required/>
+                    <span><input type="number" name="durata" id="durata" min=60 max=180 required/></span>
                     <label for="anno">Anno</label>
-                    <input type="number" name="anno" id="anno" required/>
+                    <span><input type="number" name="anno" id="anno" min=1900 max=2022 required/></span>
                     <label for="regista">Regista</label>
-                    <input type="text" name="regista" id="regista" required/>
+                    <span><input type="text" name="regista" id="regista" required/></span>
                     <label for="produttore">Produttore</label>
-                    <input type="text" name="produttore" id="produttore" required/>
+                    <span><input type="text" name="produttore" id="produttore" required/></span>
                     <label for="cast">Cast</label>
-                    <textarea name="cast" id="cast" cols="40" rows="8" required></textarea>
+                    <span><textarea name="cast" id="cast" cols="40" rows="8" required></textarea></span>
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="email" required>
+                    <span><input type="text" name="email" id="email" required></span>
                     <input class="button" type="submit" name="method" value="Invia Candidatura">
                     <input class="button" type="reset" value="Reset">
                 </fieldset>
