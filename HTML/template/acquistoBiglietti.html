@@ -129,7 +129,7 @@
                 <input id="contentLoginEmail" name="email" type="email">
                 <label for="contentLoginPassword">Password</label>
                 <input id="contentLoginPassword" name="password" type="password">
-                
+
                 <button name="method" value="login">accedi</button>
             </form>
             <form id="contentSignin" method="post">
@@ -152,10 +152,12 @@
         </div>
     </ifnotlogged>
 
-    <h2>Riepilogo ordine</h2>
-    <messaggi/>
-    <ordine/>
-    <acquisto/>
+    <iflogged>
+        <h2>Riepilogo ordine</h2>
+        <messaggi/>
+        <ordine/>
+        <acquisto/>
+    </iflogged>
 
 </div>
 

@@ -190,75 +190,6 @@ function setEditOff() {
     document.getElementById('password').setAttribute('disabled', '');
 }
 
-/*
-		chiave: campo input di cui inserisco le informazioni
-		[0]: placeholder (indicazioni prima della digitazione)
-		[1]: espressione regolare
-		[2]: messaggio di errore
-*/
-function getInfoutenteFormDetails() {
-    return {
-        "nome": ["Nome del personaggio, almeno due caratteri", /^[A-Za-zaeriou\s]{2,}$/, "inserire un nome di lunghezza almeno due"],
-        "colore": ["Colore del personaggio", /^[A-Za-zaeriou\s]{2,}$/, "inserire un colore di soli caratteri di lunghezza almeno due"],
-        "peso": ["Peso del personaggio", /^[0-9]+$/, "inserire unnumero"],
-        "descrizione": ["Descrizione del personaggio", /^.{10,}$/, "la descrizione deve essere lunga almeono dieci caratteri"]
-    };
-}
-
-function mostraErrore(input) {
-    var parent = input.parentNode;
-    var error = document.createElement("strong");
-    //error.className = "errorSuggestion"; //classe css da fare
-    error.appendChild(document.createTextNode(getInfoutenteFormDetails()[input.id][2]));
-    parent.appendChild(error);
-}
-
-function caricamento(details) {
-    for (var key in details) {
-        var input = document.getElementById(key);
-        campoDefault(input);
-        input.onblur = function () {
-            validazioneCampo(this);
-        };
-    }
-}
-
-function campoDefault(input) {
-    if (input.value == "") {
-        input.setAttribute('placeholder', getInfoutenteFormDetails()[input.id][0]);
-    }
-}
-
-
-function validazioneCampo(input, details) {
-    var parent = nome.parentNode;
-    if (parent.children.length == 2) {
-        parent.removeChild(parent.children[1]);
-    }
-
-    var regex = details[input.id][1];
-    var text = input.value;
-
-    if (text.search(regex) !== 0 || (text == getInfoutenteFormDetails()[input.id][0])) {
-        mostraErrore(input);
-        input.focus();
-        input.select();
-        return false;
-    }
-    return true;
-}
-
-function validateForm() {
-    var details = getInfoutenteFormDetails();
-    for (var key in details) {
-        var input = document.getElementById(key);
-        if (!validazioneCampo(input)) {
-            return false;
-        }
-    }
-    return true;
-}
-
 /* Admin Utenti */
 
 function onUtenteSelected() {
@@ -431,4 +362,83 @@ function mod_ProiezioneSelected() {
         document.getElementById("aprmData").setAttribute("value", "");
     }
 
+}
+
+
+/*---  validazione form lato client --------------------------- */
+
+/*
+chiave:campo input di cui inserisco informazioni
+[0] : place holder
+[1] : espressione regolare
+[2] : messaggio di errore
+*/
+var emailregex=/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+var dettagli_form = {
+	"titolo" : ["inserisci il titolo del film",/[\wàèéìòù]{1,}/,"il titolo deve contenere almeno un carattere alfanumerico"], 
+    "descrizione" : ["inserisci una descrizione del film",/^.{10,}$/,"la descrizione deve contenere almeno dieci caratteri"], 
+    "durata" : ["",/^[6-9][0-9]|1[0-7][0-9]|180$/,"la durata deve essere compresa tra i 60 ed i 180 minuti"],
+    "anno" : ["",/^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/,"l'anno deve essere compreso tra il 1900 ed il 2022"],
+    "regista" : ["inserisci il regista del film",/[a-zA-Zàèéìòù]{1,}/,"il regista deve contenere almeno un carattere alfabetico"],
+    "produttore" : ["inserisci il produttore del film",/[a-zA-Zàèéìòù]{1,}/,"il produttore deve contenere almeno un carattere alfabetico"],
+    "cast" : ["inserisci il cast del film separato da virgole",/^.{5,}$/,"il cast deve contenere almeno cinque caratteri"],
+    "email" : ["inserisci la tua mail",emailregex,"mail non valida"]
+};
+
+function caricamento(){
+	for(var key in dettagli_form){
+		var input = document.getElementById(key);
+		campoDefault(input);
+		input.onfocus=function(){campoPerInput(this);};
+		input.onblur = function(){validazioneCampo(this);};
+	}
+}
+
+function campoDefault(input){
+	if (input.value == ""){
+		input.className="placeholderText";
+		input.value = dettagli_form[input.id][0];
+	}
+}
+
+function campoPerInput(input){
+	if (input.value == dettagli_form[input.id][0]){
+		input.className="normalInput";
+		input.value = "";
+	}
+}
+
+function validazioneCampo(input){
+	var padre=input.parentNode;	
+	if(padre.children.length == 2){
+		padre.removeChild(padre.children[1]);
+	}
+	
+	var regex = dettagli_form[input.id][1];
+	var text = input.value;
+    input.value=text;
+	if((text.search(regex) == -1) || (text==dettagli_form[input.id][0])) {
+		mostraErrore(input);
+		input.focus();
+		return false;
+	}
+	return true;
+}
+
+function mostraErrore(input){
+	var padre = input.parentNode;
+	var errore = document.createElement("strong");
+	errore.className="errorSuggestion";
+	errore.appendChild(document.createTextNode(dettagli_form[input.id][2]));
+	padre.appendChild(errore);
+}
+
+function validazioneForm(){
+	for (var key in dettagli_form){
+        var input=document.getElementById(key);
+        if(!validazioneCampo(input)){
+            return false;
+        }
+    }
+    return true;
 }

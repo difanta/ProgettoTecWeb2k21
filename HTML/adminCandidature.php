@@ -54,8 +54,6 @@ function printCandidature(&$htmlPage)
                     $list = str_replace("rifiutaCand", "style=\"display:none;\"", $list);
                     $list = str_replace("accettaCand", "style=\"display:none;\"", $list);
                     $list = str_replace("none;\" sospendiCand", "show;\"", $list);
-                    $list = str_replace("in sospeso</h1>", "approvate</h1>", $list);
-                    $list = str_replace("alertRifiuto", "style=\"display:none;\"", $list);
                 }
             }
             unset($candidatura);
@@ -66,10 +64,11 @@ function printCandidature(&$htmlPage)
     } else {
         $list .= "<p>Errore connessione db</p>";
     }
-
-    if ($filter_candidatura == "Approvata") {
+    if($filter_candidatura == "Approvata") {
         $htmlPage = str_replace("in sospeso</h1>", "approvate</h1>", $htmlPage);
         $htmlPage = str_replace("alertRifiuto", "style=\"display:none;\"", $htmlPage);
+    } else {
+        $htmlPage = str_replace("alertSospensione", "style=\"display:none;\"", $htmlPage);
     }
     $htmlPage = str_replace("<listaCandidature/>", $list, $htmlPage);
 }
