@@ -13,7 +13,7 @@ $results = [];
 
 if ($connectionOk) {
     $results_user = $connection->getUserByEmail($email);
-    $results_tickets = $connection->getUserByEmail($email);
+    $results_tickets = $connection->getUserTicketsByEmail($email);
     $connection->closeConnection();
 
     if ($results_user != null) array_push($results, $results_user);

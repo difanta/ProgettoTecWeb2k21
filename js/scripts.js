@@ -242,8 +242,7 @@ function onUtenteSelected() {
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var results = JSON.parse(xmlhttp.responseText);
-                console.log(results[0][0]);
-                console.log(results[0][0].id);
+                console.log(results);
                 // utente
                 document.getElementById("id").innerHTML = "id: " + results[0][0].id;
                 document.getElementById("email").innerHTML = "email: " + results[0][0].email;
@@ -252,6 +251,13 @@ function onUtenteSelected() {
 
                 // tickets
                 //document.getElementById("strumentoProva").value = results[1][0].nome;
+
+                var list = document.getElementById("ticketList");
+                var re = results[1];
+                for(let i=0; i<results[1].length; i++){
+                    let li = document.createElement("li");
+
+                }
 
             }
         };

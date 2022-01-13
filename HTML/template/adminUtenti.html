@@ -81,13 +81,12 @@
     <nav id="menu">
         <ul>
             <li lang="en"><a href="index.php">Home</a></li>
-            <li class="secondaryMenuItem" lang="en"><a href="aboutUs.php">About us</a></li>
-            <li class="secondaryMenuItem"><a href="listaFilm.php">Film</a></li>
+            <li lang="en"><a href="aboutUs.php">About us</a></li>
+            <li><a href="listaFilm.php">Film</a></li>
             <li><a href="proiezioni.php">Programma</a></li>
             <li><a href="comeTrovarci.php">Come Trovarci</a></li>
-            <li class="secondaryMenuItem"><a href="contest.php">Il Contest</a></li>
+            <li><a href="contest.php">Il Contest</a></li>
         </ul>
-        <button title="menu" id="menuButton" onclick="expandMenu()"><span id="expandMenuArrow" class="material-icons-outlined">expand_more</span></button>
     </nav>
 
     <nav id="breadcrumb">
@@ -110,46 +109,29 @@
     
     <h1>Admin Lista Utenti</h1>
 
-    <ifloggedadmin>
+    </ifloggedadmin>
         <label for="utentiSelect">Seleziona un utente</label>
         <select id="utentiSelect" name="selectUtente" onchange="onUtenteSelected()">
             <utenti/>
         </select>
 
         <div class="boxUtente">
-            <p id="id">id: pId</p>
-            <p id="email">email: pEmail</p>
-            <p id="nome">nome: pNome</p>
-            <p id="cognome">cognome: pCognome</p>
+            <p id="id">id:</p>
+            <p id="email">email:</p>
+            <p id="nome">nome:</p>
+            <p id="cognome">cognome:</p>
             <input class="button" value="Reset password" onclick="resetPassword()">
             <input class="button" value="Elimina utente" onclick="eliminaUtente()">
 
             <div id="biglietti">
-                <h2>Modifica Biglietti</h2>
-                <ul>
-                    <biglietto/>
-                </ul>
-                <h2>Aggiungi Biglietti</h2>
-                <form id="aggiungiBiglietto" action="post" onsubmit="includeUsernameInForm(this, document.getElementById('utentiSelect'))">
-                    <input type="hidden" id="inputUsername" name="mod_username" value="">
-                    <label for="a_filmSelect">Seleziona un film</label>
-                    <select id="a_filmSelect" name="mod_nomeFilm" selection="mod_nomefilmselezionato" onchange="aggUtentiFilmSelected()" required>
-                        <nomifilm/>
-                    </select>
-                    <br>
-                    <label for="a_prSelect">Seleziona una proiezione</label>
-                    <select id="a_prSelect" name="mod_idProiezione" selection="mod_idproiezioneselezionata" required>
-                    </select>
-                    <br>
-                    <input type="submit" name="method" value="Aggiungi Biglietto">
-                </form>
+                <h1>Biglietti</h1>
+                <ul id="ticketList"></ul>
             </div>
         </div>
     </ifloggedadmin>
     <ifnotloggedadmin>
         <p><iflogged>Non sei Admin!</iflogged><ifnotlogged>Non Loggato!</ifnotlogged> Per accedere a questa pagina serve loggarsi con un account admin.</p>
     </ifnotloggedadmin>
-
 </div>
 
 <div id="tornaSu">

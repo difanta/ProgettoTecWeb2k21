@@ -167,10 +167,6 @@ header #menu li {
     width: 16.666%;
 }
 
-header #menu li.secondaryMenuItem{
-    display: block;
-}
-
 header #menu li a {
     display: block;
     padding-top: 0.8em;
@@ -445,10 +441,12 @@ li.filmPopolare p{
     font-size: 1.4em;
     height:12%;
     margin: 0;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding: 5% 7px;
     text-align: center;
     background-color: var(--main-color-lighter);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 li.filmPopolare a{
@@ -458,7 +456,7 @@ li.filmPopolare a{
     height: 88%;
     border-radius: 0 0 8px 8px;
     background-size: cover;
-    background-position: 50% 50%;
+    background-position: 40% 50%;
     margin: solid black 10px;
 }
   
@@ -589,12 +587,14 @@ li.filmPopolare a{
 }
 
 /* Lista Film / Proiezioni ---------------------------------------------------------*/
-#content_listaFilm{
+/* #content_listaFilm{
     padding:0;
 }
+
 #content_listaFilm h1{
     padding:40px;
-}
+} */
+
 .filters {
     text-align: center;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.267);
@@ -698,6 +698,14 @@ li.filmPopolare a{
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
+.boxesList a.linkTitolo {
+    display: block;
+    text-decoration: underline var(--main-color-dark);
+}
+.boxesList a.linkTitolo:hover {
+    text-shadow: none;
+}
+
 .boxesList a.acquista {
     position: absolute;
     bottom: 6%;
@@ -717,8 +725,8 @@ li.filmPopolare a{
     background-color: rgba(0, 165, 165, 0.575);
 }
 
-.boxesList a:visited {
-    color: initial;
+.boxesList a,.boxesList a:visited {
+    color: var(--main-color);
 }
 
 .filmInGara{
@@ -1023,7 +1031,6 @@ header #adminMenu ul {
 #acnSospese li{
     border:var(--main-color-dark) solid;
     background-color: var(--main-color-background);
-    max-width: 400px;
     list-style-type: none;
     margin:5px 0;
     padding:0;

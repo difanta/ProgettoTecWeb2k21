@@ -6,6 +6,9 @@ include "../php/login.php";
 
 use DB\DBAccess;
 
+/**
+ * Fills user info form with data from logged user
+ */
 function printInfoUtente(&$htmlPage)
 {
     $form = "";
@@ -41,6 +44,9 @@ function printInfoUtente(&$htmlPage)
     $htmlPage = str_replace("<utenteForm/>", $form, $htmlPage);
 }
 
+/**
+ * Updates user's info on "modifica" > "Invia" buttons click
+ */
 function updateInfoUtente()
 {
     $messaggi = "";
@@ -108,6 +114,9 @@ function updateInfoUtente()
     $_SESSION["messaggi"] = $messaggi;
 }
 
+/**
+ * Prints user update results
+ */
 function printUpdateInfoUtente(&$htmlPage)
 {
     if (isset($_SESSION["method"]) && $_SESSION["method"] == "Invia") {
@@ -120,6 +129,9 @@ function printUpdateInfoUtente(&$htmlPage)
     }
 }
 
+/**
+ * Deletes User on "elimina account" button click
+ */
 function deleteInfoUtente()
 {
     if (Login::is_logged()) {
@@ -146,6 +158,9 @@ function deleteInfoUtente()
     }
 }
 
+/**
+ * Replaces <listaBiglietti/> with ticket's list
+ */
 function printBiglietti(&$htmlPage)
 {
     $listaBiglietti = "";
@@ -182,10 +197,77 @@ function printBiglietti(&$htmlPage)
     $htmlPage = str_replace("<listaBiglietti/>", $listaBiglietti, $htmlPage);
 }
 
+/**
+ * Replaces <listaCandidature/> with candidature's list
+ */
+function printCandidature(&$htmlPage){
+    $list = "";
+
+    if (Login::is_logged()) {
+
+        $connection = new DBAccess();
+        $connectionOk = $connection->openDB();
+
+        if ($connectionOk) {
+            $candidature = $connection->getUserCandidatureSospese();
+            $connection->closeConnection();
+            if ($candidature != null) {
+                $list .= "<ul id='acnSospese'>";
+                foreach ($candidature as $index => $candidatura) {
+                    $list .= file_get_contents("template/templateCandidaturaUser.html");
+
+                    $list = str_replace("collapse", "collapse" . $index, $list);
+                    $list = str_replace("pTitolo", $candidatura["nome"], $list);
+                    $list = str_replace("pDurata", $candidatura["durata"] . "'", $list);
+                    $list = str_replace("pAnno", $candidatura["anno"], $list);
+                    $list = str_replace("pRegista", $candidatura["regista"], $list);
+                    $list = str_replace("pProduttore", $candidatura["produttore"], $list);
+                    $list = str_replace("pCast", $candidatura["cast"], $list);
+                    $list = str_replace("pEmail", $candidatura["email"], $list);
+                    $list = str_replace("pDescrizione", $candidatura["descrizione"], $list);
+                }
+                unset($candidatura);
+                $list .= "</ul>";
+            } else {
+                $list .= "<p>Non sono presenti biglietti</p>";
+            }
+        } else {
+            $list .= "<p>Errore connessione db</p>";
+        }
+    } else { // not logged
+        $list .= "<p>Utente non loggato</p>";
+    }
+
+    $htmlPage = str_replace("<listaCandidature/>", $list, $htmlPage);
+}
+
+function deleteCandidatura(){
+    if (Login::is_logged()) {
+        if ($_POST["method"] == "Ritira candidatura") {
+            $connection = new DBAccess();
+            $connectionOk = $connection->openDB();
+
+            if ($connectionOk) {
+                if ($connection->deleteCandidatura($_POST["titolo"])) {
+                    $_SESSION["success"] = true;
+                } else {
+                    $_SESSION["success"] = false;
+                }
+                $connection->closeConnection();
+            } else {
+                $_SESSION["success"] = false;
+            }
+        }
+    } else { // not logged
+        $_SESSION["success"] = false;
+    }
+}
+
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
     updateInfoUtente();
+    deleteCandidatura();
     if ($_POST["method"] == "Elimina Account") {
         deleteInfoUtente();
         header("Location: index.php");
@@ -202,6 +284,7 @@ if (isset($_POST["method"])) {
     Login::printLogin($htmlPage);
     printInfoUtente($htmlPage);
     printBiglietti($htmlPage);
+    printCandidature($htmlPage);
     printUpdateInfoUtente($htmlPage);
 
     echo $htmlPage;
