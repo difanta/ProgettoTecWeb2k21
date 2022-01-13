@@ -114,7 +114,6 @@
 
 </header>
 
- 
 
 <div id="content_acquistoBiglietti" class="content">
     <h1>Acquisto biglietti</h1>
@@ -155,37 +154,9 @@
     </ifnotlogged>
 
     <h2>Riepilogo ordine</h2>
-
-    <!-- i dati seguenti verrano poi inseriti dinmicamente -->
     <messaggi/>
     <ordine/>
-    <!--
-    <div id="ordine">
-        <h3 title="Titolo">Gilberto Filé, l'addio</h3>
-        <em title="Registi">Alessandro Sperduti e Caterina Sartori</em>
-        <p>
-            <span class="data">25/12/2021</span>
-            <span class="ora">21:00</span>
-            <span class="luogo">Sala 1</span>
-            <br>
-            <span class="prezzo">7.00€</span>
-        </p>
-    </div>
--->
-    <p id="form-intro">Seleziona il metodo di pagamento:</p>
-    <form id="pagamento" method="post">
-        <input type="radio" id="carta_di_credito" name="metodo_pagamento" value="Carta di credito"
-               onchange="paymentSelectionChanged()"/>
-        <label for="carta_di_credito" id="label-carta_di_credito">Carta di credito</label>
-
-        <input type="radio" id="paypal" name="metodo_pagamento" value="PayPal" onchange="paymentSelectionChanged()">
-        <label for="paypal" id="label-paypal">PayPal</label>
-
-        <input type="radio" id="satispay" name="metodo_pagamento" value="satispay" onchange="paymentSelectionChanged()">
-        <label for="satispay" id="label-satispay">Satispay</label>
-
-        <input class="button" type="submit" name="method" value="Acquista">
-    </form>
+    <acquisto/>
 
 </div>
 
@@ -197,19 +168,19 @@
     <ifloggedadmin><a id="pannelloadmin" href="admin.php">Pannello admin</a></ifloggedadmin>
     <p>I nostri sponsor:</p>
     <ul title="sponsors" id="listaSponsor">
-            <li>
-                <img id="imgSponsor1" src="../images/sponsor/La_dolce_vita.png" alt="La dolce vita"/>
-                <p>La Dolve Vita Bar</p>
-            </li>
-            <li>
-                <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
-                <p>La Feltrinelli</p>
-            </li>
-            <li>
-                <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
-                <p>Grand Budapest Hotel</p>
-            </li>
-        </ul>
+        <li>
+            <img id="imgSponsor1" src="../images/sponsor/La_dolce_vita.png" alt="La dolce vita"/>
+            <p>La Dolve Vita Bar</p>
+        </li>
+        <li>
+            <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
+            <p>La Feltrinelli</p>
+        </li>
+        <li>
+            <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
+            <p>Grand Budapest Hotel</p>
+        </li>
+    </ul>
     <ul id="studenti">
         <li>Alberto Nicoletti</li>
         <li>Giovanni Moretti</li>

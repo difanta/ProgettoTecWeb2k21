@@ -27,7 +27,7 @@ function printOrdine(&$htmlPage)
             $ordine = str_replace("pRegista", $results[0]["regista"], $ordine);
             $ordine = str_replace("pData", $results[0]["data"], $ordine);
             $ordine = str_replace("pOra", $results[0]["ora"], $ordine);
-            
+
         } else {
             $messaggi .= "<li>problemi db</li>";
         }
@@ -35,14 +35,33 @@ function printOrdine(&$htmlPage)
         $messaggi = "<p>proiezione non selezionata</p>";
     }
 
-    $htmlPage = str_replace("<messaggi/>", $messaggi, $htmlPage);
     $htmlPage = str_replace("<ordine/>", $ordine, $htmlPage);
+}
+
+function printAcquisto(&$htmlPage){
+
+    $acquisto = "";
+echo " print acquisto";
+    if(isset($_SESSION["success"])){ // if bottone acquista clicked
+        echo " success";
+        if($_SESSION["success"]){
+            $acquisto = file_get_contents("template/templateAcquistoSuccesso.html");
+        } else {
+            // errore
+        }
+        unset($_SESSION["success"]);
+    } else { // first print
+        echo " first acquisto";
+        $acquisto = file_get_contents("template/templateAcquisto.html");
+    }
+
+    $htmlPage = str_replace("<acquisto/>", $acquisto, $htmlPage);
 }
 
 function insertOrdine(&$htmlPage)
 {
     $messaggi = "";
-
+    $_SESSION["success"] = false;
     if (Login::is_logged()) {
         if ($_POST["method"] == "Acquista") {
             $proiezione = $_GET["id"];
@@ -53,6 +72,7 @@ function insertOrdine(&$htmlPage)
             if ($connectionOk) {
                 if ($connection->insertTicket($proiezione)) {
                     $messaggi = "<p>Biglietto acquistato con successo</p>";
+                    $_SESSION["success"] = true;
                 } else {
                     $messaggi = "<p>Errore nell aggiunta</p>";
                 }
@@ -73,15 +93,18 @@ if (isset($_POST["method"])) {
     Login::handleLogin();
     insertOrdine($htmlPage);
 
-    // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     http_response_code(303);
-    header("Location: " . $_SERVER["REQUEST_URI"]);
+
+        // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
+        header("Location: " . $_SERVER["REQUEST_URI"]);
+
 } else /* GET */ {
     $htmlPage = file_get_contents("template/acquistoBiglietti.html");
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
     printOrdine($htmlPage);
+    printAcquisto($htmlPage);
 
     echo $htmlPage;
 }
