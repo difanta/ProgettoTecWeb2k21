@@ -890,7 +890,7 @@ li.filmPopolare a{
     border-radius: 4px;
 }
 
-#biglietti{
+.BoxUser{
     width: 90%;
     border: solid black 1px;
     margin: auto;
@@ -898,11 +898,11 @@ li.filmPopolare a{
     border-radius: 4px;
 }
 
-#biglietti h1{
+.BoxUser h1{
     padding-left: 1em;
 }
 
-#biglietti ul{
+.BoxUser ul{
     display: flex;
     flex-direction: row;
     align-items: center;
