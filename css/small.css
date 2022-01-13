@@ -327,3 +327,36 @@ footer #studenti li{
 #content_paginaUtente #informazioniAccount, #content_paginaUtente .BoxUser{
     width: 100%;
 }
+
+/* ---------------------------------- Admin --------------------------------- */
+
+.content_admin{
+    margin-left: 0;
+}
+
+header #adminMenu ul{
+    width: 100%;
+    margin-top: 0;
+    float: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0.4em;
+}
+
+header #adminMenu li{
+    width: 33%;
+    text-align: center;
+}
+
+
+/* */
+#content_adminListaFilm #alfAggiungi,
+#content_adminListaFilm #alfModifica{
+    padding: 0;
+}
+
+#content_adminListaFilm #alfAggiungi input[type="submit"], #content_adminListaFilm #alfModifica input[type="submit"]{
+    width: 40%;
+}
