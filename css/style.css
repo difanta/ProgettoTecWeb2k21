@@ -1031,7 +1031,6 @@ header #adminMenu ul {
 #acnSospese li{
     border:var(--main-color-dark) solid;
     background-color: var(--main-color-background);
-    max-width: 400px;
     list-style-type: none;
     margin:5px 0;
     padding:0;
