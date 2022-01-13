@@ -587,13 +587,6 @@ li.filmPopolare a{
 }
 
 /* Lista Film / Proiezioni ---------------------------------------------------------*/
-/* #content_listaFilm{
-    padding:0;
-}
-
-#content_listaFilm h1{
-    padding:40px;
-} */
 
 .filters {
     text-align: center;
@@ -874,12 +867,11 @@ li.filmPopolare a{
 
 /*Pagina Utente ------------------------------------------------------------------- */
 
-#content_paginaUtente div:first-of-type{
+#content_paginaUtente #informazioniAccount{
     margin: auto;
     margin-top: 2em;
     margin-bottom: 2em;
-    width: 60%;
-    padding: 0 1% 1% 1%;
+    width: 90%;
     border: solid black 1px;
     border-radius: 4px;
 }
@@ -888,9 +880,10 @@ li.filmPopolare a{
     padding-bottom: 0;
     margin-bottom: 1em;
     border-radius: 4px;
+    max-width: 30em;
 }
 
-#biglietti{
+.BoxUser{
     width: 90%;
     border: solid black 1px;
     margin: auto;
@@ -898,11 +891,15 @@ li.filmPopolare a{
     border-radius: 4px;
 }
 
-#biglietti h1{
+#content_paginaUtente h1{
     padding-left: 1em;
 }
 
-#biglietti ul{
+.BoxUser h1{
+    padding-left: 1em;
+}
+
+.BoxUser ul{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -932,6 +929,21 @@ li.filmPopolare a{
 
 .ticket-low:first-child{
     font-style: italic;
+}
+
+#content_paginaUtente #candidature{
+    width: 90%;
+    margin: auto;
+    border: solid black 1px;
+    border-radius: 4px;
+}
+
+#candidature ul#acnSospese{
+    padding: 1em;
+}
+
+#candidature ul#acnSospese input.button{
+    margin-top: 1em;
 }
 
 /* Come Trovarci --------------------------------------------------------------------------------------------------*/
