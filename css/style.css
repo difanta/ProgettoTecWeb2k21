@@ -883,7 +883,7 @@ li.filmPopolare a{
     max-width: 30em;
 }
 
-#biglietti{
+.BoxUser{
     width: 90%;
     border: solid black 1px;
     margin: auto;
@@ -895,7 +895,11 @@ li.filmPopolare a{
     padding-left: 1em;
 }
 
-#biglietti ul{
+.BoxUser h1{
+    padding-left: 1em;
+}
+
+.BoxUser ul{
     display: flex;
     flex-direction: row;
     align-items: center;

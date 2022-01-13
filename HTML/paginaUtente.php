@@ -209,7 +209,7 @@ function printCandidature(&$htmlPage){
         $connectionOk = $connection->openDB();
 
         if ($connectionOk) {
-            $candidature = $connection->getUserCandidatureSospese();
+            $candidature = $connection->getUserCandidature();
             $connection->closeConnection();
             if ($candidature != null) {
                 $list .= "<ul id='acnSospese'>";
@@ -225,11 +225,17 @@ function printCandidature(&$htmlPage){
                     $list = str_replace("pCast", $candidatura["cast"], $list);
                     $list = str_replace("pEmail", $candidatura["email"], $list);
                     $list = str_replace("pDescrizione", $candidatura["descrizione"], $list);
+
+                    if(!$candidatura["approvato"]){
+                        $list = str_replace("<pAction/>", "<input class='button' type='submit' name='method' value='Ritira candidatura'>", $list);
+                    } else {
+                        $list = str_replace("<pAction/>", "Approvata", $list);
+                    }
                 }
                 unset($candidatura);
                 $list .= "</ul>";
             } else {
-                $list .= "<p>Non sono presenti biglietti</p>";
+                $list .= "<p>Non sono presenti candidature</p>";
             }
         } else {
             $list .= "<p>Errore connessione db</p>";
