@@ -109,7 +109,6 @@ function listaFilmLike(checked, nomeFilm) {
         if (request.readyState === request.DONE) {
             let select = document.getElementById("apSelectP");
             if (request.status === 200) {
-                console.log('label-like-' + nomeFilm + " successful");
             } else {
             }
         }
