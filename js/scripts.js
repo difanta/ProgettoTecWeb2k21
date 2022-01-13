@@ -1,3 +1,22 @@
+/* Feature Detection --------------------------------- */
+
+let passiveSupported = false;
+
+try {
+    const options = {
+        get passive() { // This function will be called when the browser
+                        //   attempts to access the passive property.
+        passiveSupported = true;
+        return false;
+        }
+    };
+
+    window.addEventListener("test", null, options);
+    window.removeEventListener("test", null, options);
+} catch(err) {
+    passiveSupported = false;
+}
+
 /* Header -------------------------------------------- */
 
 function toggleAccountDropdown() {
@@ -42,6 +61,7 @@ function expandMenu(){
     }
 }
 
+// hide account dropdown on click outside it and outside account button
 document.addEventListener('click', function(e) {
     let accDropdown = document.getElementById("accountDropdown");
     let accBtn = document.getElementById("accountButton");
@@ -53,17 +73,26 @@ document.addEventListener('click', function(e) {
     if(target == null && accDropdown.classList.contains("dropdown")) {
         toggleAccountDropdown();
     }
-});
+}, passiveSupported ? { passive: true } : false);
+
+
+//hide account dropdown on ESC keydown
+document.addEventListener("keydown", function(e) {
+    if(e.code === "Escape" && document.getElementById("accountDropdown").classList.contains("dropdown")) {
+        toggleAccountDropdown();
+    }
+}, passiveSupported ? { passive: true } : false);
+
 
 // display and hide tornaSu based on scoll distance from top
-window.onscroll = () => {
+window.addEventListener("scroll", function() {
     elem = document.getElementById("tornaSu");
     if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
         elem.style.display = "block";
     } else {
         elem.style.display = "none";
     }
-}
+}, passiveSupported ? { passive: true } : false);
 
 /* Lista Film ---------------------------------------- */
 
@@ -80,7 +109,6 @@ function listaFilmLike(checked, nomeFilm) {
         if (request.readyState === request.DONE) {
             let select = document.getElementById("apSelectP");
             if (request.status === 200) {
-                console.log('label-like-' + nomeFilm + " successful");
             } else {
             }
         }
