@@ -58,9 +58,9 @@ function printAcquisto(&$htmlPage)
 function insertOrdine(&$htmlPage)
 {
     $messaggi = "";
-    $_SESSION["success"] = false;
     if (Login::is_logged()) {
         if ($_POST["method"] == "Acquista") {
+            $_SESSION["success"] = false;
             $proiezione = $_GET["id"];
 
             $connection = new DBAccess();
