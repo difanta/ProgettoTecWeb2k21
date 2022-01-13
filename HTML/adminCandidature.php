@@ -38,7 +38,7 @@ function printCandidature(&$htmlPage)
         if ($candidature != null) {
             $list .= "<ul id='acnSospese'>";
             foreach ($candidature as $index => $candidatura) {
-                $list .= file_get_contents("template/templateCandidatura.html");
+                $list .= file_get_contents("template/templateCandidaturaAdmin.html");
 
                 $list = str_replace("collapse", "collapse" . $index, $list);
                 $list = str_replace("pTitolo", $candidatura["nome"], $list);
