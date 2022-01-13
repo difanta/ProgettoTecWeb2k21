@@ -41,11 +41,10 @@ header #menu ul {
     justify-content: space-around;
     width: 100%;
     margin: 0;
-    padding: 5px 0 5px 0;
 }
 
 header #menu li{
-    width: 6.6em;
+    width: 50%;
     margin: 0;
     padding: 0;
 }
@@ -53,11 +52,9 @@ header #menu li{
 header #menu li a{
     border: none;
     padding: 5px 0 5px 0;
+    font-size: 1em;
 }
 
-header #menu li.secondaryMenuItem{
-    display: none;
-}
 
 /* --------------------------------- CONTENT -------------------------------- */
 div.content{
@@ -159,26 +156,16 @@ footer{
     padding: 1em;
 }
 
-footer #listaSponsor{
-    flex-wrap: nowrap;
-}
-
 footer #listaSponsor li{
-    padding: 0.5em;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 footer #listaSponsor li img{
-    width: 100%;
-    height: auto;
+    height: 20%;
+    max-height: 60px;
 }
 
-footer #listaSponsor li #imgSponsor1{
-    min-width: 60px;
-}
-
-footer #listaSponsor li #imgSponsor2, footer #listaSponsor li #imgSponsor3{
-    min-width: 120px;
-}
 
 /* ------------------------- Lista Film / Proiezioni ------------------------ */
 #content_listaFilm{
