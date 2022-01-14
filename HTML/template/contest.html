@@ -23,7 +23,7 @@
     <link rel="shortcut icon" type="image/png" href="../images/favicon.ico"/>
 </head>
 
-<body  onload="caricamento('contest')">
+<body onload="caricamento()">
 <header>
     <a class="goToContent" href="#content_contest">Vai al contenuto</a>
 
@@ -140,28 +140,28 @@
             <button onclick="acquistoBigliettiLogin()">Login</button>
             oppure
             <button onclick="acquistoBigliettiSignup()">Registrati</button>
-            <form id="contentLogin" method="post">
+            <form id="contentLogin" method="post" onsubmit="return validazioneForm();">
                 <label for="contentLoginEmail">Email</label>
-                <input id="contentLoginEmail" name="email" type="email">
+                <span><input id="contentLoginEmail" name="email" type="email"></span>
                 <label for="contentLoginPassword">Password</label>
-                <input id="contentLoginPassword" name="password" type="password">
+                <span><input id="contentLoginPassword" name="password" type="password"></span>
 
                 <button name="method" value="login">accedi</button>
             </form>
-            <form id="contentSignin" method="post">
+            <form id="contentSignin" method="post" onsubmit="return validazioneForm();">
                 <label for="contentSingupNome">Nome</label>
-                <input id="contentSingupNome" name="nome" type="text">
+                <span><input id="contentSingupNome" name="nome" type="text"></span>
                 <label for="contentSingupCognome">Cognome</label>
-                <input id="contentSingupCognome" name="cognome" type="text">
+                <span><input id="contentSingupCognome" name="cognome" type="text"></span>
                 <label for="contentSingupDataNascita">Data di nascita</label>
-                <input id="contentSingupDataNascita" name="dataNascita" type="text">
+                <span><input id="contentSingupDataNascita" name="dataNascita" type="text"></span>
 
                 <label for="contentSingupEmail">Email</label>
-                <input id="contentSingupEmail" name="email" type="email">
+                <span><input id="contentSingupEmail" name="email" type="email"></span>
                 <label for="contentSingupPassword">Password</label>
-                <input id="contentSingupPassword" name="password" type="password">
+                <span><input id="contentSingupPassword" name="password" type="password"></span>
                 <label for="contentSingupPassword2">ridigita la password</label>
-                <input id="contentSingupPassword2" name="password2" type="password">
+                <span><input id="contentSingupPassword2" name="password2" type="password"></span>
 
                 <button name="method" value="register">registrati</button>
             </form>
@@ -172,7 +172,7 @@
         <messaggi/>
 
         <iflogged>
-            <form method="post" onsubmit="return validazioneForm('contest');">
+            <form method="post" onsubmit="return validazioneForm();">
                 <fieldset>
                     <label for="titolo">Titolo</label>
                     <span><input type="text" name="titolo" id="titolo" required/></span>

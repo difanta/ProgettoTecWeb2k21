@@ -380,85 +380,90 @@ chiave:campo input di cui inserisco informazioni
 var emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 var namesRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
 var dettagli_form = {
-    "contest": {
-        "titolo": ["inserisci il titolo del film", /[\wàèéìòù]{1,}/, "il titolo deve contenere almeno un carattere alfanumerico"],
-        "descrizione": ["inserisci una descrizione del film", /^.{10,}$/, "la descrizione deve contenere almeno dieci caratteri"],
-        "durata": ["", /^[6-9][0-9]|1[0-7][0-9]|180$/, "la durata deve essere compresa tra i 60 ed i 180 minuti"],
-        "anno": ["", /^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/, "l'anno deve essere compreso tra il 1900 ed il 2022"],
-        "regista": ["inserisci il regista del film", /[a-zA-Zàèéìòù]{1,}/, "il regista deve contenere almeno un carattere alfabetico"],
-        "produttore": ["inserisci il produttore del film", /[a-zA-Zàèéìòù]{1,}/, "il produttore deve contenere almeno un carattere alfabetico"],
-        "cast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
-        "email": ["inserisci la tua mail", emailregex, "mail non valida"]
-    },
-    "infoUtente": {
-        "nome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
-        "cognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
-        "dataNascita": ["", "", "data di nascita non valida"],
-        "email": ["inserisci la tua mail", emailregex, "mail non valida"],
-        "password": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"]
-    }
+    // contest
+    "titolo": ["inserisci il titolo del film", /[\wàèéìòù]{1,}/, "il titolo deve contenere almeno un carattere alfanumerico"],
+    "descrizione": ["inserisci una descrizione del film", /^.{10,}$/, "la descrizione deve contenere almeno dieci caratteri"],
+    "durata": ["", /^[6-9][0-9]|1[0-7][0-9]|180$/, "la durata deve essere compresa tra i 60 ed i 180 minuti"],
+    "anno": ["", /^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/, "l'anno deve essere compreso tra il 1900 ed il 2022"],
+    "regista": ["inserisci il regista del film", /[a-zA-Zàèéìòù]{1,}/, "il regista deve contenere almeno un carattere alfabetico"],
+    "produttore": ["inserisci il produttore del film", /[a-zA-Zàèéìòù]{1,}/, "il produttore deve contenere almeno un carattere alfabetico"],
+    "cast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
+    "email": ["inserisci la tua mail", emailregex, "mail non valida"],
+    // pagina utente
+    "nome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
+    "cognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
+    "dataNascita": ["", "", "data di nascita non valida"],
+    "password": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
+    // content login
+    "contentLoginEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
+    "contentLoginPassword": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
+    // content signup
+    "contentSingupNome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
+    "contentSingupCognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
+    "contentSingupDataNascita": ["", "", "data di nascita non valida"],
+    "contentSingupEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
+    "contentSingupPassword": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
+    "contentSingupPassword2": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
 };
 
-function caricamento(formName) {
-    var form = dettagli_form[formName];
-    for (var key in form) {
+function caricamento() {
+    for (var key in dettagli_form) {
         var input = document.getElementById(key);
         if (input) { // if user is not logged and forms are not displayed this value will be NULL
-            campoDefault(input, form);
+            campoDefault(input);
             input.onfocus = function () {
-                campoPerInput(this, form);
+                campoPerInput(this);
             };
             input.onblur = function () {
-                validazioneCampo(this, form);
+                validazioneCampo(this);
             };
         }
     }
 }
 
-function campoDefault(input, form) {
+function campoDefault(input) {
     if (input.value == "") {
         input.className = "placeholderText";
-        input.value = form[input.id][0];
+        input.value = dettagli_form[input.id][0];
     }
 }
 
-function campoPerInput(input, form) {
-    if (input.value == form[input.id][0]) {
+function campoPerInput(input) {
+    if (input.value == dettagli_form[input.id][0]) {
         input.className = "normalInput";
         input.value = "";
     }
 }
 
-function validazioneCampo(input, form) {
+function validazioneCampo(input) {
     var padre = input.parentNode;
     if (padre.children.length == 2) {
         padre.removeChild(padre.children[1]);
     }
 
-    var regex = form[input.id][1];
+    var regex = dettagli_form[input.id][1];
     var text = input.value;
     input.value = text;
-    if ((text.search(regex) == -1) || (text == form[input.id][0])) {
-        mostraErrore(input, form);
+    if ((text.search(regex) == -1) || (text == dettagli_form[input.id][0])) {
+        mostraErrore(input);
         input.focus();
         return false;
     }
     return true;
 }
 
-function mostraErrore(input, form) {
+function mostraErrore(input) {
     var padre = input.parentNode;
     var errore = document.createElement("strong");
     errore.className = "errorSuggestion";
-    errore.appendChild(document.createTextNode(form[input.id][2]));
+    errore.appendChild(document.createTextNode(dettagli_form[input.id][2]));
     padre.appendChild(errore);
 }
 
-function validazioneForm(nomeForm) {
-    var form = dettagli_form[nomeForm];
-    for (var key in form) {
+function validazioneForm() {
+    for (var key in dettagli_form) {
         var input = document.getElementById(key);
-        if (!validazioneCampo(input, form)) {
+        if (!validazioneCampo(input)) {
             return false;
         }
     }
