@@ -169,11 +169,11 @@ function setEditOn() {
     showHideButton('buttonReset');
     showHideButton('buttonAnnulla');
     showHideButton('buttonModifica');
-    document.getElementById('nome').removeAttribute('disabled');
-    document.getElementById('cognome').removeAttribute('disabled');
-    document.getElementById('dataNascita').removeAttribute('disabled');
-    document.getElementById('email').removeAttribute('disabled');
-    document.getElementById('password').removeAttribute('disabled');
+    document.getElementById('userInfoNome').removeAttribute('disabled');
+    document.getElementById('userInfoCognome').removeAttribute('disabled');
+    document.getElementById('userInfoDataNascita').removeAttribute('disabled');
+    document.getElementById('userInfoEmail').removeAttribute('disabled');
+    document.getElementById('userInfoPassword').removeAttribute('disabled');
 }
 
 function setEditOff() {
@@ -181,12 +181,12 @@ function setEditOff() {
     showHideButton('buttonReset');
     showHideButton('buttonAnnulla');
     showHideButton('buttonModifica');
-    document.getElementById('infoUtenteForm').reset();
-    document.getElementById('nome').setAttribute('disabled', '');
-    document.getElementById('cognome').setAttribute('disabled', '');
-    document.getElementById('dataNascita').setAttribute('disabled', '');
-    document.getElementById('email').setAttribute('disabled', '');
-    document.getElementById('password').setAttribute('disabled', '');
+    document.getElementById('userInfoForm').reset();
+    document.getElementById('userInfoNome').setAttribute('disabled', '');
+    document.getElementById('userInfoCognome').setAttribute('disabled', '');
+    document.getElementById('userInfoDataNascita').setAttribute('disabled', '');
+    document.getElementById('userInfoEmail').setAttribute('disabled', '');
+    document.getElementById('userInfoPassword').setAttribute('disabled', '');
 }
 
 /* Admin Utenti */
@@ -390,10 +390,11 @@ var dettagli_form = {
     "cast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
     "email": ["inserisci la tua mail", emailregex, "mail non valida"],
     // pagina utente
-    "nome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
-    "cognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
-    "dataNascita": ["", "", "data di nascita non valida"],
-    "password": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
+    "userInfoNome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
+    "userInfoCognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
+    "userInfoDataNascita": ["", "", "data di nascita non valida"],
+    "userInfoEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
+    "userInfoPassword": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
     // content login
     "contentLoginEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
     "contentLoginPassword": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],

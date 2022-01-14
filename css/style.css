@@ -41,7 +41,7 @@ body {
     font-style: italic;
 }
 .normalInput{
-    color:black;
+    border-color: var(--main-color-dark);
     font-style: normal;
 }
 /*--------------------------- Form e Input ------------------------------*/
@@ -76,10 +76,26 @@ form input{
     padding: 0.4em;
     margin-top: 0;
     margin-bottom: 1em;
+    border-width: 0 0 2px;
+    border-radius: 0;
+    border-color: var(--main-color-light);
 }
+
+form input:focus{
+    display: block;
+    width: 80%;
+    padding: 0.4em;
+    margin-top: 0;
+    margin-bottom: 1em;
+    border-width: 0 0 2px;
+    border-radius: 0;
+    border-color: var(--main-color-dark);
+}
+
 form .button {
     display: inline; 
 }
+
 form textarea{
     display: block;
     width: 80%;
@@ -87,8 +103,21 @@ form textarea{
     margin-top: 0;
     margin-bottom: 1em;
     resize: vertical;
-    overflow: auto;  
+    overflow: auto;
+    border-color: var(--main-color-dark);
 }
+
+form textarea:focus{
+    display: block;
+    width: 80%;
+    padding: 0.4em;
+    margin-top: 0;
+    margin-bottom: 1em;
+    resize: vertical;
+    overflow: auto;
+    border-color: var(--main-color-light);
+}
+
 form button, .button{
     width: fit-content;
     min-width: 50px;
