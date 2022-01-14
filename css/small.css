@@ -201,6 +201,8 @@ footer #studenti li{
 }
 
 .filters > p{
+    display: block;
+    padding: 0.5em 0 0.5em 0;
     margin: auto;
 }
 
@@ -210,9 +212,9 @@ footer #studenti li{
                             "b e" 
                             "c f"
                             "g g";
-    grid-template-columns: max-content;   
+    grid-template-columns: 40% 60%;   
     grid-template-rows: max-content;
-    row-gap: 0.2em;        
+    grid-row-gap: 0.2em;        
     margin: 0.3em 0;  
 }
 
@@ -233,8 +235,7 @@ footer #studenti li{
 .filters > form input[id="data"]{       grid-area: e;}
 .filters > form select[id="gara"]{      grid-area: f;}
 .filters > form button[type="submit"]{  grid-area: g;
-    margin-top: 0.3em;
-    margin: auto;
+    margin: 0.5em auto 0.5em auto;
 }
 
 /* ------------------------------- Pagina Film ------------------------------ */
