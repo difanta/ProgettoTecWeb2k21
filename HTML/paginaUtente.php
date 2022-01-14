@@ -282,7 +282,8 @@ function deleteCandidatura()
     $_SESSION["messaggi"] = $messaggi;
 }
 
-function printDeleteCandidaturaFeedback(&$htmlPage){
+function printDeleteCandidaturaFeedback(&$htmlPage)
+{
     if (isset($_SESSION["method"])
         && isset($_SESSION["success"])
         && $_SESSION["method"] == "Ritira candidatura") {
