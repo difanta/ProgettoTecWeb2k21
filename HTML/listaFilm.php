@@ -19,7 +19,7 @@ function printFilms(&$htmlPage) {
     if(isset($_GET["nomeFilm"])) { 
         $nomeFilm = $_GET["nomeFilm"]; 
     }
-    $htmlPage = str_replace($p_nomeFilmFilter, $nomeFilm, $htmlPage);
+    $htmlPage = str_replace($p_nomeFilmFilter, Sanitizer::forHtml($nomeFilm), $htmlPage);
 
     if(isset($_GET["gara"])) { 
         $in_gara = $_GET["gara"]; 

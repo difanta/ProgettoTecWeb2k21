@@ -21,12 +21,12 @@ function printProiezioni(&$htmlPage) {
     if(isset($_GET["data"])) { 
         $dataProiezione = $_GET["data"]; 
     }
-    $htmlPage = str_replace($p_dataProiezioneFilter, $dataProiezione, $htmlPage);
+    $htmlPage = str_replace($p_dataProiezioneFilter, Sanitizer::forHtml($dataProiezione), $htmlPage);
 
     if(isset($_GET["nomeFilm"])) { 
         $nomeFilm = $_GET["nomeFilm"]; 
     }
-    $htmlPage = str_replace($p_nomeFilmFilter, $nomeFilm, $htmlPage);
+    $htmlPage = str_replace($p_nomeFilmFilter, Sanitizer::forHtml($nomeFilm), $htmlPage);
 
     if(isset($_GET["gara"])) { 
         $in_gara = $_GET["gara"]; 
