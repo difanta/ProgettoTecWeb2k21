@@ -49,9 +49,10 @@ function printInfoUtente(&$htmlPage)
  */
 function updateInfoUtente()
 {
-    $messaggi = "";
+    $feedback = "";
     if (Login::is_logged()) {
         if ($_POST["method"] == "Invia") {
+            $_SESSION["method"] = "Invia";
             $nome = $_POST["nome"];
             $cognome = $_POST["cognome"];
             $dataNascita = $_POST["dataNascita"];
@@ -60,54 +61,55 @@ function updateInfoUtente()
 
             /*
                         if (strlen($nome) == 0) {
-                            $messaggi .= "<li>Nome non present</li>";
+                            $feedback .= "<li>Nome non present</li>";
                         } elseif (preg_match('/\d/', $nome)) {
-                            $messaggi .= "<li>Nome non può contenere numeri</li>";
+                            $feedback .= "<li>Nome non può contenere numeri</li>";
                         }
 
                         if (strlen($cognome) == 0) {
-                            $messaggi .= "<li>Cognome non presente</li>";
+                            $feedback .= "<li>Cognome non presente</li>";
                         } elseif (preg_match('/\d/', $cognome)) {
-                            $messaggi .= "<li>Cognome non può contenere numeri</li>";
+                            $feedback .= "<li>Cognome non può contenere numeri</li>";
                         }
 
                         if (strlen($dataNascita) == 0) { // add controlli
-                            $messaggi .= "<li>Data di nascita non presente</li>";
+                            $feedback .= "<li>Data di nascita non presente</li>";
                         }
 
                         if (strlen($email) == 0) {
-                            $messaggi .= "<li>Email non presente</li>";
+                            $feedback .= "<li>Email non presente</li>";
                         }
 
                         if (strlen($password) == 0) {
-                            $messaggi .= "<li>Password non presente</li>";
+                            $feedback .= "<li>Password non presente</li>";
                         }
             */
-            if ($messaggi == "") {
+            if ($feedback == "") {
 
                 $connection = new DBAccess();
                 $connectionOk = $connection->openDB();
 
                 if ($connectionOk) {
                     if ($connection->updateUser($nome, $cognome, $dataNascita, $email, $password)) {
-                        $messaggi .= "Utente modificato con successo";
+                        $feedback = "Utente modificato con successo";
                         $_SESSION["success"] = true;
                     } else {
-                        $messaggi .= "Errore nella modifica";
+                        $feedback = "Errore nella modifica";
                         $_SESSION["success"] = false;
                     }
                     $connection->closeConnection();
                 } else {
-                    $messaggi .= "Problemi di connessione al DB";
+                    $feedback = "Problemi di connessione al DB";
                     $_SESSION["success"] = false;
                 }
             }
         }
     } else { // not logged
-        $messaggi .= "Utente non loggato";
+        $feedback = "Utente non loggato";
         $_SESSION["success"] = false;
     }
-    $_SESSION["messaggi"] = $messaggi;
+    $feedback= "ciao";
+    $_SESSION["feedback"] = "ciao";
 }
 
 /**
@@ -119,15 +121,18 @@ function printUpdateInfoUtenteFeedback(&$htmlPage)
         && isset($_SESSION["success"])
         && $_SESSION["method"] == "Invia") {
 
-        $messaggi = isset($_SESSION["messaggi"]) ? $_SESSION["messaggi"] : "";
-        if ($_SESSION["success"]) {
-            $messaggi = "<span><strong class='feedbackPositive'>" . $messaggi . "</strong></span>";
-        } else {
-            $messaggi = "<span><strong class='feedbackNegative'>" . $messaggi . "</strong></span>";
-        }
-        $htmlPage = str_replace("<messaggi/>", $messaggi, $htmlPage);
+        $feedback = isset($_SESSION["feedback"]) ? $_SESSION["feedback"] : "";
+        echo $_SESSION["feedback"];
 
-        unset($_SESSION["messaggi"]);
+        if ($_SESSION["success"]) {
+            $feedback = "<span><strong class='feedbackPositive'>" . $feedback . "</strong></span>";
+        } else {
+            $feedback = "<span><strong class='feedbackNegative'>" . $feedback . "</strong></span>";
+        }
+        $htmlPage = str_replace("<feedbackInfoUtente/>", $feedback, $htmlPage);
+
+        unset($_SESSION["method"]);
+        unset($_SESSION["feedback"]);
         unset($_SESSION["success"]);
     }
 }
@@ -256,30 +261,31 @@ function printCandidature(&$htmlPage)
  */
 function deleteCandidatura()
 {
-    $messaggi = "";
+    $feedback = "";
     if (Login::is_logged()) {
         if ($_POST["method"] == "Ritira candidatura") {
+            $_SESSION["method"] = "Ritira candidatura";
             $connection = new DBAccess();
             $connectionOk = $connection->openDB();
 
             if ($connectionOk) {
                 if ($connection->deleteCandidatura($_POST["titolo"])) {
-                    $messaggi = "Candidatura ritirata con successo";
+                    $feedback = "Candidatura ritirata con successo";
                     $_SESSION["success"] = true;
                 } else {
-                    $messaggi = "errori nell'operazione";
+                    $feedback = "errori nell'operazione";
                     $_SESSION["success"] = false;
                 }
                 $connection->closeConnection();
             } else {
-                $messaggi = "Problemi di connessione al DB";
+                $feedback = "Problemi di connessione al DB";
                 $_SESSION["success"] = false;
             }
         }
     } else { // not logged
         $_SESSION["success"] = false;
     }
-    $_SESSION["messaggi"] = $messaggi;
+    $_SESSION["feedback"] = $feedback;
 }
 
 function printDeleteCandidaturaFeedback(&$htmlPage)
@@ -288,15 +294,16 @@ function printDeleteCandidaturaFeedback(&$htmlPage)
         && isset($_SESSION["success"])
         && $_SESSION["method"] == "Ritira candidatura") {
 
-        $messaggi = isset($_SESSION["messaggi"]) ? $_SESSION["messaggi"] : "";
+        $feedback = isset($_SESSION["feedback"]) ? $_SESSION["feedback"] : "";
         if ($_SESSION["success"]) {
-            $messaggi = "<span><strong class='feedbackPositive'>" . $messaggi . "</strong></span>";
+            $feedback = "<span><strong class='feedbackPositive'>" . $feedback . "</strong></span>";
         } else {
-            $messaggi = "<span><strong class='feedbackNegative'>" . $messaggi . "</strong></span>";
+            $feedback = "<span><strong class='feedbackNegative'>" . $feedback . "</strong></span>";
         }
-        $htmlPage = str_replace("<feedbackDeleteCandidatura/>", $messaggi, $htmlPage);
+        $htmlPage = str_replace("<feedbackDeleteCandidatura/>", $feedback, $htmlPage);
 
-        unset($_SESSION["messaggi"]);
+        unset($_SESSION["method"]);
+        unset($_SESSION["feedback"]);
         unset($_SESSION["success"]);
     }
 }
@@ -311,7 +318,7 @@ if (isset($_POST["method"])) {
         header("Location: index.php");
         die();
     }
-
+    print_r($_SESSION);
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     http_response_code(303);
     header("Location: " . $_SERVER["REQUEST_URI"]);
@@ -325,7 +332,7 @@ if (isset($_POST["method"])) {
     printCandidature($htmlPage);
     printUpdateInfoUtenteFeedback($htmlPage);
     printDeleteCandidaturaFeedback($htmlPage);
-
+    print_r($_SESSION);
     echo $htmlPage;
 }
 
