@@ -344,7 +344,7 @@ header #adminMenu ul{
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding: 0.4em;
+    padding: 0;
 }
 
 header #adminMenu li{
