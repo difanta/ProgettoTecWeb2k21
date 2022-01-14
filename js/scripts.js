@@ -378,6 +378,7 @@ chiave:campo input di cui inserisco informazioni
 [2] : messaggio di errore
 */
 var emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+var namesRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
 var dettagli_form = {
     "contest": {
         "titolo": ["inserisci il titolo del film", /[\wàèéìòù]{1,}/, "il titolo deve contenere almeno un carattere alfanumerico"],
@@ -388,6 +389,13 @@ var dettagli_form = {
         "produttore": ["inserisci il produttore del film", /[a-zA-Zàèéìòù]{1,}/, "il produttore deve contenere almeno un carattere alfabetico"],
         "cast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
         "email": ["inserisci la tua mail", emailregex, "mail non valida"]
+    },
+    "infoUtente": {
+        "nome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
+        "cognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
+        "dataNascita": ["", "", "data di nascita non valida"],
+        "email": ["inserisci la tua mail", emailregex, "mail non valida"],
+        "password": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"]
     }
 };
 
@@ -447,7 +455,7 @@ function mostraErrore(input, form) {
 }
 
 function validazioneForm(nomeForm) {
-    var form = dettagli_form[formName];
+    var form = dettagli_form[nomeForm];
     for (var key in form) {
         var input = document.getElementById(key);
         if (!validazioneCampo(input, form)) {
