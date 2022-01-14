@@ -25,7 +25,7 @@ function printInfoUtente(&$htmlPage)
 
                 $form = file_get_contents("template/formInfoUtente.html");
 
-                $form = str_replace("pNome", Sanitizer::forHtml([0]["nome"]), $form);
+                $form = str_replace("pNome", Sanitizer::forHtml($results[0]["nome"]), $form);
                 $form = str_replace("pCognome", Sanitizer::forHtml($results[0]["cognome"]), $form);
                 $form = str_replace("pDataDiNascita", Sanitizer::forHtml($results[0]["data_di_nascita"]), $form);
                 $form = str_replace("pEmail", Sanitizer::forHtml($results[0]["email"]), $form);
