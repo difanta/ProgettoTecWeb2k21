@@ -433,6 +433,9 @@ div.content{
     font-size: 1.4em;
     margin-bottom:0;
 }
+#contatti{
+    scroll-margin-top: 5em;
+}
 #contatti ul{
     list-style-type: none;
     padding:0;
@@ -811,6 +814,10 @@ li.filmPopolare a{
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
 }
 
+header #loginSection p{
+    padding:1em;
+} 
+
 #login-container button {
     font-size: 0.9em;
     margin: 0 1em;
@@ -1101,7 +1108,9 @@ p.attenzioneCandidatura{
     font-size: 16px;
     font-style: italic;
 }
-
+#content_adminCandidature li .button{
+    margin-left:8px;
+}
 #acnSospese li{
     border:var(--main-color-dark) solid;
     background-color: var(--main-color-background);
@@ -1200,6 +1209,11 @@ p.attenzioneCandidatura{
 #content_adminListaFilm *,
 #content_adminProiezioni * {
     width: initial;
+}
+
+#content_adminListaFilm form .button,
+#content_adminProiezioni form .button {
+    padding: 3px;
 }
 
 /* Collapsible Headers */
