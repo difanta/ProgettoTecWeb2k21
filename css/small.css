@@ -381,7 +381,6 @@ header #adminMenu li{
 /* admin proiezioni */
 #content_adminProiezioni form{
     padding: 0;
-    max-height: unset;
 }
 
 #content_adminProiezioni input,

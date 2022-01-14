@@ -17,7 +17,7 @@ function printUtenti(&$htmlPage) {
         $stringa = "";
         $utenti = $connection->getEmailUtenti();
         foreach($utenti as $utente) {
-            $stringa .= str_replace("utente", $utente["email"], $template);
+            $stringa .= str_replace("utente", Sanitizer::forHtml($utente["email"]), $template);
         }
         $htmlPage = str_replace($p_utenti, $stringa, $htmlPage);
     } else {

@@ -15,7 +15,6 @@ function submitContest()
         if ($_POST["method"] == "Invia Candidatura") {
             $titolo = $_POST["titolo"];
             $descrizione = $_POST["descrizione"];
-            $linkyt = $_POST["linkyt"];
             $email = $_POST["email"];
             $durata = $_POST["durata"];
             $anno = $_POST["anno"];
@@ -32,10 +31,6 @@ function submitContest()
 
             if (strlen($descrizione) == 0) {
                 $messaggi = "<li>Descrizione non presente</li>";
-            }
-
-            if (strlen($linkyt) == 0) {
-                $messaggi = "<li>Link yt non presente</li>";
             }
 
             if (strlen($email) == 0) {
