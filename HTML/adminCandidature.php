@@ -41,14 +41,14 @@ function printCandidature(&$htmlPage)
                 $list .= file_get_contents("template/templateCandidaturaAdmin.html");
 
                 $list = str_replace("collapse", "collapse" . $index, $list);
-                $list = str_replace("pTitolo", $candidatura["nome"], $list);
-                $list = str_replace("pDurata", $candidatura["durata"] . "'", $list);
-                $list = str_replace("pAnno", $candidatura["anno"], $list);
-                $list = str_replace("pRegista", $candidatura["regista"], $list);
-                $list = str_replace("pProduttore", $candidatura["produttore"], $list);
-                $list = str_replace("pCast", $candidatura["cast"], $list);
-                $list = str_replace("pEmail", $candidatura["email"], $list);
-                $list = str_replace("pDescrizione", $candidatura["descrizione"], $list);
+                $list = str_replace("pTitolo", Sanitizer::forHtml($candidatura["nome"]), $list);
+                $list = str_replace("pDurata", Sanitizer::forHtml($candidatura["durata"] . "'"), $list);
+                $list = str_replace("pAnno", Sanitizer::forHtml($candidatura["anno"]), $list);
+                $list = str_replace("pRegista", Sanitizer::forHtml($candidatura["regista"]), $list);
+                $list = str_replace("pProduttore", Sanitizer::forHtml($candidatura["produttore"]), $list);
+                $list = str_replace("pCast", Sanitizer::forHtml($candidatura["cast"]), $list);
+                $list = str_replace("pEmail", Sanitizer::forHtml($candidatura["email"]), $list);
+                $list = str_replace("pDescrizione", Sanitizer::forHtml($candidatura["descrizione"]), $list);
 
                 if ($filter_candidatura == "Approvata") {
                     $list = str_replace("rifiutaCand", "style=\"display:none;\"", $list);

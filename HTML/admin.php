@@ -16,9 +16,9 @@ function printAdminStats(&$htmlPage){
         $n_like = $connection->getNoLike();
         $connection->closeConnection();
 
-        $htmlPage = str_replace("pUtentiRegistrati", $n_utenti[0]["no"], $htmlPage);
-        $htmlPage = str_replace("pBigliettiVenduti", $n_biglietti[0]["no"], $htmlPage);
-        $htmlPage = str_replace("pLike", $n_like[0]["no"], $htmlPage);
+        $htmlPage = str_replace("pUtentiRegistrati", Sanitizer::forHtml($n_utenti[0]["no"]), $htmlPage);
+        $htmlPage = str_replace("pBigliettiVenduti", Sanitizer::forHtml($n_biglietti[0]["no"]), $htmlPage);
+        $htmlPage = str_replace("pLike", Sanitizer::forHtml($n_like[0]["no"]), $htmlPage);
     }
 }
 

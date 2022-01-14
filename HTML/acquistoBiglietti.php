@@ -23,10 +23,10 @@ function printOrdine(&$htmlPage)
 
             $ordine = file_get_contents("template/templateProiezioneAcquisto.html");
 
-            $ordine = str_replace("pNome", $results[0]["nome"], $ordine);
-            $ordine = str_replace("pRegista", $results[0]["regista"], $ordine);
-            $ordine = str_replace("pData", $results[0]["data"], $ordine);
-            $ordine = str_replace("pOra", $results[0]["ora"], $ordine);
+            $ordine = str_replace("pNome", Sanitizer::forHtml($results[0]["nome"]), $ordine);
+            $ordine = str_replace("pRegista", Sanitizer::forHtml($results[0]["regista"]), $ordine);
+            $ordine = str_replace("pData", Sanitizer::forHtml($results[0]["data"]), $ordine);
+            $ordine = str_replace("pOra", Sanitizer::forHtml($results[0]["ora"]), $ordine);
 
         } else {
             $messaggi .= "<li>problemi db</li>";

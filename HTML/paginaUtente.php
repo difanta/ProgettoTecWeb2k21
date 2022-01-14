@@ -25,11 +25,11 @@ function printInfoUtente(&$htmlPage)
 
                 $form = file_get_contents("template/formInfoUtente.html");
 
-                $form = str_replace("pNome", $results[0]["nome"], $form);
-                $form = str_replace("pCognome", $results[0]["cognome"], $form);
-                $form = str_replace("pDataDiNascita", $results[0]["data_di_nascita"], $form);
-                $form = str_replace("pEmail", $results[0]["email"], $form);
-                $form = str_replace("pPassword", $results[0]["password"], $form);
+                $form = str_replace("pNome", Sanitizer::forHtml([0]["nome"]), $form);
+                $form = str_replace("pCognome", Sanitizer::forHtml($results[0]["cognome"]), $form);
+                $form = str_replace("pDataDiNascita", Sanitizer::forHtml($results[0]["data_di_nascita"]), $form);
+                $form = str_replace("pEmail", Sanitizer::forHtml($results[0]["email"]), $form);
+                $form = str_replace("pPassword", Sanitizer::forHtml($results[0]["password"]), $form);
 
             } else {
                 $form .= "<p>Errore load Info</p>";
@@ -178,9 +178,9 @@ function printBiglietti(&$htmlPage)
                 foreach ($biglietti as $biglietto) {
                     $listaBiglietti .= file_get_contents("template/templateTicketUtente.html");
 
-                    $listaBiglietti = str_replace("pNome", $biglietto["nome"], $listaBiglietti);
-                    $listaBiglietti = str_replace("pId", $biglietto["id"], $listaBiglietti);
-                    $listaBiglietti = str_replace("pOrario", $biglietto["data"] . " " . $biglietto["ora"], $listaBiglietti);
+                    $listaBiglietti = str_replace("pNome", Sanitizer::forHtml($biglietto["nome"]), $listaBiglietti);
+                    $listaBiglietti = str_replace("pId", Sanitizer::forHtml($biglietto["id"]), $listaBiglietti);
+                    $listaBiglietti = str_replace("pOrario", Sanitizer::forHtml($biglietto["data"] . " " . $biglietto["ora"]), $listaBiglietti);
                 }
                 unset($biglietto);
                 $listaBiglietti .= "</ul>";
@@ -217,14 +217,14 @@ function printCandidature(&$htmlPage){
                     $list .= file_get_contents("template/templateCandidaturaUser.html");
 
                     $list = str_replace("collapse", "collapse" . $index, $list);
-                    $list = str_replace("pTitolo", $candidatura["nome"], $list);
-                    $list = str_replace("pDurata", $candidatura["durata"] . "'", $list);
-                    $list = str_replace("pAnno", $candidatura["anno"], $list);
-                    $list = str_replace("pRegista", $candidatura["regista"], $list);
-                    $list = str_replace("pProduttore", $candidatura["produttore"], $list);
-                    $list = str_replace("pCast", $candidatura["cast"], $list);
-                    $list = str_replace("pEmail", $candidatura["email"], $list);
-                    $list = str_replace("pDescrizione", $candidatura["descrizione"], $list);
+                    $list = str_replace("pTitolo", Sanitizer::forHtml($candidatura["nome"]), $list);
+                    $list = str_replace("pDurata", Sanitizer::forHtml($candidatura["durata"] . "'"), $list);
+                    $list = str_replace("pAnno", Sanitizer::forHtml($candidatura["anno"]), $list);
+                    $list = str_replace("pRegista", Sanitizer::forHtml($candidatura["regista"]), $list);
+                    $list = str_replace("pProduttore", Sanitizer::forHtml($candidatura["produttore"]), $list);
+                    $list = str_replace("pCast", Sanitizer::forHtml($candidatura["cast"]), $list);
+                    $list = str_replace("pEmail", Sanitizer::forHtml($candidatura["email"]), $list);
+                    $list = str_replace("pDescrizione", Sanitizer::forHtml($candidatura["descrizione"]), $list);
 
                     if(!$candidatura["approvato"]){
                         $list = str_replace("<pAction/>", "<input class='button' type='submit' name='method' value='Ritira candidatura'>", $list);
