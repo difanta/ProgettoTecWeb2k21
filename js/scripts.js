@@ -5,15 +5,15 @@ let passiveSupported = false;
 try {
     const options = {
         get passive() { // This function will be called when the browser
-                        //   attempts to access the passive property.
-        passiveSupported = true;
-        return false;
+            //   attempts to access the passive property.
+            passiveSupported = true;
+            return false;
         }
     };
 
     window.addEventListener("test", null, options);
     window.removeEventListener("test", null, options);
-} catch(err) {
+} catch (err) {
     passiveSupported = false;
 }
 
@@ -46,14 +46,13 @@ function signupBack() {
     document.getElementById('signupSection').classList.toggle('slideIn');
 }
 
-function expandMenu(){
-    if(document.getElementsByClassName('secondaryMenuItem')[0].style.display == "none"){
+function expandMenu() {
+    if (document.getElementsByClassName('secondaryMenuItem')[0].style.display == "none") {
         document.getElementsByClassName('secondaryMenuItem')[0].style.display = "block";
         document.getElementsByClassName('secondaryMenuItem')[1].style.display = "block";
         document.getElementsByClassName('secondaryMenuItem')[2].style.display = "block";
         document.getElementById("expandMenuArrow").textContent = "expand_less";
-    }
-    else{
+    } else {
         document.getElementsByClassName('secondaryMenuItem')[0].style.display = "none";
         document.getElementsByClassName('secondaryMenuItem')[1].style.display = "none";
         document.getElementsByClassName('secondaryMenuItem')[2].style.display = "none";
@@ -62,37 +61,37 @@ function expandMenu(){
 }
 
 // hide account dropdown on click outside it and outside account button
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     let accDropdown = document.getElementById("accountDropdown");
     let accBtn = document.getElementById("accountButton");
     let target = e.target;
-    while(target && target != accDropdown && target != accBtn) {
+    while (target && target != accDropdown && target != accBtn) {
         target = target.parentNode;
     }
 
-    if(target == null && accDropdown.classList.contains("dropdown")) {
+    if (target == null && accDropdown.classList.contains("dropdown")) {
         toggleAccountDropdown();
     }
-}, passiveSupported ? { passive: true } : false);
+}, passiveSupported ? {passive: true} : false);
 
 
 //hide account dropdown on ESC keydown
-document.addEventListener("keydown", function(e) {
-    if(e.code === "Escape" && document.getElementById("accountDropdown").classList.contains("dropdown")) {
+document.addEventListener("keydown", function (e) {
+    if (e.code === "Escape" && document.getElementById("accountDropdown").classList.contains("dropdown")) {
         toggleAccountDropdown();
     }
-}, passiveSupported ? { passive: true } : false);
+}, passiveSupported ? {passive: true} : false);
 
 
 // display and hide tornaSu based on scoll distance from top
-window.addEventListener("scroll", function() {
+window.addEventListener("scroll", function () {
     elem = document.getElementById("tornaSu");
     if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
         elem.style.display = "block";
     } else {
         elem.style.display = "none";
     }
-}, passiveSupported ? { passive: true } : false);
+}, passiveSupported ? {passive: true} : false);
 
 /* Lista Film ---------------------------------------- */
 
@@ -117,9 +116,9 @@ function listaFilmLike(checked, nomeFilm) {
     }
     request.open("POST", "like.php");
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.send(encodeURIComponent("nomeFilm") + "=" + encodeURIComponent(nomeFilm) 
-                 + "&" + 
-                 encodeURIComponent("like") + "=" + encodeURIComponent(checked));
+    request.send(encodeURIComponent("nomeFilm") + "=" + encodeURIComponent(nomeFilm)
+        + "&" +
+        encodeURIComponent("like") + "=" + encodeURIComponent(checked));
 }
 
 /* Acquisto biglietti -------------------------------- */
@@ -156,7 +155,7 @@ function paymentSelectionChanged() {
 
 /* Pagina Utente ----------------------------------- */
 
-function showHideButton(id){
+function showHideButton(id) {
     var x = document.getElementById(id);
     if (x.style.display === "none") {
         x.style.display = "inline";
@@ -170,11 +169,11 @@ function setEditOn() {
     showHideButton('buttonReset');
     showHideButton('buttonAnnulla');
     showHideButton('buttonModifica');
-    document.getElementById('nome').removeAttribute('disabled');
-    document.getElementById('cognome').removeAttribute('disabled');
-    document.getElementById('dataNascita').removeAttribute('disabled');
-    document.getElementById('email').removeAttribute('disabled');
-    document.getElementById('password').removeAttribute('disabled');
+    document.getElementById('userInfoNome').removeAttribute('disabled');
+    document.getElementById('userInfoCognome').removeAttribute('disabled');
+    document.getElementById('userInfoDataNascita').removeAttribute('disabled');
+    document.getElementById('userInfoEmail').removeAttribute('disabled');
+    document.getElementById('userInfoPassword').removeAttribute('disabled');
 }
 
 function setEditOff() {
@@ -182,12 +181,12 @@ function setEditOff() {
     showHideButton('buttonReset');
     showHideButton('buttonAnnulla');
     showHideButton('buttonModifica');
-    document.getElementById('infoUtenteForm').reset();
-    document.getElementById('nome').setAttribute('disabled', '');
-    document.getElementById('cognome').setAttribute('disabled', '');
-    document.getElementById('dataNascita').setAttribute('disabled', '');
-    document.getElementById('email').setAttribute('disabled', '');
-    document.getElementById('password').setAttribute('disabled', '');
+    document.getElementById('userInfoForm').reset();
+    document.getElementById('userInfoNome').setAttribute('disabled', '');
+    document.getElementById('userInfoCognome').setAttribute('disabled', '');
+    document.getElementById('userInfoDataNascita').setAttribute('disabled', '');
+    document.getElementById('userInfoEmail').setAttribute('disabled', '');
+    document.getElementById('userInfoPassword').setAttribute('disabled', '');
 }
 
 /* Admin */
@@ -267,7 +266,7 @@ function onUtenteSelected() {
 
                 var list = document.getElementById("ticketList");
                 var re = results[1];
-                for(let i=0; i<results[1].length; i++){
+                for (let i = 0; i < results[1].length; i++) {
                     let li = document.createElement("li");
                 }
 
@@ -283,12 +282,12 @@ function onUtenteSelected() {
 function initAdminListaFilm() {
     elem = document.getElementById("alfSelect");
 
-    if(!elem.options[elem.selectedIndex]) {
+    if (!elem.options[elem.selectedIndex]) {
         elem.setAttribute("selection", "");
         return;
     }
 
-    if(elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+    if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
         [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
         elem.setAttribute("selection", "");
@@ -312,7 +311,9 @@ function resetAlfm() {
 function mod_onFilmChanged() {
     elem = document.getElementById("alfSelect");
 
-    if(!elem.options[elem.selectedIndex]) { return; }
+    if (!elem.options[elem.selectedIndex]) {
+        return;
+    }
 
     resetAlfm();
 
@@ -339,14 +340,14 @@ function mod_onFilmChanged() {
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send(encodeURIComponent(elem.getAttribute("name")) + "=" + encodeURIComponent(elem.value));
 }
- 
+
 /* Admin Proiezioni */
 
 function initAdminProiezioni() {
     elem = document.getElementById("apraSelect");
     if(!elem || !elem.options[elem.selectedIndex]) { return; }
 
-    if(elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+    if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
         [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
         elem.setAttribute("selection", "");
@@ -386,70 +387,94 @@ chiave:campo input di cui inserisco informazioni
 [1] : espressione regolare
 [2] : messaggio di errore
 */
-var emailregex=/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+var emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+var namesRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
 var dettagli_form = {
-	"titolo" : ["inserisci il titolo del film",/[\wàèéìòù]{1,}/,"il titolo deve contenere almeno un carattere alfanumerico"], 
-    "descrizione" : ["inserisci una descrizione del film",/^.{10,}$/,"la descrizione deve contenere almeno dieci caratteri"], 
-    "durata" : ["",/^[6-9][0-9]|1[0-7][0-9]|180$/,"la durata deve essere compresa tra i 60 ed i 180 minuti"],
-    "anno" : ["",/^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/,"l'anno deve essere compreso tra il 1900 ed il 2022"],
-    "regista" : ["inserisci il regista del film",/[a-zA-Zàèéìòù]{1,}/,"il regista deve contenere almeno un carattere alfabetico"],
-    "produttore" : ["inserisci il produttore del film",/[a-zA-Zàèéìòù]{1,}/,"il produttore deve contenere almeno un carattere alfabetico"],
-    "cast" : ["inserisci il cast del film separato da virgole",/^.{5,}$/,"il cast deve contenere almeno cinque caratteri"],
-    "email" : ["inserisci la tua mail",emailregex,"mail non valida"]
+    // contest
+    "titolo": ["inserisci il titolo del film", /[\wàèéìòù]{1,}/, "il titolo deve contenere almeno un carattere alfanumerico"],
+    "descrizione": ["inserisci una descrizione del film", /^.{10,}$/, "la descrizione deve contenere almeno dieci caratteri"],
+    "durata": ["", /^[6-9][0-9]|1[0-7][0-9]|180$/, "la durata deve essere compresa tra i 60 ed i 180 minuti"],
+    "anno": ["", /^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/, "l'anno deve essere compreso tra il 1900 ed il 2022"],
+    "regista": ["inserisci il regista del film", /[a-zA-Zàèéìòù]{1,}/, "il regista deve contenere almeno un carattere alfabetico"],
+    "produttore": ["inserisci il produttore del film", /[a-zA-Zàèéìòù]{1,}/, "il produttore deve contenere almeno un carattere alfabetico"],
+    "cast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
+    "email": ["inserisci la tua mail", emailregex, "mail non valida"],
+    // pagina utente
+    "userInfoNome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
+    "userInfoCognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
+    "userInfoDataNascita": ["", "", "data di nascita non valida"],
+    "userInfoEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
+    "userInfoPassword": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
+    // content login
+    "contentLoginEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
+    "contentLoginPassword": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
+    // content signup
+    "contentSingupNome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
+    "contentSingupCognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
+    "contentSingupDataNascita": ["", "", "data di nascita non valida"],
+    "contentSingupEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
+    "contentSingupPassword": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
+    "contentSingupPassword2": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
 };
 
-function caricamento(){
-	for(var key in dettagli_form){
-		var input = document.getElementById(key);
-		campoDefault(input);
-		input.onfocus=function(){campoPerInput(this);};
-		input.onblur = function(){validazioneCampo(this);};
-	}
+function caricamento() {
+    for (var key in dettagli_form) {
+        var input = document.getElementById(key);
+        if (input) { // if user is not logged and forms are not displayed this value will be NULL
+            campoDefault(input);
+            input.onfocus = function () {
+                campoPerInput(this);
+            };
+            input.onblur = function () {
+                validazioneCampo(this);
+            };
+        }
+    }
 }
 
-function campoDefault(input){
-	if (input.value == ""){
-		input.className="placeholderText";
-		input.value = dettagli_form[input.id][0];
-	}
+function campoDefault(input) {
+    if (input.value == "") {
+        input.className = "placeholderText";
+        input.value = dettagli_form[input.id][0];
+    }
 }
 
-function campoPerInput(input){
-	if (input.value == dettagli_form[input.id][0]){
-		input.className="normalInput";
-		input.value = "";
-	}
+function campoPerInput(input) {
+    if (input.value == dettagli_form[input.id][0]) {
+        input.className = "normalInput";
+        input.value = "";
+    }
 }
 
-function validazioneCampo(input){
-	var padre=input.parentNode;	
-	if(padre.children.length == 2){
-		padre.removeChild(padre.children[1]);
-	}
-	
-	var regex = dettagli_form[input.id][1];
-	var text = input.value;
-    input.value=text;
-	if((text.search(regex) == -1) || (text==dettagli_form[input.id][0])) {
-		mostraErrore(input);
-		input.focus();
-		return false;
-	}
-	return true;
+function validazioneCampo(input) {
+    var padre = input.parentNode;
+    if (padre.children.length == 2) {
+        padre.removeChild(padre.children[1]);
+    }
+
+    var regex = dettagli_form[input.id][1];
+    var text = input.value;
+    input.value = text;
+    if ((text.search(regex) == -1) || (text == dettagli_form[input.id][0])) {
+        mostraErrore(input);
+        input.focus();
+        return false;
+    }
+    return true;
 }
 
-function mostraErrore(input){
-	var padre = input.parentNode;
-	var errore = document.createElement("strong");
-	errore.className="errorSuggestion";
-	errore.appendChild(document.createTextNode(dettagli_form[input.id][2]));
-	padre.appendChild(errore);
+function mostraErrore(input) {
+    var padre = input.parentNode;
+    var errore = document.createElement("strong");
+    errore.className = "errorSuggestion";
+    errore.appendChild(document.createTextNode(dettagli_form[input.id][2]));
+    padre.appendChild(errore);
 }
 
-function validazioneForm(){
-	for (var key in dettagli_form){
-        var input=document.getElementById(key);
-        if(!validazioneCampo(input)){
+function validazioneForm() {
+    for (var key in dettagli_form) {
+        var input = document.getElementById(key);
+        if (!validazioneCampo(input)) {
             return false;
         }
     }

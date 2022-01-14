@@ -1,20 +1,20 @@
-<form id="infoUtenteForm" method="post" onsubmit="return validateForm(getInfoutenteFormDetails());">
+<form id="userInfoForm" method="post" onsubmit="return validazioneForm();">
 <fieldset>
     <legend>Informazioni Personali</legend>
-    <label for="nome">Nome</label>
-    <input id="nome" name="nome" type="text" value="pNome" required disabled>
-    <label for="cognome">Cognome</label>
-    <input id="cognome" name="cognome" type="text" value="pCognome" required disabled>
-    <label for="dataNascita">Data di nascita</label>
-    <input id="dataNascita" name="dataNascita" type="date" value="pDataDiNascita" required disabled>
+    <label for="userInfoNome">Nome</label>
+    <span><input id="userInfoNome" name="nome" type="text" value="pNome" required disabled></span>
+    <label for="userInfoCognome">Cognome</label>
+    <span><input id="userInfoCognome" name="cognome" type="text" value="pCognome" required disabled></span>
+    <label for="userInfoDataNascita">Data di nascita</label>
+    <span><input id="userInfoDataNascita" name="dataNascita" type="date" value="pDataDiNascita" required disabled></span>
 </fieldset>
 
 <fieldset>
     <legend>Informazioni Account</legend>
-    <label for="email">Email</label>
-    <input id="email" name="email" type="email" value="pEmail" required disabled>
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" value="pPassword" required disabled>
+    <label for="userInfoEmail">Email</label>
+    <span><input id="userInfoEmail" name="email" type="email" value="pEmail" required disabled></span>
+    <label for="userInfoPassword">Password</label>
+    <span><input id="userInfoPassword" name="password" type="password" value="pPassword" required disabled></span>
     <input class="button" id="buttonInvia" type="submit" name="method" value="Invia" style="display: none;">
     <input class="button" id="buttonAnnulla" type="button" onclick="setEditOff()" value="Annulla" style="display: none;">
     <input class="button" id="buttonReset" type="reset" value="Reset" style="display: none;">
