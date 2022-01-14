@@ -22,7 +22,7 @@
     <link rel="shortcut icon" type="image/png" href="../images/favicon.ico"/>
 </head>
 
-<body>
+<body onload="initAdminUtenti()">
 <header>
     <a class="goToContent" href="#content_adminUtenti">Vai al contenuto</a>
 
@@ -115,22 +115,20 @@
         </select>
 
         <div class="boxUtente">
-            <p id="id">id:</p>
-            <p id="email">email:</p>
-            <p id="nome">nome:</p>
-            <p id="cognome">cognome:</p>
-            <input class="button" value="Reset password" onclick="resetPassword()">
-            <input class="button" value="Elimina utente" onclick="eliminaUtente()">
-
+            <p id="email">emailutente</p>
+            <p id="nome">nomeutente</p>
+            <p id="cognome">cognomeutente</p>
+            <button onclick="resetPassword('emailutente')">Reset password</button>
+            <button onclick="eliminaUtente('emailutente')">Elimina utente</button>
             <div id="biglietti">
                 <h1>Biglietti</h1>
                 <ul id="ticketList">
                     <biglietto/>
                 </ul>
                 <form id="aggiungiBiglietto" action="post">
-                    <input type="hidden" name="agg_username" value="">
+                    <input type="hidden" name="agg_userEmail" value="emailutente">
                     <label for="a_filmSelect">Seleziona un film</label>
-                    <select id="a_filmSelect" name="agg_nomeFilm" selection="agg_nomefilmselezionato" onchange="aggUserFilmSelected()" required>
+                    <select id="a_filmSelect" name="agg_nomeFilm" selection="agg_nomefilmselezionato" class="js_toBeInit" onchange="injectProiezioni(this, document.getElementById('a_prSelect'))" required>
                         <nomifilm/>
                     </select>
                     <br>

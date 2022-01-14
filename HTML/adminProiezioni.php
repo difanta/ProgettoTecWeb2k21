@@ -6,36 +6,6 @@ include "../php/login.php";
 
 use DB\DBAccess;
 
-function returnProiezioni() {
-    if(!Login::is_logged_admin()) { return ""; }
-
-    $mod_nomeFilm = "";
-
-    if(isset($_POST["mod_nomeFilm"])) { $mod_nomeFilm = $_POST["mod_nomeFilm"]; }
-    else { return ""; }
-
-    $connection = new DBAccess();
-    $connectionOk = $connection->openDB();
-
-    if($connectionOk) {
-        $template = "<option value=\"idproiezione\" orario=\"datetime\">data time</option>";
-        $stringa = "";
-        $proiezioni = $connection->getProiezioni("tutti", $mod_nomeFilm, "");
-        if($proiezioni) {
-            foreach($proiezioni as $proiezione) {
-                $p = str_replace("idproiezione" , Sanitizer::forHtml($proiezione["pid"])    , $template);
-                $p = str_replace("datetime"     , Sanitizer::forHtml($proiezione["orario"]) , $p);
-                $p = str_replace("data"         , Sanitizer::forHtml($proiezione["data"])   , $p);
-                $p = str_replace("time"         , Sanitizer::forHtml($proiezione["ora"])    , $p);
-                $stringa .= $p;
-            }
-        }
-        return $stringa;
-    } else {
-        http_response_code(500);
-    }
-}
-
 function aggiungiProiezione() {
     if(!Login::is_logged_admin()) { return; }
 
@@ -66,9 +36,10 @@ function modificaProiezione() {
     if(!Login::is_logged_admin()) { return; }
 
     if(isset($_POST["method"]) && $_POST["method"] == "Modifica Proiezione") {
-        $mod_IdProiezione = $_POST["mod_idProiezione"]; 
+        $mod_IdProiezione  = $_POST["mod_idProiezione"]; 
+        $mod_nomeFilm      = $_POST["mod_nomeFilm"];
         $mod_nomeNuovoFilm = $_POST["mod_nomeNuovoFilm"];
-        $mod_nuovaData = $_POST["mod_nuovaData"];
+        $mod_nuovaData     = $_POST["mod_nuovaData"];
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
@@ -83,8 +54,18 @@ function modificaProiezione() {
             $_SESSION["success"] = false;
         }
         $_SESSION["method"] = $_POST["method"];
-        $_SESSION["mod_idproiezioneselezionata"] = $mod_IdProiezione;
-        $_SESSION["mod_nomefilmselezionato"] = $_POST["mod_nomeFilm"];
+        if($_SESSION["success"] == true) {
+            if($mod_nomeFilm == $mod_nomeNuovoFilm) {
+                $_SESSION["mod_idproiezioneselezionata"] = $mod_IdProiezione;
+            } else {
+                $_SESSION["mod_idproiezioneselezionata"] = "";
+            }
+            $_SESSION["mod_nomefilmselezionato"] = $mod_nomeNuovoFilm;
+        } else {
+            $_SESSION["mod_nomefilmselezionato"] = $mod_nomeFilm;
+            $_SESSION["mod_idproiezioneselezionata"] = $mod_IdProiezione;
+        }
+
 
     } else if(isset($_POST["method"]) && $_POST["method"] == "Elimina Proiezione") {
         $mod_IdProiezione = $_POST["mod_idProiezione"];
@@ -102,7 +83,11 @@ function modificaProiezione() {
             $_SESSION["success"] = false;
         }
         $_SESSION["method"] = $_POST["method"];
-        $_SESSION["mod_idproiezioneselezionata"] = $mod_IdProiezione;
+        if($_SESSION["success"] == true) {
+            $_SESSION["mod_idproiezioneselezionata"] = "";
+        } else {
+            $_SESSION["mod_idproiezioneselezionata"] = $mod_IdProiezione;
+        }
         $_SESSION["mod_nomefilmselezionato"] = $_POST["mod_nomeFilm"];
     }
 }
@@ -170,29 +155,25 @@ function printModificaProiezione(&$htmlPage) {
     }
 }
 
-if(!isset($_POST["method"]) && isset($_POST["mod_nomeFilm"])) {
-    echo returnProiezioni();
-} else {
-    if(isset($_POST["method"])) {
-        // handle login/register/logout POST request
-        Login::handleLogin();
-        aggiungiProiezione();
-        modificaProiezione();
-    
-        // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
-        http_response_code(303);
-        header("Location: " . $_SERVER["REQUEST_URI"]);
-    } else /* GET */ {
-        $htmlPage = file_get_contents("template/adminProiezioni.html");
-    
-        // show login/register/logout results
-        Login::printLogin($htmlPage);
-        printFilms($htmlPage);
-        printAggiungiProiezione($htmlPage);
-        printModificaProiezione($htmlPage);
-    
-        echo $htmlPage;
-    }
+if(isset($_POST["method"])) {
+    // handle login/register/logout POST request
+    Login::handleLogin();
+    aggiungiProiezione();
+    modificaProiezione();
+
+    // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
+    http_response_code(303);
+    header("Location: " . $_SERVER["REQUEST_URI"]);
+} else /* GET */ {
+    $htmlPage = file_get_contents("template/adminProiezioni.html");
+
+    // show login/register/logout results
+    Login::printLogin($htmlPage);
+    printFilms($htmlPage);
+    printAggiungiProiezione($htmlPage);
+    printModificaProiezione($htmlPage);
+
+    echo $htmlPage;
 }
 
 ?>

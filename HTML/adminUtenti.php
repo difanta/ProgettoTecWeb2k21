@@ -6,8 +6,9 @@ include "../php/login.php";
 
 use DB\DBAccess;
 
-function printUtenti(&$htmlPage) {
+function printUtentiAndFilms(&$htmlPage) {
     $p_utenti = "<utenti/>";
+    $p_nomifilm = "<nomifilm/>";
 
     $connection = new DBAccess();
     $connectionOk = $connection->openDB();
@@ -20,8 +21,17 @@ function printUtenti(&$htmlPage) {
             $stringa .= str_replace("utente", Sanitizer::forHtml($utente["email"]), $template);
         }
         $htmlPage = str_replace($p_utenti, $stringa, $htmlPage);
+
+        $template = "<option value=\"nomefilm\">nomefilm</option>";
+        $stringa = "";
+        $films = $connection->getNomiFilmApprovati();
+        foreach($films as $film) {
+            $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
+        }
+        $htmlPage = str_replace($p_nomifilm, $stringa, $htmlPage);
     } else {
         $htmlPage = str_replace($p_utenti, "", $htmlPage);
+        $htmlPage = str_replace($p_nomifilm, "", $htmlPage);
     }
 }
 
@@ -30,7 +40,7 @@ function printBiglietti() {
 
     $p_biglietto = "<biglietto/>";
 
-    $connection = new DBAccess();
+    /*$connection = new DBAccess();
     $connectionOk = $connection->openDB();
 
     if($connectionOk) {
@@ -43,7 +53,12 @@ function printBiglietti() {
         $htmlPage = str_replace($p_biglietto, $stringa, $htmlPage);
     } else {
         $htmlPage = str_replace($p_biglietto, "", $htmlPage);
-    }
+    }*/
+}
+
+function printAggiungiBiglietto(&$htmlPage) {
+    $htmlPage = str_replace("agg_nomefilmselezionato", "", $htmlPage);
+    $htmlPage = str_replace("agg_idproiezioneselezionata", "", $htmlPage);
 }
 
 if (isset($_POST["method"])) {
@@ -58,8 +73,9 @@ if (isset($_POST["method"])) {
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
-    printUtenti($htmlPage);
+    printUtentiAndFilms($htmlPage);
     printBiglietti();
+    printAggiungiBiglietto($htmlPage);
 
     echo $htmlPage;
 }
