@@ -58,31 +58,31 @@ function updateInfoUtente()
             $email = $_POST["email"];
             $password = $_POST["password"];
 
+            /*
+                        if (strlen($nome) == 0) {
+                            $messaggi .= "<li>Nome non present</li>";
+                        } elseif (preg_match('/\d/', $nome)) {
+                            $messaggi .= "<li>Nome non può contenere numeri</li>";
+                        }
 
-            if (strlen($nome) == 0) {
-                $messaggi .= "<li>Nome non present</li>";
-            } elseif (preg_match('/\d/', $nome)) {
-                $messaggi .= "<li>Nome non può contenere numeri</li>";
-            }
+                        if (strlen($cognome) == 0) {
+                            $messaggi .= "<li>Cognome non presente</li>";
+                        } elseif (preg_match('/\d/', $cognome)) {
+                            $messaggi .= "<li>Cognome non può contenere numeri</li>";
+                        }
 
-            if (strlen($cognome) == 0) {
-                $messaggi .= "<li>Cognome non presente</li>";
-            } elseif (preg_match('/\d/', $cognome)) {
-                $messaggi .= "<li>Cognome non può contenere numeri</li>";
-            }
+                        if (strlen($dataNascita) == 0) { // add controlli
+                            $messaggi .= "<li>Data di nascita non presente</li>";
+                        }
 
-            if (strlen($dataNascita) == 0) { // add controlli
-                $messaggi .= "<li>Data di nascita non presente</li>";
-            }
+                        if (strlen($email) == 0) {
+                            $messaggi .= "<li>Email non presente</li>";
+                        }
 
-            if (strlen($email) == 0) {
-                $messaggi .= "<li>Email non presente</li>";
-            }
-
-            if (strlen($password) == 0) {
-                $messaggi .= "<li>Password non presente</li>";
-            }
-
+                        if (strlen($password) == 0) {
+                            $messaggi .= "<li>Password non presente</li>";
+                        }
+            */
             if ($messaggi == "") {
 
                 $connection = new DBAccess();
@@ -90,25 +90,21 @@ function updateInfoUtente()
 
                 if ($connectionOk) {
                     if ($connection->updateUser($nome, $cognome, $dataNascita, $email, $password)) {
-                        $messaggi .= "<p>Utente modificato con successo<p/>";
+                        $messaggi .= "Utente modificato con successo";
                         $_SESSION["success"] = true;
                     } else {
-                        $messaggi .= "<p>Errore nella modifica<p/>";
+                        $messaggi .= "Errore nella modifica";
                         $_SESSION["success"] = false;
                     }
                     $connection->closeConnection();
                 } else {
-                    $messaggi .= "<li>problemi db</li>";
+                    $messaggi .= "Problemi di connessione al DB";
                     $_SESSION["success"] = false;
                 }
-            } else {
-                $messaggi = "<ul>" . $messaggi . "</ul>";
-                $_SESSION["success"] = true;
             }
         }
     } else { // not logged
-        $messaggi = "<ul>" . $messaggi . "</ul>";
-        $messaggi .= "<ul><li>Utente non loggato</li></ul>";
+        $messaggi .= "Utente non loggato";
         $_SESSION["success"] = false;
     }
     $_SESSION["messaggi"] = $messaggi;
@@ -117,14 +113,21 @@ function updateInfoUtente()
 /**
  * Prints user update results
  */
-function printUpdateInfoUtente(&$htmlPage)
+function printUpdateInfoUtenteFeedback(&$htmlPage)
 {
-    if (isset($_SESSION["method"]) && $_SESSION["method"] == "Invia") {
+    if (isset($_SESSION["method"])
+        && isset($_SESSION["success"])
+        && $_SESSION["method"] == "Invia") {
 
         $messaggi = isset($_SESSION["messaggi"]) ? $_SESSION["messaggi"] : "";
+        if ($_SESSION["success"]) {
+            $messaggi = "<span><strong class='feedbackPositive'>" . $messaggi . "</strong></span>";
+        } else {
+            $messaggi = "<span><strong class='feedbackNegative'>" . $messaggi . "</strong></span>";
+        }
         $htmlPage = str_replace("<messaggi/>", $messaggi, $htmlPage);
 
-        unset($_SESSION["method"]);
+        unset($_SESSION["messaggi"]);
         unset($_SESSION["success"]);
     }
 }
@@ -200,7 +203,8 @@ function printBiglietti(&$htmlPage)
 /**
  * Replaces <listaCandidature/> with candidature's list
  */
-function printCandidature(&$htmlPage){
+function printCandidature(&$htmlPage)
+{
     $list = "";
 
     if (Login::is_logged()) {
@@ -226,7 +230,7 @@ function printCandidature(&$htmlPage){
                     $list = str_replace("pEmail", Sanitizer::forHtml($candidatura["email"]), $list);
                     $list = str_replace("pDescrizione", Sanitizer::forHtml($candidatura["descrizione"]), $list);
 
-                    if(!$candidatura["approvato"]){
+                    if (!$candidatura["approvato"]) {
                         $list = str_replace("<pAction/>", "<input class='button' type='submit' name='method' value='Ritira candidatura'>", $list);
                     } else {
                         $list = str_replace("<pAction/>", "Approvata", $list);
@@ -247,7 +251,12 @@ function printCandidature(&$htmlPage){
     $htmlPage = str_replace("<listaCandidature/>", $list, $htmlPage);
 }
 
-function deleteCandidatura(){
+/**
+ * deletes selected candidatura
+ */
+function deleteCandidatura()
+{
+    $messaggi = "";
     if (Login::is_logged()) {
         if ($_POST["method"] == "Ritira candidatura") {
             $connection = new DBAccess();
@@ -255,17 +264,40 @@ function deleteCandidatura(){
 
             if ($connectionOk) {
                 if ($connection->deleteCandidatura($_POST["titolo"])) {
+                    $messaggi = "Candidatura ritirata con successo";
                     $_SESSION["success"] = true;
                 } else {
+                    $messaggi = "errori nell'operazione";
                     $_SESSION["success"] = false;
                 }
                 $connection->closeConnection();
             } else {
+                $messaggi = "Problemi di connessione al DB";
                 $_SESSION["success"] = false;
             }
         }
     } else { // not logged
         $_SESSION["success"] = false;
+    }
+    $_SESSION["messaggi"] = $messaggi;
+}
+
+function printDeleteCandidaturaFeedback(&$htmlPage)
+{
+    if (isset($_SESSION["method"])
+        && isset($_SESSION["success"])
+        && $_SESSION["method"] == "Ritira candidatura") {
+
+        $messaggi = isset($_SESSION["messaggi"]) ? $_SESSION["messaggi"] : "";
+        if ($_SESSION["success"]) {
+            $messaggi = "<span><strong class='feedbackPositive'>" . $messaggi . "</strong></span>";
+        } else {
+            $messaggi = "<span><strong class='feedbackNegative'>" . $messaggi . "</strong></span>";
+        }
+        $htmlPage = str_replace("<feedbackDeleteCandidatura/>", $messaggi, $htmlPage);
+
+        unset($_SESSION["messaggi"]);
+        unset($_SESSION["success"]);
     }
 }
 
@@ -291,7 +323,8 @@ if (isset($_POST["method"])) {
     printInfoUtente($htmlPage);
     printBiglietti($htmlPage);
     printCandidature($htmlPage);
-    printUpdateInfoUtente($htmlPage);
+    printUpdateInfoUtenteFeedback($htmlPage);
+    printDeleteCandidaturaFeedback($htmlPage);
 
     echo $htmlPage;
 }
