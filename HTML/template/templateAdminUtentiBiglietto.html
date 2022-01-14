@@ -1,13 +1,13 @@
 <li>
     <form action="post">
-        <input type="hidden" name="mod_username" value="">
-        <label for="m_filmSelect">Seleziona un film</label>
-        <select id="m_filmSelect" name="mod_nomeFilm" selection="mod_nomefilmselezionato" onchange="modUserFilmSelected()" required>
+        <input type="hidden" name="agg_userEmail" value="emailutente">
+        <label for="m_filmSelect_idbiglietto">Seleziona un film</label>
+        <select id="m_filmSelect_idbiglietto" name="mod_nomeFilm" selection="mod_nomefilmselezionato" class="js_toBeInit" onchange="injectProiezioni(this, document.getElementById('m_prSelect_idbiglietto'))" required>
             <nomifilm/>
         </select>
         <br>
-        <label for="m_prSelect">Seleziona una proiezione</label>
-        <select id="m_prSelect" name="mod_idProiezione" selection="mod_idproiezioneselezionata" required>
+        <label for="m_prSelect_idbiglietto">Seleziona una proiezione</label>
+        <select id="m_prSelect_idbiglietto" name="mod_idProiezione" selection="mod_idproiezioneselezionata" required>
         </select>
         <br>
         <input type="submit" name="method" value="Modifica Biglietto">

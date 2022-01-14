@@ -100,14 +100,14 @@ class Login {
                     {
                         $_SESSION["success"]     = true;
                         $_SESSION["login"]       = $result[0]["id"]; 
-                        $_SESSION["accountname"] = $result[0]["email"]; 
+                        $_SESSION["accountname"] = ucfirst($result[0]["nome"]); 
                         $_SESSION["is_admin"]    = $result[0]["admin"]; 
                     } 
                     $connection->closeConnection();
                 } 
 
                 if($_SESSION["success"] == false) 
-                {   /* save data to avoid form reset */
+                {
                     $_SESSION["email"] = $email;
                 }
             } 
@@ -126,13 +126,13 @@ class Login {
 
                 if($connectionOk) 
                 {
-                    if(insertUser($nome, $cognome, $data_di_nascita, $email, $password))
+                    if($connection->insertUser($nome, $cognome, $data_di_nascita, $email, $password))
                     { $_SESSION["success"] = true; } 
                     $connection->closeConnection();
                 }
 
                 if($_SESSION["success"] == false) 
-                {   /* save data to avoid form reset */
+                {
                     $_SESSION["nome"]            = $nome;
                     $_SESSION["cognome"]         = $cognome;
                     $_SESSION["data_di_nascita"] = $data_di_nascita;
@@ -150,7 +150,6 @@ class Login {
             }
         }
         if(isset($_SESSION["success"])) {
-            /* remember method if something happened*/
             $_SESSION["method"] = $_POST["method"];
         }
     }
@@ -175,8 +174,7 @@ class Login {
                         Login::hideElement(Login::$p_if_login_success_open,     Login::$p_if_login_success_close,     $htmlPage);
                         Login::showElement(Login::$p_if_not_login_success_open, Login::$p_if_not_login_success_close, $htmlPage);
                     }
-                    
-                    // only if it didn't succeed the variables were saved, look at handleLogin()
+
                     if(!$success) {
                         unset($_SESSION["email"]);
                     }
