@@ -266,7 +266,6 @@ function mod_onFilmChanged() {
     request.onload = (e) => {
         if (request.readyState === request.DONE) {
             if (request.status === 200) {
-                console.log(request.response);
                 let obj = JSON.parse(request.response);
                 document.getElementById("alfmTitolo").setAttribute("value", obj["nome"]);
                 document.getElementById("alfmProduttore").setAttribute("value", obj["produttore"]);
