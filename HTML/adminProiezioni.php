@@ -23,10 +23,10 @@ function returnProiezioni() {
         $proiezioni = $connection->getProiezioni("tutti", $mod_nomeFilm, "");
         if($proiezioni) {
             foreach($proiezioni as $proiezione) {
-                $p = str_replace("idproiezione" , $proiezione["pid"]    , $template);
-                $p = str_replace("datetime"     , $proiezione["orario"] , $p);
-                $p = str_replace("data"         , $proiezione["data"]   , $p);
-                $p = str_replace("time"         , $proiezione["ora"]    , $p);
+                $p = str_replace("idproiezione" , Sanitizer::forHtml($proiezione["pid"])    , $template);
+                $p = str_replace("datetime"     , Sanitizer::forHtml($proiezione["orario"]) , $p);
+                $p = str_replace("data"         , Sanitizer::forHtml($proiezione["data"])   , $p);
+                $p = str_replace("time"         , Sanitizer::forHtml($proiezione["ora"])    , $p);
                 $stringa .= $p;
             }
         }
@@ -128,9 +128,9 @@ function printFilms(&$htmlPage) {
 
 function printAggiungiProiezione(&$htmlPage) {
     if(isset($_SESSION["method"]) && $_SESSION["method"] == "Aggiungi Proiezione") {
-        $htmlPage = str_replace("agg_nomefilmselezionato" , $_SESSION["agg_nomefilmselezionato"] , $htmlPage);
-        $htmlPage = str_replace("agg_dataselezionata"     , $_SESSION["agg_dataselezionata"]     , $htmlPage);
-        $htmlPage = str_replace("aggiungiposted"          , ""                                   , $htmlPage);
+        $htmlPage = str_replace("agg_nomefilmselezionato" , Sanitizer::forHtml($_SESSION["agg_nomefilmselezionato"]) , $htmlPage);
+        $htmlPage = str_replace("agg_dataselezionata"     , Sanitizer::forHtml($_SESSION["agg_dataselezionata"])     , $htmlPage);
+        $htmlPage = str_replace("aggiungiposted"          , ""                                                       , $htmlPage);
 
         $htmlPage = " agg successo: " . $_SESSION["success"] . $htmlPage;
 
@@ -147,13 +147,14 @@ function printAggiungiProiezione(&$htmlPage) {
 
 function printModificaProiezione(&$htmlPage) {
     if(isset($_SESSION["method"]) && ($_SESSION["method"] == "Modifica Proiezione" || $_SESSION["method"] == "Elimina Proiezione")) {
-        $htmlPage = str_replace("mod_nomefilmselezionato" , $_SESSION["mod_nomefilmselezionato"] , $htmlPage);
-        $htmlPage = str_replace("modificaposted"          , ""                                   , $htmlPage);
+        $htmlPage = str_replace("mod_nomefilmselezionato" , Sanitizer::forHtml($_SESSION["mod_nomefilmselezionato"]) , $htmlPage);
+        $htmlPage = str_replace("modificaposted"          , "" , $htmlPage);
 
-        if($_SESSION["method"] == "Elimina Proiezione") {
+        if($_SESSION["method"] == "Elimina Proiezione") 
+        {
             $htmlPage = str_replace("mod_idproiezioneselezionata" , "" , $htmlPage);
         } else {
-            $htmlPage = str_replace("mod_idproiezioneselezionata" , $_SESSION["mod_idproiezioneselezionata"] , $htmlPage);
+            $htmlPage = str_replace("mod_idproiezioneselezionata" , Sanitizer::forHtml($_SESSION["mod_idproiezioneselezionata"]) , $htmlPage);
         }
 
         $htmlPage = "mod successo: " . $_SESSION["success"] . $htmlPage;

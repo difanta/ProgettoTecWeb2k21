@@ -55,9 +55,9 @@ function printFilms(&$htmlPage) {
             // create and substitute films based on template
             foreach($result as $indice => $film) {
                 $at_least_one = true;
-                $film_html = str_replace("titoloescaped"     , addslashes($film["nome"]) , $template);
-                $film_html = str_replace("titolofilm"        , $film["nome"]             , $film_html);
-                $film_html = str_replace("regista"           , $film["regista"]          , $film_html);
+                $film_html = str_replace("titoloescaped"     , Sanitizer::forJs($film["nome"])      , $template);
+                $film_html = str_replace("titolofilm"        , Sanitizer::forHtml($film["nome"])    , $film_html);
+                $film_html = str_replace("regista"           , Sanitizer::forHtml($film["regista"]) , $film_html);
                 if($film["in_gara"]) 
                 {
                     Login::showElement("<ifingara>"  , "</ifingara>"   , $film_html);
@@ -88,7 +88,7 @@ function printFilms(&$htmlPage) {
         $stringa = "";
         $films = $connection->getNomiFilmApprovati();
         foreach($films as $film) {
-            $stringa .= str_replace("nomefilm", $film["nome"], $template);
+            $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
         }
         $htmlPage = str_replace($p_nomifilm, $stringa, $htmlPage);
     } else {

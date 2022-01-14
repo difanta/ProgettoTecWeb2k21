@@ -22,7 +22,7 @@ function printFilmPopolari(&$htmlPage) {
             foreach($result as $indice => $film) {
                 if($indice > 2) break; // only the first 3 films
                 $at_least_one = true;
-                $film_html = str_replace("titolofilm"       , $film["nome"]     , $template);
+                $film_html = str_replace("titolofilm"       , Sanitizer::forHtml($film["nome"])     , $template);
                 $film_html = str_replace("percorsoimmagine" , FS::findImage($film["nome"]) , $film_html);
                 $htmlPage  = str_replace($p_filmPopolare, $film_html . $p_filmPopolare, $htmlPage);
             }

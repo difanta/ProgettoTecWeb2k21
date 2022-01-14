@@ -21,7 +21,7 @@ function returnFilm() {
         $stringa = "";
         $film = $connection->getFilm($mod_nomeFilm);
         if($film && $film[0]) {
-            $stringa .= json_encode($film[0]);
+            $stringa = Sanitizer::forJson($film[0]);
         }
         header("Content-type: application/json");
         return $stringa;
@@ -145,7 +145,7 @@ function printFilms(&$htmlPage) {
         $stringa = "";
         $films = $connection->getNomiFilm();
         foreach($films as $film) {
-            $stringa .= str_replace("nomefilm", $film["nome"], $template);
+            $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
         }
         $htmlPage = str_replace($p_nomifilm, $stringa, $htmlPage);
     } else {
@@ -155,14 +155,14 @@ function printFilms(&$htmlPage) {
 
 function printAggiungiFilm(&$htmlPage) {
     if(isset($_SESSION["method"]) && $_SESSION["method"] == "Aggiungi Film") {   
-        $htmlPage = str_replace("aggiungiposted"      , ""                               , $htmlPage);
-        $htmlPage = str_replace("agg_nomefilm"        , $_SESSION["agg_nomefilm"]        , $htmlPage);
-        $htmlPage = str_replace("agg_produttore"      , $_SESSION["agg_produttore"]      , $htmlPage);
-        $htmlPage = str_replace("agg_regista"         , $_SESSION["agg_regista"]         , $htmlPage);
-        $htmlPage = str_replace("agg_annofilm"        , $_SESSION["agg_annofilm"]        , $htmlPage);
-        $htmlPage = str_replace("agg_duratafilm"      , $_SESSION["agg_duratafilm"]      , $htmlPage);
-        $htmlPage = str_replace("agg_descrizionefilm" , $_SESSION["agg_descrizionefilm"] , $htmlPage);
-        $htmlPage = str_replace("agg_cast"            , $_SESSION["agg_cast"]            , $htmlPage);
+        $htmlPage = str_replace("aggiungiposted"      , ""                                                   , $htmlPage);
+        $htmlPage = str_replace("agg_nomefilm"        , Sanitizer::forHtml($_SESSION["agg_nomefilm"])        , $htmlPage);
+        $htmlPage = str_replace("agg_produttore"      , Sanitizer::forHtml($_SESSION["agg_produttore"])      , $htmlPage);
+        $htmlPage = str_replace("agg_regista"         , Sanitizer::forHtml($_SESSION["agg_regista"])         , $htmlPage);
+        $htmlPage = str_replace("agg_annofilm"        , Sanitizer::forHtml($_SESSION["agg_annofilm"])        , $htmlPage);
+        $htmlPage = str_replace("agg_duratafilm"      , Sanitizer::forHtml($_SESSION["agg_duratafilm"])      , $htmlPage);
+        $htmlPage = str_replace("agg_descrizionefilm" , Sanitizer::forHtml($_SESSION["agg_descrizionefilm"]) , $htmlPage);
+        $htmlPage = str_replace("agg_cast"            , Sanitizer::forHtml($_SESSION["agg_cast"])            , $htmlPage);
 
         if($_SESSION["agg_filmingara"]) 
         { $htmlPage = str_replace("agg_filmingara" , "checked" , $htmlPage); }
@@ -206,18 +206,18 @@ function printModificaFilm(&$htmlPage) {
     if(isset($_SESSION["method"]) && $_SESSION["method"] == "Modifica Film") 
     {  
         if(isset($_SESSION["method"]) && $_SESSION["method"] == "Modifica Film" && $_SESSION["success"] == false)
-        { $htmlPage = str_replace("mod_nomefilmselezionato" , $_SESSION["mod_oldnomefilm"] , $htmlPage); }
+        { $htmlPage = str_replace("mod_nomefilmselezionato" , Sanitizer::forHtml($_SESSION["mod_oldnomefilm"]) , $htmlPage); }
         else
-        { $htmlPage = str_replace("mod_nomefilmselezionato" , $_SESSION["mod_nomefilm"]    , $htmlPage); }
+        { $htmlPage = str_replace("mod_nomefilmselezionato" , Sanitizer::forHtml($_SESSION["mod_nomefilm"])    , $htmlPage); }
 
-        $htmlPage = str_replace("modificaposted"          , ""                               , $htmlPage);
-        $htmlPage = str_replace("mod_nomefilm"            , $_SESSION["mod_nomefilm"]        , $htmlPage);
-        $htmlPage = str_replace("mod_produttore"          , $_SESSION["mod_produttore"]      , $htmlPage);
-        $htmlPage = str_replace("mod_regista"             , $_SESSION["mod_regista"]         , $htmlPage);
-        $htmlPage = str_replace("mod_annofilm"            , $_SESSION["mod_annofilm"]        , $htmlPage);
-        $htmlPage = str_replace("mod_duratafilm"          , $_SESSION["mod_duratafilm"]      , $htmlPage);
-        $htmlPage = str_replace("mod_descrizionefilm"     , $_SESSION["mod_descrizionefilm"] , $htmlPage);
-        $htmlPage = str_replace("mod_cast"                , $_SESSION["mod_cast"]            , $htmlPage);
+        $htmlPage = str_replace("modificaposted"          , ""                                                   , $htmlPage);
+        $htmlPage = str_replace("mod_nomefilm"            , Sanitizer::forHtml($_SESSION["mod_nomefilm"])        , $htmlPage);
+        $htmlPage = str_replace("mod_produttore"          , Sanitizer::forHtml($_SESSION["mod_produttore"])      , $htmlPage);
+        $htmlPage = str_replace("mod_regista"             , Sanitizer::forHtml($_SESSION["mod_regista"])         , $htmlPage);
+        $htmlPage = str_replace("mod_annofilm"            , Sanitizer::forHtml($_SESSION["mod_annofilm"])        , $htmlPage);
+        $htmlPage = str_replace("mod_duratafilm"          , Sanitizer::forHtml($_SESSION["mod_duratafilm"])      , $htmlPage);
+        $htmlPage = str_replace("mod_descrizionefilm"     , Sanitizer::forHtml($_SESSION["mod_descrizionefilm"]) , $htmlPage);
+        $htmlPage = str_replace("mod_cast"                , Sanitizer::forHtml($_SESSION["mod_cast"])            , $htmlPage);
 
         if($_SESSION["mod_filmingara"]) 
         { $htmlPage = str_replace("mod_filmingara" , "checked" , $htmlPage); }
@@ -245,7 +245,7 @@ function printModificaFilm(&$htmlPage) {
     } 
     else if(isset($_SESSION["method"]) && $_SESSION["method"] == "Elimina Film") {
         if(!$_SESSION["success"]) { 
-            $htmlPage = str_replace("mod_nomefilmselezionato" , $_SESSION["mod_oldnomefilm"] , $htmlPage); 
+            $htmlPage = str_replace("mod_nomefilmselezionato" , Sanitizer::forHtml($_SESSION["mod_oldnomefilm"]) , $htmlPage); 
         } else { 
             $htmlPage = str_replace("mod_nomefilmselezionato" , "" , $htmlPage); 
             $htmlPage = "mod successo: " . $_SESSION["success"] . $htmlPage; 
