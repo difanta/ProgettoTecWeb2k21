@@ -137,6 +137,16 @@ form button:disabled, .button:disabled{
     background-color: darkgray;
 }
 
+/* Server side feedback --------------------------------------*/
+
+.feedbackPositive{
+    color: green;
+}
+
+.feedbackNegative{
+    color: red;
+}
+
 /*--------------------------- Material Icons ------------------------------*/
 span.material-icons-outlined.md18 {
     font-size: 18px;
