@@ -118,7 +118,7 @@ function printFilms(&$htmlPage) {
         $stringa = "";
         $films = $connection->getNomiFilmApprovati();
         foreach($films as $film) {
-            $stringa .= str_replace("nomefilm", $film["nome"], $template);
+            $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
         }
         $htmlPage = str_replace($p_nomifilm, $stringa, $htmlPage);
     } else {
