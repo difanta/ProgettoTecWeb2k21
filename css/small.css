@@ -338,6 +338,7 @@ footer #studenti li{
 header #adminMenu ul{
     width: 100%;
     margin-top: 0;
+    margin-bottom: 0;
     float: none;
     display: flex;
     flex-direction: row;
@@ -351,13 +352,77 @@ header #adminMenu li{
     text-align: center;
 }
 
+/*admin candidature*/
 
-/* */
+#content_adminCandidature ul#acnSospese{
+    padding-left: 0;
+}
+
+#content_adminCandidature ul#acnSospese li{
+    margin-top: 12px;
+}
+
+#content_adminCandidature ul#acnSospese form{
+    padding: 0.5em;
+}
+
+#content_adminCandidature ul#acnSospese input.button{
+    width: 100%;
+}
+
+#content_adminCandidature ul#acnSospese input.button[value="Rifiuta candidatura"]{
+    margin-top: 0;
+}
+
+#content_adminCandidature form#filtraCandidature{
+    padding: 0;
+}
+
+/* admin proiezioni */
+#content_adminProiezioni form{
+    padding: 0;
+    max-height: unset;
+}
+
+#content_adminProiezioni input,
+#content_adminProiezioni select,
+#content_adminProiezioni input[type="submit"]{
+    display: block;
+    width: 100%;
+    margin: 0.5em auto 0.5em auto;
+    max-width: unset;
+}
+
+#content_adminProiezioni input#aprmData, #content_adminProiezioni input#apraData{
+    width: 95%;
+    margin: 0.5em auto 0.5em auto;
+    max-width: unset;
+}
+
+#content_adminProiezioni #apSelectP {
+    margin-bottom: 0.5em;
+}
+
+br{
+    display: none;
+}
+
+/* admin lista film */
 #content_adminListaFilm #alfAggiungi,
 #content_adminListaFilm #alfModifica{
     padding: 0;
 }
 
-#content_adminListaFilm #alfAggiungi input[type="submit"], #content_adminListaFilm #alfModifica input[type="submit"]{
-    width: 40%;
+#content_adminListaFilm input,
+#content_adminListaFilm select,
+#content_adminListaFilm textarea,
+#content_adminListaFilm input[type="submit"]{
+    display: block;
+    width: 95%;
+    margin: 0.5em auto 0.5em auto;
+    max-width: unset;
+}
+
+#content_adminListaFilm input[type="checkbox"]{
+width: unset;
 }
