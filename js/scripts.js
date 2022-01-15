@@ -246,35 +246,11 @@ function initAdminUtenti() {
     }
 }
 
-function onUtenteSelected() {
-    var elem = document.getElementById('utentiSelect');
-
-    if (elem.value !== "") {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var results = JSON.parse(xmlhttp.response);
-                console.log(results);
-                // utente
-                document.getElementById("id").innerHTML = "id: " + results[0].id;
-                document.getElementById("email").innerHTML = "email: " + results[0].email;
-                document.getElementById("nome").innerHTML = "nome: " + results[0].nome;
-                document.getElementById("cognome").innerHTML = "cognome: " + results[0].cognome;
-
-                // tickets
-                //document.getElementById("strumentoProva").value = results[1][0].nome;
-
-                var list = document.getElementById("ticketList");
-                var re = results[1];
-                for (let i = 0; i < results[1].length; i++) {
-                    let li = document.createElement("li");
-                }
-
-            }
-        };
-        xmlhttp.open("GET", "../php/onUtenteSelected.php?email=" + elem.value, true);
-        xmlhttp.send();
-    }
+function onUtenteSelected(elem) {
+    if(!elem || !elem.value) { return; }
+    let url = new URL(window.location);
+    url.searchParams.set(encodeURIComponent("username"), encodeURIComponent(elem.value));
+    window.location = url;
 }
 
 /* Admin Lista Film */

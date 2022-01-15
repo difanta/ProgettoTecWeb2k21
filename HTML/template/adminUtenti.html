@@ -110,7 +110,7 @@
 
     </ifloggedadmin>
         <label for="utentiSelect">Seleziona un utente</label>
-        <select id="utentiSelect" name="selectUtente" onchange="onUtenteSelected()">
+        <select id="utentiSelect" name="selectUtente" onchange="onUtenteSelected(this)">
             <utenti/>
         </select>
 
@@ -125,7 +125,7 @@
                 <ul id="ticketList">
                     <biglietto/>
                 </ul>
-                <form id="aggiungiBiglietto" action="post">
+                <form id="aggiungiBiglietto" method="post">
                     <input type="hidden" name="agg_userEmail" value="emailutente">
                     <label for="a_filmSelect">Seleziona un film</label>
                     <select id="a_filmSelect" name="agg_nomeFilm" selection="agg_nomefilmselezionato" class="js_toBeInit" onchange="injectProiezioni(this, document.getElementById('a_prSelect'))" required>
