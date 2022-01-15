@@ -6,6 +6,9 @@ include "../php/login.php";
 
 use DB\DBAccess;
 
+/**
+ * Replaces <listaCandidature/> with candidature's list
+ */
 function printCandidature(&$htmlPage)
 {
     $list = "";
@@ -64,7 +67,7 @@ function printCandidature(&$htmlPage)
     } else {
         $list .= "<p>Errore connessione db</p>";
     }
-    if($filter_candidatura == "Approvata") {
+    if ($filter_candidatura == "Approvata") {
         $htmlPage = str_replace("in sospeso</h1>", "approvate</h1>", $htmlPage);
         $htmlPage = str_replace("alertRifiuto", "style=\"display:none;\"", $htmlPage);
     } else {
@@ -73,35 +76,81 @@ function printCandidature(&$htmlPage)
     $htmlPage = str_replace("<listaCandidature/>", $list, $htmlPage);
 }
 
+/**
+ * Rejects (deletes) candidatura from candidature in sospeso
+ */
 function rifiutaCandidatura()
 {
-    if ($_POST["method"] == "Rifiuta candidatura") {
-        $connection = new DBAccess();
-        $connectionOk = $connection->openDB();
+    $_SESSION["method"] = "Rifiuta candidatura";
+    $connection = new DBAccess();
+    $connectionOk = $connection->openDB();
 
-        if ($connectionOk) {
-            $connection->deleteCandidatura($_POST["titolo"]);
-        }
+    if ($connectionOk) {
+        $connection->deleteCandidatura($_POST["titolo"]);
+        $feedback = "Candidatura rifiutata con successo";
+        $_SESSION["success"] = true;
+    } else {
+        $feedback = "Errore nell'operazione";
+        $_SESSION["success"] = false;
     }
+    $_SESSION["feedback"] = $feedback;
 }
 
+/**
+ * Approves candidatura from candidature in sospeso
+ */
 function approvaCandidatura()
 {
-    if ($_POST["method"] == "Accetta candidatura") {
-        $connection = new DBAccess();
-        $connectionOk = $connection->openDB();
+    $_SESSION["method"] = "Accetta candidatura";
+    $connection = new DBAccess();
+    $connectionOk = $connection->openDB();
 
-        if ($connectionOk) {
-            $connection->approvaCandidatura($_POST["titolo"]);
-        }
+    if ($connectionOk) {
+        $connection->approvaCandidatura($_POST["titolo"]);
+        $feedback = "Candidatura approvata con successo";
+        $_SESSION["success"] = true;
+    } else {
+        $feedback = "Errore nell'operazione";
+        $_SESSION["success"] = false;
     }
+    $_SESSION["feedback"] = $feedback;
+}
+
+/**
+ * Suspends (goes back to "to accept/reject state") candidatura from candidature in sospeso
+ */
+function sospendiCandidatura(){
+    $_SESSION["method"] = "Sospendi candidatura";
+    $connection = new DBAccess();
+    $connectionOk = $connection->openDB();
+
+    if ($connectionOk) {
+        $connection->sospendiCandidatura($_POST["titolo"]);
+        $feedback = "Candidatura sospesa con successo";
+        $_SESSION["success"] = true;
+    } else {
+        $feedback = "Errore nell'operazione";
+        $_SESSION["success"] = false;
+    }
+    $_SESSION["feedback"] = $feedback;
 }
 
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
-    rifiutaCandidatura();
-    approvaCandidatura();
+    if (Login::is_logged()) {
+        switch ($_POST["method"]) {
+            case "Accetta candidatura":
+                approvaCandidatura();
+                break;
+            case "Rifiuta candidatura":
+                rifiutaCandidatura();
+                break;
+            case "Sospendi candidatura":
+                sospendiCandidatura();
+                break;
+        }
+    }
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     http_response_code(303);
@@ -111,7 +160,21 @@ if (isset($_POST["method"])) {
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
+
+    // print db content
     printCandidature($htmlPage);
+
+    // feedback
+    if (isset($_SESSION["method"])
+        && isset($_SESSION["success"])) {
+        if ($_SESSION["method"] == "Accetta candidatura"
+            || $_SESSION["method"] == "Rifiuta candidatura")
+            Utils::printFeedback($htmlPage, "<feedbackCandidature/>");
+
+        unset($_SESSION["method"]);
+        unset($_SESSION["feedback"]);
+        unset($_SESSION["success"]);
+    }
 
     echo $htmlPage;
 }

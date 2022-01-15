@@ -1,3 +1,6 @@
+window.addEventListener("load", caricaPagina, true);
+function caricaPagina(){ caricamento();};
+
 /* Feature Detection --------------------------------- */
 
 let passiveSupported = false;
@@ -377,7 +380,10 @@ chiave:campo input di cui inserisco informazioni
 [2] : messaggio di errore
 */
 var emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-var namesRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+var emailregexlogin = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))|admin|user$/;
+var namesRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/;
+var passwordregex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}$/;
+var passwordregexlogin = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}|admin|user$/;
 var dettagli_form = {
     // contest
     "titolo": ["inserisci il titolo del film", /[\wàèéìòù]{1,}/, "il titolo deve contenere almeno un carattere alfanumerico"],
@@ -387,23 +393,44 @@ var dettagli_form = {
     "regista": ["inserisci il regista del film", /[a-zA-Zàèéìòù]{1,}/, "il regista deve contenere almeno un carattere alfabetico"],
     "produttore": ["inserisci il produttore del film", /[a-zA-Zàèéìòù]{1,}/, "il produttore deve contenere almeno un carattere alfabetico"],
     "cast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
-    "email": ["inserisci la tua mail", emailregex, "mail non valida"],
+    //listaFilm
+    "alfaTitolo": ["inserisci il titolo del film", /[\wàèéìòù]{1,}/, "il titolo deve contenere almeno un carattere alfanumerico"],
+    "alfaDescrizione": ["inserisci una descrizione del film", /^.{10,}$/, "la descrizione deve contenere almeno dieci caratteri"],
+    "alfaDurata": ["", /^[6-9][0-9]|1[0-7][0-9]|180$/, "la durata deve essere compresa tra i 60 ed i 180 minuti"],
+    "alfaAnno": ["", /^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/, "l'anno deve essere compreso tra il 1900 ed il 2022"],
+    "alfaRegisti": ["inserisci il regista del film", /[a-zA-Zàèéìòù]{1,}/, "il regista deve contenere almeno un carattere alfabetico"],
+    "alfaProduttore": ["inserisci il produttore del film", /[a-zA-Zàèéìòù]{1,}/, "il produttore deve contenere almeno un carattere alfabetico"],
+    "alfaCast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
+    "alfmTitolo": ["inserisci il titolo del film", /[\wàèéìòù]{1,}/, "il titolo deve contenere almeno un carattere alfanumerico"],
+    "alfmDescrizione": ["inserisci una descrizione del film", /^.{10,}$/, "la descrizione deve contenere almeno dieci caratteri"],
+    "alfmDurata": ["", /^[6-9][0-9]|1[0-7][0-9]|180$/, "la durata deve essere compresa tra i 60 ed i 180 minuti"],
+    "alfmAnno": ["", /^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/, "l'anno deve essere compreso tra il 1900 ed il 2022"],
+    "alfmRegisti": ["inserisci il regista del film", /[a-zA-Zàèéìòù]{1,}/, "il regista deve contenere almeno un carattere alfabetico"],
+    "alfmProduttore": ["inserisci il produttore del film", /[a-zA-Zàèéìòù]{1,}/, "il produttore deve contenere almeno un carattere alfabetico"],
+    "alfmCast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
     // pagina utente
     "userInfoNome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
     "userInfoCognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
-    "userInfoDataNascita": ["", "", "data di nascita non valida"],
     "userInfoEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
-    "userInfoPassword": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
+    "userInfoPassword": ["", passwordregex, "la password deve contenere almeno una lettera ed un numero"],
     // content login
-    "contentLoginEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
-    "contentLoginPassword": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
+    "contentLoginEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
+    "contentLoginPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
     // content signup
     "contentSingupNome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
     "contentSingupCognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
-    "contentSingupDataNascita": ["", "", "data di nascita non valida"],
     "contentSingupEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
-    "contentSingupPassword": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
-    "contentSingupPassword2": ["inserisci una password", /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, "la password deve contenere almeno una lettera ed un numero"],
+    "contentSingupPassword": ["", passwordregex, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
+    "contentSingupPassword2": ["", passwordregex, "la password non coincide con la conferma password"],
+    //login
+    "loginEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
+    "loginPassword": ["", passwordregexlogin, "almeno 8 caratteri di cui un numero e una lettera"],
+    //signup
+    "signupNome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
+    "signupCognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
+    "signupEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
+    "signupPassword": ["", passwordregex, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
+    "signupPassword2": ["", passwordregex, "la password non coincide con la conferma password"],
 };
 
 function caricamento() {
@@ -436,6 +463,9 @@ function campoPerInput(input) {
 }
 
 function validazioneCampo(input) {
+    if(input.id=="signupPassword2"){
+        return confermaPassword(input);
+    }
     var padre = input.parentNode;
     if (padre.children.length == 2) {
         padre.removeChild(padre.children[1]);
@@ -446,7 +476,20 @@ function validazioneCampo(input) {
     input.value = text;
     if ((text.search(regex) == -1) || (text == dettagli_form[input.id][0])) {
         mostraErrore(input);
-        input.focus();
+        return false;
+    }
+    return true;
+}
+function confermaPassword(input){
+    var padre = input.parentNode;
+    if (padre.children.length == 2) {
+        padre.removeChild(padre.children[1]);
+    }
+    var pw = document.getElementById("signupPassword").value;
+    var text = input.value;
+    input.value = text;
+    if (text!=pw) {
+        mostraErrore(input);
         return false;
     }
     return true;

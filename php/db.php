@@ -442,6 +442,18 @@ class DBAccess
     }
 
     /**
+     * @used_in adminCandidature.php
+     */
+    public function sospendiCandidatura($titolo) // TODO elimina le proiezioni relative al film
+    {
+        $stmt = $this->connection->prepare("UPDATE Film
+                                            SET approvato = '0'
+                                            WHERE nome= ?");
+        $stmt->bind_param("s", $titolo);
+        return $stmt->execute();
+    }
+
+    /**
      * @used_in admin.php
      */
     public function getNoUtenti()

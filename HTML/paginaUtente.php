@@ -8,6 +8,7 @@ use DB\DBAccess;
 
 /**
  * Fills user info form with data from logged user
+ * @request GET
  */
 function printInfoUtente(&$htmlPage)
 {
@@ -46,128 +47,88 @@ function printInfoUtente(&$htmlPage)
 
 /**
  * Updates user's info on "modifica" > "Invia" buttons click
+ * @request POST
  */
 function updateInfoUtente()
 {
-    $feedback = "";
-    if (Login::is_logged()) {
-        if ($_POST["method"] == "Invia") {
-            $_SESSION["method"] = "Invia";
-            $nome = $_POST["nome"];
-            $cognome = $_POST["cognome"];
-            $dataNascita = $_POST["dataNascita"];
-            $email = $_POST["email"];
-            $password = $_POST["password"];
+    $_SESSION["method"] = "Invia";
+    $nome = $_POST["nome"];
+    $cognome = $_POST["cognome"];
+    $dataNascita = $_POST["dataNascita"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
 
-            /*
-                        if (strlen($nome) == 0) {
-                            $feedback .= "<li>Nome non present</li>";
-                        } elseif (preg_match('/\d/', $nome)) {
-                            $feedback .= "<li>Nome non può contenere numeri</li>";
-                        }
-
-                        if (strlen($cognome) == 0) {
-                            $feedback .= "<li>Cognome non presente</li>";
-                        } elseif (preg_match('/\d/', $cognome)) {
-                            $feedback .= "<li>Cognome non può contenere numeri</li>";
-                        }
-
-                        if (strlen($dataNascita) == 0) { // add controlli
-                            $feedback .= "<li>Data di nascita non presente</li>";
-                        }
-
-                        if (strlen($email) == 0) {
-                            $feedback .= "<li>Email non presente</li>";
-                        }
-
-                        if (strlen($password) == 0) {
-                            $feedback .= "<li>Password non presente</li>";
-                        }
-            */
-            if ($feedback == "") {
-
-                $connection = new DBAccess();
-                $connectionOk = $connection->openDB();
-
-                if ($connectionOk) {
-                    if ($connection->updateUser($nome, $cognome, $dataNascita, $email, $password)) {
-                        $feedback = "Utente modificato con successo";
-                        $_SESSION["success"] = true;
-                    } else {
-                        $feedback = "Errore nella modifica";
-                        $_SESSION["success"] = false;
-                    }
-                    $connection->closeConnection();
-                } else {
-                    $feedback = "Problemi di connessione al DB";
-                    $_SESSION["success"] = false;
+    /*
+                if (strlen($nome) == 0) {
+                    $feedback .= "<li>Nome non present</li>";
+                } elseif (preg_match('/\d/', $nome)) {
+                    $feedback .= "<li>Nome non può contenere numeri</li>";
                 }
-            }
+
+                if (strlen($cognome) == 0) {
+                    $feedback .= "<li>Cognome non presente</li>";
+                } elseif (preg_match('/\d/', $cognome)) {
+                    $feedback .= "<li>Cognome non può contenere numeri</li>";
+                }
+
+                if (strlen($dataNascita) == 0) { // add controlli
+                    $feedback .= "<li>Data di nascita non presente</li>";
+                }
+
+                if (strlen($email) == 0) {
+                    $feedback .= "<li>Email non presente</li>";
+                }
+
+                if (strlen($password) == 0) {
+                    $feedback .= "<li>Password non presente</li>";
+                }
+    */
+    $connection = new DBAccess();
+    $connectionOk = $connection->openDB();
+
+    if ($connectionOk) {
+        if ($connection->updateUser($nome, $cognome, $dataNascita, $email, $password)) {
+            $feedback = "Utente modificato con successo";
+            $_SESSION["success"] = true;
+        } else {
+            $feedback = "Errore nella modifica";
+            $_SESSION["success"] = false;
         }
-    } else { // not logged
-        $feedback = "Utente non loggato";
+        $connection->closeConnection();
+    } else {
+        $feedback = "Problemi di connessione al DB";
         $_SESSION["success"] = false;
     }
-    $feedback= "ciao";
-    $_SESSION["feedback"] = "ciao";
-}
-
-/**
- * Prints user update results
- */
-function printUpdateInfoUtenteFeedback(&$htmlPage)
-{
-    if (isset($_SESSION["method"])
-        && isset($_SESSION["success"])
-        && $_SESSION["method"] == "Invia") {
-
-        $feedback = isset($_SESSION["feedback"]) ? $_SESSION["feedback"] : "";
-        echo $_SESSION["feedback"];
-
-        if ($_SESSION["success"]) {
-            $feedback = "<span><strong class='feedbackPositive'>" . $feedback . "</strong></span>";
-        } else {
-            $feedback = "<span><strong class='feedbackNegative'>" . $feedback . "</strong></span>";
-        }
-        $htmlPage = str_replace("<feedbackInfoUtente/>", $feedback, $htmlPage);
-
-        unset($_SESSION["method"]);
-        unset($_SESSION["feedback"]);
-        unset($_SESSION["success"]);
-    }
+    $_SESSION["feedback"] = $feedback;
 }
 
 /**
  * Deletes User on "elimina account" button click
+ * @request POST
  */
 function deleteInfoUtente()
 {
-    if (Login::is_logged()) {
-        if ($_POST["method"] == "Elimina Account") {
-            $connection = new DBAccess();
-            $connectionOk = $connection->openDB();
+    $connection = new DBAccess();
+    $connectionOk = $connection->openDB();
 
-            if ($connectionOk) {
-                if ($connection->deleteUser()) {
-                    session_unset();
-                    session_destroy();
-                    session_start();
-                    $_SESSION["success"] = true;
-                } else {
-                    $_SESSION["success"] = false;
-                }
-                $connection->closeConnection();
-            } else {
-                $_SESSION["success"] = false;
-            }
+    if ($connectionOk) {
+        if ($connection->deleteUser()) {
+            session_unset();
+            session_destroy();
+            session_start();
+            $_SESSION["success"] = true;
+        } else {
+            $_SESSION["success"] = false;
         }
-    } else { // not logged
+        $connection->closeConnection();
+    } else {
         $_SESSION["success"] = false;
     }
 }
 
 /**
  * Replaces <listaBiglietti/> with ticket's list
+ * @request GET
  */
 function printBiglietti(&$htmlPage)
 {
@@ -207,6 +168,7 @@ function printBiglietti(&$htmlPage)
 
 /**
  * Replaces <listaCandidature/> with candidature's list
+ * @request GET
  */
 function printCandidature(&$htmlPage)
 {
@@ -258,68 +220,53 @@ function printCandidature(&$htmlPage)
 
 /**
  * deletes selected candidatura
+ * @request POST
  */
 function deleteCandidatura()
 {
-    $feedback = "";
-    if (Login::is_logged()) {
-        if ($_POST["method"] == "Ritira candidatura") {
-            $_SESSION["method"] = "Ritira candidatura";
-            $connection = new DBAccess();
-            $connectionOk = $connection->openDB();
+    $_SESSION["method"] = "Ritira candidatura";
+    $connection = new DBAccess();
+    $connectionOk = $connection->openDB();
 
-            if ($connectionOk) {
-                if ($connection->deleteCandidatura($_POST["titolo"])) {
-                    $feedback = "Candidatura ritirata con successo";
-                    $_SESSION["success"] = true;
-                } else {
-                    $feedback = "errori nell'operazione";
-                    $_SESSION["success"] = false;
-                }
-                $connection->closeConnection();
-            } else {
-                $feedback = "Problemi di connessione al DB";
-                $_SESSION["success"] = false;
-            }
+    if ($connectionOk) {
+        if ($connection->deleteCandidatura($_POST["titolo"])) {
+            $feedback = "Candidatura ritirata con successo";
+            $_SESSION["success"] = true;
+        } else {
+            $feedback = "errori nell'operazione";
+            $_SESSION["success"] = false;
         }
-    } else { // not logged
+        $connection->closeConnection();
+    } else {
+        $feedback = "Problemi di connessione al DB";
         $_SESSION["success"] = false;
     }
     $_SESSION["feedback"] = $feedback;
 }
 
-function printDeleteCandidaturaFeedback(&$htmlPage)
-{
-    if (isset($_SESSION["method"])
-        && isset($_SESSION["success"])
-        && $_SESSION["method"] == "Ritira candidatura") {
-
-        $feedback = isset($_SESSION["feedback"]) ? $_SESSION["feedback"] : "";
-        if ($_SESSION["success"]) {
-            $feedback = "<span><strong class='feedbackPositive'>" . $feedback . "</strong></span>";
-        } else {
-            $feedback = "<span><strong class='feedbackNegative'>" . $feedback . "</strong></span>";
-        }
-        $htmlPage = str_replace("<feedbackDeleteCandidatura/>", $feedback, $htmlPage);
-
-        unset($_SESSION["method"]);
-        unset($_SESSION["feedback"]);
-        unset($_SESSION["success"]);
-    }
-}
-
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
-    updateInfoUtente();
-    deleteCandidatura();
-    if ($_POST["method"] == "Elimina Account") {
-        deleteInfoUtente();
-        http_response_code(303);
-        header("Location: index.php");
-        die();
+
+    // handle user triggered POSTs
+    if (Login::is_logged()) {
+        switch ($_POST["method"]) {
+            case "Invia":
+                updateInfoUtente();
+                break;
+            case "Ritira candidatura":
+                deleteCandidatura();
+                break;
+            case "Elimina Account":
+                deleteInfoUtente();
+                http_response_code(303);
+                header("Location: index.php");
+                die();
+        }
+    } else {
+        $_SESSION["success"] = false;
     }
-    print_r($_SESSION);
+
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     http_response_code(303);
     header("Location: " . $_SERVER["REQUEST_URI"]);
@@ -328,12 +275,28 @@ if (isset($_POST["method"])) {
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
+
+    // print db content
     printInfoUtente($htmlPage);
     printBiglietti($htmlPage);
     printCandidature($htmlPage);
-    printUpdateInfoUtenteFeedback($htmlPage);
-    printDeleteCandidaturaFeedback($htmlPage);
-    print_r($_SESSION);
+
+    // feedback
+    if (isset($_SESSION["method"])
+        && isset($_SESSION["success"])) {
+        switch ($_SESSION["method"]) {
+            case "Invia":
+                Utils::printFeedback($htmlPage, "<feedbackInfoUtente/>");
+                break;
+            case "Ritira candidatura":
+                Utils::printFeedback($htmlPage, "<feedbackDeleteCandidatura/>");
+                break;
+        }
+        unset($_SESSION["method"]);
+        unset($_SESSION["feedback"]);
+        unset($_SESSION["success"]);
+    }
+
     echo $htmlPage;
 }
 
