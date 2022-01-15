@@ -137,6 +137,16 @@ form button:disabled, .button:disabled{
     background-color: darkgray;
 }
 
+/* Server side feedback --------------------------------------*/
+
+.feedbackPositive{
+    color: green;
+}
+
+.feedbackNegative{
+    color: red;
+}
+
 /*--------------------------- Material Icons ------------------------------*/
 span.material-icons-outlined.md18 {
     font-size: 18px;
@@ -422,6 +432,9 @@ div.content{
     text-shadow: 1px 1px 7px #afafaf;
     font-size: 1.4em;
     margin-bottom:0;
+}
+#contatti{
+    scroll-margin-top: 5em;
 }
 #contatti ul{
     list-style-type: none;
@@ -801,6 +814,10 @@ li.filmPopolare a{
     border-bottom: 1px solid rgba(0, 0, 0, 0.6);
 }
 
+header #loginSection p{
+    padding:1em;
+} 
+
 #login-container button {
     font-size: 0.9em;
     margin: 0 1em;
@@ -1091,7 +1108,9 @@ p.attenzioneCandidatura{
     font-size: 16px;
     font-style: italic;
 }
-
+#content_adminCandidature li .button{
+    margin-left:8px;
+}
 #acnSospese li{
     border:var(--main-color-dark) solid;
     background-color: var(--main-color-background);
@@ -1190,6 +1209,11 @@ p.attenzioneCandidatura{
 #content_adminListaFilm *,
 #content_adminProiezioni * {
     width: initial;
+}
+
+#content_adminListaFilm form .button,
+#content_adminProiezioni form .button {
+    padding: 3px;
 }
 
 /* Collapsible Headers */
