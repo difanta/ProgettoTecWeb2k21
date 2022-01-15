@@ -192,7 +192,6 @@ function setEditOff() {
 /* Admin */
 
 function injectProiezioni(elem, target) {
-    console.log(elem, target);
     if(!elem || !target) return;
     
     if(elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
@@ -247,9 +246,23 @@ function initAdminUtenti() {
 }
 
 function onUtenteSelected(elem) {
-    if(!elem || !elem.value) { return; }
+    if(!elem) return;
+
+    if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+        elem.options[elem.selectedIndex].selected = false;
+        [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
+        elem.setAttribute("selection", "");
+    }
+
     let url = new URL(window.location);
-    url.searchParams.set(encodeURIComponent("username"), encodeURIComponent(elem.value));
+
+    if(!elem.value || elem.value == "") {
+        if(!url.searchParams.has("username")) return;
+        url.searchParams.delete("username");
+    } else {
+        if(url.searchParams.has("username") && url.searchParams.get("username") == elem.value) return;
+        url.searchParams.set("username", elem.value);
+    }
     window.location = url;
 }
 

@@ -335,6 +335,13 @@ class DBAccess
         return $stmt->execute();
     }
 
+    public function deleteUserByEmail($email)
+    {
+        $stmt = $this->connection->prepare("DELETE FROM Utente WHERE Utente.email= ?");
+        $stmt->bind_param("s", $email);
+        return $stmt->execute();
+    }
+
     /**
      * @used_in paginaUtente.php
      */
@@ -471,7 +478,7 @@ class DBAccess
      */
     public function getUserTicketsByEmail($email)
     {
-        $stmt = $this->connection->prepare("SELECT Film.nome, Biglietto.id, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora 
+        $stmt = $this->connection->prepare("SELECT Film.nome, Proiezione.id as pid, Biglietto.id as id 
                                             FROM Utente join Biglietto on Utente.id=Biglietto.utente
                                             join Proiezione on Proiezione.id=Biglietto.proiezione
                                             join Film on Film.id= Proiezione.film 
