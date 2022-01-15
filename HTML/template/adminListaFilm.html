@@ -47,14 +47,14 @@
                     <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span></button>
                 </header>
                 <ifnotloginsuccess>
-                    <form id="login" method="post">
-                        <label for="loginEmail">Email</label>
-                        <input id="loginEmail" name="email" type="email" autocomplete="username">
-                        <label for="loginPassword">Password</label>
-                        <input id="loginPassword" name="password" type="password" autocomplete="current-password">
-    
-                        <button name="method" value="login">accedi</button>
-                    </form>
+                    <form id="login" method="post" onsubmit="return validazioneForm();">
+                    <label for="loginEmail">Email</label>
+                    <span><input id="loginEmail" name="email" type="text" autocomplete="username"></span>
+                    <label for="loginPassword">Password</label>
+                    <span><input id="loginPassword" name="password" type="password" autocomplete="current-password"></span>
+
+                    <button name="method" value="login">accedi</button>
+                </form>
                 </ifnotloginsuccess>
                 <ifloginsuccess>
                     <p>Loggato con successo!</p>
@@ -66,23 +66,23 @@
                     <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span></button>
                 </header>
                 <ifnotregistersuccess>
-                    <form id="signup" method="post">
-                        <label for="signupNome">Nome</label>
-                        <input id="signupNome" name="nome" type="text" autocomplete="name">
-                        <label for="signupCognome">Cognome</label>
-                        <input id="signupCognome" name="cognome" type="text" autocomplete="family-name">
-                        <label for="signupDataNascita">Data di nascita</label>
-                        <input id="signupDataNascita" name="data_di_nascita" type="date" autocomplete="bday">
-                        
-                        <label for="signupEmail">Email</label>
-                        <input id="signupEmail" name="email" type="email" autocomplete="home email">
-                        <label for="signupPassword">Password</label>
-                        <input id="signupPassword" name="password" type="password" autocomplete="new-password">
-                        <label for="signupPassword2">ridigita la password</label>
-                        <input id="signupPassword2" name="" type="password" autocomplete="new-password">
-            
-                        <button name="method" value="register">registrati</button>
-                    </form>
+                    <form id="signup" method="post" onsubmit="return validazioneForm();">
+                    <label for="signupNome">Nome</label>
+                    <span><input id="signupNome" name="nome" type="text" autocomplete="name"></span>
+                    <label for="signupCognome">Cognome</label>
+                    <span><input id="signupCognome" name="cognome" type="text" autocomplete="family-name"></span>
+                    <label for="signupDataNascita">Data di nascita</label>
+                    <span><input id="signupDataNascita" name="data_di_nascita" type="date" autocomplete="bday"></span>
+                    
+                    <label for="signupEmail">Email</label>
+                    <span><input id="signupEmail" name="email" type="email" autocomplete="home email"></span>
+                    <label for="signupPassword">Password</label>
+                    <span><input id="signupPassword" name="password" type="password" autocomplete="new-password"></span>
+                    <label for="signupPassword2">ridigita la password</label>
+                    <span><input id="signupPassword2" name="" type="password" autocomplete="new-password"></span>
+        
+                    <button name="method" value="register">registrati</button>
+                </form>
                 </ifnotregistersuccess>
                 <ifregistersuccess>
                     <p>Registrato con successo! Ora effettua il Login</p>
@@ -126,25 +126,25 @@
 
             <form id="alfAggiungi" method="post">
                 <label for="alfaTitolo">Titolo:</label>
-                <input type="text" id="alfaTitolo" name="agg_nomeFilm" value="agg_nomefilm" required/>
+                <span><input type="text" id="alfaTitolo" name="agg_nomeFilm" value="agg_nomefilm" required/></span>
                 
                 <label for="alfaProduttore">Produttore:</label>
-                <input type="text" id="alfaProduttore" name="agg_Produttore" value="agg_produttore" required/>
+                <span><input type="text" id="alfaProduttore" name="agg_Produttore" value="agg_produttore" required/></span>
                 
-                <label for="alfaRegisti">Registi:</label>
-                <input type="text" id="alfaRegisti" name="agg_Regista" value="agg_regista" required/>
+                <label for="alfaRegisti">Regista:</label>
+                <span><input type="text" id="alfaRegisti" name="agg_Regista" value="agg_regista" required/></span>
                 
                 <label for="alfaAnno">Anno di Pubblicazione:</label>
-                <input type="number" id="alfaAnno" name="agg_Anno" value="agg_annofilm" required>
+                <span><input type="number" id="alfaAnno" name="agg_Anno" value="agg_annofilm" min=1900 max=2022 required></span>
                 
                 <label for="alfaDurata">Durata(min):</label>
-                <input type="number" id="alfaDurata" name="agg_Durata" value="agg_duratafilm" required>
+                <span><input type="number" id="alfaDurata" name="agg_Durata" value="agg_duratafilm" min=60 max=180 required></span>
                 
                 <label for="alfaDescrizione">Descrizione:</label>
-                <textarea id="alfaDescrizione" cols="26" rows="5" name="agg_descrizioneFilm" required>agg_descrizionefilm</textarea>
+                <span><textarea id="alfaDescrizione" cols="26" rows="5" name="agg_descrizioneFilm" required>agg_descrizionefilm</textarea></span>
                 
                 <label for="alfaCast">Cast:</label>
-                <textarea id="alfaCast" cols="26" rows="5" name="agg_Cast" required>agg_cast</textarea>
+                <span><textarea id="alfaCast" cols="26" rows="5" name="agg_Cast" required>agg_cast</textarea></span>
                 
                 <input type="checkbox" id="alfaGara" name="agg_inGara" agg_filmingara>
                 <label for="alfaGara" class="inline">In Gara</label>
@@ -166,25 +166,25 @@
                 </select>
                 <br>
                 <label for="alfmTitolo">Titolo:</label>
-                <input type="text" id="alfmTitolo" name="mod_nomeFilm" value="mod_nomefilm"/>
+                <span><input type="text" id="alfmTitolo" name="mod_nomeFilm" value="mod_nomefilm"/></span>
                 
                 <label for="alfmProduttore">Produttore:</label>
-                <input type="text" id="alfmProduttore" name="mod_Produttore" value="mod_produttore"/>
+                <span><input type="text" id="alfmProduttore" name="mod_Produttore" value="mod_produttore"/></span>
 
-                <label for="alfmRegisti">Registi:</label>
-                <input type="text" id="alfmRegisti" name="mod_Registi" value="mod_regista"/>
+                <label for="alfmRegisti">Regista:</label>
+                <span><input type="text" id="alfmRegisti" name="mod_Registi" value="mod_regista"/></span>
                 
                 <label for="alfmAnno">Anno di Pubblicazione:</label>
-                <input type="number" id="alfmAnno" name="mod_Anno" value="mod_annofilm" required>
+                <span><input type="number" id="alfmAnno" name="mod_Anno" value="mod_annofilm" min=1900 max=2022 required></span>
 
                 <label for="alfmDurata">Durata(min):</label>
-                <input type="number" id="alfmDurata" name="mod_Durata" value="mod_duratafilm">
+                <span><input type="number" id="alfmDurata" name="mod_Durata" value="mod_duratafilm" min=60 max=180 ></span>
                 
                 <label for="alfmDescrizione">Descrizione:</label>
-                <textarea id="alfmDescrizione" cols="26" rows="5" name="mod_descrizioneFilm">mod_descrizionefilm</textarea>
+                <span><textarea id="alfmDescrizione" cols="26" rows="5" name="mod_descrizioneFilm">mod_descrizionefilm</textarea></span>
                 
                 <label for="alfmCast">Cast:</label>
-                <textarea id="alfmCast" cols="26" rows="5" name="mod_Cast">mod_cast</textarea>
+                <span><textarea id="alfmCast" cols="26" rows="5" name="mod_Cast">mod_cast</textarea></span>
                 
                 <input type="checkbox" id="alfmGara" name="mod_inGara" mod_filmingara>
                 <label for="alfmGara" class="inline">In Gara</label><br>

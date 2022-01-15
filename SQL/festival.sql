@@ -24,8 +24,8 @@ create table Utente
 );
 
 insert into Utente(id, nome, cognome, data_di_nascita, email, password, admin)
-values (1, "utente", "utente", 2000 - 01 - 01, "utente@utente.com", "utente123", 0),
-       (2, "admin", "admin", 2000 - 01 - 01, "admin@admin.com", "admin123", 1),
+values (1, "utente", "utente", 2000 - 01 - 01, "user", "user", 0),
+       (2, "admin", "admin", 2000 - 01 - 01, "admin", "admin", 1),
 	   (3, "alberto", "tecweb", 2000 - 02 - 02, "alberto@unipd.it", "alberto123", 1),
 	   (4, "tommaso", "tecweb", 2000 - 04 - 07, "tommaso@unipd.it", "tommaso123", 1),
 	   (5, "luca", "tecweb", 2000 - 07 - 04, "luca@unipd.it", "luca123", 1),

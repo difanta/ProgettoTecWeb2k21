@@ -43,14 +43,14 @@
                 <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span>
                 </button>
             </header>
-            <form id="login">
-                <label for="loginEmail">Email</label>
-                <input id="loginEmail" name="email" type="email" autocomplete="username">
-                <label for="loginPassword">Password</label>
-                <input id="loginPassword" name="password" type="password" autocomplete="current-password">
+            <form id="login" method="post" onsubmit="return validazioneForm();">
+                    <label for="loginEmail">Email</label>
+                    <span><input id="loginEmail" name="email" type="text" autocomplete="username"></span>
+                    <label for="loginPassword">Password</label>
+                    <span><input id="loginPassword" name="password" type="password" autocomplete="current-password"></span>
 
-                <button>accedi</button>
-            </form>
+                    <button name="method" value="login">accedi</button>
+                </form>
         </div>
 
         <div id="signupSection" class="slidableIn">
@@ -58,23 +58,23 @@
                 <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span>
                 </button>
             </header>
-            <form id="signup">
-                <label for="signupNome">Nome</label>
-                <input id="signupNome" name="nome" type="text" autocomplete="name">
-                <label for="signupCognome">Cognome</label>
-                <input id="signupCognome" name="cognome" type="text" autocomplete="family-name">
-                <label for="signupDataNascita">Data di nascita</label>
-                <input id="signupDataNascita" name="dataNascita" type="text" autocomplete="bday">
-
-                <label for="signupEmail">Email</label>
-                <input id="signupEmail" name="email" type="email" autocomplete="home email">
-                <label for="signupPassword">Password</label>
-                <input id="signupPassword" name="password" type="password" autocomplete="new-password">
-                <label for="signupPassword2">ridigita la password</label>
-                <input id="signupPassword2" name="password" type="password" autocomplete="new-password">
-
-                <button>registrati</button>
-            </form>
+            <form id="signup" method="post" onsubmit="return validazioneForm();">
+                    <label for="signupNome">Nome</label>
+                    <span><input id="signupNome" name="nome" type="text" autocomplete="name"></span>
+                    <label for="signupCognome">Cognome</label>
+                    <span><input id="signupCognome" name="cognome" type="text" autocomplete="family-name"></span>
+                    <label for="signupDataNascita">Data di nascita</label>
+                    <span><input id="signupDataNascita" name="data_di_nascita" type="date" autocomplete="bday"></span>
+                    
+                    <label for="signupEmail">Email</label>
+                    <span><input id="signupEmail" name="email" type="email" autocomplete="home email"></span>
+                    <label for="signupPassword">Password</label>
+                    <span><input id="signupPassword" name="password" type="password" autocomplete="new-password"></span>
+                    <label for="signupPassword2">ridigita la password</label>
+                    <span><input id="signupPassword2" name="" type="password" autocomplete="new-password"></span>
+        
+                    <button name="method" value="register">registrati</button>
+                </form>
         </div>
     </div>
 

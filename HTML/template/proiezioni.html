@@ -48,11 +48,11 @@
                 </button>
             </header>
             <ifnotloginsuccess>
-                <form id="login" method="post">
+                <form id="login" method="post" onsubmit="return validazioneForm();">
                     <label for="loginEmail">Email</label>
-                    <input id="loginEmail" name="email" type="email" autocomplete="username">
+                    <span><input id="loginEmail" name="email" type="text" autocomplete="username"></span>
                     <label for="loginPassword">Password</label>
-                    <input id="loginPassword" name="password" type="password" autocomplete="current-password">
+                    <span><input id="loginPassword" name="password" type="password" autocomplete="current-password"></span>
 
                     <button name="method" value="login">accedi</button>
                 </form>
@@ -68,21 +68,21 @@
                 </button>
             </header>
             <ifnotregistersuccess>
-                <form id="signup" method="post">
+                <form id="signup" method="post" onsubmit="return validazioneForm();">
                     <label for="signupNome">Nome</label>
-                    <input id="signupNome" name="nome" type="text" autocomplete="name">
+                    <span><input id="signupNome" name="nome" type="text" autocomplete="name"></span>
                     <label for="signupCognome">Cognome</label>
-                    <input id="signupCognome" name="cognome" type="text" autocomplete="family-name">
+                    <span><input id="signupCognome" name="cognome" type="text" autocomplete="family-name"></span>
                     <label for="signupDataNascita">Data di nascita</label>
-                    <input id="signupDataNascita" name="data_di_nascita" type="date" autocomplete="bday">
-
+                    <span><input id="signupDataNascita" name="data_di_nascita" type="date" autocomplete="bday"></span>
+                    
                     <label for="signupEmail">Email</label>
-                    <input id="signupEmail" name="email" type="email" autocomplete="home email">
+                    <span><input id="signupEmail" name="email" type="email" autocomplete="home email"></span>
                     <label for="signupPassword">Password</label>
-                    <input id="signupPassword" name="password" type="password" autocomplete="new-password">
+                    <span><input id="signupPassword" name="password" type="password" autocomplete="new-password"></span>
                     <label for="signupPassword2">ridigita la password</label>
-                    <input id="signupPassword2" name="" type="password" autocomplete="new-password">
-
+                    <span><input id="signupPassword2" name="" type="password" autocomplete="new-password"></span>
+        
                     <button name="method" value="register">registrati</button>
                 </form>
             </ifnotregistersuccess>
