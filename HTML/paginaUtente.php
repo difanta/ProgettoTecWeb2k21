@@ -315,6 +315,7 @@ if (isset($_POST["method"])) {
     deleteCandidatura();
     if ($_POST["method"] == "Elimina Account") {
         deleteInfoUtente();
+        http_response_code(303);
         header("Location: index.php");
         die();
     }
