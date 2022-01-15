@@ -123,38 +123,45 @@
     
     <h1>Admin Lista Utenti</h1>
 
-    </ifloggedadmin>
+    <ifloggedadmin>
         <label for="utentiSelect">Seleziona un utente</label>
-        <select id="utentiSelect" name="selectUtente" onchange="onUtenteSelected(this)">
+        <select id="utentiSelect" name="selectUtente" selection="userselected" class="js_toBeInit" onchange="onUtenteSelected(this)">
+            <option value="" selected></option>
             <utenti/>
         </select>
 
-        <div class="boxUtente">
-            <p id="email">emailutente</p>
-            <p id="nome">nomeutente</p>
-            <p id="cognome">cognomeutente</p>
-            <button onclick="resetPassword('emailutente')">Reset password</button>
-            <button onclick="eliminaUtente('emailutente')">Elimina utente</button>
-            <div id="biglietti">
-                <h1>Biglietti</h1>
-                <ul id="ticketList">
-                    <biglietto/>
-                </ul>
-                <form id="aggiungiBiglietto" method="post">
-                    <input type="hidden" name="agg_userEmail" value="emailutente">
-                    <label for="a_filmSelect">Seleziona un film</label>
-                    <select id="a_filmSelect" name="agg_nomeFilm" selection="agg_nomefilmselezionato" class="js_toBeInit" onchange="injectProiezioni(this, document.getElementById('a_prSelect'))" required>
-                        <nomifilm/>
-                    </select>
-                    <br>
-                    <label for="a_prSelect">Seleziona una proiezione</label>
-                    <select id="a_prSelect" name="agg_idProiezione" selection="agg_idproiezioneselezionata" required>
-                    </select>
-                    <br>
-                    <input type="submit" name="method" value="Aggiungi Biglietto">
+        <ifutenteselezionato>
+            <div class="boxUtente">
+                <p id="email">Email: emailutente</p>
+                <p id="nome">Nome: nomeutente</p>
+                <p id="cognome">Cognome: cognome</p>
+                <p id="data_di_nascita">Data di Nascita: datanascita</p>
+                <form method="post">
+                    <input type="hidden" name="username" value="emailutente">
+                    <input type="submit" name="method" value="Reset Password">
+                    <input type="submit" name="method" value="Elimina Utente">
                 </form>
+                <div id="biglietti">
+                    <h1>Biglietti</h1>
+                    <ul id="ticketList">
+                        <biglietto/>
+                    </ul>
+                    <form id="aggiungiBiglietto" method="post">
+                        <input type="hidden" name="username" value="emailutente">
+                        <label for="a_filmSelect">Seleziona un film</label>
+                        <select id="a_filmSelect" name="agg_nomeFilm" selection="agg_nomefilmselezionato" class="js_toBeInit" onchange="injectProiezioni(this, document.getElementById('a_prSelect'))" required>
+                            <nomifilm/>
+                        </select>
+                        <br>
+                        <label for="a_prSelect">Seleziona una proiezione</label>
+                        <select id="a_prSelect" name="agg_idProiezione" selection="agg_idproiezioneselezionata" required>
+                        </select>
+                        <br>
+                        <input type="submit" name="method" value="Aggiungi Biglietto">
+                    </form>
+                </div>
             </div>
-        </div>
+        </ifutenteselezionato>
     </ifloggedadmin>
     <ifnotloggedadmin>
         <p><iflogged>Non sei Admin!</iflogged><ifnotlogged>Non Loggato!</ifnotlogged> Per accedere a questa pagina serve loggarsi con un account admin.</p>

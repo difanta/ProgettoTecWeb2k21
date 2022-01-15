@@ -18,11 +18,7 @@ function aggiungiProiezione() {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            if($connection->addProiezione($agg_nomeFilm, $agg_data)) {
-                $_SESSION["success"] = true;
-            } else {
-                $_SESSION["success"] = false; 
-            }
+            $_SESSION["success"] = $connection->addProiezione($agg_nomeFilm, $agg_data);
         } else {
             $_SESSION["success"] = false;
         }
@@ -45,11 +41,7 @@ function modificaProiezione() {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            if($connection->modifyProiezione($mod_IdProiezione, $mod_nomeNuovoFilm, $mod_nuovaData)) {
-                $_SESSION["success"] = true;
-            } else {
-                $_SESSION["success"] = false; 
-            }
+            $_SESSION["success"] = $connection->modifyProiezione($mod_IdProiezione, $mod_nomeNuovoFilm, $mod_nuovaData);
         } else {
             $_SESSION["success"] = false;
         }
@@ -74,11 +66,7 @@ function modificaProiezione() {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            if($connection->deleteProiezione($mod_IdProiezione)) {
-                $_SESSION["success"] = true;
-            } else {
-                $_SESSION["success"] = false; 
-            }
+            $_SESSION["success"] = $connection->deleteProiezione($mod_IdProiezione);
         } else {
             $_SESSION["success"] = false;
         }

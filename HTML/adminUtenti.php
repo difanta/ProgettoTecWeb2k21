@@ -6,6 +6,89 @@ include "../php/login.php";
 
 use DB\DBAccess;
 
+function eliminaUtente() {
+    if(!Login::is_logged_admin()) { return; }
+
+    if(isset($_POST["method"]) && $_POST["method"] == "Elimina Utente") {
+
+        if(!isset($_POST["username"])) { return; }
+        $email = $_POST["username"];
+
+        $connection = new DBAccess();
+        $connectionOk = $connection->openDB();
+    
+        if($connectionOk) {
+            $_SESSION["success"] = $connection->deleteUserByEmail($email);
+        } else {
+            $_SESSION["success"] = false;
+        }
+        $_SESSION["method"] = $_POST["method"];
+    }
+}
+
+function resetPassword() {
+    if(!Login::is_logged_admin()) { return; }
+
+    if(isset($_POST["method"]) && $_POST["method"] == "Reset Password") {
+        
+        if(!isset($_POST["username"])) { return; }
+        $email = $_POST["username"];
+
+        $connection = new DBAccess();
+        $connectionOk = $connection->openDB();
+    
+        if($connectionOk) {
+            $_SESSION["success"] = true;
+            //$_SESSION["success"] = $connection->deleteUserByEmail($email);
+        } else {
+            $_SESSION["success"] = false;
+        }
+        $_SESSION["method"] = $_POST["method"];
+    }
+}
+
+function modificaBiglietto() {
+    if(!Login::is_logged_admin()) { return; }
+
+    if(isset($_POST["method"]) && ($_POST["method"] == "Modifica Biglietto" || $_POST["method"] == "Elimina Biglietto")) {
+                
+        if(!isset($_POST["username"])) { return; }
+        $email = $_POST["username"];
+
+        $connection = new DBAccess();
+        $connectionOk = $connection->openDB();
+    
+        if($connectionOk) {
+            $_SESSION["success"] = true;
+            //$_SESSION["success"] = $connection->deleteUserByEmail($email);
+        } else {
+            $_SESSION["success"] = false;
+        }
+        $_SESSION["method"] = $_POST["method"];
+    }
+}
+
+function aggiungiBiglietto() {
+    if(!Login::is_logged_admin()) { return; }
+
+    if(isset($_POST["method"]) && $_POST["method"] == "Aggiungi Biglietto") {
+                
+        if(!isset($_POST["username"])) { return; }
+        $email = $_POST["username"];
+
+        $connection = new DBAccess();
+        $connectionOk = $connection->openDB();
+    
+        if($connectionOk) {
+            $_SESSION["success"] = true;
+            //$_SESSION["success"] = $connection->deleteUserByEmail($email);
+        } else {
+            $_SESSION["success"] = false;
+        }
+        $_SESSION["method"] = $_POST["method"];
+    }
+}
+
 function printUtentiAndFilms(&$htmlPage) {
     $p_utenti = "<utenti/>";
     $p_nomifilm = "<nomifilm/>";
@@ -35,28 +118,65 @@ function printUtentiAndFilms(&$htmlPage) {
     }
 }
 
-function printBiglietti() {
+function printUtenteAndBiglietti(&$htmlPage) {
     if(!Login::is_logged_admin()) { return; }
 
     $p_biglietto = "<biglietto/>";
 
-    /*$connection = new DBAccess();
+    if(isset($_SESSION["method"]) && ($_SESSION["method"] == "Modifica Biglietto" || $_SESSION["method"] == "Elimina Biglietto" || $_SESSION["method"] == "Elimina Utente" || $_SESSION["method"] == "Reset Password")) {
+        echo $_SESSION['method'] . " success: " . $_SESSION['success'];
+        unset($_SESSION['method']);
+        unset($_SESSION['success']);
+    }
+
+    if(!isset($_GET["username"])) { 
+        Login::hideElement("<ifutenteselezionato>", "</ifutenteselezionato>", $htmlPage);
+        $htmlPage = str_replace("userselected", "", $htmlPage);
+        return; 
+    }
+
+    $email = $_GET["username"];
+
+    $connection = new DBAccess();
     $connectionOk = $connection->openDB();
 
     if($connectionOk) {
         $template = file_get_contents("./template/templateAdminUtentiBiglietto.html");
-        $stringa = "";
-        $utenti = $connection->();
-        foreach($utenti as $utente) {
-            $stringa .= str_replace("utente", $utente["email"], $template);
+        $stringaBiglietti = "";
+        
+        $results_user = $connection->getUserByEmail($email);
+        $results_tickets = $connection->getUserTicketsByEmail($email);
+
+        if($results_user && $results_user[0]) {
+            $ticketTemplate = file_get_contents("./template/templateAdminUtentiBiglietto.html");
+
+            if($results_tickets) {
+                foreach($results_tickets as $ticket) {
+                    $biglietto_html = str_replace("idbiglietto"                , $ticket["id"]  , $ticketTemplate);
+                    $biglietto_html = str_replace("mod_nomefilmselezionato"    , $ticket["nome"], $biglietto_html);
+                    $biglietto_html = str_replace("mod_idproiezioneselezionata", $ticket["pid"] , $biglietto_html);
+                    $htmlPage = str_replace($p_biglietto, $biglietto_html . $p_biglietto, $htmlPage);
+                }
+            }
+            $htmlPage = str_replace("emailutente", Sanitizer::forHtml($results_user[0]["email"])          , $htmlPage);
+            $htmlPage = str_replace("nomeutente" , Sanitizer::forHtml($results_user[0]["nome"])           , $htmlPage);
+            $htmlPage = str_replace("cognome"    , Sanitizer::forHtml($results_user[0]["cognome"])        , $htmlPage);
+            $htmlPage = str_replace("datanascita", Sanitizer::forHtml($results_user[0]["data_di_nascita"]), $htmlPage);
         }
-        $htmlPage = str_replace($p_biglietto, $stringa, $htmlPage);
-    } else {
-        $htmlPage = str_replace($p_biglietto, "", $htmlPage);
-    }*/
+    }
+
+    Login::showElement("<ifutenteselezionato>", "</ifutenteselezionato>", $htmlPage);
+    $htmlPage = str_replace("userselected", $email, $htmlPage);
+    $htmlPage = str_replace($p_biglietto, "", $htmlPage);
 }
 
 function printAggiungiBiglietto(&$htmlPage) {
+    if(isset($_SESSION["method"]) && $_SESSION["method"] == "Aggiungi Biglietto") {
+        echo $_SESSION['method'] . " success: " . $_SESSION['success'];
+        unset($_SESSION['method']);
+        unset($_SESSION['success']);
+    }
+
     $htmlPage = str_replace("agg_nomefilmselezionato", "", $htmlPage);
     $htmlPage = str_replace("agg_idproiezioneselezionata", "", $htmlPage);
 }
@@ -64,17 +184,25 @@ function printAggiungiBiglietto(&$htmlPage) {
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
+    eliminaUtente();
+    resetPassword();
+    modificaBiglietto();
+    aggiungiBiglietto();
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     http_response_code(303);
-    header("Location: " . $_SERVER["REQUEST_URI"]);
+    if(isset($_SESSION["method"]) && $_SESSION["method"] == "Elimina Utente" && $_SESSION["success"] == true) {
+        header("Location: " . "./adminUtenti.php");
+    } else {
+        header("Location: " . $_SERVER["REQUEST_URI"]);
+    }
 } else /* GET */ {
     $htmlPage = file_get_contents("template/adminUtenti.html");
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
+    printUtenteAndBiglietti($htmlPage);
     printUtentiAndFilms($htmlPage);
-    printBiglietti();
     printAggiungiBiglietto($htmlPage);
 
     echo $htmlPage;
