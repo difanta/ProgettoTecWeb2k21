@@ -244,25 +244,6 @@ function deleteCandidatura()
     $_SESSION["feedback"] = $feedback;
 }
 
-/**
- * Prints POST function's user feedback
- * @used_in updateInfoUtente()
- * @used_in deleteCandidatura()
- * @param $htmlPage string html page
- * @param $placeholder string placeholder tag to be replaced with feedback
- */
-function printFeedback(&$htmlPage, $placeholder){
-    $feedback = isset($_SESSION["feedback"]) ? $_SESSION["feedback"] : "";
-
-    if ($_SESSION["success"]) {
-        $feedback = "<span><strong class='feedbackPositive'>" . $feedback . "</strong></span>";
-    } else {
-        $feedback = "<span><strong class='feedbackNegative'>" . $feedback . "</strong></span>";
-    }
-
-    $htmlPage = str_replace($placeholder, $feedback, $htmlPage);
-}
-
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
@@ -305,10 +286,10 @@ if (isset($_POST["method"])) {
         && isset($_SESSION["success"])) {
         switch ($_SESSION["method"]) {
             case "Invia":
-                printFeedback($htmlPage, "<feedbackInfoUtente/>");
+                Utils::printFeedback($htmlPage, "<feedbackInfoUtente/>");
                 break;
             case "Ritira candidatura":
-                printFeedback($htmlPage, "<feedbackDeleteCandidatura/>");
+                Utils::printFeedback($htmlPage, "<feedbackDeleteCandidatura/>");
                 break;
         }
         unset($_SESSION["method"]);
