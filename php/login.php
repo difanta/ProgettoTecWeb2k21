@@ -2,6 +2,8 @@
 
 include_once "db.php";
 include_once "sanitizer.php";
+include_once "utils.php";
+
 use DB\DBAccess;
 
 /* Input control feedback messages
