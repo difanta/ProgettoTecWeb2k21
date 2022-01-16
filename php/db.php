@@ -382,6 +382,29 @@ class DBAccess
         return $stmt->execute();
     }
 
+    public function insertTicketByEmail($email, $proiezione)
+    {
+        $stmt = $this->connection->prepare("INSERT INTO Biglietto(utente, proiezione) 
+                                            VALUES ((SELECT id FROM Utente WHERE Utente.email = ?) , ?)");
+        $stmt->bind_param("si", $email, $proiezione);
+        return $stmt->execute();
+    }
+
+    public function modifyTicket($idBiglietto, $idProiezione) {
+        $stmt = $this->connection->prepare("UPDATE Biglietto
+                                            SET proiezione = ? 
+                                            WHERE Biglietto.id = ?");
+        $stmt->bind_param("ii", $idProiezione, $idBiglietto);
+        return $stmt->execute();
+    }
+
+    public function deleteTicket($idBiglietto) {
+        $stmt = $this->connection->prepare("DELETE FROM Biglietto 
+                                            WHERE Biglietto.id = ?");
+        $stmt->bind_param("i", $idBiglietto);
+        return $stmt->execute();
+    }
+
     /**
      * @used_in acquistoBiglietti.php
      */

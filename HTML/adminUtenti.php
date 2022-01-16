@@ -30,16 +30,17 @@ function resetPassword() {
     if(!Login::is_logged_admin()) { return; }
 
     if(isset($_POST["method"]) && $_POST["method"] == "Reset Password") {
-        
+
         if(!isset($_POST["username"])) { return; }
-        $email = $_POST["username"];
+        $username = $_POST["username"];
+        $nomeFilm = $_POST["agg_nomeFilm"];
+        $idProiezione= $_POST["agg_idProiezione"];
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            $_SESSION["success"] = true;
-            //$_SESSION["success"] = $connection->deleteUserByEmail($email);
+            $_SESSION["success"] = $connection->insertTicket();
         } else {
             $_SESSION["success"] = false;
         }
@@ -50,21 +51,38 @@ function resetPassword() {
 function modificaBiglietto() {
     if(!Login::is_logged_admin()) { return; }
 
-    if(isset($_POST["method"]) && ($_POST["method"] == "Modifica Biglietto" || $_POST["method"] == "Elimina Biglietto")) {
-                
-        if(!isset($_POST["username"])) { return; }
-        $email = $_POST["username"];
+    if(isset($_POST["method"])) {
+        if($_POST["method"] == "Modifica Biglietto") {
+            
+            if(!isset($_POST["mod_idBiglietto"])) { return; }
+            $idBiglietto = $_POST["mod_idBiglietto"];
+            $nomeFilm = $_POST["mod_nomeFilm"];
+            $idProiezione= $_POST["mod_idProiezione"];
 
-        $connection = new DBAccess();
-        $connectionOk = $connection->openDB();
-    
-        if($connectionOk) {
-            $_SESSION["success"] = true;
-            //$_SESSION["success"] = $connection->deleteUserByEmail($email);
-        } else {
-            $_SESSION["success"] = false;
+            $connection = new DBAccess();
+            $connectionOk = $connection->openDB();
+        
+            if($connectionOk) {
+                $_SESSION["success"] = $connection->modifyTicket($idBiglietto, $idProiezione);
+            } else {
+                $_SESSION["success"] = false;
+            }
+            $_SESSION["method"] = $_POST["method"];
+        } else if($_POST["method"] == "Elimina Biglietto") {
+            
+            if(!isset($_POST["username"])) { return; }
+            $email = $_POST["username"];
+
+            $connection = new DBAccess();
+            $connectionOk = $connection->openDB();
+        
+            if($connectionOk) {
+                $_SESSION["success"] = $connection->deleteTicket($idBiglietto);
+            } else {
+                $_SESSION["success"] = false;
+            }
+            $_SESSION["method"] = $_POST["method"];
         }
-        $_SESSION["method"] = $_POST["method"];
     }
 }
 
@@ -152,9 +170,9 @@ function printUtenteAndBiglietti(&$htmlPage) {
 
             if($results_tickets) {
                 foreach($results_tickets as $ticket) {
-                    $biglietto_html = str_replace("idbiglietto"                , $ticket["id"]  , $ticketTemplate);
-                    $biglietto_html = str_replace("mod_nomefilmselezionato"    , $ticket["nome"], $biglietto_html);
-                    $biglietto_html = str_replace("mod_idproiezioneselezionata", $ticket["pid"] , $biglietto_html);
+                    $biglietto_html = str_replace("idbiglietto"                , Sanitizer::forHtml($ticket["id"])  , $ticketTemplate);
+                    $biglietto_html = str_replace("mod_nomefilmselezionato"    , Sanitizer::forHtml($ticket["nome"]), $biglietto_html);
+                    $biglietto_html = str_replace("mod_idproiezioneselezionata", Sanitizer::forHtml($ticket["pid"]) , $biglietto_html);
                     $htmlPage = str_replace($p_biglietto, $biglietto_html . $p_biglietto, $htmlPage);
                 }
             }
@@ -166,7 +184,7 @@ function printUtenteAndBiglietti(&$htmlPage) {
     }
 
     Login::showElement("<ifutenteselezionato>", "</ifutenteselezionato>", $htmlPage);
-    $htmlPage = str_replace("userselected", $email, $htmlPage);
+    $htmlPage = str_replace("userselected", Sanitizer::forHtml($email), $htmlPage);
     $htmlPage = str_replace($p_biglietto, "", $htmlPage);
 }
 

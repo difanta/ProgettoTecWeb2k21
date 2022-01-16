@@ -1,13 +1,12 @@
 <li>
     <form method="post">
-        <input type="hidden" name="username" value="emailutente">
         <input type="hidden" name="mod_idBiglietto" value="idbiglietto">
-        <label for="m_filmSelect_idbiglietto">Seleziona un film</label>
+        <label for="m_filmSelect_idbiglietto">Film</label>
         <select id="m_filmSelect_idbiglietto" name="mod_nomeFilm" selection="mod_nomefilmselezionato" class="js_toBeInit" onchange="injectProiezioni(this, document.getElementById('m_prSelect_idbiglietto'))" required>
             <nomifilm/>
         </select>
         <br>
-        <label for="m_prSelect_idbiglietto">Seleziona una proiezione</label>
+        <label for="m_prSelect_idbiglietto">Proiezione</label>
         <select id="m_prSelect_idbiglietto" name="mod_idProiezione" selection="mod_idproiezioneselezionata" required>
         </select>
         <br>
