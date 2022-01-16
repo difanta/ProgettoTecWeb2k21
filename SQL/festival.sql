@@ -52,6 +52,7 @@ create table Film
     in_gara     tinyint     not null,
     approvato   tinyint     not null,
     candidatore int,
+    alt         varchar(125),
     foreign key (candidatore) references Utente (id) on update cascade on delete set null
 );
 
