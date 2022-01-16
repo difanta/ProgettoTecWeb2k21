@@ -87,7 +87,7 @@ function rifiutaCandidatura()
 
     if ($connectionOk) {
         $connection->deleteCandidatura($_POST["titolo"]);
-        $feedback = "Candidatura rifiutata con successo";
+        $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" rifiutata con successo";
         $_SESSION["success"] = true;
     } else {
         $feedback = "Errore nell'operazione";
@@ -107,7 +107,7 @@ function approvaCandidatura()
 
     if ($connectionOk) {
         $connection->approvaCandidatura($_POST["titolo"]);
-        $feedback = "Candidatura approvata con successo";
+        $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" approvata con successo";
         $_SESSION["success"] = true;
     } else {
         $feedback = "Errore nell'operazione";
@@ -118,6 +118,7 @@ function approvaCandidatura()
 
 /**
  * Suspends (goes back to "to accept/reject state") candidatura from candidature in sospeso
+ * Also delets all proiezioni of the selected candidatura
  */
 function sospendiCandidatura(){
     $_SESSION["method"] = "Sospendi candidatura";
@@ -126,7 +127,8 @@ function sospendiCandidatura(){
 
     if ($connectionOk) {
         $connection->sospendiCandidatura($_POST["titolo"]);
-        $feedback = "Candidatura sospesa con successo";
+        $connection->deleteProizioniOnSuspend($_POST["titolo"]);
+        $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" sospesa con successo";
         $_SESSION["success"] = true;
     } else {
         $feedback = "Errore nell'operazione";
