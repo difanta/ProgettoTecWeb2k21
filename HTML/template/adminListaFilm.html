@@ -123,10 +123,12 @@
         <h1>Admin Lista Film</h1>
 
         <ifloggedadmin>
+            <feedback/>
+
             <input id="acollapse" class="collapse" type="checkbox" aggiungiposted>
             <h2><label for="acollapse">Aggiungi Film</label></h2>
 
-            <form id="alfAggiungi" method="post">
+            <form id="alfAggiungi" method="post" onsubmit="return validazioneForm();">
                 <label for="alfaTitolo">Titolo:</label>
                 <span><input type="text" id="alfaTitolo" name="agg_nomeFilm" value="agg_nomefilm" required/></span>
                 
@@ -161,7 +163,7 @@
             <input id="mcollapse" class="collapse" type="checkbox" modificaposted>
             <h2><label for="mcollapse">Modifica Film</label></h2>
 
-            <form id="alfModifica" method="post">
+            <form id="alfModifica" method="post" onsubmit="return validazioneForm();">
                 <label for="alfSelect">Seleziona un film da modificare</label>
                 <select id="alfSelect" name="mod_oldNomeFilm" selection="mod_nomefilmselezionato" onchange="mod_onFilmChanged()">
                     <nomifilm/>

@@ -1,5 +1,7 @@
 <?php
 
+include_once "sanitizer.php";
+
 class Utils
 {
     const emailRegex = "/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/";
@@ -20,12 +22,12 @@ class Utils
      */
     public static function printFeedback(&$htmlPage, $placeholder)
     {
-        $feedback = isset($_SESSION["feedback"]) ? $_SESSION["feedback"] : "";
+        $feedback = isset($_SESSION["feedback"]) ? Sanitizer::forHtml($_SESSION["feedback"]) : "";
 
         if ($_SESSION["success"]) {
-            $feedback = "<span><strong class='feedbackPositive'>" . $feedback . "</strong></span>";
+            $feedback = "<strong class='feedbackPositive'>" . $feedback . "</strong>";
         } else {
-            $feedback = "<span><strong class='feedbackNegative'>" . $feedback . "</strong></span>";
+            $feedback = "<strong class='feedbackNegative'>" . $feedback . "</strong>";
         }
 
         $htmlPage = str_replace($placeholder, $feedback, $htmlPage);

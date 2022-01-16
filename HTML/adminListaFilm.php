@@ -57,9 +57,16 @@ function aggiungiFilm() {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            $_SESSION["success"] = $connection->addFilm($agg_nomeFilm, $agg_Produttore, $agg_Regista, $agg_Anno, $agg_Durata, $agg_descrizioneFilm, $agg_Cast, $agg_inGara, $agg_Approvato);
+            if($connection->addFilm($agg_nomeFilm, $agg_Produttore, $agg_Regista, $agg_Anno, $agg_Durata, $agg_descrizioneFilm, $agg_Cast, $agg_inGara, $agg_Approvato)) {
+                $_SESSION["success"] = true;
+                $_SESSION["feedback"] = "Film aggiunto con successo!";
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Nome film già in uso :(";
+            }
         } else {
             $_SESSION["success"] = false;
+            $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
         }
         $_SESSION["method"]               = $_POST["method"]     ;
         $_SESSION["agg_nomefilm"]         = $agg_nomeFilm        ;
@@ -102,9 +109,16 @@ function modificaFilm() {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            $_SESSION["success"] = $connection->modifyFilm($mod_oldnomefilm, $mod_nomeFilm, $mod_Produttore, $mod_Regista, $mod_Anno, $mod_Durata, $mod_descrizioneFilm, $mod_Cast, $mod_inGara, $mod_Approvato);
+            if($connection->modifyFilm($mod_oldnomefilm, $mod_nomeFilm, $mod_Produttore, $mod_Regista, $mod_Anno, $mod_Durata, $mod_descrizioneFilm, $mod_Cast, $mod_inGara, $mod_Approvato)) {
+                $_SESSION["success"] = true;
+                $_SESSION["feedback"] = "Film modificato con successo!";
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Nome film già in uso oppure film non trovato :(";
+            }
         } else {
             $_SESSION["success"] = false;
+            $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
         }
         $_SESSION["method"]               = $_POST["method"]     ;
         $_SESSION["mod_oldnomefilm"]      = $mod_oldnomefilm     ;
@@ -124,9 +138,16 @@ function modificaFilm() {
         $mod_oldnomefilm = $_POST["mod_oldNomeFilm"];
 
         if($connectionOk) {
-            $_SESSION["success"] = $connection->deleteFilm($mod_oldnomefilm);
+            if($connection->deleteFilm($mod_oldnomefilm)) {
+                $_SESSION["success"] = true;
+                $_SESSION["feedback"] = "Film eliminato con successo!";
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Film non trovato :(";
+            }
         } else {
             $_SESSION["success"] = false;
+            $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
         }
 
         $_SESSION["method"]          = $_POST["method"];
@@ -174,7 +195,7 @@ function printAggiungiFilm(&$htmlPage) {
         else 
         { $htmlPage = str_replace("agg_approvato" , ""        , $htmlPage); }
        
-        $htmlPage = "agg successo: " . $_SESSION["success"] . $htmlPage;
+        Utils::printFeedback($htmlPage, "<feedback/>");
 
         unset($_SESSION["agg_nomefilm"]);
         unset($_SESSION["agg_produttore"]);
@@ -229,7 +250,7 @@ function printModificaFilm(&$htmlPage) {
         else 
         { $htmlPage = str_replace("mod_approvato" , ""        , $htmlPage); }
        
-        $htmlPage = "mod successo: " . $_SESSION["success"] . $htmlPage;
+        Utils::printFeedback($htmlPage, "<feedback/>");
 
         unset($_SESSION["mod_oldnomefilm"]);
         unset($_SESSION["mod_nomefilm"]);
@@ -248,8 +269,10 @@ function printModificaFilm(&$htmlPage) {
             $htmlPage = str_replace("mod_nomefilmselezionato" , Sanitizer::forHtml($_SESSION["mod_oldnomefilm"]) , $htmlPage); 
         } else { 
             $htmlPage = str_replace("mod_nomefilmselezionato" , "" , $htmlPage); 
-            $htmlPage = "mod successo: " . $_SESSION["success"] . $htmlPage; 
         }
+
+        Utils::printFeedback($htmlPage, "<feedback/>");
+
         unset($_SESSION["mod_oldnomefilm"]);
         unset($_SESSION["method"]);
         unset($_SESSION["success"]);
