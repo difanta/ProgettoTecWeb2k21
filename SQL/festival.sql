@@ -24,20 +24,20 @@ create table Utente
 );
 
 insert into Utente(id, nome, cognome, data_di_nascita, email, password, admin)
-values (1, "utente", "utente", 2000 - 01 - 01, "user", "user", 0),
-       (2, "admin", "admin", 2000 - 01 - 01, "admin", "admin", 1),
-	   (3, "alberto", "tecweb", 2000 - 02 - 02, "alberto@unipd.it", "alberto123", 1),
-	   (4, "tommaso", "tecweb", 2000 - 04 - 07, "tommaso@unipd.it", "tommaso123", 1),
-	   (5, "luca", "tecweb", 2000 - 07 - 04, "luca@unipd.it", "luca123", 1),
-	   (6, "giovanni", "tecweb", 2000 - 09 - 06, "giovanni@unipd.it", "giovanni123", 1),
-	   (7, "mario", "draghi", 1964 - 02 - 02, "ildragone@.palazzochigi.it", "mario123", 0),
-	   (8, "giorgia", "meloni", 1973 - 04 - 07, "lagiorgia@fdi.it", "giorgia123", 0),
-	   (9, "sergio", "mattarella", 1955 - 07 - 04, "sergiomattarella@quirinale.it", "sergio123", 0),
-	   (10, "virginia", "raggi", 1979 - 09 - 06, "virgy79@comunediroma.it", "virginia123", 0),
-	   (11, "ombretta", "gaggi", 1989 - 07 - 04, "ombretta@unipd.it", "ombretta123", 0),
-	   (12, "daniela", "mapelli", 1982 - 09 - 06, "dmap@unipd.it", "daniela123", 0),
-	   (13, "jacques", "demy", 1945 - 12 - 03, "jacquesdemy@pariscinema.fr", "jacques123", 0),
-	   (14, "agostino", "ferrente", 1992 - 11 - 11, "ferri@gmail.com", "agostino123", 0);
+values (1, "utente", "utente", "2000-01-01" , "user", "user", 0),
+       (2, "admin", "admin", "2000-01-01" , "admin", "admin", 1),
+	   (3, "alberto", "tecweb", "2000-02-02" , "alberto@unipd.it", "alberto123", 1),
+	   (4, "tommaso", "tecweb", "2000-04-07" , "tommaso@unipd.it", "tommaso123", 1),
+	   (5, "luca", "tecweb", "2000-07-04" , "luca@unipd.it", "luca123", 1),
+	   (6, "giovanni", "tecweb", "2000-09-06", "giovanni@unipd.it", "giovanni123", 1),
+	   (7, "mario", "draghi", "1964-02-02" , "ildragone@.palazzochigi.it", "mario123", 0),
+	   (8, "giorgia", "meloni", "1973-04-07" , "lagiorgia@fdi.it", "giorgia123", 0),
+	   (9, "sergio", "mattarella", "1955-07-04", "sergiomattarella@quirinale.it", "sergio123", 0),
+	   (10, "virginia", "raggi", "1979-09-06" , "virgy79@comunediroma.it", "virginia123", 0),
+	   (11, "ombretta", "gaggi", "1989-07-04" , "ombretta@unipd.it", "ombretta123", 0),
+	   (12, "daniela", "mapelli", "1982-09-06" , "dmap@unipd.it", "daniela123", 0),
+	   (13, "jacques", "demy", "1945-12-03" , "jacquesdemy@pariscinema.fr", "jacques123", 0),
+	   (14, "agostino", "ferrente", "1992-11-11" , "ferri@gmail.com", "agostino123", 0);
 
 create table Film
 (
