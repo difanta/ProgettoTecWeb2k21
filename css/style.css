@@ -81,17 +81,6 @@ form input{
     border-color: var(--main-color-light);
 }
 
-form input:focus{
-    display: block;
-    width: 80%;
-    padding: 0.4em;
-    margin-top: 0;
-    margin-bottom: 1em;
-    border-width: 0 0 2px;
-    border-radius: 0;
-    border-color: var(--main-color-dark);
-}
-
 form .button {
     display: inline; 
 }
