@@ -3,6 +3,7 @@
 session_start();
 
 include "../php/login.php";
+include_once "../php/fs.php";
 
 use DB\DBAccess;
 
@@ -20,6 +21,8 @@ function submitContest()
     $regista = $_POST["regista"];
     $produttore = $_POST["produttore"];
     $cast = $_POST["cast"];
+    $imageTmpPath = $_FILES["imgFilm"]["tmp_name"];
+    $imageExt = strtolower(pathinfo($_FILES["imgFilm"]["name"], PATHINFO_EXTENSION));
 
     if (Utils::validate($titolo, "/[\wàèéìòù]{1,}/")
         && Utils::validate($descrizione, "/^.{10,}$/")
@@ -27,14 +30,19 @@ function submitContest()
         && Utils::validate($anno, "/^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/")
         && Utils::validate($regista, "/[a-zA-Zàèéìòù]{1,}/")
         && Utils::validate($produttore, "/[a-zA-Zàèéìòù]{1,}/")
-        && Utils::validate($cast, "/^.{5,}$/")) {
+        && Utils::validate($cast, "/^.{5,}$/")
+        && getimagesize($_FILES["imgFilm"]["tmp_name"])) {
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
 
         if ($connectionOk) {
             if ($connection->insertContestFilm($titolo, $descrizione, $durata, $anno, $regista, $produttore, $cast)) {
-                $feedback = "Candidatura proposta con successo";
+                if(FS::moveImage($titolo, $imageTmpPath, $imageExt)) {
+                    $feedback = "Candidatura proposta con successo";
+                } else {
+                    $feedback = "Candidatura proposta con successo, ci sono stati problemi imprevisti con la gestione dell'immagine, prego contattare un admin.";
+                }
                 $_SESSION["success"] = true;
             } else {
                 $feedback = "Errore nell' operazione";

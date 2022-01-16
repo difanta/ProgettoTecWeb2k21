@@ -80,8 +80,10 @@ function printProiezioni(&$htmlPage) {
         // set datalist
         $template = "<option value=\"nomefilm\"></option>";
         $stringa = "";
-        foreach($films as $film) {
-            $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
+        if($films) {
+            foreach($films as $film) {
+                $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
+            }
         }
         $htmlPage = str_replace($p_nomifilm, $stringa, $htmlPage);
     } else {

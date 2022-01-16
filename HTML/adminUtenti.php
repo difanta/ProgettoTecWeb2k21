@@ -136,15 +136,19 @@ function printUtentiAndFilms(&$htmlPage) {
 
         $template = "<option value=\"utente\">utente</option>";
         $stringa = "";
-        foreach($utenti as $utente) {
-            $stringa .= str_replace("utente", Sanitizer::forHtml($utente["email"]), $template);
+        if($utenti) {
+            foreach($utenti as $utente) {
+                $stringa .= str_replace("utente", Sanitizer::forHtml($utente["email"]), $template);
+            }
         }
         $htmlPage = str_replace($p_utenti, $stringa, $htmlPage);
 
         $template = "<option value=\"nomefilm\">nomefilm</option>";
         $stringa = "";
-        foreach($films as $film) {
-            $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
+        if($films) {
+            foreach($films as $film) {
+                $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
+            }
         }
         $htmlPage = str_replace($p_nomifilm, $stringa, $htmlPage);
     } else {

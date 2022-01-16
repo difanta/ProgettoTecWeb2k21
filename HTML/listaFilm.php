@@ -48,6 +48,7 @@ function printFilms(&$htmlPage) {
 
     if($connectionOk) {
         $result = $connection->getFilmsApprovati($in_gara, $nomeFilm);
+        $films = $connection->getNomiFilmApprovati();
 
         if($result) {
             $template = file_get_contents("template/templateFilmPreview.html");
@@ -87,9 +88,10 @@ function printFilms(&$htmlPage) {
         // set datalist
         $template = "<option value=\"nomefilm\"></option>";
         $stringa = "";
-        $films = $connection->getNomiFilmApprovati();
-        foreach($films as $film) {
-            $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
+        if($films) {
+            foreach($films as $film) {
+                $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
+            }
         }
         $htmlPage = str_replace($p_nomifilm, $stringa, $htmlPage);
     } else {
