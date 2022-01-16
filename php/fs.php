@@ -16,6 +16,7 @@ class FS {
 
         if($connectionOk) {
             $result = $connection->getFilm($filmName);
+            $connection->closeConnection();
             if($result && $result[0]) {
                 $path = "../images/film/film" . $result[0]["id"] . $ext;
                 file_put_contents($path, $data);
@@ -36,6 +37,7 @@ class FS {
 
         if($connectionOk) {
             $result = $connection->getFilm($filmName);
+            $connection->closeConnection();
             if($result && $result[0]) {
                 $path = "../images/film/film" . $result[0]["id"] . $ext;
                 return move_uploaded_file($tmpPath, $path);
@@ -55,6 +57,7 @@ class FS {
 
         if($connectionOk) {
             $result = $connection->getFilm($filmName);
+            $connection->closeConnection();
             if($result && $result[0]) {
                 foreach(FS::EXTS as $ext) {
                     if(file_exists("../images/film/film" . $result[0]["id"] . $ext)) { 

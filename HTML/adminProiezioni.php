@@ -25,6 +25,7 @@ function aggiungiProiezione() {
                 $_SESSION["success"] = false;
                 $_SESSION["feedback"] = "Errore, Proiezione non aggiunta"; // non succede mai in realtà
             }
+            $connection->closeConnection();
         } else {
             $_SESSION["success"] = false;
             $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
@@ -55,6 +56,7 @@ function modificaProiezione() {
                 $_SESSION["success"] = false;
                 $_SESSION["feedback"] = "Proiezione non trovata :(";
             }
+            $connection->closeConnection();
         } else {
             $_SESSION["success"] = false;
             $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
@@ -87,6 +89,7 @@ function modificaProiezione() {
                 $_SESSION["success"] = false;
                 $_SESSION["feedback"] = "Proiezione non trovata :(";
             }
+            $connection->closeConnection();
         } else {
             $_SESSION["success"] = false;
             $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
@@ -111,6 +114,7 @@ function printFilms(&$htmlPage) {
         $template = "<option value=\"nomefilm\">nomefilm</option>";
         $stringa = "";
         $films = $connection->getNomiFilmApprovati();
+        $connection->closeConnection();
         foreach($films as $film) {
             $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
         }

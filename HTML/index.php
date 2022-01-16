@@ -15,7 +15,8 @@ function printFilmPopolari(&$htmlPage) {
 
     if($connectionOk) {
         $result = $connection->getFilmPopolari();
-        
+        $connection->closeConnection();
+
         if($result) {
             $template = file_get_contents("template/templateFilmPopolare.html");
 

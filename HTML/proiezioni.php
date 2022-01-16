@@ -55,6 +55,8 @@ function printProiezioni(&$htmlPage) {
 
     if($connectionOk) {
         $result = $connection->getProiezioni($in_gara, $nomeFilm, $dataProiezione);
+        $films = $connection->getNomiFilmApprovati();
+        $connection->closeConnection();
 
         if($result) {
             $template = file_get_contents("template/templateProiezione.html");
@@ -78,7 +80,6 @@ function printProiezioni(&$htmlPage) {
         // set datalist
         $template = "<option value=\"nomefilm\"></option>";
         $stringa = "";
-        $films = $connection->getNomiFilmApprovati();
         foreach($films as $film) {
             $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
         }

@@ -22,6 +22,7 @@ if(Login::is_logged()) {
         else {
             http_response_code(400);
         }
+        $connection->closeConnection();
     } else {
         http_response_code(500);
     }

@@ -27,6 +27,7 @@ function eliminaUtente() {
                 $_SESSION["success"] = false;
                 $_SESSION["feedback"] = "Utente non trovato :(";
             }
+            $connection->closeConnection();
         } else {
             $_SESSION["success"] = false;
             $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
@@ -46,7 +47,7 @@ function resetPassword() {
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
-    
+        
         if($connectionOk) {
             $_SESSION["success"] = true;
             $_SESSION["feedback"] = "Password resettata con successo!";
@@ -54,6 +55,7 @@ function resetPassword() {
             $_SESSION["success"] = false;
             $_SESSION["feedback"] = "Utente non trovato :(";
         }
+        $connection->closeConnection();
     } else {
         $_SESSION["success"] = false;
         $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
@@ -84,6 +86,7 @@ function modificaBiglietto() {
                     $_SESSION["success"] = false;
                     $_SESSION["feedback"] = "Biglietto non trovato :(";
                 }
+                $connection->closeConnection();
             } else {
                 $_SESSION["success"] = false;
                 $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
@@ -106,6 +109,7 @@ function modificaBiglietto() {
                     $_SESSION["success"] = false;
                     $_SESSION["feedback"] = "Biglietto non trovato :(";
                 }
+                $connection->closeConnection();
             } else {
                 $_SESSION["success"] = false;
                 $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
@@ -137,6 +141,7 @@ function aggiungiBiglietto() {
                 $_SESSION["success"] = false;
                 $_SESSION["feedback"] = "Errore nell'aggiunta del biglietto :("; // non succede mai in realtà
             }
+            $connection->closeConnection();
         } else {
             $_SESSION["success"] = false;
             $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
@@ -152,9 +157,12 @@ function printUtentiAndFilms(&$htmlPage) {
     $connectionOk = $connection->openDB();
 
     if($connectionOk) {
+        $utenti = $connection->getEmailUtenti();
+        $films = $connection->getNomiFilmApprovati();
+        $connection->closeConnection();
+
         $template = "<option value=\"utente\">utente</option>";
         $stringa = "";
-        $utenti = $connection->getEmailUtenti();
         foreach($utenti as $utente) {
             $stringa .= str_replace("utente", Sanitizer::forHtml($utente["email"]), $template);
         }
@@ -162,7 +170,6 @@ function printUtentiAndFilms(&$htmlPage) {
 
         $template = "<option value=\"nomefilm\">nomefilm</option>";
         $stringa = "";
-        $films = $connection->getNomiFilmApprovati();
         foreach($films as $film) {
             $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
         }
@@ -201,6 +208,7 @@ function printUtenteAndBiglietti(&$htmlPage) {
         
         $results_user = $connection->getUserByEmail($email);
         $results_tickets = $connection->getUserTicketsByEmail($email);
+        $connection->closeConnection();
 
         if($results_user && $results_user[0]) {
             $ticketTemplate = file_get_contents("./template/templateAdminUtentiBiglietto.html");

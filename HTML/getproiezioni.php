@@ -24,6 +24,7 @@ if(Login::is_logged_admin()) {
         $template = "<option value=\"idproiezione\" orario=\"datetime\">data time</option>";
         $stringa = "";
         $proiezioni = $connection->getProiezioni("tutti", $mod_nomeFilm, "");
+        $connection->closeConnection();
         if($proiezioni) {
             foreach($proiezioni as $proiezione) {
                 $p = str_replace("idproiezione" , Sanitizer::forHtml($proiezione["pid"])    , $template);

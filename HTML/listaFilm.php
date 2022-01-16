@@ -81,6 +81,7 @@ function printFilms(&$htmlPage) {
                 }
                 $htmlPage  = str_replace($p_filmPreview, $film_html . $p_filmPreview, $htmlPage);
             }
+            $connection->closeConnection();
         }
 
         // set datalist

@@ -17,7 +17,7 @@ function printFilm(&$htmlPage) {
     
         if($connectionOk) {
             $result = $connection->getFilm($nomeFilm);
-    
+            $connection->closeConnection();
             if($result) {    
                 $film = $result[0];
                 if($film) {

@@ -20,6 +20,7 @@ function returnFilm() {
     if($connectionOk) {
         $stringa = "";
         $film = $connection->getFilm($mod_nomeFilm);
+        $connection->closeConnection();
         if($film && $film[0]) {
             $stringa = Sanitizer::forJson($film[0]);
         }
@@ -64,6 +65,7 @@ function aggiungiFilm() {
                 $_SESSION["success"] = false;
                 $_SESSION["feedback"] = "Nome film già in uso :(";
             }
+            $connection->closeConnection();
         } else {
             $_SESSION["success"] = false;
             $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
@@ -116,6 +118,7 @@ function modificaFilm() {
                 $_SESSION["success"] = false;
                 $_SESSION["feedback"] = "Nome film già in uso :(";
             }
+            $connection->closeConnection();
         } else {
             $_SESSION["success"] = false;
             $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
@@ -145,6 +148,7 @@ function modificaFilm() {
                 $_SESSION["success"] = false;
                 $_SESSION["feedback"] = "Film non trovato :(";
             }
+            $connection->closeConnection();
         } else {
             $_SESSION["success"] = false;
             $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
@@ -165,6 +169,7 @@ function printFilms(&$htmlPage) {
         $template = "<option value=\"nomefilm\">nomefilm</option>";
         $stringa = "";
         $films = $connection->getNomiFilm();
+        $connection->closeConnection();
         foreach($films as $film) {
             $stringa .= str_replace("nomefilm", Sanitizer::forHtml($film["nome"]), $template);
         }
