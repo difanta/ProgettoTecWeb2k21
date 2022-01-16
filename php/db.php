@@ -382,6 +382,29 @@ class DBAccess
         return $stmt->execute();
     }
 
+    public function insertTicketByEmail($email, $proiezione)
+    {
+        $stmt = $this->connection->prepare("INSERT INTO Biglietto(utente, proiezione) 
+                                            VALUES ((SELECT id FROM Utente WHERE Utente.email = ?), ?)");
+        $stmt->bind_param("si", $email, $proiezione);
+        return $stmt->execute();
+    }
+
+    public function modifyTicket($idBiglietto, $idProiezione) {
+        $stmt = $this->connection->prepare("UPDATE Biglietto
+                                            SET proiezione = ? 
+                                            WHERE Biglietto.id = ?");
+        $stmt->bind_param("ii", $idProiezione, $idBiglietto);
+        return $stmt->execute();
+    }
+
+    public function deleteTicket($idBiglietto) {
+        $stmt = $this->connection->prepare("DELETE FROM Biglietto 
+                                            WHERE Biglietto.id = ?");
+        $stmt->bind_param("i", $idBiglietto);
+        return $stmt->execute();
+    }
+
     /**
      * @used_in acquistoBiglietti.php
      */
@@ -444,11 +467,24 @@ class DBAccess
     /**
      * @used_in adminCandidature.php
      */
-    public function sospendiCandidatura($titolo) // TODO elimina le proiezioni relative al film
+    public function sospendiCandidatura($titolo)
     {
         $stmt = $this->connection->prepare("UPDATE Film
                                             SET approvato = '0'
                                             WHERE nome= ?");
+        $stmt->bind_param("s", $titolo);
+        return $stmt->execute();
+    }
+
+    /**
+     * @used_in adminCandidature.php
+     */
+    public function deleteProizioniOnSuspend($titolo)
+    {
+        $stmt = $this->connection->prepare("DELETE Proiezione 
+                                            FROM Proiezione 
+                                                JOIN Film on Film.id = Proiezione.film 
+                                            WHERE film = 1");
         $stmt->bind_param("s", $titolo);
         return $stmt->execute();
     }

@@ -49,20 +49,6 @@ function signupBack() {
     document.getElementById('signupSection').classList.toggle('slideIn');
 }
 
-function expandMenu() {
-    if (document.getElementsByClassName('secondaryMenuItem')[0].style.display == "none") {
-        document.getElementsByClassName('secondaryMenuItem')[0].style.display = "block";
-        document.getElementsByClassName('secondaryMenuItem')[1].style.display = "block";
-        document.getElementsByClassName('secondaryMenuItem')[2].style.display = "block";
-        document.getElementById("expandMenuArrow").textContent = "expand_less";
-    } else {
-        document.getElementsByClassName('secondaryMenuItem')[0].style.display = "none";
-        document.getElementsByClassName('secondaryMenuItem')[1].style.display = "none";
-        document.getElementsByClassName('secondaryMenuItem')[2].style.display = "none";
-        document.getElementById("expandMenuArrow").textContent = "expand_more";
-    }
-}
-
 // hide account dropdown on click outside it and outside account button
 document.addEventListener('click', function (e) {
     let accDropdown = document.getElementById("accountDropdown");
@@ -314,13 +300,42 @@ function mod_onFilmChanged() {
         if (request.readyState === request.DONE) {
             if (request.status === 200) {
                 let obj = JSON.parse(request.response);
-                document.getElementById("alfmTitolo").setAttribute("value", obj["nome"]);
-                document.getElementById("alfmProduttore").setAttribute("value", obj["produttore"]);
-                document.getElementById("alfmRegisti").setAttribute("value", obj["regista"]);
-                document.getElementById("alfmAnno").setAttribute("value", obj["anno"]);
-                document.getElementById("alfmDurata").setAttribute("value", obj["durata"]);
-                document.getElementById("alfmDescrizione").innerHTML = obj["descrizione"];
-                document.getElementById("alfmCast").innerHTML = obj["cast"];
+
+                let titolo = document.getElementById("alfmTitolo");
+                titolo.setAttribute("value", obj["nome"]);
+                titolo.value = titolo.getAttribute("value");
+                titolo.className = "normalInput";
+
+                let produttore = document.getElementById("alfmProduttore");
+                produttore.setAttribute("value", obj["produttore"]);
+                produttore.value = produttore.getAttribute("value");
+                produttore.className = "normalInput";
+
+                let registi = document.getElementById("alfmRegisti");
+                registi.setAttribute("value", obj["regista"]);
+                registi.value = registi.getAttribute("value");
+                registi.className = "normalInput";
+
+                let anno = document.getElementById("alfmAnno");
+                anno.setAttribute("value", obj["anno"]);
+                anno.value = anno.getAttribute("value");
+                anno.className = "normalInput";
+
+                let durata = document.getElementById("alfmDurata");
+                durata.setAttribute("value", obj["durata"]);
+                durata.value = durata.getAttribute("value");
+                durata.className = "normalInput";
+
+                let descrizione = document.getElementById("alfmDescrizione");
+                descrizione.innerHTML = obj["descrizione"];
+                descrizione.value = descrizione.innerHTML;
+                descrizione.className = "normalInput";
+
+                let cast = document.getElementById("alfmCast");
+                cast.innerHTML = obj["cast"];
+                cast.value = cast.innerHTML;
+                cast.className = "normalInput";
+
                 document.getElementById("alfmGara").checked = (obj["in_gara"] == 1);
                 document.getElementById("alfmApprovato").checked = (obj["approvato"] == 1);
             }
@@ -431,7 +446,7 @@ var dettagli_form = {
     "signupEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
     "signupPassword": ["", passwordregex, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
     "signupPassword2": ["", passwordregex, "la password non coincide con la conferma password"],
-};
+}
 
 function caricamento() {
     for (var key in dettagli_form) {
@@ -449,7 +464,7 @@ function caricamento() {
 }
 
 function campoDefault(input) {
-    if (input.value == "") {
+    if (input.value == "" && (!input.getAttribute("value") || input.getAttribute("value") == "")) {
         input.className = "placeholderText";
         input.value = dettagli_form[input.id][0];
     }
@@ -503,12 +518,23 @@ function mostraErrore(input) {
     padre.appendChild(errore);
 }
 
-function validazioneForm() {
+function isAncestorOf(elem, ancestor) {
+    while (elem && elem != ancestor) {
+        elem = elem.parentNode;
+    }
+    if(elem) return true;
+    else return false;
+}
+
+function validazioneForm(form) {
+    let truth = true;
     for (var key in dettagli_form) {
         var input = document.getElementById(key);
-        if (!validazioneCampo(input)) {
-            return false;
+        if (input && isAncestorOf(input, form) && !validazioneCampo(input)) {
+            truth = false;
+            console.log(input);
         }
     }
-    return true;
+    console.log(truth);
+    return truth;
 }

@@ -2,7 +2,7 @@
 
 include_once "db.php";
 include_once "sanitizer.php";
-include_once "utils.php";
+include_once "Utils.php";
 
 use DB\DBAccess;
 
@@ -104,9 +104,14 @@ class Login {
                         $_SESSION["login"]       = $result[0]["id"]; 
                         $_SESSION["accountname"] = ucfirst($result[0]["nome"]); 
                         $_SESSION["is_admin"]    = $result[0]["admin"]; 
-                    } 
+                        $_SESSION["feedback"] = "Login effettuato con successo!";
+                    } else {
+                        $_SESSION["feedback"] = "Email o password sbagliata :( \n Ritenta";
+                    }
                     $connection->closeConnection();
-                } 
+                } else {
+                    $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
+                }
 
                 if($_SESSION["success"] == false) 
                 {
@@ -128,9 +133,15 @@ class Login {
 
                 if($connectionOk) 
                 {
-                    if($connection->insertUser($nome, $cognome, $data_di_nascita, $email, $password))
-                    { $_SESSION["success"] = true; } 
+                    if($connection->insertUser($nome, $cognome, $data_di_nascita, $email, $password)) { 
+                        $_SESSION["success"] = true; 
+                        $_SESSION["feedback"] = "Registrato con successo! Ora effettua il login";
+                    } else {
+                        $_SESSION["feedback"] = "Email già in uso :(";
+                    }
                     $connection->closeConnection();
+                } else {
+                    $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
                 }
 
                 if($_SESSION["success"] == false) 
@@ -149,6 +160,7 @@ class Login {
                 session_destroy();
                 session_start();
                 $_SESSION["success"] = true;
+                $_SESSION["feedback"] = "Logout effettuato con successo!";
             }
         }
         if(isset($_SESSION["success"])) {
@@ -170,10 +182,10 @@ class Login {
                     $htmlPage = str_replace(Login::$p_login_section,    Login::$p_login_section    . " slideIn\"",          $htmlPage);
                     
                     if($success) {
-                        Login::showElement(Login::$p_if_login_success_open,     Login::$p_if_login_success_close,     $htmlPage);
+                        Utils::printFeedback($htmlPage, "<loginfeedback/>");
                         Login::hideElement(Login::$p_if_not_login_success_open, Login::$p_if_not_login_success_close, $htmlPage);
                     } else {
-                        Login::hideElement(Login::$p_if_login_success_open,     Login::$p_if_login_success_close,     $htmlPage);
+                        Utils::printFeedback($htmlPage, "<loginfeedback/>");
                         Login::showElement(Login::$p_if_not_login_success_open, Login::$p_if_not_login_success_close, $htmlPage);
                     }
 
@@ -189,10 +201,10 @@ class Login {
                     $htmlPage = str_replace(Login::$p_signup_section,   Login::$p_signup_section   . " slideIn\"",          $htmlPage);
                     
                     if($success) {
-                        Login::showElement(Login::$p_if_register_success_open,     Login::$p_if_register_success_close,     $htmlPage);
+                        Utils::printFeedback($htmlPage, "<registerfeedback/>");
                         Login::hideElement(Login::$p_if_not_register_success_open, Login::$p_if_not_register_success_close, $htmlPage);
                     } else {
-                        Login::hideElement(Login::$p_if_register_success_open,     Login::$p_if_register_success_close,     $htmlPage);
+                        Utils::printFeedback($htmlPage, "<registerfeedback/>");
                         Login::showElement(Login::$p_if_not_register_success_open, Login::$p_if_not_register_success_close, $htmlPage);
                     }
 
@@ -206,6 +218,7 @@ class Login {
                     break;
 
                 case 'logout':
+                    Utils::printFeedback($htmlPage, "<logoutfeedback/>");
                     $htmlPage = str_replace(Login::$p_account_dropdown, Login::$p_account_dropdown . " class=\"dropdown\"", $htmlPage);
                     
                     break;

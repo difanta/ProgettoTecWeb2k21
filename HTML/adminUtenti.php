@@ -10,19 +10,27 @@ function eliminaUtente() {
     if(!Login::is_logged_admin()) { return; }
 
     if(isset($_POST["method"]) && $_POST["method"] == "Elimina Utente") {
+        $_SESSION["method"] = $_POST["method"];
+        $_SESSION["success"] = false;
 
-        if(!isset($_POST["username"])) { return; }
-        $email = $_POST["username"];
+        if(!isset($_GET["username"])) { return; }
+        $email = $_GET["username"];
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            $_SESSION["success"] = $connection->deleteUserByEmail($email);
+            if($connection->deleteUserByEmail($email)) {
+                $_SESSION["success"] = true;
+                $_SESSION["feedback"] = "Utente eliminato con successo!";
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Utente non trovato :(";
+            }
         } else {
             $_SESSION["success"] = false;
+            $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
         }
-        $_SESSION["method"] = $_POST["method"];
     }
 }
 
@@ -30,41 +38,79 @@ function resetPassword() {
     if(!Login::is_logged_admin()) { return; }
 
     if(isset($_POST["method"]) && $_POST["method"] == "Reset Password") {
-        
-        if(!isset($_POST["username"])) { return; }
-        $email = $_POST["username"];
+        $_SESSION["method"] = $_POST["method"];
+        $_SESSION["success"] = false;
+
+        if(!isset($_GET["username"])) { return; }
+        $email = $_GET["username"];
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
             $_SESSION["success"] = true;
-            //$_SESSION["success"] = $connection->deleteUserByEmail($email);
+            $_SESSION["feedback"] = "Password resettata con successo!";
         } else {
             $_SESSION["success"] = false;
+            $_SESSION["feedback"] = "Utente non trovato :(";
         }
-        $_SESSION["method"] = $_POST["method"];
+    } else {
+        $_SESSION["success"] = false;
+        $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
     }
 }
 
 function modificaBiglietto() {
     if(!Login::is_logged_admin()) { return; }
 
-    if(isset($_POST["method"]) && ($_POST["method"] == "Modifica Biglietto" || $_POST["method"] == "Elimina Biglietto")) {
-                
-        if(!isset($_POST["username"])) { return; }
-        $email = $_POST["username"];
-
-        $connection = new DBAccess();
-        $connectionOk = $connection->openDB();
-    
-        if($connectionOk) {
-            $_SESSION["success"] = true;
-            //$_SESSION["success"] = $connection->deleteUserByEmail($email);
-        } else {
+    if(isset($_POST["method"])) {
+        if($_POST["method"] == "Modifica Biglietto") {
+            $_SESSION["method"] = $_POST["method"];
             $_SESSION["success"] = false;
+
+            if(!isset($_POST["mod_idBiglietto"])) { return; }
+            $idBiglietto = $_POST["mod_idBiglietto"];
+            if(!isset($_POST["mod_idProiezione"])) { return; }
+            $idProiezione= $_POST["mod_idProiezione"];
+
+            $connection = new DBAccess();
+            $connectionOk = $connection->openDB();
+        
+            if($connectionOk) {
+                if($connection->modifyTicket($idBiglietto, $idProiezione)) {
+                    $_SESSION["success"] = true;
+                    $_SESSION["feedback"] = "Biglietto modificato con successo!";
+                } else {
+                    $_SESSION["success"] = false;
+                    $_SESSION["feedback"] = "Biglietto non trovato :(";
+                }
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
+            }
+        } else if($_POST["method"] == "Elimina Biglietto") {
+            $_SESSION["method"] = $_POST["method"];
+            $_SESSION["success"] = false;
+
+            if(!isset($_POST["mod_idBiglietto"])) { return; }
+            $idBiglietto = $_POST["mod_idBiglietto"];
+
+            $connection = new DBAccess();
+            $connectionOk = $connection->openDB();
+        
+            if($connectionOk) {
+                if($connection->deleteTicket($idBiglietto)) {
+                    $_SESSION["success"] = true;
+                    $_SESSION["feedback"] = "Biglietto eliminato con successo!";
+                } else {
+                    $_SESSION["success"] = false;
+                    $_SESSION["feedback"] = "Biglietto non trovato :(";
+                }
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
+            }
         }
-        $_SESSION["method"] = $_POST["method"];
     }
 }
 
@@ -72,20 +118,29 @@ function aggiungiBiglietto() {
     if(!Login::is_logged_admin()) { return; }
 
     if(isset($_POST["method"]) && $_POST["method"] == "Aggiungi Biglietto") {
-                
-        if(!isset($_POST["username"])) { return; }
-        $email = $_POST["username"];
+        $_SESSION["method"] = $_POST["method"];
+        $_SESSION["success"] = false;        
+
+        if(!isset($_GET["username"])) { return; }
+        $email = $_GET["username"];
+        if(!isset($_POST["agg_idProiezione"])) { return; }
+        $idProiezione= $_POST["agg_idProiezione"];
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            $_SESSION["success"] = true;
-            //$_SESSION["success"] = $connection->deleteUserByEmail($email);
+            if($connection->insertTicketByEmail($email, $idProiezione)) {
+                $_SESSION["success"] = true;
+                $_SESSION["feedback"] = "Biglietto aggiunto con successo!";
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Errore nell'aggiunta del biglietto :("; // non succede mai in realtà
+            }
         } else {
             $_SESSION["success"] = false;
+            $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
         }
-        $_SESSION["method"] = $_POST["method"];
     }
 }
 
@@ -123,8 +178,8 @@ function printUtenteAndBiglietti(&$htmlPage) {
 
     $p_biglietto = "<biglietto/>";
 
-    if(isset($_SESSION["method"]) && ($_SESSION["method"] == "Modifica Biglietto" || $_SESSION["method"] == "Elimina Biglietto" || $_SESSION["method"] == "Elimina Utente" || $_SESSION["method"] == "Reset Password")) {
-        echo $_SESSION['method'] . " success: " . $_SESSION['success'];
+    if(isset($_SESSION["method"]) && ($_SESSION["method"] == "Modifica Biglietto" || $_SESSION["method"] == "Elimina Biglietto" || $_SESSION["method"] == "Elimina Utente" || $_SESSION["method"] == "Reset Password" || $_SESSION["method"] == "Aggiungi Biglietto")) {
+        Utils::printFeedback($htmlPage, "<feedback/>");
         unset($_SESSION['method']);
         unset($_SESSION['success']);
     }
@@ -152,9 +207,9 @@ function printUtenteAndBiglietti(&$htmlPage) {
 
             if($results_tickets) {
                 foreach($results_tickets as $ticket) {
-                    $biglietto_html = str_replace("idbiglietto"                , $ticket["id"]  , $ticketTemplate);
-                    $biglietto_html = str_replace("mod_nomefilmselezionato"    , $ticket["nome"], $biglietto_html);
-                    $biglietto_html = str_replace("mod_idproiezioneselezionata", $ticket["pid"] , $biglietto_html);
+                    $biglietto_html = str_replace("idbiglietto"                , Sanitizer::forHtml($ticket["id"])  , $ticketTemplate);
+                    $biglietto_html = str_replace("mod_nomefilmselezionato"    , Sanitizer::forHtml($ticket["nome"]), $biglietto_html);
+                    $biglietto_html = str_replace("mod_idproiezioneselezionata", Sanitizer::forHtml($ticket["pid"]) , $biglietto_html);
                     $htmlPage = str_replace($p_biglietto, $biglietto_html . $p_biglietto, $htmlPage);
                 }
             }
@@ -166,19 +221,8 @@ function printUtenteAndBiglietti(&$htmlPage) {
     }
 
     Login::showElement("<ifutenteselezionato>", "</ifutenteselezionato>", $htmlPage);
-    $htmlPage = str_replace("userselected", $email, $htmlPage);
+    $htmlPage = str_replace("userselected", Sanitizer::forHtml($email), $htmlPage);
     $htmlPage = str_replace($p_biglietto, "", $htmlPage);
-}
-
-function printAggiungiBiglietto(&$htmlPage) {
-    if(isset($_SESSION["method"]) && $_SESSION["method"] == "Aggiungi Biglietto") {
-        echo $_SESSION['method'] . " success: " . $_SESSION['success'];
-        unset($_SESSION['method']);
-        unset($_SESSION['success']);
-    }
-
-    $htmlPage = str_replace("agg_nomefilmselezionato", "", $htmlPage);
-    $htmlPage = str_replace("agg_idproiezioneselezionata", "", $htmlPage);
 }
 
 if (isset($_POST["method"])) {
@@ -203,7 +247,6 @@ if (isset($_POST["method"])) {
     Login::printLogin($htmlPage);
     printUtenteAndBiglietti($htmlPage);
     printUtentiAndFilms($htmlPage);
-    printAggiungiBiglietto($htmlPage);
 
     echo $htmlPage;
 }

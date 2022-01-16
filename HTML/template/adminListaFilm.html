@@ -28,12 +28,13 @@
     <header>
         <a class="goToContent" href="#content_adminListaFilm">Vai al contenuto</a>
 
-        <h1>CinePado</h1>
+        <a href="home.php"><h1>CinePado</h1></a>
 
         <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span><accountname/></button>
         <div id="accountDropdown">
             <div id="accountSection" class="slidableOut">
                 <ifnotlogged>
+                    <logoutfeedback/>
                     <button id="loginBtn" onclick="openLogin()">Login</button>
                     <button id="signupBtn" onclick="openSignup()">Registrati</button>
                 </ifnotlogged>
@@ -48,8 +49,9 @@
                 <header>
                     <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span></button>
                 </header>
+                <loginfeedback/>
                 <ifnotloginsuccess>
-                    <form id="login" method="post" onsubmit="return validazioneForm();">
+                    <form id="login" method="post" onsubmit="return validazioneForm(this);">
                     <label for="loginEmail">Email</label>
                     <span><input id="loginEmail" name="email" type="text" autocomplete="username"></span>
                     <label for="loginPassword">Password</label>
@@ -58,17 +60,15 @@
                     <button name="method" value="login">accedi</button>
                 </form>
                 </ifnotloginsuccess>
-                <ifloginsuccess>
-                    <p>Loggato con successo!</p>
-                </ifloginsuccess>
             </div>
     
             <div id="signupSection" class="slidableIn">
                 <header>
                     <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span></button>
                 </header>
+                <registerfeedback/>
                 <ifnotregistersuccess>
-                    <form id="signup" method="post" onsubmit="return validazioneForm();">
+                    <form id="signup" method="post" onsubmit="return validazioneForm(this);">
                     <label for="signupNome">Nome</label>
                     <span><input id="signupNome" name="nome" type="text" autocomplete="name"></span>
                     <label for="signupCognome">Cognome</label>
@@ -86,11 +86,9 @@
                     <button name="method" value="register">registrati</button>
                 </form>
                 </ifnotregistersuccess>
-                <ifregistersuccess>
-                    <p>Registrato con successo! Ora effettua il Login</p>
-                </ifregistersuccess>
             </div>
         </div>
+
         <nav id="menu">
             <ul>
                 <li lang="en"><a href="index.php">Home</a></li>
@@ -123,10 +121,12 @@
         <h1>Admin Lista Film</h1>
 
         <ifloggedadmin>
+            <feedback/>
+
             <input id="acollapse" class="collapse" type="checkbox" aggiungiposted>
             <h2><label for="acollapse">Aggiungi Film</label></h2>
 
-            <form id="alfAggiungi" method="post">
+            <form id="alfAggiungi" method="post" onsubmit="return validazioneForm(this);">
                 <label for="alfaTitolo">Titolo:</label>
                 <span><input type="text" id="alfaTitolo" name="agg_nomeFilm" value="agg_nomefilm" required/></span>
                 
@@ -161,7 +161,7 @@
             <input id="mcollapse" class="collapse" type="checkbox" modificaposted>
             <h2><label for="mcollapse">Modifica Film</label></h2>
 
-            <form id="alfModifica" method="post">
+            <form id="alfModifica" method="post" onsubmit="return validazioneForm(this);">
                 <label for="alfSelect">Seleziona un film da modificare</label>
                 <select id="alfSelect" name="mod_oldNomeFilm" selection="mod_nomefilmselezionato" onchange="mod_onFilmChanged()">
                     <nomifilm/>

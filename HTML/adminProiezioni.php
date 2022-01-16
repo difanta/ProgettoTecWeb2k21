@@ -18,9 +18,16 @@ function aggiungiProiezione() {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            $_SESSION["success"] = $connection->addProiezione($agg_nomeFilm, $agg_data);
+            if($connection->addProiezione($agg_nomeFilm, $agg_data)) {
+                $_SESSION["success"] = true;
+                $_SESSION["feedback"] = "Proiezione aggiunta con successo!";
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Errore, Proiezione non aggiunta"; // non succede mai in realtà
+            }
         } else {
             $_SESSION["success"] = false;
+            $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
         }
         $_SESSION["method"] = $_POST["method"];
         $_SESSION["agg_nomefilmselezionato"] = $agg_nomeFilm;
@@ -41,9 +48,16 @@ function modificaProiezione() {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            $_SESSION["success"] = $connection->modifyProiezione($mod_IdProiezione, $mod_nomeNuovoFilm, $mod_nuovaData);
+            if($connection->modifyProiezione($mod_IdProiezione, $mod_nomeNuovoFilm, $mod_nuovaData)) {
+                $_SESSION["success"] = true;
+                $_SESSION["feedback"] = "Proiezione modificata con successo!";
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Proiezione non trovata :(";
+            }
         } else {
             $_SESSION["success"] = false;
+            $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
         }
         $_SESSION["method"] = $_POST["method"];
         if($_SESSION["success"] == true) {
@@ -66,9 +80,16 @@ function modificaProiezione() {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            $_SESSION["success"] = $connection->deleteProiezione($mod_IdProiezione);
+            if($connection->deleteProiezione($mod_IdProiezione)) {
+                $_SESSION["success"] = true;
+                $_SESSION["feedback"] = "Proiezione eliminata con successo!";
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Proiezione non trovata :(";
+            }
         } else {
             $_SESSION["success"] = false;
+            $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
         }
         $_SESSION["method"] = $_POST["method"];
         if($_SESSION["success"] == true) {
@@ -105,7 +126,7 @@ function printAggiungiProiezione(&$htmlPage) {
         $htmlPage = str_replace("agg_dataselezionata"     , Sanitizer::forHtml($_SESSION["agg_dataselezionata"])     , $htmlPage);
         $htmlPage = str_replace("aggiungiposted"          , ""                                                       , $htmlPage);
 
-        $htmlPage = " agg successo: " . $_SESSION["success"] . $htmlPage;
+        Utils::printFeedback($htmlPage, "<feedback/>");
 
         unset($_SESSION["agg_nomefilmselezionato"]);
         unset($_SESSION["agg_dataselezionata"]);
@@ -130,7 +151,7 @@ function printModificaProiezione(&$htmlPage) {
             $htmlPage = str_replace("mod_idproiezioneselezionata" , Sanitizer::forHtml($_SESSION["mod_idproiezioneselezionata"]) , $htmlPage);
         }
 
-        $htmlPage = "mod successo: " . $_SESSION["success"] . $htmlPage;
+        Utils::printFeedback($htmlPage, "<feedback/>");
 
         unset($_SESSION["mod_nomefilmselezionato"]);
         unset($_SESSION["mod_idproiezioneselezionata"]);
