@@ -35,33 +35,6 @@ function eliminaUtente() {
     }
 }
 
-function resetPassword() {
-    if(!Login::is_logged_admin()) { return; }
-
-    if(isset($_POST["method"]) && $_POST["method"] == "Reset Password") {
-        $_SESSION["method"] = $_POST["method"];
-        $_SESSION["success"] = false;
-
-        if(!isset($_GET["username"])) { return; }
-        $email = $_GET["username"];
-
-        $connection = new DBAccess();
-        $connectionOk = $connection->openDB();
-        
-        if($connectionOk) {
-            $_SESSION["success"] = true;
-            $_SESSION["feedback"] = "Password resettata con successo!";
-        } else {
-            $_SESSION["success"] = false;
-            $_SESSION["feedback"] = "Utente non trovato :(";
-        }
-        $connection->closeConnection();
-    } else {
-        $_SESSION["success"] = false;
-        $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
-    }
-}
-
 function modificaBiglietto() {
     if(!Login::is_logged_admin()) { return; }
 
@@ -185,7 +158,7 @@ function printUtenteAndBiglietti(&$htmlPage) {
 
     $p_biglietto = "<biglietto/>";
 
-    if(isset($_SESSION["method"]) && ($_SESSION["method"] == "Modifica Biglietto" || $_SESSION["method"] == "Elimina Biglietto" || $_SESSION["method"] == "Elimina Utente" || $_SESSION["method"] == "Reset Password" || $_SESSION["method"] == "Aggiungi Biglietto")) {
+    if(isset($_SESSION["method"]) && ($_SESSION["method"] == "Modifica Biglietto" || $_SESSION["method"] == "Elimina Biglietto" || $_SESSION["method"] == "Elimina Utente" || $_SESSION["method"] == "Aggiungi Biglietto")) {
         Utils::printFeedback($htmlPage, "<feedback/>");
         unset($_SESSION['method']);
         unset($_SESSION['success']);
@@ -237,7 +210,6 @@ if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
     eliminaUtente();
-    resetPassword();
     modificaBiglietto();
     aggiungiBiglietto();
 
