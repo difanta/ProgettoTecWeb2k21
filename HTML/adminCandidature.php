@@ -170,7 +170,8 @@ if (isset($_POST["method"])) {
     if (isset($_SESSION["method"])
         && isset($_SESSION["success"])) {
         if ($_SESSION["method"] == "Accetta candidatura"
-            || $_SESSION["method"] == "Rifiuta candidatura")
+            || $_SESSION["method"] == "Rifiuta candidatura"
+            || $_SESSION["method"] == "Sospendi candidatura")
             Utils::printFeedback($htmlPage, "<feedbackCandidature/>");
 
         unset($_SESSION["method"]);
