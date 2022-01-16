@@ -28,6 +28,25 @@ class FS {
         }
     }
 
+    static function moveImage($filmName, $tmpPath, $ext) {
+        if(!in_array($ext, FS::EXTS)) { return false; }
+
+        $connection = new DBAccess();
+        $connectionOk = $connection->openDB();
+
+        if($connectionOk) {
+            $result = $connection->getFilm($filmName);
+            if($result && $result[0]) {
+                $path = "../images/film/film" . $result[0]["id"] . $ext;
+                return move_uploaded_file($tmpPath, $path);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     static function findImage($filmName) {
         $path = false;
 
