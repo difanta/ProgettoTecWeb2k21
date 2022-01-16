@@ -467,11 +467,24 @@ class DBAccess
     /**
      * @used_in adminCandidature.php
      */
-    public function sospendiCandidatura($titolo) // TODO elimina le proiezioni relative al film
+    public function sospendiCandidatura($titolo)
     {
         $stmt = $this->connection->prepare("UPDATE Film
                                             SET approvato = '0'
                                             WHERE nome= ?");
+        $stmt->bind_param("s", $titolo);
+        return $stmt->execute();
+    }
+
+    /**
+     * @used_in adminCandidature.php
+     */
+    public function deleteProizioniOnSuspend($titolo)
+    {
+        $stmt = $this->connection->prepare("DELETE Proiezione 
+                                            FROM Proiezione 
+                                                JOIN Film on Film.id = Proiezione.film 
+                                            WHERE film = 1");
         $stmt->bind_param("s", $titolo);
         return $stmt->execute();
     }

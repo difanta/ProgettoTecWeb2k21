@@ -215,7 +215,7 @@ function deleteCandidatura()
 
     if ($connectionOk) {
         if ($connection->deleteCandidatura($_POST["titolo"])) {
-            $feedback = "Candidatura ritirata con successo";
+            $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" ritirata con successo";
             $_SESSION["success"] = true;
         } else {
             $feedback = "errori nell'operazione";
