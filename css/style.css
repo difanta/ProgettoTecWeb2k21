@@ -322,10 +322,9 @@ header #accountDropdown .slideIn {
     display: block;
 }
 
-header #accountDropdown header {
-    position: static;
-    background-color: white;
-    text-align: left;
+header #accountDropdown div.loginNavigation {
+    z-index: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.267);
 }
 
 header #accountDropdown button {
@@ -343,7 +342,7 @@ header #accountDropdown div > a {
     text-align: center;
 }
 
-header #accountDropdown header button {
+header #accountDropdown div.loginNavigation button {
     min-width: initial;
     margin: initial;
     background-color: #f1f1f1;

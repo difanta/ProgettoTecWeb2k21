@@ -48,9 +48,9 @@
             </div>
     
             <div id="loginSection" class="slidableIn">
-                <header>
+                <div class="loginNavigation">
                     <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span></button>
-                </header>
+                </div>
                 <loginfeedback/>
                 <ifnotloginsuccess>
                     <form id="login" method="post" onsubmit="return validazioneForm(this);">
@@ -65,9 +65,9 @@
             </div>
     
             <div id="signupSection" class="slidableIn">
-                <header>
+                <div class="loginNavigation">
                     <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span></button>
-                </header>
+                </div>
                 <registerfeedback/>
                 <ifnotregistersuccess>
                     <form id="signup" method="post" onsubmit="return validazioneForm(this);">
