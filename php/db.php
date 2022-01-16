@@ -385,7 +385,7 @@ class DBAccess
     public function insertTicketByEmail($email, $proiezione)
     {
         $stmt = $this->connection->prepare("INSERT INTO Biglietto(utente, proiezione) 
-                                            VALUES ((SELECT id FROM Utente WHERE Utente.email = ?) , ?)");
+                                            VALUES ((SELECT id FROM Utente WHERE Utente.email = ?), ?)");
         $stmt->bind_param("si", $email, $proiezione);
         return $stmt->execute();
     }
