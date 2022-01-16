@@ -114,7 +114,7 @@ function modificaFilm() {
                 $_SESSION["feedback"] = "Film modificato con successo!";
             } else {
                 $_SESSION["success"] = false;
-                $_SESSION["feedback"] = "Nome film già in uso oppure film non trovato :(";
+                $_SESSION["feedback"] = "Nome film già in uso :(";
             }
         } else {
             $_SESSION["success"] = false;
