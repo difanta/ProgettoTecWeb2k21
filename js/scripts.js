@@ -538,7 +538,9 @@ function validazioneForm() {
         var input = document.getElementById(key);
         if (input && !validazioneCampo(input)) {
             truth = false;
+            console.log(input);
         }
     }
+    console.log(truth);
     return truth;
 }

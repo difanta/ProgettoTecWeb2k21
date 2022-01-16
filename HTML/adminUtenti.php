@@ -20,7 +20,16 @@ function eliminaUtente() {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            $_SESSION["success"] = $connection->deleteUserByEmail($email);
+            if($connection->deleteUserByEmail($email)) {
+                $_SESSION["success"] = true;
+                $_SESSION["feedback"] = "Utente eliminato con successo!";
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Utente non trovato :(";
+            }
+        } else {
+            $_SESSION["success"] = false;
+            $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
         }
     }
 }
@@ -40,7 +49,14 @@ function resetPassword() {
     
         if($connectionOk) {
             $_SESSION["success"] = true;
+            $_SESSION["feedback"] = "Password resettata con successo!";
+        } else {
+            $_SESSION["success"] = false;
+            $_SESSION["feedback"] = "Utente non trovato :(";
         }
+    } else {
+        $_SESSION["success"] = false;
+        $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
     }
 }
 
@@ -61,7 +77,16 @@ function modificaBiglietto() {
             $connectionOk = $connection->openDB();
         
             if($connectionOk) {
-                $_SESSION["success"] = $connection->modifyTicket($idBiglietto, $idProiezione);
+                if($connection->modifyTicket($idBiglietto, $idProiezione)) {
+                    $_SESSION["success"] = true;
+                    $_SESSION["feedback"] = "Biglietto modificato con successo!";
+                } else {
+                    $_SESSION["success"] = false;
+                    $_SESSION["feedback"] = "Biglietto non trovato :(";
+                }
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
             }
         } else if($_POST["method"] == "Elimina Biglietto") {
             $_SESSION["method"] = $_POST["method"];
@@ -74,7 +99,16 @@ function modificaBiglietto() {
             $connectionOk = $connection->openDB();
         
             if($connectionOk) {
-                $_SESSION["success"] = $connection->deleteTicket($idBiglietto);
+                if($connection->deleteTicket($idBiglietto)) {
+                    $_SESSION["success"] = true;
+                    $_SESSION["feedback"] = "Biglietto eliminato con successo!";
+                } else {
+                    $_SESSION["success"] = false;
+                    $_SESSION["feedback"] = "Biglietto non trovato :(";
+                }
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
             }
         }
     }
@@ -96,7 +130,16 @@ function aggiungiBiglietto() {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            $_SESSION["success"] = $connection->insertTicketByEmail($email, $idProiezione);
+            if($connection->insertTicketByEmail($email, $idProiezione)) {
+                $_SESSION["success"] = true;
+                $_SESSION["feedback"] = "Biglietto aggiunto con successo!";
+            } else {
+                $_SESSION["success"] = false;
+                $_SESSION["feedback"] = "Errore nell'aggiunta del biglietto :("; // non succede mai in realtà
+            }
+        } else {
+            $_SESSION["success"] = false;
+            $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
         }
     }
 }
@@ -136,7 +179,7 @@ function printUtenteAndBiglietti(&$htmlPage) {
     $p_biglietto = "<biglietto/>";
 
     if(isset($_SESSION["method"]) && ($_SESSION["method"] == "Modifica Biglietto" || $_SESSION["method"] == "Elimina Biglietto" || $_SESSION["method"] == "Elimina Utente" || $_SESSION["method"] == "Reset Password" || $_SESSION["method"] == "Aggiungi Biglietto")) {
-        echo $_SESSION['method'] . " success: " . $_SESSION['success'];
+        Utils::printFeedback($htmlPage, "<feedback/>");
         unset($_SESSION['method']);
         unset($_SESSION['success']);
     }
