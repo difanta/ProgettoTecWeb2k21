@@ -54,21 +54,33 @@ function aggiungiFilm() {
         else 
         { $agg_Approvato = false; }
 
-        $connection = new DBAccess();
-        $connectionOk = $connection->openDB();
-    
-        if($connectionOk) {
-            if($connection->addFilm($agg_nomeFilm, $agg_Produttore, $agg_Regista, $agg_Anno, $agg_Durata, $agg_descrizioneFilm, $agg_Cast, $agg_inGara, $agg_Approvato)) {
-                $_SESSION["success"] = true;
-                $_SESSION["feedback"] = "Film aggiunto con successo!";
+        if(Utils::validate($agg_nomeFilm, Utils::titoloRegex)
+        && Utils::validate($agg_Produttore, Utils::regista_produttoreRegex)
+        && Utils::validate($agg_Regista, Utils::regista_produttoreRegex)
+        && Utils::validate($agg_Anno, Utils::annoRegex)
+        && Utils::validate($agg_Durata, Utils::durataRegex)
+        && Utils::validate($agg_descrizioneFilm, Utils::descrizioneRegex)
+        && Utils::validate($agg_Cast, Utils::castRegex)) {
+
+            $connection = new DBAccess();
+            $connectionOk = $connection->openDB();
+        
+            if($connectionOk) {
+                if($connection->addFilm($agg_nomeFilm, $agg_Produttore, $agg_Regista, $agg_Anno, $agg_Durata, $agg_descrizioneFilm, $agg_Cast, $agg_inGara, $agg_Approvato)) {
+                    $_SESSION["success"] = true;
+                    $_SESSION["feedback"] = "Film aggiunto con successo!";
+                } else {
+                    $_SESSION["success"] = false;
+                    $_SESSION["feedback"] = "Nome film già in uso :(";
+                }
+                $connection->closeConnection();
             } else {
                 $_SESSION["success"] = false;
-                $_SESSION["feedback"] = "Nome film già in uso :(";
+                $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
             }
-            $connection->closeConnection();
         } else {
             $_SESSION["success"] = false;
-            $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
+            $_SESSION["feedback"] = "Errore nella compilazione della form, per maggiori informazioni attivare javascript nel browser";
         }
         $_SESSION["method"]               = $_POST["method"]     ;
         $_SESSION["agg_nomefilm"]         = $agg_nomeFilm        ;
@@ -107,21 +119,33 @@ function modificaFilm() {
         else 
         { $mod_Approvato = false; }
 
-        $connection = new DBAccess();
-        $connectionOk = $connection->openDB();
-    
-        if($connectionOk) {
-            if($connection->modifyFilm($mod_oldnomefilm, $mod_nomeFilm, $mod_Produttore, $mod_Regista, $mod_Anno, $mod_Durata, $mod_descrizioneFilm, $mod_Cast, $mod_inGara, $mod_Approvato)) {
-                $_SESSION["success"] = true;
-                $_SESSION["feedback"] = "Film modificato con successo!";
+        if(Utils::validate($mod_nomeFilm, Utils::titoloRegex)
+        && Utils::validate($mod_Produttore, Utils::regista_produttoreRegex)
+        && Utils::validate($mod_Regista, Utils::regista_produttoreRegex)
+        && Utils::validate($mod_Anno, Utils::annoRegex)
+        && Utils::validate($mod_Durata, Utils::durataRegex)
+        && Utils::validate($mod_descrizioneFilm, Utils::descrizioneRegex)
+        && Utils::validate($mod_Cast, Utils::castRegex)) {
+
+            $connection = new DBAccess();
+            $connectionOk = $connection->openDB();
+        
+            if($connectionOk) {
+                if($connection->modifyFilm($mod_oldnomefilm, $mod_nomeFilm, $mod_Produttore, $mod_Regista, $mod_Anno, $mod_Durata, $mod_descrizioneFilm, $mod_Cast, $mod_inGara, $mod_Approvato)) {
+                    $_SESSION["success"] = true;
+                    $_SESSION["feedback"] = "Film modificato con successo!";
+                } else {
+                    $_SESSION["success"] = false;
+                    $_SESSION["feedback"] = "Nome film già in uso :(";
+                }
+                $connection->closeConnection();
             } else {
                 $_SESSION["success"] = false;
-                $_SESSION["feedback"] = "Nome film già in uso :(";
+                $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
             }
-            $connection->closeConnection();
         } else {
             $_SESSION["success"] = false;
-            $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
+            $_SESSION["feedback"] = "Errore nella compilazione della form, per maggiori informazioni attivare javascript nel browser";
         }
         $_SESSION["method"]               = $_POST["method"]     ;
         $_SESSION["mod_oldnomefilm"]      = $mod_oldnomefilm     ;
@@ -138,7 +162,7 @@ function modificaFilm() {
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
     
-        $mod_oldnomefilm = $_POST["mod_oldNomeFilm"];
+        $mod_oldnomefilm = $_POST["mod_oldNomeFilm"]; // non c'è bisogno di controlli perchè non vengono inseriti dati ed è safe passare anche dati maliziosi al server sql tramite query preparate
 
         if($connectionOk) {
             if($connection->deleteFilm($mod_oldnomefilm)) {

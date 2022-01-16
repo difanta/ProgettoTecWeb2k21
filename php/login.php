@@ -91,26 +91,32 @@ class Login {
                 $email    = $_POST["email"];
                 $password = $_POST["password"];
 
-                $connection   = new DBAccess();
-                $connectionOk = $connection->openDB();
-
                 $_SESSION["success"] = false;
 
-                if($connectionOk) {
-                    $result = $connection->getUserByEmail($email);
-                    if($result && $result[0] && ($result[0]["password"] == $password)) 
-                    {
-                        $_SESSION["success"]     = true;
-                        $_SESSION["login"]       = $result[0]["id"]; 
-                        $_SESSION["accountname"] = ucfirst($result[0]["nome"]); 
-                        $_SESSION["is_admin"]    = $result[0]["admin"]; 
-                        $_SESSION["feedback"] = "Login effettuato con successo!";
+                if(Utils::validate($email, Utils::emailRegexLogin)
+                && Utils::validate($password, Utils::passwordRegexLogin)) {
+
+                    $connection   = new DBAccess();
+                    $connectionOk = $connection->openDB();
+
+                    if($connectionOk) {
+                        $result = $connection->getUserByEmail($email);
+                        if($result && $result[0] && ($result[0]["password"] == $password)) 
+                        {
+                            $_SESSION["success"]     = true;
+                            $_SESSION["login"]       = $result[0]["id"]; 
+                            $_SESSION["accountname"] = ucfirst($result[0]["nome"]); 
+                            $_SESSION["is_admin"]    = $result[0]["admin"]; 
+                            $_SESSION["feedback"] = "Login effettuato con successo!";
+                        } else {
+                            $_SESSION["feedback"] = "Email o password sbagliata :( \n Ritenta";
+                        }
+                        $connection->closeConnection();
                     } else {
-                        $_SESSION["feedback"] = "Email o password sbagliata :( \n Ritenta";
+                        $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
                     }
-                    $connection->closeConnection();
                 } else {
-                    $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
+                    $_SESSION["feedback"] = "Errore nella compilazione della form, per maggiori informazioni attivare javascript nel browser";
                 }
 
                 if($_SESSION["success"] == false) 
@@ -126,22 +132,29 @@ class Login {
                 $email           = $_POST["email"];
                 $password        = $_POST["password"];
 
-                $connection = new DBAccess();
-                $connectionOk = $connection->openDB();
-
                 $_SESSION["success"] = false;
 
-                if($connectionOk) 
-                {
-                    if($connection->insertUser($nome, $cognome, $data_di_nascita, $email, $password)) { 
-                        $_SESSION["success"] = true; 
-                        $_SESSION["feedback"] = "Registrato con successo! Ora effettua il login";
+                if(Utils::validate($nome, Utils::namesRegex)
+                && Utils::validate($cognome, Utils::namesRegex)
+                && Utils::validate($email, Utils::emailRegex)
+                && Utils::validate($password, Utils::passwordRegex)) {
+                    $connection = new DBAccess();
+                    $connectionOk = $connection->openDB();
+
+                    if($connectionOk) 
+                    {
+                        if($connection->insertUser($nome, $cognome, $data_di_nascita, $email, $password)) { 
+                            $_SESSION["success"] = true; 
+                            $_SESSION["feedback"] = "Registrato con successo! Ora effettua il login";
+                        } else {
+                            $_SESSION["feedback"] = "Email già in uso :(";
+                        }
+                        $connection->closeConnection();
                     } else {
-                        $_SESSION["feedback"] = "Email già in uso :(";
+                        $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
                     }
-                    $connection->closeConnection();
                 } else {
-                    $_SESSION["feedback"] = "Errore nei nostri server, ci scusiamo :(";
+                    $_SESSION["feedback"] = "Errore nella compilazione della form, per maggiori informazioni attivare javascript nel browser";
                 }
 
                 if($_SESSION["success"] == false) 

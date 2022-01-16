@@ -9,7 +9,12 @@ class Utils
     const namesRegex = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/";
     const passwordRegex = "/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}$/";
     const passwordRegexLogin = "/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}|admin|user$/";
-
+    const titoloRegex = "/[\wàèéìòù]{1,}/";
+    const descrizioneRegex = "/^.{10,}$/";
+    const durataRegex = "/^[6-9][0-9]|1[0-7][0-9]|180$/";
+    const annoRegex = "/^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/";
+    const regista_produttoreRegex = "/[a-zA-Zàèéìòù]{1,}/";
+    const castRegex = "/^.{5,}$/";
 
     /**
      * Prints POST function's user feedback
