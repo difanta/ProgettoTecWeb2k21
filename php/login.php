@@ -2,7 +2,7 @@
 
 include_once "db.php";
 include_once "sanitizer.php";
-include_once "utils.php";
+include_once "Utils.php";
 
 use DB\DBAccess;
 

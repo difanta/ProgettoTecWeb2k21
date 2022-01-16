@@ -15,70 +15,38 @@ function submitContest()
     $_SESSION["method"] = "Invia Candidatura";
     $titolo = $_POST["titolo"];
     $descrizione = $_POST["descrizione"];
-    $email = $_POST["email"];
     $durata = $_POST["durata"];
     $anno = $_POST["anno"];
     $regista = $_POST["regista"];
     $produttore = $_POST["produttore"];
     $cast = $_POST["cast"];
 
-    /*
-                if (strlen($titolo) == 0) {
-                    $feedback = "<li>Titolo non present</li>";
-                } elseif (preg_match('/\d/', $titolo)) {
-                    $feedback = "<li>Nome non può contenere numeri</li>";
-                }
+    if (Utils::validate($titolo, "/[\wàèéìòù]{1,}/")
+        && Utils::validate($descrizione, "/^.{10,}$/")
+        && Utils::validate($durata, "/^[6-9][0-9]|1[0-7][0-9]|180$/")
+        && Utils::validate($anno, "/^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/")
+        && Utils::validate($regista, "/[a-zA-Zàèéìòù]{1,}/")
+        && Utils::validate($produttore, "/[a-zA-Zàèéìòù]{1,}/")
+        && Utils::validate($cast, "/^.{5,}$/")) {
 
-                if (strlen($descrizione) == 0) {
-                    $feedback = "<li>Descrizione non presente</li>";
-                }
+        $connection = new DBAccess();
+        $connectionOk = $connection->openDB();
 
-                if (strlen($email) == 0) {
-                    $feedback = "<li>Email non presente</li>";
-                }
-
-                if (strlen($durata) == 0) {
-                    $feedback = "<li>Durata non presente</li>";
-                }
-
-                if (strlen($anno) == 0) {
-                    $feedback = "<li>Anno non presente</li>";
-                } elseif (preg_match('/^([SW])\w+([0-9]{4})$/', $anno)) {
-                    $feedback = "<li>Anno può essere solo un numero di 4 cifre</li>";
-                }
-
-                if (strlen($regista) == 0) {
-                    $feedback = "<li>Resgista non presente</li>";
-                } elseif (preg_match('/\d/', $regista)) {
-                    $feedback = "<li>Regista non può contenere numeri</li>";
-                }
-
-                if (strlen($produttore) == 0) {
-                    $feedback = "<li>Produttore non presente</li>";
-                } elseif (preg_match('/\d/', $produttore)) {
-                    $feedback = "<li>Produttore non può contenere numeri</li>";
-                }
-
-                if (strlen($cast) == 0) {
-                    $feedback = "<li>Cast non presente</li>";
-                } elseif (preg_match('/\d/', $cast)) {
-                    $feedback = "<li>Cast non può contenere numeri</li>";
-                }
-    */
-    $connection = new DBAccess();
-    $connectionOk = $connection->openDB();
-
-    if ($connectionOk) {
-        if ($connection->insertContestFilm($titolo, $descrizione, $durata, $anno, $regista, $produttore, $cast)) {
-            $feedback = "Candidatura proposta con successo";
-            $_SESSION["success"] = true;
+        if ($connectionOk) {
+            if ($connection->insertContestFilm($titolo, $descrizione, $durata, $anno, $regista, $produttore, $cast)) {
+                $feedback = "Candidatura proposta con successo";
+                $_SESSION["success"] = true;
+            } else {
+                $feedback = "Errore nell' operazione";
+                $_SESSION["success"] = false;
+            }
+            $connection->closeConnection();
         } else {
-            $feedback = "Errore nell' operazione";
+            $feedback = "Problemi di connessione al DB";
             $_SESSION["success"] = false;
         }
-        $connection->closeConnection();
     } else {
-        $feedback = "Problemi di connessione al DB";
+        $feedback = "Errore nella compliazione";
         $_SESSION["success"] = false;
     }
     $_SESSION["feedback"] = $feedback;
