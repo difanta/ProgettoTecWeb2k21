@@ -54,7 +54,7 @@
                 </header>
                 <loginfeedback/>
                 <ifnotloginsuccess>
-                    <form id="login" method="post" onsubmit="return validazioneForm();">
+                    <form id="login" method="post" onsubmit="return validazioneForm(this);">
                     <label for="loginEmail">Email</label>
                     <span><input id="loginEmail" name="email" type="text" autocomplete="username"></span>
                     <label for="loginPassword">Password</label>
@@ -71,7 +71,7 @@
                 </header>
                 <registerfeedback/>
                 <ifnotregistersuccess>
-                    <form id="signup" method="post" onsubmit="return validazioneForm();">
+                    <form id="signup" method="post" onsubmit="return validazioneForm(this);">
                     <label for="signupNome">Nome</label>
                     <span><input id="signupNome" name="nome" type="text" autocomplete="name"></span>
                     <label for="signupCognome">Cognome</label>
@@ -91,7 +91,7 @@
                 </ifnotregistersuccess>
             </div>
         </div>
-        
+
         <nav id="menu">
             <ul>
                 <li lang="en"><a href="index.php">Home</a></li>

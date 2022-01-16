@@ -51,7 +51,7 @@
             </header>
             <loginfeedback/>
             <ifnotloginsuccess>
-                <form id="login" method="post" onsubmit="return validazioneForm();">
+                <form id="login" method="post" onsubmit="return validazioneForm(this);">
                 <label for="loginEmail">Email</label>
                 <span><input id="loginEmail" name="email" type="text" autocomplete="username"></span>
                 <label for="loginPassword">Password</label>
@@ -68,7 +68,7 @@
             </header>
             <registerfeedback/>
             <ifnotregistersuccess>
-                <form id="signup" method="post" onsubmit="return validazioneForm();">
+                <form id="signup" method="post" onsubmit="return validazioneForm(this);">
                 <label for="signupNome">Nome</label>
                 <span><input id="signupNome" name="nome" type="text" autocomplete="name"></span>
                 <label for="signupCognome">Cognome</label>
@@ -139,7 +139,7 @@
             <button onclick="acquistoBigliettiLogin()">Login</button>
             oppure
             <button onclick="acquistoBigliettiSignup()">Registrati</button>
-            <form id="contentLogin" method="post" onsubmit="return validazioneForm();">
+            <form id="contentLogin" method="post" onsubmit="return validazioneForm(this);">
                 <label for="contentLoginEmail">Email</label>
                 <span><input id="contentLoginEmail" name="email" type="text"></span>
                 <label for="contentLoginPassword">Password</label>
@@ -147,7 +147,7 @@
 
                 <button name="method" value="login">accedi</button>
             </form>
-            <form id="contentSignin" method="post" onsubmit="return validazioneForm();">
+            <form id="contentSignin" method="post" onsubmit="return validazioneForm(this);">
                 <label for="contentSingupNome">Nome</label>
                 <span><input id="contentSingupNome" name="nome" type="text"></span>
                 <label for="contentSingupCognome">Cognome</label>
@@ -171,7 +171,7 @@
         <messaggi/>
 
         <iflogged>
-            <form method="post" onsubmit="return validazioneForm();">
+            <form method="post" onsubmit="return validazioneForm(this);">
                 <fieldset>
                     <label for="titolo">Titolo</label>
                     <span><input type="text" name="titolo" id="titolo" required/></span>

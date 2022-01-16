@@ -532,11 +532,19 @@ function mostraErrore(input) {
     padre.appendChild(errore);
 }
 
-function validazioneForm() {
+function isAncestorOf(elem, ancestor) {
+    while (elem && elem != ancestor) {
+        elem = elem.parentNode;
+    }
+    if(elem) return true;
+    else return false;
+}
+
+function validazioneForm(form) {
     let truth = true;
     for (var key in dettagli_form) {
         var input = document.getElementById(key);
-        if (input && !validazioneCampo(input)) {
+        if (input && isAncestorOf(input, form) && !validazioneCampo(input)) {
             truth = false;
             console.log(input);
         }
