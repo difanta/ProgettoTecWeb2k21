@@ -58,45 +58,30 @@ function updateInfoUtente()
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    /*
-                if (strlen($nome) == 0) {
-                    $feedback .= "<li>Nome non present</li>";
-                } elseif (preg_match('/\d/', $nome)) {
-                    $feedback .= "<li>Nome non può contenere numeri</li>";
-                }
+    if (Utils::validate($nome, Utils::namesRegex)
+        && Utils::validate($cognome, Utils::namesRegex)
+        && Utils::validate($email, Utils::emailRegex)
+        && Utils::validate($password, Utils::passwordRegex)) { // TODO add data di nascita?
 
-                if (strlen($cognome) == 0) {
-                    $feedback .= "<li>Cognome non presente</li>";
-                } elseif (preg_match('/\d/', $cognome)) {
-                    $feedback .= "<li>Cognome non può contenere numeri</li>";
-                }
+        $connection = new DBAccess();
+        $connectionOk = $connection->openDB();
 
-                if (strlen($dataNascita) == 0) { // add controlli
-                    $feedback .= "<li>Data di nascita non presente</li>";
-                }
-
-                if (strlen($email) == 0) {
-                    $feedback .= "<li>Email non presente</li>";
-                }
-
-                if (strlen($password) == 0) {
-                    $feedback .= "<li>Password non presente</li>";
-                }
-    */
-    $connection = new DBAccess();
-    $connectionOk = $connection->openDB();
-
-    if ($connectionOk) {
-        if ($connection->updateUser($nome, $cognome, $dataNascita, $email, $password)) {
-            $feedback = "Utente modificato con successo";
-            $_SESSION["success"] = true;
+        if ($connectionOk) {
+            if ($connection->updateUser($nome, $cognome, $dataNascita, $email, $password)) {
+                $feedback = "Utente modificato con successo";
+                $_SESSION["success"] = true;
+            } else {
+                $feedback = "Errore nella modifica";
+                $_SESSION["success"] = false;
+            }
+            $connection->closeConnection();
         } else {
-            $feedback = "Errore nella modifica";
+            $feedback = "Problemi di connessione al DB";
             $_SESSION["success"] = false;
         }
-        $connection->closeConnection();
+
     } else {
-        $feedback = "Problemi di connessione al DB";
+        $feedback = "Errore nella compliazione";
         $_SESSION["success"] = false;
     }
     $_SESSION["feedback"] = $feedback;
