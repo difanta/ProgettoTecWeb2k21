@@ -7,30 +7,45 @@ class FS {
 
     const EXTS = array("jpg", "png");
 
-    static function moveImage($filmName, $tmpPath, $ext) {
-        if(!in_array($ext, FS::EXTS)) { return false; }
+    static function moveImage($filmName, $tmpPath, $ext, $connection=null) {
+        if(!in_array($ext, FS::EXTS)) { $_SESSION["feedback"] = " wrong extension $ext"; return false; }
 
-        $connection = new DBAccess();
-        $connectionOk = $connection->openDB();
+        $closeConnection = false;
+        $connectionOk = true;
+        if(!$connection) {
+            $closeConnection = true;
+            $connection = new DBAccess();
+            $connectionOk = $connection->openDB();
+        }
 
         if($connectionOk) {
             $result = $connection->getFilm($filmName);
-            $connection->closeConnection();
+            if($closeConnection) { $connection->closeConnection(); }
             if($result && $result[0]) {
                 $path = "../images/film/film" . $result[0]["id"] . "." . $ext;
+                $_SESSION["feedback"] = "path error";
                 return move_uploaded_file($tmpPath, $path);
+            } else {
+                $_SESSION["feedback"] = "film name not found";
             }
+        } else {
+            $_SESSION["feedback"] = "connection failed";
         }
         return false;
     }
 
-    static function findImage($filmName) {
-        $connection = new DBAccess();
-        $connectionOk = $connection->openDB();
+    static function findImage($filmName, $connection=null) {
+        $closeConnection = false;
+        $connectionOk = true;
+        if(!$connection) {
+            $closeConnection = true;
+            $connection = new DBAccess();
+            $connectionOk = $connection->openDB();
+        }
 
         if($connectionOk) {
             $result = $connection->getFilm($filmName);
-            $connection->closeConnection();
+            if($closeConnection) { $connection->closeConnection(); }
             if($result && $result[0]) {
                 foreach(FS::EXTS as $ext) {
                     if(file_exists("../images/film/film" . $result[0]["id"] . "." . $ext)) { 

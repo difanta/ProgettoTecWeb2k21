@@ -13,6 +13,8 @@ use DB\DBAccess;
  */
 function submitContest()
 {
+    if (!Login::is_logged()) return;
+
     $_SESSION["method"] = "Invia Candidatura";
     $titolo = $_POST["titolo"];
     $descrizione = $_POST["descrizione"];
@@ -31,14 +33,14 @@ function submitContest()
         && Utils::validate($regista, "/[a-zA-Zàèéìòù]{1,}/")
         && Utils::validate($produttore, "/[a-zA-Zàèéìòù]{1,}/")
         && Utils::validate($cast, "/^.{5,}$/")
-        && getimagesize($_FILES["imgFilm"]["tmp_name"])) {
+        && getimagesize($imageTmpPath)) {
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
 
         if ($connectionOk) {
             if ($connection->insertContestFilm($titolo, $descrizione, $durata, $anno, $regista, $produttore, $cast)) {
-                if(FS::moveImage($titolo, $imageTmpPath, $imageExt)) {
+                if(FS::moveImage($titolo, $imageTmpPath, $imageExt, $connection)) {
                     $feedback = "Candidatura proposta con successo";
                 } else {
                     $feedback = "Candidatura proposta con successo, ci sono stati problemi imprevisti con la gestione dell'immagine, prego contattare un admin.";
@@ -63,13 +65,11 @@ function submitContest()
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
-    if (Login::is_logged()) {
-        if ($_POST["method"] == "Invia Candidatura") {
-            submitContest();
-        }
-    } else {
-        $_SESSION["success"] = false;
+
+    if ($_POST["method"] == "Invia Candidatura") {
+        submitContest();
     }
+
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     http_response_code(303);
     header("Location: " . $_SERVER["REQUEST_URI"]);

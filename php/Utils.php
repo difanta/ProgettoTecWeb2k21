@@ -36,6 +36,8 @@ class Utils
         }
 
         $htmlPage = str_replace($placeholder, $feedback, $htmlPage);
+
+        unset($_SESSION["feedback"]);
     }
 
     /**

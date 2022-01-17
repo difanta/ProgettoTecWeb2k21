@@ -204,7 +204,7 @@ class DBAccess
      * @used_in adminListaFilm.php
      */
 
-    function addFilm($nomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato)
+    function addFilm($nomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato, $alt)
     {
         if ($inGara) {
             $inGara = 1;
@@ -218,13 +218,13 @@ class DBAccess
             $approvato = 0;
         }
 
-        $stmt = $this->connection->prepare("INSERT INTO Film(nome, produttore, regista, anno, durata, descrizione, cast, in_gara, approvato) 
-                                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssssss", $nomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato);
+        $stmt = $this->connection->prepare("INSERT INTO Film(nome, produttore, regista, anno, durata, descrizione, cast, in_gara, approvato, alt) 
+                                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssssss", $nomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato, $alt);
         return $stmt->execute();
     }
 
-    public function modifyFilm($oldNomeFilm, $newNomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato)
+    public function modifyFilm($oldNomeFilm, $newNomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato, $alt)
     {
         if ($inGara) {
             $inGara = 1;
@@ -239,9 +239,9 @@ class DBAccess
         }
 
         $stmt = $this->connection->prepare("UPDATE Film
-                                            set nome = ?, produttore = ?, regista = ?, anno = ?, durata = ?, descrizione = ?, cast = ?, in_gara = ?, approvato = ?  
+                                            set nome = ?, produttore = ?, regista = ?, anno = ?, durata = ?, descrizione = ?, cast = ?, in_gara = ?, approvato = ?, alt = ?  
                                             where Film.nome = ?");
-        $stmt->bind_param("ssssssssss", $newNomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato, $oldNomeFilm);
+        $stmt->bind_param("sssssssssss", $newNomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato, $alt, $oldNomeFilm);
         return $stmt->execute();
     }
 

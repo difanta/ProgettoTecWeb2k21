@@ -28,6 +28,7 @@ function printFilm(&$htmlPage) {
                     $htmlPage = str_replace("annodipubblicazione" , Sanitizer::forHtml($film["anno"])        , $htmlPage);
                     $htmlPage = str_replace("nomeproduttore"      , Sanitizer::forHtml($film["produttore"])  , $htmlPage);
                     $htmlPage = str_replace("duratafilm"          , Sanitizer::forHtml($film["durata"])      , $htmlPage);
+                    $htmlPage = str_replace("descrizioneimmagine" , Sanitizer::forHtml($film["alt"])         , $htmlPage);
                     $htmlPage = str_replace("descrizionefilm"     , Sanitizer::forHtml($film["descrizione"]) , $htmlPage);
                     $htmlPage = str_replace("percorsoimmagine"    , FS::findImage($film["nome"]), $htmlPage);
                     if($film["in_gara"]){
