@@ -41,6 +41,10 @@ function printOrdine(&$htmlPage)
     $htmlPage = str_replace("<ordine/>", $ordine, $htmlPage);
 }
 
+/**
+ * Manage feedback on POST request, otherwise prints the buy button
+ * @request GET
+ */
 function printAcquisto(&$htmlPage)
 {
     print_r($_SESSION);
