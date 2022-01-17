@@ -6,9 +6,12 @@ include "../php/login.php";
 
 use DB\DBAccess;
 
+/**
+ * Replaces <ordine/> with ticket's info
+ * @request GET
+ */
 function printOrdine(&$htmlPage)
 {
-    $messaggi = "";
     $ordine = "";
 
     if (isset($_GET["id"])) {
@@ -29,10 +32,10 @@ function printOrdine(&$htmlPage)
             $ordine = str_replace("pOra", Sanitizer::forHtml($results[0]["ora"]), $ordine);
 
         } else {
-            $messaggi .= "<li>problemi db</li>";
+            $ordine .= "<strong class='feedbackNegative'>Problemi di connessione al DB</strong>";
         }
     } else {
-        $messaggi = "<p>proiezione non selezionata</p>";
+        $ordine = "<strong class='feedbackPositive'>proiezione non selezionata</strong>";
     }
 
     $htmlPage = str_replace("<ordine/>", $ordine, $htmlPage);
@@ -40,14 +43,22 @@ function printOrdine(&$htmlPage)
 
 function printAcquisto(&$htmlPage)
 {
+    print_r($_SESSION);
     $acquisto = "";
-    if (isset($_SESSION["success"])) { // if bottone acquista clicked
-        if ($_SESSION["success"]) {
-            $acquisto = file_get_contents("template/templateAcquistoSuccesso.html");
-        } else {
-            // errore
+    if (isset($_SESSION["method"])
+        && isset($_SESSION["success"])) {
+        if ($_SESSION["method"] == "Acquista") {
+
+            if ($_SESSION["success"]) {
+                $acquisto = file_get_contents("template/templateAcquistoSuccesso.html");
+            } else {
+                $feedback = isset($_SESSION["feedback"]) ? Sanitizer::forHtml($_SESSION["feedback"]) : "";
+                $acquisto = "<strong class='feedbackNegative'>" . $feedback . "</strong>";
+            }
+            unset($_SESSION["method"]);
+            unset($_SESSION["feedback"]);
+            unset($_SESSION["success"]);
         }
-        unset($_SESSION["success"]);
     } else { // first print
         $acquisto = file_get_contents("template/templateAcquisto.html");
     }
@@ -55,40 +66,43 @@ function printAcquisto(&$htmlPage)
     $htmlPage = str_replace("<acquisto/>", $acquisto, $htmlPage);
 }
 
+/**
+ * Insert ticket into db
+ * @request POST
+ */
 function insertOrdine(&$htmlPage)
 {
-    $messaggi = "";
-    if (Login::is_logged()) {
-        if ($_POST["method"] == "Acquista") {
+    if (!Login::is_logged()) return;
+
+    $_SESSION["method"] = "Acquista";
+    $proiezione = $_GET["id"];
+
+    $connection = new DBAccess();
+    $connectionOk = $connection->openDB();
+
+    if ($connectionOk) {
+        if ($connection->insertTicket($proiezione)) {
+            $_SESSION["success"] = true;
+        } else {
             $_SESSION["success"] = false;
-            $proiezione = $_GET["id"];
-
-            $connection = new DBAccess();
-            $connectionOk = $connection->openDB();
-
-            if ($connectionOk) {
-                if ($connection->insertTicket($proiezione)) {
-                    $messaggi = "<p>Biglietto acquistato con successo</p>";
-                    $_SESSION["success"] = true;
-                } else {
-                    $messaggi = "<p>Errore nell aggiunta</p>";
-                }
-                $connection->closeConnection();
-            } else {
-                $messaggi = "<li>problemi db</li>";
-            }
+            $feedback = "Errore nell'operazione";
         }
-    } else { // not logged
-        $messaggi .= "<li>Utente non loggato</li>";
+        $connection->closeConnection();
+    } else {
+        $_SESSION["success"] = false;
+        $feedback = "problemi db";
     }
 
-    $htmlPage = str_replace("<messaggi/>", $messaggi, $htmlPage);
+    $htmlPage = str_replace("<feedback/>", $feedback, $htmlPage);
 }
 
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
-    insertOrdine($htmlPage);
+
+    if ($_POST["method"] == "Acquista") {
+        insertOrdine($htmlPage);
+    }
 
     http_response_code(303);
 
@@ -100,6 +114,7 @@ if (isset($_POST["method"])) {
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
+
     printOrdine($htmlPage);
     printAcquisto($htmlPage);
 

@@ -8,6 +8,7 @@ use DB\DBAccess;
 
 /**
  * Replaces <listaCandidature/> with candidature's list
+ * @request GET
  */
 function printCandidature(&$htmlPage)
 {
@@ -78,9 +79,12 @@ function printCandidature(&$htmlPage)
 
 /**
  * Rejects (deletes) candidatura from candidature in sospeso
+ * @request POST
  */
 function rifiutaCandidatura()
 {
+    if (!Login::is_logged_admin()) return;
+
     $_SESSION["method"] = "Rifiuta candidatura";
     $connection = new DBAccess();
     $connectionOk = $connection->openDB();
@@ -98,9 +102,12 @@ function rifiutaCandidatura()
 
 /**
  * Approves candidatura from candidature in sospeso
+ * @request POST
  */
 function approvaCandidatura()
 {
+    if (!Login::is_logged_admin()) return;
+
     $_SESSION["method"] = "Accetta candidatura";
     $connection = new DBAccess();
     $connectionOk = $connection->openDB();
@@ -119,8 +126,12 @@ function approvaCandidatura()
 /**
  * Suspends (goes back to "to accept/reject state") candidatura from candidature in sospeso
  * Also delets all proiezioni of the selected candidatura
+ * @request POST
  */
-function sospendiCandidatura(){
+function sospendiCandidatura()
+{
+    if (!Login::is_logged_admin()) return;
+
     $_SESSION["method"] = "Sospendi candidatura";
     $connection = new DBAccess();
     $connectionOk = $connection->openDB();
@@ -140,19 +151,19 @@ function sospendiCandidatura(){
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
-    if (Login::is_logged()) {
-        switch ($_POST["method"]) {
-            case "Accetta candidatura":
-                approvaCandidatura();
-                break;
-            case "Rifiuta candidatura":
-                rifiutaCandidatura();
-                break;
-            case "Sospendi candidatura":
-                sospendiCandidatura();
-                break;
-        }
+
+    switch ($_POST["method"]) {
+        case "Accetta candidatura":
+            approvaCandidatura();
+            break;
+        case "Rifiuta candidatura":
+            rifiutaCandidatura();
+            break;
+        case "Sospendi candidatura":
+            sospendiCandidatura();
+            break;
     }
+
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     http_response_code(303);

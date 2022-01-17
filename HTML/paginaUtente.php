@@ -51,6 +51,8 @@ function printInfoUtente(&$htmlPage)
  */
 function updateInfoUtente()
 {
+    if (!Login::is_logged()) return;
+
     $_SESSION["method"] = "Invia";
     $nome = $_POST["nome"];
     $cognome = $_POST["cognome"];
@@ -93,6 +95,8 @@ function updateInfoUtente()
  */
 function deleteInfoUtente()
 {
+    if (!Login::is_logged()) return;
+
     $connection = new DBAccess();
     $connectionOk = $connection->openDB();
 
@@ -209,6 +213,8 @@ function printCandidature(&$htmlPage)
  */
 function deleteCandidatura()
 {
+    if (!Login::is_logged()) return;
+
     $_SESSION["method"] = "Ritira candidatura";
     $connection = new DBAccess();
     $connectionOk = $connection->openDB();
@@ -234,22 +240,18 @@ if (isset($_POST["method"])) {
     Login::handleLogin();
 
     // handle user triggered POSTs
-    if (Login::is_logged()) {
-        switch ($_POST["method"]) {
-            case "Invia":
-                updateInfoUtente();
-                break;
-            case "Ritira candidatura":
-                deleteCandidatura();
-                break;
-            case "Elimina Account":
-                deleteInfoUtente();
-                http_response_code(303);
-                header("Location: index.php");
-                die();
-        }
-    } else {
-        $_SESSION["success"] = false;
+    switch ($_POST["method"]) {
+        case "Invia":
+            updateInfoUtente();
+            break;
+        case "Ritira candidatura":
+            deleteCandidatura();
+            break;
+        case "Elimina Account":
+            deleteInfoUtente();
+            http_response_code(303);
+            header("Location: index.php");
+            die();
     }
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
