@@ -1192,7 +1192,6 @@ p.attenzioneCandidatura{
     padding: 1em;
     border: solid black 1px;
     border-radius: 4px;
-    list-style-type: none;
 }
 
 #content_adminUtenti div.boxUtente p{
@@ -1206,6 +1205,7 @@ p.attenzioneCandidatura{
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    list-style-type: none;
 }
 
 #content_adminUtenti .ticket{

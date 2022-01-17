@@ -360,7 +360,7 @@ header #adminMenu ul{
 }
 
 header #adminMenu li{
-    width: 33%;
+    width: 50%;
     text-align: center;
 }
 
@@ -372,6 +372,7 @@ header #adminMenu li{
 
 #content_adminCandidature ul#acnSospese li{
     margin-top: 12px;
+    padding: 0;
 }
 
 #content_adminCandidature ul#acnSospese form{
@@ -440,8 +441,9 @@ width: unset;
 }
 /*Admin Utenti*/
 #content_adminUtenti select:first-of-type{
-    width: 40%;
-    margin-bottom: 0.5em;
+    width: 100%;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
 }
 
 #content_adminUtenti div.boxUtente{
@@ -460,10 +462,16 @@ width: unset;
 
 #content_adminUtenti .boxUtente #biglietti{
     width: 95%;
-    padding: 0.5em;
     margin: auto;
 }
 
+#content_adminUtenti .ticket{
+    width: 100%;
+    min-width: unset;
+    margin: 0.3em 0 0.3em 0;
+}
+
 #content_adminUtenti .boxUtente #biglietti select{
+    width: 100%;
     margin: 0.3em 0 0.3em 0;
 }
