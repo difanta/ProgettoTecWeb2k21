@@ -60,8 +60,8 @@ function updateInfoUtente()
 
     if (Utils::validate($nome, Utils::namesRegex)
         && Utils::validate($cognome, Utils::namesRegex)
-        && Utils::validate($email, Utils::emailRegex)
-        && Utils::validate($password, Utils::passwordRegex)) { // TODO add data di nascita?
+        && Utils::validate($email, Utils::emailRegexLogin)
+        && Utils::validate($password, Utils::passwordRegexLogin)) { // TODO add data di nascita?
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();

@@ -426,26 +426,26 @@ var dettagli_form = {
     // pagina utente
     "userInfoNome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
     "userInfoCognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
-    "userInfoEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
-    "userInfoPassword": ["", passwordregex, "la password deve contenere almeno una lettera ed un numero"],
+    "userInfoEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
+    "userInfoPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero"],
     // content login
     "contentLoginEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
     "contentLoginPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
     // content signup
     "contentSingupNome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
     "contentSingupCognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
-    "contentSingupEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
-    "contentSingupPassword": ["", passwordregex, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
-    "contentSingupPassword2": ["", passwordregex, "la password non coincide con la conferma password"],
+    "contentSingupEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
+    "contentSingupPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
+    "contentSingupPassword2": ["", passwordregexlogin, "la password non coincide con la conferma password"],
     //login
     "loginEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
     "loginPassword": ["", passwordregexlogin, "almeno 8 caratteri di cui un numero e una lettera"],
     //signup
     "signupNome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
     "signupCognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
-    "signupEmail": ["inserisci la tua mail", emailregex, "mail non valida"],
-    "signupPassword": ["", passwordregex, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
-    "signupPassword2": ["", passwordregex, "la password non coincide con la conferma password"],
+    "signupEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
+    "signupPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
+    "signupPassword2": ["", passwordregexlogin, "la password non coincide con la conferma password"],
 }
 
 function caricamento() {
