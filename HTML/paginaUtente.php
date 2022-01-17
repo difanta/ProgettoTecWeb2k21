@@ -249,7 +249,7 @@ if (isset($_POST["method"])) {
                 die();
         }
     } else {
-        $_SESSION["success"] = false;
+        //$_SESSION["success"] = false;
     }
 
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
