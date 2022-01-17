@@ -19,6 +19,18 @@ header #accountButton {
     top: 5%;
     right: 2.5%;
 }
+/* ------------------------------ login-signup ------------------------------ */
+
+header #accountDropdown.dropdown{
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+}
+header #accountButton span#accountName{
+    display: none;
+}
 
 /* ---------------------------------- menu ---------------------------------- */
 header #menu{
@@ -425,4 +437,33 @@ header #adminMenu li{
 
 #content_adminListaFilm input[type="checkbox"]{
 width: unset;
+}
+/*Admin Utenti*/
+#content_adminUtenti select:first-of-type{
+    width: 40%;
+    margin-bottom: 0.5em;
+}
+
+#content_adminUtenti div.boxUtente{
+    width: 95%;
+    padding: 0.5em;
+    margin: auto;
+}
+
+#content_adminUtenti .boxUtente p{
+    margin: 0.3em 0 0.3em 0;
+}
+
+#content_adminUtenti .boxUtente input{
+    width: 100%;
+}
+
+#content_adminUtenti .boxUtente #biglietti{
+    width: 95%;
+    padding: 0.5em;
+    margin: auto;
+}
+
+#content_adminUtenti .boxUtente #biglietti select{
+    margin: 0.3em 0 0.3em 0;
 }

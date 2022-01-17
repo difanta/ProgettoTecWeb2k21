@@ -1102,6 +1102,7 @@ p.attenzioneCandidatura{
     font-size: 16px;
     font-style: italic;
 }
+
 #content_adminCandidature li .button{
     margin-left:8px;
 }
@@ -1110,7 +1111,7 @@ p.attenzioneCandidatura{
     background-color: var(--main-color-light-halfopacity);
     list-style-type: none;
     margin:5px 0;
-    padding:0;
+    padding:0.5em;
 }
 
 .ancsDescrizione{
@@ -1183,14 +1184,44 @@ p.attenzioneCandidatura{
 
 /* Admin Utenti ---------------------------------------------------------------------------------------*/
 
-#content_adminUtenti div:first-of-type{
+#content_adminUtenti div.boxUtente{
     margin: auto;
     margin-top: 2em;
     margin-bottom: 2em;
-    width: 60%;
-    padding: 0 1% 1% 1%;
+    width: 80%;
+    padding: 1em;
     border: solid black 1px;
     border-radius: 4px;
+    list-style-type: none;
+}
+
+#content_adminUtenti div.boxUtente p{
+    margin-top: 0.5em;
+    margin-bottom: 0.3em;
+}
+
+#content_adminUtenti div.boxUtente ul#ticketList{
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#content_adminUtenti .ticket{
+    width: 40%;
+    min-width: 15em;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+#content_adminUtenti .ticket select, #content_adminUtenti #aggiungiBiglietto select{
+    margin-bottom: 0.3em;
+}
+
+#content_adminUtenti .ticket .button{
+    margin-top: 0.3em;
+    margin-bottom: 0;
 }
 
 .boxUtente{
