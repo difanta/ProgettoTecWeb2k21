@@ -13,6 +13,8 @@ use DB\DBAccess;
  */
 function submitContest()
 {
+    if (!Login::is_logged()) return;
+
     $_SESSION["method"] = "Invia Candidatura";
     $titolo = $_POST["titolo"];
     $descrizione = $_POST["descrizione"];
@@ -63,13 +65,11 @@ function submitContest()
 if (isset($_POST["method"])) {
     // handle login/register/logout POST request
     Login::handleLogin();
-    if (Login::is_logged()) {
-        if ($_POST["method"] == "Invia Candidatura") {
-            submitContest();
-        }
-    } else {
-        $_SESSION["success"] = false;
+
+    if ($_POST["method"] == "Invia Candidatura") {
+        submitContest();
     }
+
     // redirect to same page (it will use GET request) https://en.wikipedia.org/wiki/Post/Redirect/Get
     http_response_code(303);
     header("Location: " . $_SERVER["REQUEST_URI"]);
