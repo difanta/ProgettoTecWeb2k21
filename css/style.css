@@ -1229,6 +1229,10 @@ p.attenzioneCandidatura{
     border-radius: 8px;
 }
 
+#content_adminUtenti #aggiungiBiglietto .button{
+    margin-top: 0.5em;
+}
+
 /* Admin Lista Film / Lista Proiezioni  --------------------------------------------------------------------- */
 
 #content_adminListaFilm *,
