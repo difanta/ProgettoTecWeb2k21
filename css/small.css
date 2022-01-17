@@ -368,7 +368,8 @@ header #adminMenu li{
 
 #content_adminCandidature ul#acnSospese input.button{
     width: 100%;
-}
+    margin: 0.5em auto 0.5em auto;
+} 
 
 #content_adminCandidature ul#acnSospese input.button[value="Rifiuta candidatura"]{
     margin-top: 0;
@@ -402,7 +403,7 @@ header #adminMenu li{
     margin-bottom: 0.5em;
 }
 
-br{
+#content_adminProiezioni br{
     display: none;
 }
 

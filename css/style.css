@@ -442,7 +442,7 @@ div.content{
 	background-image: url(../images/social/facebook.png);
 }
 #contatti #social_yt{
-	background-image: url(../images/social/youtube.png);
+	background-image: url(../images/social/youtube_alternative.png);
 }
 #contatti #aiutaci{
     font-size:1.2em;
@@ -686,6 +686,7 @@ li.filmPopolare a{
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 0;
 }
 
 .boxesList li {
@@ -939,6 +940,15 @@ header #loginSection p{
     border-radius: 4px;
 }
 
+#content_paginaUtente #informazioniAccount form{
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+#content_paginaUtente #informazioniAccount fieldset:last-of-type .button{
+    margin-bottom: 0;
+}
+
 .BoxUser{
     width: 90%;
     border: solid black 1px;
@@ -987,19 +997,15 @@ header #loginSection p{
     font-style: italic;
 }
 
-#content_paginaUtente #candidature{
-    width: 90%;
-    margin: auto;
-    border: solid black 1px;
-    border-radius: 4px;
-}
-
 .BoxUser ul#acnSospese{
     padding: 1em;
     margin: 0;
 }
+.BoxUser ul#acnSospese li form{
+    padding: 1em;
+}
 
-.BoxUser ul#acnSospese input.button{
+#content_paginaUtente ul#acnSospese .button, #content_paginaUtente ul#acnSospese #text{
     margin-top: 1em;
     margin-bottom: 0;
 }
@@ -1101,7 +1107,7 @@ p.attenzioneCandidatura{
 }
 #acnSospese li{
     border:var(--main-color-dark) solid;
-    background-color: var(--main-color-background);
+    background-color: var(--main-color-light-halfopacity);
     list-style-type: none;
     margin:5px 0;
     padding:0;
@@ -1169,7 +1175,7 @@ p.attenzioneCandidatura{
 }
 
 .candidatura .candidatura-inner {
-    background: rgba(250, 225, 66, 0.685);
+    background: var(--login-color);
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
     padding:6px 12px;
