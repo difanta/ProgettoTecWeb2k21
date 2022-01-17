@@ -280,6 +280,7 @@ function resetAlfm() {
     document.getElementById("alfmRegisti").setAttribute("value", "");
     document.getElementById("alfmAnno").setAttribute("value", "");
     document.getElementById("alfmDurata").setAttribute("value", "");
+    document.getElementById("alfmAlt").innerHTML = "";
     document.getElementById("alfmDescrizione").innerHTML = "";
     document.getElementById("alfmCast").innerHTML = "";
     document.getElementById("alfmGara").checked = false;
@@ -325,6 +326,11 @@ function mod_onFilmChanged() {
                 durata.setAttribute("value", obj["durata"]);
                 durata.value = durata.getAttribute("value");
                 durata.className = "normalInput";
+
+                let alt = document.getElementById("alfmAlt");
+                alt.innerHTML = obj["alt"];
+                alt.value = alt.innerHTML;
+                alt.className = "normalInput";
 
                 let descrizione = document.getElementById("alfmDescrizione");
                 descrizione.innerHTML = obj["descrizione"];

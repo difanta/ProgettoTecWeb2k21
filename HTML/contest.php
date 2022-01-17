@@ -31,14 +31,14 @@ function submitContest()
         && Utils::validate($regista, "/[a-zA-Zàèéìòù]{1,}/")
         && Utils::validate($produttore, "/[a-zA-Zàèéìòù]{1,}/")
         && Utils::validate($cast, "/^.{5,}$/")
-        && getimagesize($_FILES["imgFilm"]["tmp_name"])) {
+        && getimagesize($imageTmpPath)) {
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
 
         if ($connectionOk) {
             if ($connection->insertContestFilm($titolo, $descrizione, $durata, $anno, $regista, $produttore, $cast)) {
-                if(FS::moveImage($titolo, $imageTmpPath, $imageExt)) {
+                if(FS::moveImage($titolo, $imageTmpPath, $imageExt, $connection)) {
                     $feedback = "Candidatura proposta con successo";
                 } else {
                     $feedback = "Candidatura proposta con successo, ci sono stati problemi imprevisti con la gestione dell'immagine, prego contattare un admin.";

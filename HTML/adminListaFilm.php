@@ -3,6 +3,7 @@
 session_start();
 
 include "../php/login.php";
+include_once "../php/fs.php";
 
 use DB\DBAccess;
 
@@ -40,8 +41,10 @@ function aggiungiFilm() {
         $agg_Regista          = $_POST["agg_Regista"]         ;
         $agg_Anno             = $_POST["agg_Anno"]            ;
         $agg_Durata           = $_POST["agg_Durata"]          ;
+        $agg_Alt              = $_POST["agg_Alt"]             ;
         $agg_descrizioneFilm  = $_POST["agg_descrizioneFilm"] ;
         $agg_Cast             = $_POST["agg_Cast"]            ;
+        $imageTmpPath         = $_FILES["agg_Img"]["tmp_name"];
         $agg_inGara     = false;
         $agg_Approvato  = false;
         if(isset($_POST["agg_inGara"]) && $_POST["agg_inGara"] == "on") 
@@ -54,21 +57,28 @@ function aggiungiFilm() {
         else 
         { $agg_Approvato = false; }
 
+        $imageExt = strtolower(pathinfo($_FILES["agg_Img"]["name"], PATHINFO_EXTENSION));
+
         if(Utils::validate($agg_nomeFilm, Utils::titoloRegex)
         && Utils::validate($agg_Produttore, Utils::regista_produttoreRegex)
         && Utils::validate($agg_Regista, Utils::regista_produttoreRegex)
         && Utils::validate($agg_Anno, Utils::annoRegex)
         && Utils::validate($agg_Durata, Utils::durataRegex)
         && Utils::validate($agg_descrizioneFilm, Utils::descrizioneRegex)
-        && Utils::validate($agg_Cast, Utils::castRegex)) {
+        && Utils::validate($agg_Cast, Utils::castRegex)
+        && getimagesize($imageTmpPath)) {
 
             $connection = new DBAccess();
             $connectionOk = $connection->openDB();
         
             if($connectionOk) {
-                if($connection->addFilm($agg_nomeFilm, $agg_Produttore, $agg_Regista, $agg_Anno, $agg_Durata, $agg_descrizioneFilm, $agg_Cast, $agg_inGara, $agg_Approvato)) {
+                if($connection->addFilm($agg_nomeFilm, $agg_Produttore, $agg_Regista, $agg_Anno, $agg_Durata, $agg_descrizioneFilm, $agg_Cast, $agg_inGara, $agg_Approvato, $agg_Alt)) {
+                    if(FS::moveImage($agg_nomeFilm, $imageTmpPath, $imageExt, $connection)) {
+                        $_SESSION["feedback"] = "Film aggiunto con successo!";
+                    } else {
+                        $_SESSION["feedback"] = "Film aggiunto con successo! Tuttavia ci sono stati problemi imprevisti con la gestione dell'immagine: "  . $_SESSION["feedback"];
+                    }
                     $_SESSION["success"] = true;
-                    $_SESSION["feedback"] = "Film aggiunto con successo!";
                 } else {
                     $_SESSION["success"] = false;
                     $_SESSION["feedback"] = "Nome film già in uso :(";
@@ -89,6 +99,7 @@ function aggiungiFilm() {
         $_SESSION["agg_annofilm"]         = $agg_Anno            ;
         $_SESSION["agg_duratafilm"]       = $agg_Durata          ;
         $_SESSION["agg_descrizionefilm"]  = $agg_descrizioneFilm ;
+        $_SESSION["agg_altfilm"]          = $agg_Alt             ;
         $_SESSION["agg_cast"]             = $agg_Cast            ;
         $_SESSION["agg_filmingara"]       = $agg_inGara          ;
         $_SESSION["agg_approvato"]        = $agg_Approvato       ;
@@ -105,8 +116,10 @@ function modificaFilm() {
         $mod_Regista          = $_POST["mod_Registi"]         ;
         $mod_Anno             = $_POST["mod_Anno"]            ;
         $mod_Durata           = $_POST["mod_Durata"]          ;
+        $mod_Alt              = $_POST["mod_Alt"]             ;
         $mod_descrizioneFilm  = $_POST["mod_descrizioneFilm"] ;
         $mod_Cast             = $_POST["mod_Cast"]            ;
+        $imageTmpPath         = array_key_exists("mod_Img", $_FILES) ? $_FILES["mod_Img"]["tmp_name"] : null;
         $mod_inGara     = false;
         $mod_Approvato  = false;
         if(isset($_POST["mod_inGara"]) && $_POST["mod_inGara"] == "on") 
@@ -119,21 +132,28 @@ function modificaFilm() {
         else 
         { $mod_Approvato = false; }
 
+        $imageExt = $imageTmpPath ? strtolower(pathinfo($_FILES["mod_Img"]["name"], PATHINFO_EXTENSION)) : null;
+
         if(Utils::validate($mod_nomeFilm, Utils::titoloRegex)
         && Utils::validate($mod_Produttore, Utils::regista_produttoreRegex)
         && Utils::validate($mod_Regista, Utils::regista_produttoreRegex)
         && Utils::validate($mod_Anno, Utils::annoRegex)
         && Utils::validate($mod_Durata, Utils::durataRegex)
         && Utils::validate($mod_descrizioneFilm, Utils::descrizioneRegex)
-        && Utils::validate($mod_Cast, Utils::castRegex)) {
+        && Utils::validate($mod_Cast, Utils::castRegex)
+        && (!$imageTmpPath || getimagesize($imageTmpPath))) {
 
             $connection = new DBAccess();
             $connectionOk = $connection->openDB();
         
             if($connectionOk) {
-                if($connection->modifyFilm($mod_oldnomefilm, $mod_nomeFilm, $mod_Produttore, $mod_Regista, $mod_Anno, $mod_Durata, $mod_descrizioneFilm, $mod_Cast, $mod_inGara, $mod_Approvato)) {
+                if($connection->modifyFilm($mod_oldnomefilm, $mod_nomeFilm, $mod_Produttore, $mod_Regista, $mod_Anno, $mod_Durata, $mod_descrizioneFilm, $mod_Cast, $mod_inGara, $mod_Approvato, $mod_Alt)) {
+                    if(!$imageTmpPath || FS::moveImage($mod_nomeFilm, $imageTmpPath, $imageExt, $connection)) {
+                        $_SESSION["feedback"] = "Film modificato con successo!";
+                    } else {
+                        $_SESSION["feedback"] = "Film modificato con successo! Tuttavia ci sono stati problemi imprevisti con la gestione dell'immagine: " . $_SESSION["feedback"];
+                    }
                     $_SESSION["success"] = true;
-                    $_SESSION["feedback"] = "Film modificato con successo!";
                 } else {
                     $_SESSION["success"] = false;
                     $_SESSION["feedback"] = "Nome film già in uso :(";
@@ -154,6 +174,7 @@ function modificaFilm() {
         $_SESSION["mod_regista"]          = $mod_Regista         ;
         $_SESSION["mod_annofilm"]         = $mod_Anno            ;
         $_SESSION["mod_duratafilm"]       = $mod_Durata          ;
+        $_SESSION["mod_altfilm"]          = $mod_Alt             ;
         $_SESSION["mod_descrizionefilm"]  = $mod_descrizioneFilm ;
         $_SESSION["mod_cast"]             = $mod_Cast            ;
         $_SESSION["mod_filmingara"]       = $mod_inGara          ;
@@ -213,6 +234,7 @@ function printAggiungiFilm(&$htmlPage) {
         $htmlPage = str_replace("agg_regista"         , Sanitizer::forHtml($_SESSION["agg_regista"])         , $htmlPage);
         $htmlPage = str_replace("agg_annofilm"        , Sanitizer::forHtml($_SESSION["agg_annofilm"])        , $htmlPage);
         $htmlPage = str_replace("agg_duratafilm"      , Sanitizer::forHtml($_SESSION["agg_duratafilm"])      , $htmlPage);
+        $htmlPage = str_replace("agg_altfilm"         , Sanitizer::forHtml($_SESSION["agg_altfilm"])         , $htmlPage);
         $htmlPage = str_replace("agg_descrizionefilm" , Sanitizer::forHtml($_SESSION["agg_descrizionefilm"]) , $htmlPage);
         $htmlPage = str_replace("agg_cast"            , Sanitizer::forHtml($_SESSION["agg_cast"])            , $htmlPage);
 
@@ -233,6 +255,7 @@ function printAggiungiFilm(&$htmlPage) {
         unset($_SESSION["agg_regista"]);
         unset($_SESSION["agg_annofilm"]);
         unset($_SESSION["agg_duratafilm"]);
+        unset($_SESSION["agg_altfilm"]);
         unset($_SESSION["agg_descrizionefilm"]);
         unset($_SESSION["agg_ingara"]);
         unset($_SESSION["agg_filmingara"]);
@@ -247,6 +270,7 @@ function printAggiungiFilm(&$htmlPage) {
         $htmlPage = str_replace("agg_regista"         , ""        , $htmlPage);
         $htmlPage = str_replace("agg_annofilm"        , ""        , $htmlPage);
         $htmlPage = str_replace("agg_duratafilm"      , ""        , $htmlPage);
+        $htmlPage = str_replace("agg_altfilm"         , ""        , $htmlPage);
         $htmlPage = str_replace("agg_descrizionefilm" , ""        , $htmlPage);
         $htmlPage = str_replace("agg_cast"            , ""        , $htmlPage);
         $htmlPage = str_replace("agg_filmingara"      , ""        , $htmlPage);
@@ -268,6 +292,7 @@ function printModificaFilm(&$htmlPage) {
         $htmlPage = str_replace("mod_regista"             , Sanitizer::forHtml($_SESSION["mod_regista"])         , $htmlPage);
         $htmlPage = str_replace("mod_annofilm"            , Sanitizer::forHtml($_SESSION["mod_annofilm"])        , $htmlPage);
         $htmlPage = str_replace("mod_duratafilm"          , Sanitizer::forHtml($_SESSION["mod_duratafilm"])      , $htmlPage);
+        $htmlPage = str_replace("mod_altfilm"             , Sanitizer::forHtml($_SESSION["mod_altfilm"])         , $htmlPage);
         $htmlPage = str_replace("mod_descrizionefilm"     , Sanitizer::forHtml($_SESSION["mod_descrizionefilm"]) , $htmlPage);
         $htmlPage = str_replace("mod_cast"                , Sanitizer::forHtml($_SESSION["mod_cast"])            , $htmlPage);
 
@@ -289,6 +314,7 @@ function printModificaFilm(&$htmlPage) {
         unset($_SESSION["mod_regista"]);
         unset($_SESSION["mod_annofilm"]);
         unset($_SESSION["mod_duratafilm"]);
+        unset($_SESSION["mod_altfilm"]);
         unset($_SESSION["mod_descrizionefilm"]);
         unset($_SESSION["mod_filmingara"]);
         unset($_SESSION["mod_approvato"]);
@@ -315,6 +341,7 @@ function printModificaFilm(&$htmlPage) {
         $htmlPage = str_replace("mod_regista"             , ""        , $htmlPage);
         $htmlPage = str_replace("mod_annofilm"            , ""        , $htmlPage);
         $htmlPage = str_replace("mod_duratafilm"          , ""        , $htmlPage);
+        $htmlPage = str_replace("mod_altfilm"             , ""        , $htmlPage);
         $htmlPage = str_replace("mod_descrizionefilm"     , ""        , $htmlPage);
         $htmlPage = str_replace("mod_cast"                , ""        , $htmlPage);
         $htmlPage = str_replace("mod_filmingara"          , ""        , $htmlPage);
