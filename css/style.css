@@ -327,6 +327,10 @@ header #accountDropdown div.loginNavigation {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.267);
 }
 
+header #accountDropdown #accountSection .loginNavigation{
+    display: none;
+}
+
 header #accountDropdown button {
     display: block;
     min-width: 10em;

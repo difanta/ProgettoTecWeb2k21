@@ -32,6 +32,31 @@ header #accountButton span#accountName{
     display: none;
 }
 
+header #accountDropdown #accountSection{
+    padding: 0;
+}
+
+header #accountDropdown #accountSection button#signupBtn{
+    margin-top: 0.6em;
+}
+
+header #accountDropdown #accountSection button#loginBtn{
+    margin-top: 5em;
+}
+
+header #accountDropdown #accountSection .loginNavigation{
+    display: block;
+    width: 100%; /* forse non serve */
+}
+
+header #accountDropdown{
+    font-size: 1.2em;
+}
+
+header #accountDropdown button{
+    margin: 0.3em auto 0.3em auto;
+}
+
 /* ---------------------------------- menu ---------------------------------- */
 header #menu{
     border-top: 1px solid var(--main-color-dark);
