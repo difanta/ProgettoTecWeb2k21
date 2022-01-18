@@ -40,7 +40,7 @@ header #accountDropdown #accountSection button#signupBtn{
     margin-top: 0.6em;
 }
 
-header #accountDropdown #accountSection button#loginBtn{
+header #accountDropdown #accountSection button#loginBtn, header #accountDropdown #accountSection button[form="logout"]{
     margin-top: 5em;
 }
 
