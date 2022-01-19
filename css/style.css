@@ -19,6 +19,9 @@ body {
     --login-color-hover-09opacity: #aaaaaae7;
 
     --footer-color: #15516b;
+
+    --custom-red-color: #ed2828;
+    --custom-green-color: #1a9f1e;
 }
 
 body {
@@ -30,7 +33,8 @@ body {
 }
 
 .errorSuggestion{
-    color:red;
+    color: var(--custom-red-color);
+    font-weight: 600;
     margin:0.5em;
     display:block;
     font-size:0.8em;
@@ -129,11 +133,13 @@ form button:disabled, .button:disabled{
 /* Server side feedback --------------------------------------*/
 
 .feedbackPositive{
-    color: green;
+    color: var(--custom-green-color);
+    font-weight: 600;
 }
 
 .feedbackNegative{
-    color: red;
+    color: var(--custom-red-color);
+    font-weight: 600;
 }
 
 /*--------------------------- Material Icons ------------------------------*/
@@ -355,6 +361,11 @@ header #accountDropdown div.loginNavigation button {
 
 header #accountDropdown button:hover {
     background-color: var(--login-color-hover);
+}
+
+header #accountDropdown .feedbackPositive:last-child{
+    display: block;
+    padding: 1em;
 }
 
 header form#logout {
