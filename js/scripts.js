@@ -541,6 +541,5 @@ function validazioneForm(form) {
             console.log(input);
         }
     }
-    console.log(truth);
     return truth;
 }
