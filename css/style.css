@@ -1190,9 +1190,16 @@ p.attenzioneCandidatura{
     border-radius: 30px;
     grid-area: c;
 }
+#content_adminCandidature .candidatura img{
+    width:initial;
+    max-height: 200px;
+}
+#content_adminCandidature .candidatura label{
+    display:block;
+}
 
 .toggle:checked + .text-toggle + .candidatura {
-    max-height: 100vh;
+    max-height: 300vh;
 }
 
 .toggle:checked + .text-toggle {
