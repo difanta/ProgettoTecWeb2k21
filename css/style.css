@@ -1121,8 +1121,10 @@ p.attenzioneCandidatura{
 #content_adminCandidature li .button{
     margin-left:8px;
 }
+
 #acnSospese li{
     border:var(--main-color-dark) solid;
+    border-radius: 4px;
     background-color: var(--main-color-light-halfopacity);
     list-style-type: none;
     margin:5px 0;
@@ -1179,6 +1181,14 @@ p.attenzioneCandidatura{
     max-height: 0px;
     overflow: hidden;
     transition: max-height .25s ease-in-out;
+}
+
+.candidatura img{
+    width: 95%;
+    padding: 1em;
+    margin: auto;
+    border-radius: 30px;
+    grid-area: c;
 }
 
 .toggle:checked + .text-toggle + .candidatura {

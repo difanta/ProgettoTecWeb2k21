@@ -1,10 +1,15 @@
 <li>
-    <form method="post">
+    <form method="post" onsubmit="return validazioneForm(this);">
         <input id="collapse" class="toggle" type="checkbox">
         <label for="collapse" class="text-toggle">pTitolo</label>
 
         <div class="candidatura">
-            <div class="candidatura-inner"> <!-- TODO add image-->
+            <div class="candidatura-inner">
+                <img src="percorsoimmagine" alt="descrizioneimmagine">
+
+                <label for="candidaturaAlt">Descrizione alternativa</label>
+                <span><input id="candidaturaAlt" name="alt" type="text" pValue required pDisabled></span>
+
                 <p>Durata: pDurata</p>
                 <p>Anno: pAnno</p>
                 <p>Regista: pRegista</p>
@@ -16,6 +21,7 @@
         </div>
 
         <input type="hidden" name="titolo" value="pTitolo"> <!-- used for post request -->
+        <feedbackAlt/>
         <input class="button" type="submit" name="method" value="Accetta candidatura" accettaCand>
         <input class="button" type="submit" name="method" value="Rifiuta candidatura" rifiutaCand>
         <input class="button" type="submit" name="method" value="Sospendi candidatura" style="display:none;" sospendiCand>

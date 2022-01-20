@@ -452,6 +452,8 @@ var dettagli_form = {
     "signupEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
     "signupPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
     "signupPassword2": ["", passwordregexlogin, "la password non coincide con la conferma password"],
+    // admin candidature
+    "candidaturaAlt": ["inserisci la descrizione alternativa dell'immagine", namesRegex, "descrizione non valida"],
 }
 
 function caricamento() {

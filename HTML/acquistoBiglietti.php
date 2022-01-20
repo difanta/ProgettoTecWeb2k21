@@ -47,27 +47,26 @@ function printOrdine(&$htmlPage)
  */
 function printAcquisto(&$htmlPage)
 {
-    print_r($_SESSION);
-    $acquisto = "";
     if (isset($_SESSION["method"])
         && isset($_SESSION["success"])) {
         if ($_SESSION["method"] == "Acquista") {
 
             if ($_SESSION["success"]) {
-                $acquisto = file_get_contents("template/templateAcquistoSuccesso.html");
+                $print = file_get_contents("template/templateAcquistoSuccesso.html");
             } else {
                 $feedback = isset($_SESSION["feedback"]) ? Sanitizer::forHtml($_SESSION["feedback"]) : "";
-                $acquisto = "<strong class='feedbackNegative'>" . $feedback . "</strong>";
+                $print = "<strong class='feedbackNegative'>" . $feedback . "</strong>";
             }
             unset($_SESSION["method"]);
             unset($_SESSION["feedback"]);
             unset($_SESSION["success"]);
+
+            $htmlPage = str_replace("<feedback/>", $print, $htmlPage);
         }
     } else { // first print
-        $acquisto = file_get_contents("template/templateAcquisto.html");
+        $print = file_get_contents("template/templateAcquisto.html");
+        $htmlPage = str_replace("<acquisto/>", $print, $htmlPage);
     }
-
-    $htmlPage = str_replace("<acquisto/>", $acquisto, $htmlPage);
 }
 
 /**

@@ -3,6 +3,7 @@
 session_start();
 
 include "../php/login.php";
+include "../php/fs.php";
 
 use DB\DBAccess;
 
@@ -46,6 +47,9 @@ function printCandidature(&$htmlPage)
 
                 $list = str_replace("collapse", "collapse" . $index, $list);
                 $list = str_replace("pTitolo", Sanitizer::forHtml($candidatura["nome"]), $list);
+                $list = str_replace("percorsoimmagine", FS::findImage($candidatura["nome"]), $list);
+                $list = str_replace("descrizioneimmagine", Sanitizer::forHtml($candidatura["alt"]), $list);
+                $list = str_replace("pValue", !empty($candidatura["alt"]) ?"value='" . Sanitizer::forHtml($candidatura["alt"]). "'" : "", $list);
                 $list = str_replace("pDurata", Sanitizer::forHtml($candidatura["durata"] . "'"), $list);
                 $list = str_replace("pAnno", Sanitizer::forHtml($candidatura["anno"]), $list);
                 $list = str_replace("pRegista", Sanitizer::forHtml($candidatura["regista"]), $list);
@@ -58,6 +62,9 @@ function printCandidature(&$htmlPage)
                     $list = str_replace("rifiutaCand", "style=\"display:none;\"", $list);
                     $list = str_replace("accettaCand", "style=\"display:none;\"", $list);
                     $list = str_replace("none;\" sospendiCand", "show;\"", $list);
+                    $list = str_replace("pDisabled", "disabled", $list);
+                } elseif ($filter_candidatura == "Sospesa"){
+                    $list = str_replace("pDisabled", "", $list);
                 }
             }
             unset($candidatura);
@@ -90,11 +97,16 @@ function rifiutaCandidatura()
     $connectionOk = $connection->openDB();
 
     if ($connectionOk) {
-        $connection->deleteCandidatura($_POST["titolo"]);
-        $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" rifiutata con successo";
-        $_SESSION["success"] = true;
+        if ($connection->deleteCandidatura($_POST["titolo"])) {
+            $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" rifiutata con successo";
+            $_SESSION["success"] = true;
+        } else {
+            $feedback = "Errore nella modifica";
+            $_SESSION["success"] = false;
+        }
+        $connection->closeConnection();
     } else {
-        $feedback = "Errore nell'operazione";
+        $feedback = "Problemi di connessione al DB";
         $_SESSION["success"] = false;
     }
     $_SESSION["feedback"] = $feedback;
@@ -109,15 +121,30 @@ function approvaCandidatura()
     if (!Login::is_logged_admin()) return;
 
     $_SESSION["method"] = "Accetta candidatura";
-    $connection = new DBAccess();
-    $connectionOk = $connection->openDB();
+    $titolo = $_POST["titolo"];
+    $alt = $_POST["alt"];
 
-    if ($connectionOk) {
-        $connection->approvaCandidatura($_POST["titolo"]);
-        $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" approvata con successo";
-        $_SESSION["success"] = true;
+    if (Utils::validate($alt, Utils::namesRegex)) {
+
+        $connection = new DBAccess();
+        $connectionOk = $connection->openDB();
+
+        if ($connectionOk) {
+            if ($connection->approvaCandidatura($titolo, $alt)) {
+                $feedback = "Candidatura: \"" . $titolo . "\" approvata con successo";
+                $_SESSION["success"] = true;
+            } else {
+                $feedback = "Errore nell'inserimento";
+                $_SESSION["success"] = false;
+            }
+            $connection->closeConnection();
+        } else {
+            $feedback = "Problemi di connessione al DB";
+            $_SESSION["success"] = false;
+        }
+
     } else {
-        $feedback = "Errore nell'operazione";
+        $feedback = "Errore nella compliazione";
         $_SESSION["success"] = false;
     }
     $_SESSION["feedback"] = $feedback;
@@ -137,12 +164,17 @@ function sospendiCandidatura()
     $connectionOk = $connection->openDB();
 
     if ($connectionOk) {
-        $connection->sospendiCandidatura($_POST["titolo"]);
-        $connection->deleteProizioniOnSuspend($_POST["titolo"]);
-        $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" sospesa con successo";
-        $_SESSION["success"] = true;
+        if ($connection->sospendiCandidatura($_POST["titolo"])
+            && $connection->deleteProizioniOnSuspend($_POST["titolo"])) {
+            $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" sospesa con successo";
+            $_SESSION["success"] = true;
+        } else {
+            $feedback = "Errore nella modifica";
+            $_SESSION["success"] = false;
+        }
+        $connection->closeConnection();
     } else {
-        $feedback = "Errore nell'operazione";
+        $feedback = "Problemi di connessione al DB";
         $_SESSION["success"] = false;
     }
     $_SESSION["feedback"] = $feedback;

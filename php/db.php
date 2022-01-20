@@ -424,7 +424,7 @@ class DBAccess
     public function getCandidatureAndEmail($filter_candidatura)
     {
 
-        $query = "SELECT Film.nome, Film.descrizione, Film.durata, Film.anno, Film.regista, Film.produttore, Film.cast, Utente.email
+        $query = "SELECT Film.nome, Film.descrizione, Film.durata, Film.anno, Film.regista, Film.produttore, Film.cast, Film.alt, Utente.email
                   FROM Film Join Utente on (Film.candidatore = Utente.id)
                   WHERE candidatore IS NOT NULL";
 
@@ -455,12 +455,12 @@ class DBAccess
     /**
      * @used_in adminCandidature.php
      */
-    public function approvaCandidatura($titolo)
+    public function approvaCandidatura($titolo, $alt)
     {
         $stmt = $this->connection->prepare("UPDATE Film
-                                            SET approvato = '1'
+                                            SET approvato = '1', alt = ?
                                             WHERE nome= ?");
-        $stmt->bind_param("s", $titolo);
+        $stmt->bind_param("ss", $alt, $titolo);
         return $stmt->execute();
     }
 
