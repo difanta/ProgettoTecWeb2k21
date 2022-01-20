@@ -405,6 +405,7 @@ var emailregexlogin = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"
 var namesRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/;
 var passwordregex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}$/;
 var passwordregexlogin = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}|admin|user$/;
+var altregex = /^.{4,125}$/;
 var dettagli_form = {
     // contest
     "titolo": ["inserisci il titolo del film", /[\wàèéìòù]{1,}/, "il titolo deve contenere almeno un carattere alfanumerico"],
@@ -453,7 +454,7 @@ var dettagli_form = {
     "signupPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
     "signupPassword2": ["", passwordregexlogin, "la password non coincide con la conferma password"],
     // admin candidature
-    "candidaturaAlt": ["inserisci la descrizione alternativa dell'immagine", namesRegex, "descrizione non valida"],
+    "candidaturaAlt": ["inserisci la descrizione alternativa dell'immagine", altregex, "descrizione non valida"],
 }
 
 function caricamento() {
