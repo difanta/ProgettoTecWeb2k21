@@ -15,6 +15,7 @@ class Utils
     const annoRegex = "/^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/";
     const regista_produttoreRegex = "/[a-zA-Zàèéìòù]{1,}/";
     const castRegex = "/^.{5,}$/";
+    const altRegex = "/^.{4,125}$/";
 
     /**
      * Prints POST function's user feedback

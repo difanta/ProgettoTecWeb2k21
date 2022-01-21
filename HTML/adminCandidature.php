@@ -45,11 +45,15 @@ function printCandidature(&$htmlPage)
             foreach ($candidature as $index => $candidatura) {
                 $list .= file_get_contents("template/templateCandidaturaAdmin.html");
 
-                $list = str_replace("collapse", "collapse" . $index, $list);
+                $list = str_replace("collapse", "collapse" . $index, $list); // candidatura class
+
                 $list = str_replace("pTitolo", Sanitizer::forHtml($candidatura["nome"]), $list);
                 $list = str_replace("percorsoimmagine", FS::findImage($candidatura["nome"]), $list);
                 $list = str_replace("descrizioneimmagine", Sanitizer::forHtml($candidatura["alt"]), $list);
+
+                $list = str_replace("candidaturaAlt", "candidaturaAlt" . $index , $list); // alt input id
                 $list = str_replace("pValue", !empty($candidatura["alt"]) ?"value='" . Sanitizer::forHtml($candidatura["alt"]). "'" : "", $list);
+
                 $list = str_replace("pDurata", Sanitizer::forHtml($candidatura["durata"] . "'"), $list);
                 $list = str_replace("pAnno", Sanitizer::forHtml($candidatura["anno"]), $list);
                 $list = str_replace("pRegista", Sanitizer::forHtml($candidatura["regista"]), $list);
@@ -67,13 +71,14 @@ function printCandidature(&$htmlPage)
                     $list = str_replace("pDisabled", "", $list);
                 }
             }
+            unset($index);
             unset($candidatura);
             $list .= "</ul>";
         } else {
-            $list .= "<p>Non sono presenti biglietti</p>";
+            $list = "<p>Non sono presenti candidature</p>";
         }
     } else {
-        $list .= "<p>Errore connessione db</p>";
+        $list = "<p>Errore connessione db</p>";
     }
     if ($filter_candidatura == "Approvata") {
         $htmlPage = str_replace("in sospeso</h1>", "approvate</h1>", $htmlPage);
@@ -124,7 +129,7 @@ function approvaCandidatura()
     $titolo = $_POST["titolo"];
     $alt = $_POST["alt"];
 
-    if (Utils::validate($alt, Utils::namesRegex)) {
+    if (Utils::validate($alt, Utils::altRegex)) {
 
         $connection = new DBAccess();
         $connectionOk = $connection->openDB();
