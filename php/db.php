@@ -141,12 +141,12 @@ class DBAccess
 
         // finish query
         if ($dataProiezione != "") {
-            $query = "SELECT *, Proiezione.id as pid, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora 
+            $query = "SELECT *, Proiezione.id as pid, Film.id as fid, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora 
 						from Proiezione join ($query) as Film on Proiezione.film = Film.id 
 						where CAST(orario AS DATE) = ? 
 						order by orario asc";
         } else {
-            $query = "SELECT *, Proiezione.id as pid, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora 
+            $query = "SELECT *, Proiezione.id as pid, Film.id as fid, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora 
 						from Proiezione join ($query) as Film on Proiezione.film = Film.id 
 						order by orario asc";
         }

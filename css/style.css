@@ -647,8 +647,6 @@ li.filmPopolare a{
 
     font-size: 1em;
     font-style: italic;
-
-    quotes: "“" "”" "‘" "’";
 }
 
 #listaRecensioni p::before {

@@ -113,9 +113,9 @@
 
 <div id="content_templateFilm" class="content">
     <iffilmfound>
-        <img src="percorsoimmagine" alt="descrizioneimmagine">
-        <h1>titolofilm</h1>
-        <h2>regista</h2>
+        <img title="Logo del Film" aria-description="Logo del film" src="percorsoimmagine" alt="descrizioneimmagine">
+        <h1 title="titolo" aria-description="Titolo">titolofilm</h1>
+        <h2 title="Registi" aria-description="Registi">regista</h2>
         <dl>
             <dt>In gara</dt>
             <dd>filmingara</dd>
@@ -130,7 +130,7 @@
             <dt>Durata</dt>
             <dd>duratafilm min</dd>
         </dl>
-        <p title="descrizione">descrizionefilm</p>
+        <p title="descrizione" aria-description="Descrizione">descrizionefilm</p>
         <a href="proiezioni.php?nomeFilm=titolofilm">Proiezioni</a>
     </iffilmfound>
     <iffilmnotfound>

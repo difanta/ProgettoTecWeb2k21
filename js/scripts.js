@@ -84,8 +84,8 @@ window.addEventListener("scroll", function () {
 
 /* Lista Film ---------------------------------------- */
 
-function listaFilmLike(checked, nomeFilm) {
-    elem = document.getElementById('label-like-' + nomeFilm);
+function listaFilmLike(checked, nomeFilm, idfilm) {
+    elem = document.getElementById('label-like-' + idfilm);
     if (checked == true) {
         elem.innerHTML = elem.innerHTML.replace('favorite_border', 'favorite');
     } else {

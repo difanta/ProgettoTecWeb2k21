@@ -113,9 +113,9 @@
     <h1>Lista Film</h1>
 
     <div class="filters">
-        <p>Filtra per</p>
+        <p id="filterLabel">Filtra per</p>
 
-        <form id="filtriFilm">
+        <form aria-labelledby="filterLabel" id="filtriFilm">
             <label for="nomeFilm">Nome Film</label>
             <input list="film" name="nomeFilm" id="nomeFilm" value="inputnomefilm">
             <datalist id="film">
@@ -129,11 +129,11 @@
                 <option value="noGara" nogaraselected>Non in gara</option>
             </select>
 
-            <button type="submit" form="filtriFilm">Filtra</button>
+            <button type="submit">Filtra</button>
         </form>
     </div>
 
-    <ul id="listaFilm" class="boxesList">
+    <ul id="listaFilm" title="Lista dei film" aria-description="Lista dei film" class="boxesList">
         <filmPreview/>
     </ul>
 </div>
