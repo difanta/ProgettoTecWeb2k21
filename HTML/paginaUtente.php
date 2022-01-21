@@ -3,6 +3,7 @@
 session_start();
 
 include "../php/login.php";
+include_once "../php/fs.php";
 
 use DB\DBAccess;
 
@@ -220,7 +221,9 @@ function deleteCandidatura()
     $connectionOk = $connection->openDB();
 
     if ($connectionOk) {
+        $path = FS::findImage($_POST["titolo"], $connection);
         if ($connection->deleteCandidatura($_POST["titolo"])) {
+            FS::deleteImage($path, $connection);
             $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" ritirata con successo";
             $_SESSION["success"] = true;
         } else {

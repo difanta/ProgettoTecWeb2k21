@@ -102,8 +102,13 @@ function rifiutaCandidatura()
     $connectionOk = $connection->openDB();
 
     if ($connectionOk) {
+        $path = FS::findImage($_POST["titolo"], $connection);
         if ($connection->deleteCandidatura($_POST["titolo"])) {
-            $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" rifiutata con successo";
+            if(FS::deleteImage($path, $connection)) {
+                $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" rifiutata con successo";
+            } else {
+                $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" rifiutata con successo. Tuttavia ci sono stati problemi con la cancellazione dell'immagine";
+            }
             $_SESSION["success"] = true;
         } else {
             $feedback = "Errore nella modifica";
