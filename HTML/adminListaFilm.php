@@ -186,12 +186,17 @@ function modificaFilm() {
         $mod_oldnomefilm = $_POST["mod_oldNomeFilm"]; // non c'è bisogno di controlli perchè non vengono inseriti dati ed è safe passare anche dati maliziosi al server sql tramite query preparate
 
         if($connectionOk) {
+            $path = FS::findImage($mod_oldnomefilm, $connection);
             if($connection->deleteFilm($mod_oldnomefilm)) {
+                if(FS::deleteImage($path, $connection)) {
+                    $_SESSION["feedback"] = "Film eliminato con successo!";
+                } else {
+                    $_SESSION["feedback"] = "Film eliminato con successo! Tuttavia ci sono stati problemi con la cancellazione dell'immagine.";
+                }
                 $_SESSION["success"] = true;
-                $_SESSION["feedback"] = "Film eliminato con successo!";
             } else {
                 $_SESSION["success"] = false;
-                $_SESSION["feedback"] = "Film non trovato :(";
+                $_SESSION["feedback"] = "Film non trovato oppure problemi con la cancellazione dell'immagine :(";
             }
             $connection->closeConnection();
         } else {

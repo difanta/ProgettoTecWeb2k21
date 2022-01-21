@@ -57,6 +57,13 @@ class FS {
         return false;
     }
 
+    static function deleteImage($path, $connection=null) {
+        if($path) {
+            return unlink($path);
+        } else {
+            return false;
+        }
+    }
 }
 
 ?>
