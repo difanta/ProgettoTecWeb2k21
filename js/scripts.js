@@ -1,5 +1,8 @@
 window.addEventListener("load", caricaPagina, true);
-function caricaPagina(){ caricamento();};
+
+function caricaPagina() {
+    caricamento();
+}
 
 /* Feature Detection --------------------------------- */
 
@@ -181,15 +184,15 @@ function setEditOff() {
 /* Admin */
 
 function injectProiezioni(elem, target) {
-    if(!elem || !target) return;
-    
-    if(elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+    if (!elem || !target) return;
+
+    if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
         const option = [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
         elem.setAttribute("selection", "");
     }
 
-    if(!elem.value) return;
+    if (!elem.value) return;
 
     target.innerHTML = "";
 
@@ -200,12 +203,12 @@ function injectProiezioni(elem, target) {
                 target.innerHTML = request.responseText;
 
                 // no proiezioni available -> cancel proiezione selection
-                if(!target.options[target.selectedIndex]) {
+                if (!target.options[target.selectedIndex]) {
                     target.setAttribute("selection", "");
                 }
 
                 // load default proiezione
-                if(target.getAttribute("selection") && target.getAttribute("selection") != "") {
+                if (target.getAttribute("selection") && target.getAttribute("selection") != "") {
                     target.options[target.selectedIndex].selected = false;
                     [].filter.call(target.options, option => (option.value == target.getAttribute("selection")))[0].selected = true;
                     target.setAttribute("selection", "");
@@ -228,14 +231,14 @@ function injectProiezioni(elem, target) {
 
 function initAdminUtenti() {
     let elements = document.getElementsByClassName("js_toBeInit");
-    
-    for (var i=0; i < elements.length; i++) {
+
+    for (var i = 0; i < elements.length; i++) {
         elements[i].dispatchEvent(new Event("change"));
     }
 }
 
 function onUtenteSelected(elem) {
-    if(!elem) return;
+    if (!elem) return;
 
     if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
@@ -245,11 +248,11 @@ function onUtenteSelected(elem) {
 
     let url = new URL(window.location);
 
-    if(!elem.value || elem.value == "") {
-        if(!url.searchParams.has("username")) return;
+    if (!elem.value || elem.value == "") {
+        if (!url.searchParams.has("username")) return;
         url.searchParams.delete("username");
     } else {
-        if(url.searchParams.has("username") && url.searchParams.get("username") == elem.value) return;
+        if (url.searchParams.has("username") && url.searchParams.get("username") == elem.value) return;
         url.searchParams.set("username", elem.value);
     }
     window.location = url;
@@ -358,7 +361,9 @@ function mod_onFilmChanged() {
 
 function initAdminProiezioni() {
     elem = document.getElementById("apraSelect");
-    if(!elem || !elem.options[elem.selectedIndex]) { return; }
+    if (!elem || !elem.options[elem.selectedIndex]) {
+        return;
+    }
 
     if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
@@ -376,14 +381,14 @@ function mod_ProiezioneSelected() {
     let selectedFilm = document.getElementById("apSelect").value;
 
     // load default film in the form select
-    if(selectedFilm && selectedFilm != "") { 
+    if (selectedFilm && selectedFilm != "") {
         const selectFilm = document.getElementById("aprmSelect");
         selectFilm.options[selectFilm.selectedIndex].selected = false;
         [].filter.call(selectFilm.options, option => (option.value == selectedFilm))[0].selected = true;
     }
 
     // load default date in the form if at least one proiezione is available and if attribute orario is defined
-    if(elem.options[elem.selectedIndex] && elem.options[elem.selectedIndex].getAttribute("orario") && elem.options[elem.selectedIndex].getAttribute("orario") != "") {
+    if (elem.options[elem.selectedIndex] && elem.options[elem.selectedIndex].getAttribute("orario") && elem.options[elem.selectedIndex].getAttribute("orario") != "") {
         document.getElementById("aprmData").setAttribute("value", elem.options[elem.selectedIndex].getAttribute("orario").replace(/\s/g, 'T'));
     } else {
         document.getElementById("aprmData").setAttribute("value", "");
@@ -459,13 +464,16 @@ var dettagli_form = {
 
 function caricamento() {
     for (var key in dettagli_form) {
-        var input = document.getElementById(key);
-        if (input) { // if user is not logged and forms are not displayed this value will be NULL
-            campoDefault(input);
-            input.onfocus = function () {
+        var input = document.querySelectorAll("[id*=" + key + "]");
+        console.log(input);
+        console.log(key);
+        for (i = 0; i < input.length; i++) {
+            console.log(input[i]);
+            campoDefault(input[i]);
+            input[i].onfocus = function () {
                 campoPerInput(this);
             };
-            input.onblur = function () {
+            input[i].onblur = function () {
                 validazioneCampo(this);
             };
         }
@@ -475,19 +483,19 @@ function caricamento() {
 function campoDefault(input) {
     if (input.value == "" && (!input.getAttribute("value") || input.getAttribute("value") == "")) {
         input.className = "placeholderText";
-        input.value = dettagli_form[input.id][0];
+        input.value = dettagli_form[input.id.includes("candidaturaAlt") ? "candidaturaAlt" : input.id][0];
     }
 }
 
 function campoPerInput(input) {
-    if (input.value == dettagli_form[input.id][0]) {
+    if (input.value == dettagli_form[input.id.includes("candidaturaAlt") ? "candidaturaAlt" : input.id][0]) {
         input.className = "normalInput";
         input.value = "";
     }
 }
 
 function validazioneCampo(input) {
-    if(input.id=="signupPassword2"){
+    if (input.id == "signupPassword2") {
         return confermaPassword(input);
     }
     var padre = input.parentNode;
@@ -495,16 +503,17 @@ function validazioneCampo(input) {
         padre.removeChild(padre.children[1]);
     }
 
-    var regex = dettagli_form[input.id][1];
+    var regex = dettagli_form[input.id.includes("candidaturaAlt") ? "candidaturaAlt" : input.id][1];
     var text = input.value;
     input.value = text;
-    if ((text.search(regex) == -1) || (text == dettagli_form[input.id][0])) {
+    if ((text.search(regex) == -1) || (text == dettagli_form[input.id.includes("candidaturaAlt") ? "candidaturaAlt" : input.id][0])) {
         mostraErrore(input);
         return false;
     }
     return true;
 }
-function confermaPassword(input){
+
+function confermaPassword(input) {
     var padre = input.parentNode;
     if (padre.children.length == 2) {
         padre.removeChild(padre.children[1]);
@@ -512,7 +521,7 @@ function confermaPassword(input){
     var pw = document.getElementById("signupPassword").value;
     var text = input.value;
     input.value = text;
-    if (text!=pw) {
+    if (text != pw) {
         mostraErrore(input);
         return false;
     }
@@ -523,7 +532,7 @@ function mostraErrore(input) {
     var padre = input.parentNode;
     var errore = document.createElement("strong");
     errore.className = "errorSuggestion";
-    errore.appendChild(document.createTextNode(dettagli_form[input.id][2]));
+    errore.appendChild(document.createTextNode(dettagli_form[input.id.includes("candidaturaAlt") ? "candidaturaAlt" : input.id][2]));
     padre.appendChild(errore);
 }
 
@@ -531,17 +540,18 @@ function isAncestorOf(elem, ancestor) {
     while (elem && elem != ancestor) {
         elem = elem.parentNode;
     }
-    if(elem) return true;
+    if (elem) return true;
     else return false;
 }
 
 function validazioneForm(form) {
     let truth = true;
     for (var key in dettagli_form) {
-        var input = document.getElementById(key);
-        if (input && isAncestorOf(input, form) && !validazioneCampo(input)) {
-            truth = false;
-            console.log(input);
+        var input = document.querySelectorAll("[id*=" + key + "]");
+        for (i = 0; i < input.length; i++) {
+            if (input[i] && isAncestorOf(input[i], form) && !validazioneCampo(input[i])) {
+                truth = false;
+            }
         }
     }
     return truth;
