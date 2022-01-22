@@ -196,7 +196,7 @@ function printCandidature(&$htmlPage)
                 unset($candidatura);
                 $list .= "</ul>";
             } else {
-                $list .= "<p>Non sono presenti candidature</p>";
+                $list .= "<p id>Non sono presenti candidature</p>";
             }
         } else {
             $list .= "<p>Errore connessione db</p>";

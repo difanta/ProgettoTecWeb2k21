@@ -225,8 +225,11 @@ header #menu li a {
     padding-bottom: 0.4em;
     border-top: 1px solid var(--main-color-dark);
     text-decoration: none;
-    color: white;
+    color: rgb(170, 255, 237);
     transition: background-color 0.5s ease-out;
+}
+header #menu li a:visited,header #menu li a.currentPage { 
+    color: white;
 }
 header #menu li a.currentPage {
     background-color: var(--main-color-dark);
@@ -583,7 +586,6 @@ li.filmPopolare a{
     background-position: 50% 25%;
     transition: all 0.3s ease-in-out;
 }
-
  #acquistoBiglietti li:hover{
      background-color: #21a3df;
      transform: scale(1.03);
@@ -606,10 +608,12 @@ li.filmPopolare a{
     padding-top:  5%;
 }
 
-/* hide a tag */
-#acquistoBiglietti a:link, #acquistoBiglietti a:visited, #acquistoBiglietti a:hover, #acquistoBiglietti a:active {
-    text-decoration: none;
+#acquistoBiglietti a {
     color: black;
+    text-decoration: none;
+}
+#acquistoBiglietti a:visited{
+    color:purple;
 }
 
 /* Lista recensioni --------------------------------------------------------------------------------------------------*/
@@ -764,7 +768,13 @@ li.filmPopolare a{
 
 .boxesList a.linkTitolo {
     display: block;
-    text-decoration: underline var(--main-color-dark);
+    text-decoration: underline;
+}
+.boxesList a.linkTitolo:visited{
+    color:purple;
+}
+.boxesList a.linkTitolo:visited h2{
+    color:purple;
 }
 .boxesList a.linkTitolo:hover {
     text-shadow: none;
@@ -968,6 +978,7 @@ header #loginSection p{
     margin: auto;
     margin-bottom: 2em;
     border-radius: 4px;
+    padding:1em;
 }
 
 #content_paginaUtente h1{
