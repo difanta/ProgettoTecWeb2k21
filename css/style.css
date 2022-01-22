@@ -14,14 +14,14 @@ body {
     --main-color-background-light: #ffffff;
 
     --login-color: #f8f8f8;
-    --login-color-hover: #aaaaaa;
+    --login-color-hover: #c3d8e2;
     --login-color-09opacity: #f8f8f8e7;
     --login-color-hover-09opacity: #aaaaaae7;
 
     --footer-color: #15516b;
 
-    --custom-red-color: #ed2828;
-    --custom-green-color: #1a9f1e;
+    --custom-red-color: #a11a1a;
+    --custom-green-color: #126815;
 }
 
 body {
@@ -41,7 +41,7 @@ body {
     font-style: italic;
 }
 .placeholderText{
-    color:rgb(102, 102, 102);
+    color:#666666;
     font-style: italic;
 }
 .normalInput{
@@ -225,7 +225,7 @@ header #menu li a {
     padding-bottom: 0.4em;
     border-top: 1px solid var(--main-color-dark);
     text-decoration: none;
-    color: rgb(170, 255, 237);
+    color: #aaffed;
     transition: background-color 0.5s ease-out;
 }
 header #menu li a:visited,header #menu li a.currentPage { 
@@ -270,7 +270,7 @@ header #accountButton span#accountName {
 }
 
 header #accountButton, header #accountDropdown button {
-    color: rgb(49, 49, 49);
+    color: #313131;
     cursor: pointer;
     padding: 0.4em 1em;
     transition: background-color 0.2s ease-out;
@@ -297,7 +297,7 @@ header #accountDropdown {
     background-color: white;
     text-align: left;
 
-    box-shadow: 1px 2px 8px rgb(0 0 0 / 15%);
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.149);
     border: 1px solid #ced4da;
 
     transition: 0.2s ease-in-out;
@@ -509,7 +509,7 @@ li.filmPopolare {
     border: none;
     padding-bottom: 1.5%;
     border-radius:8px;
-    box-shadow: 0 0 20px 0px rgb(49, 49, 49);
+    box-shadow: 0 0 20px 0px #303030;
 }
 
 li.filmPopolare p{
@@ -550,7 +550,7 @@ li.filmPopolare a{
     padding-bottom: 0.7%;
     margin-bottom: 16px;
     align-self: flex-end;
-    box-shadow: 0 0 20px 0px rgb(49, 49, 49);
+    box-shadow: 0 0 20px 0px #313131;
     min-width:420px;
     min-height: 40px;
 }
@@ -634,7 +634,7 @@ li.filmPopolare a{
     padding: 0.5em 1.5em;
     margin: 0.8em 0.5em;
 
-    background: linear-gradient(to left top, white, 60%, rgb(218, 218, 218));
+    background: linear-gradient(to left top, white, 60%, #dadada);
 
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.45);
 }
@@ -757,7 +757,7 @@ li.filmPopolare a{
     margin-right: 10%;
     margin-top: 1em;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-
+    
     text-decoration: solid;
     transition: text-shadow 0.3s ease-in-out;
 }
@@ -787,7 +787,7 @@ li.filmPopolare a{
     margin: 0;
     padding: 0.3em 0.6em;
 
-    background-color: rgba(0, 255, 255, 0.35);
+    background-color: #86ffff;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.315);
     border-radius: 5px;
 
@@ -796,11 +796,11 @@ li.filmPopolare a{
 
 .boxesList a.acquista:hover {
     text-shadow: none;
-    background-color: rgba(0, 165, 165, 0.575);
+    background-color: #2bdada;
 }
 
 .boxesList a,.boxesList a:visited {
-    color: var(--main-color);
+    color: var(--main-color-dark);
 }
 
 .filmInGara{
@@ -922,12 +922,12 @@ header #loginSection p{
 }
 
 #content_acquistoBiglietti #pagamento label:hover {
-    border: 2px solid rgb(113, 170, 0);
+    border: 2px solid #71aa00;
 }
 
 #content_acquistoBiglietti #pagamento label.selected {
-    background-color: rgb(171, 219, 74);
-    border: 2px solid rgb(113, 170, 0);
+    background-color: #abdb4a;
+    border: 2px solid #71aa00;
 }
 
 #content_acquistoBiglietti #pagamento input[type="submit"] {
@@ -1161,7 +1161,7 @@ p.attenzioneCandidatura{
     padding: 1rem;
 
     color: white;
-    background: var(--main-color-light);
+    background: var(--main-color-dark);
 
     cursor: pointer;
 
