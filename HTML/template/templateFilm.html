@@ -113,10 +113,10 @@
 
 <div id="content_templateFilm" class="content">
     <iffilmfound>
-        <img title="Logo del Film" aria-description="Logo del film" src="percorsoimmagine" alt="descrizioneimmagine">
-        <h1 title="titolo" aria-description="Titolo">titolofilm</h1>
-        <h2 title="Registi" aria-description="Registi">regista</h2>
-        <dl>
+        <img title="Logo del Film" src="percorsoimmagine" alt="descrizioneimmagine">
+        <h1 title="Titolo del Film">titolofilm</h1>
+        <h2 title="Registi">regista</h2>
+        <dl title="Informazioni aggiuntive" aria-label="Informazioni aggiuntive">
             <dt>In gara</dt>
             <dd>filmingara</dd>
             <dt>Regia</dt>
@@ -130,8 +130,8 @@
             <dt>Durata</dt>
             <dd>duratafilm min</dd>
         </dl>
-        <p title="descrizione" aria-description="Descrizione">descrizionefilm</p>
-        <a href="proiezioni.php?nomeFilm=titolofilm">Proiezioni</a>
+        <p title="Descrizione">descrizionefilm</p>
+        <a title="Vedi le proiezioni per questo film" aria-label="Vedi le proiezioni per questo film" href="proiezioni.php?nomeFilm=titolofilm">Proiezioni</a>
     </iffilmfound>
     <iffilmnotfound>
         <p>Nessun Film trovato!</p>
@@ -139,7 +139,7 @@
 </div>
 
 <div id="tornaSu">
-    <a href="#" target="_self"><img src="../images/arrow_upward_white_24dp.svg" alt="Torna su"/></a>
+    <a href="#" target="_self"><img src="../images/arrow_upward_white_24dp.svg" alt="Torna a inizio pagina"/></a>
 </div>
 
 <footer>

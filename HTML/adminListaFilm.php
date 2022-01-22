@@ -370,8 +370,8 @@ if(!isset($_POST["method"]) && isset($_POST["mod_oldNomeFilm"])) {
         $htmlPage = file_get_contents("template/adminListaFilm.html");
 
         // show login/register/logout results
-        Login::printLogin($htmlPage);
         printFilms($htmlPage);
+        Login::printLogin($htmlPage);
         printAggiungiFilm($htmlPage);
         printModificaFilm($htmlPage);
 
