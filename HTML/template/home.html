@@ -32,10 +32,10 @@
 
         <h1>CinePado</h1>
 
-        <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span><accountname/></button>
+        <button <iflogged>title="Vedi il tuo account oppure effettua il logout"</iflogged><ifnotlogged>title="Effettua il login oppure registrati"</ifnotlogged> aria-expanded="false" aria-controls="accountDropdown" id="accountButton" onclick="toggleAccountDropdown()"><span aria-hidden="true" class="material-icons-outlined">account_circle</span><accountname/></button>
         <div id="accountDropdown">
             <div id="accountSection" class="slidableOut">
-                <div class="loginNavigation">
+                <div class="loginNavigation">   
                     <button class="back" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">arrow_back</span></button>
                 </div>
                 <ifnotlogged>
@@ -45,8 +45,8 @@
                 </ifnotlogged>
                 <iflogged>
                     <form id="logout" method="post"></form>
-                    <button name="method" value="logout" form="logout">Logout</button>
-                    <a href="paginaUtente.php">Il mio Profilo</a>
+                    <a id="linkUtente" href="paginaUtente.php">Il mio Profilo</a>
+                    <button id="logoutBtn" name="method" value="logout" form="logout">Logout</button>
                 </iflogged>
             </div>
     
@@ -94,7 +94,7 @@
             </div>
         </div>
 
-        <nav id="menu">
+        <nav title="Menù del sito" id="menu">
             <ul>
                 <li lang="en"><a class="currentPage">Home</a></li>
                 <li lang="en"><a href="aboutUs.php">About us</a></li>
@@ -105,7 +105,7 @@
             </ul>
          </nav>
 
-        <nav id="breadcrumb">
+        <nav title="Breadcrumb" id="breadcrumb">
             <p>Ti trovi in: <span lang="en">Home</span></p>
         </nav>
 
