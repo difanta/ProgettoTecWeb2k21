@@ -404,6 +404,12 @@ header #adminMenu li{
     padding: 0.5em;
 }
 
+#content_adminCandidature ul.containerCandidature img{
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+}
+
 #content_adminCandidature ul.containerCandidature input.button{
     width: 100%;
     margin: 0.5em auto 0.5em auto;
