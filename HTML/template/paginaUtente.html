@@ -42,7 +42,6 @@
             <iflogged>
                 <form id="logout" method="post"></form>
                 <button name="method" value="logout" form="logout">Logout</button>
-                <a href="paginaUtente.php">Il mio Profilo</a>
             </iflogged>
         </div>
 
@@ -111,15 +110,15 @@
 <div id="content_paginaUtente" class="content">
     <iflogged>
         <div id="informazioniAccount">
-            <h1>Informazioni Account</h1>
+            <h1 id="formLabel">Informazioni Account</h1>
             <utenteForm/>
         </div>
         <div class="BoxUser">
-            <h1>I tuoi biglietti</h1>
+            <h1 id="bigliettiLabel">I tuoi biglietti</h1>
             <listaBiglietti/>
         </div>
         <div class="BoxUser">
-            <h1>Le tue candidature</h1>
+            <h1 id="candidatureLabel">Le tue candidature</h1>
             <feedbackDeleteCandidatura/>
             <listaCandidature/>
         </div>
@@ -130,7 +129,7 @@
 </div>
 
 <div id="tornaSu">
-    <a href="#" target="_self"><img src="../images/arrow_upward_white_24dp.svg" alt="Torna su"/></a>
+    <a href="#" target="_self"><img src="../images/arrow_upward_white_24dp.svg" alt="Torna a inizio pagina"/></a>
 </div>
 
 <footer>
@@ -138,25 +137,25 @@
     <p id="sponsorLabel">I nostri sponsor:</p> 
     <ul aria-labelledby="sponsorLabel" id="listaSponsor">
         <li>
-            <img id="imgSponsor1" src="../images/sponsor/La_dolce_vita.png" tabindex="0" alt="La dolce vita"/>
+            <img id="imgSponsor1" src="../images/sponsor/La_dolce_vita.png" alt="La dolce vita"/>
             <p>La Dolve Vita Bar</p>
         </li>
         <li>
-            <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" tabindex="0" alt="La Feltrinelli"/>
+            <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
             <p>La Feltrinelli</p>
         </li>
         <li>
-            <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" tabindex="0" alt="The Grand Budapest Hotel"/>
+            <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
             <p>Grand Budapest Hotel</p>
         </li>
     </ul>
     <ul id="studenti" title="Gli Autori">
-        <li tabindex="0">Alberto Nicoletti</li>
-        <li tabindex="0">Giovanni Moretti</li>
-        <li tabindex="0">Luca Annicchiarico</li>
-        <li tabindex="0">Tommaso Di Fant</li>
+        <li>Alberto Nicoletti</li>
+        <li>Giovanni Moretti</li>
+        <li>Luca Annicchiarico</li>
+        <li>Tommaso Di Fant</li>
     </ul>
-    <p tabindex="0">&copy; Copyright 2021</p>
+    <p>&copy; Copyright 2021</p>
 </footer>
 </body>
 </html>

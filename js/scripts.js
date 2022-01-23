@@ -2,6 +2,7 @@ window.addEventListener("load", caricaPagina, true);
 
 function caricaPagina() {
     caricamento();
+    setAccountAriaState();
 }
 
 /* Feature Detection --------------------------------- */
@@ -30,6 +31,15 @@ function toggleAccountDropdown() {
     document.getElementById('accountSection').classList.remove('slideOut');
     document.getElementById('loginSection').classList.remove('slideIn');
     document.getElementById('signupSection').classList.remove('slideIn');
+    setAccountAriaState();
+}
+
+function setAccountAriaState() {
+    if(document.getElementById('accountDropdown').classList.contains('dropdown')) {
+        document.getElementById('accountButton').ariaExpanded = "true";
+    } else {
+        document.getElementById('accountButton').ariaExpanded = "false";
+    }
 }
 
 function openLogin() {

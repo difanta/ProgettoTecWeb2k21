@@ -133,7 +133,7 @@ function printBiglietti(&$htmlPage)
             $biglietti = $connection->getUserTickets();
             $connection->closeConnection();
             if ($biglietti != null) {
-                $listaBiglietti .= "<ul>";
+                $listaBiglietti .= "<ul aria-labelledby='bigliettiLabel'>";
                 foreach ($biglietti as $biglietto) {
                     $listaBiglietti .= file_get_contents("template/templateTicketUtente.html");
 
@@ -173,7 +173,7 @@ function printCandidature(&$htmlPage)
             $candidature = $connection->getUserCandidature();
             $connection->closeConnection();
             if ($candidature != null) {
-                $list .= "<ul id='acnSospese'>";
+                $list .= "<ul aria-labelledby='candidatureLabel' id='acnSospese'>";
                 foreach ($candidature as $index => $candidatura) {
                     $list .= file_get_contents("template/templateCandidaturaUser.html");
 
@@ -196,7 +196,7 @@ function printCandidature(&$htmlPage)
                 unset($candidatura);
                 $list .= "</ul>";
             } else {
-                $list .= "<p>Non sono presenti candidature</p>";
+                $list .= "<p id>Non sono presenti candidature</p>";
             }
         } else {
             $list .= "<p>Errore connessione db</p>";
