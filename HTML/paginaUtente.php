@@ -173,7 +173,7 @@ function printCandidature(&$htmlPage)
             $candidature = $connection->getUserCandidature();
             $connection->closeConnection();
             if ($candidature != null) {
-                $list .= "<ul aria-labelledby='candidatureLabel' id='acnSospese'>";
+                $list .= "<ul aria-labelledby='candidatureLabel' class=\"containerCandidature\">";
                 foreach ($candidature as $index => $candidatura) {
                     $list .= file_get_contents("template/templateCandidaturaUser.html");
 

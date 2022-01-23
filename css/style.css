@@ -1045,15 +1045,15 @@ header #loginSection p{
     font-style: italic;
 }
 
-.BoxUser ul#acnSospese{
+.BoxUser ul.containerCandidature{
     padding: 1em;
     margin: 0;
 }
-.BoxUser ul#acnSospese li form{
+.BoxUser ul.containerCandidature li form{
     padding: 1em;
 }
 
-#content_paginaUtente ul#acnSospese .button, #content_paginaUtente ul#acnSospese p{
+#content_paginaUtente ul.containerCandidature .button, #content_paginaUtente ul.containerCandidature p{
     margin-top: 1em;
     margin-bottom: 0;
 }
@@ -1155,7 +1155,7 @@ p.attenzioneCandidatura{
     margin-left:8px;
 }
 
-#acnSospese li{
+.containerCandidature li{
     border:var(--main-color-dark) solid;
     border-radius: 4px;
     background-color: var(--main-color-light-halfopacity);

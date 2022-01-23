@@ -41,7 +41,7 @@ function printCandidature(&$htmlPage)
         $candidature = $connection->getCandidatureAndEmail($filter_candidatura);
         $connection->closeConnection();
         if ($candidature != null) {
-            $list .= "<ul id='acnSospese'>";
+            $list .= "<ul class=\"containerCandidature\">";
             foreach ($candidature as $index => $candidatura) {
                 $list .= file_get_contents("template/templateCandidaturaAdmin.html");
 

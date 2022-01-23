@@ -354,7 +354,7 @@ footer #studenti li{
     margin-bottom: 0;
 }
 
-#content_paginaUtente .BoxUser #acnSospese form{
+#content_paginaUtente .BoxUser .containerCandidature form{
     padding: 0.3em;
 }
 
@@ -391,25 +391,25 @@ header #adminMenu li{
 
 /*admin candidature*/
 
-#content_adminCandidature ul#acnSospese{
+#content_adminCandidature ul.containerCandidature{
     padding-left: 0;
 }
 
-#content_adminCandidature ul#acnSospese li{
+#content_adminCandidature ul.containerCandidature li{
     margin-top: 12px;
     padding: 0;
 }
 
-#content_adminCandidature ul#acnSospese form{
+#content_adminCandidature ul.containerCandidature form{
     padding: 0.5em;
 }
 
-#content_adminCandidature ul#acnSospese input.button{
+#content_adminCandidature ul.containerCandidature input.button{
     width: 100%;
     margin: 0.5em auto 0.5em auto;
 } 
 
-#content_adminCandidature ul#acnSospese input.button[value="Rifiuta candidatura"]{
+#content_adminCandidature ul.containerCandidature input.button[value="Rifiuta candidatura"]{
     margin-top: 0;
 }
 
