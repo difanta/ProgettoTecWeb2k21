@@ -97,7 +97,7 @@ window.addEventListener("scroll", function () {
 
 /* Lista Film ---------------------------------------- */
 
-function listaFilmLike(checked, nomeFilm, idfilm) {
+function listaFilmLike(checked, idfilm) {
     elem = document.getElementById('label-like-' + idfilm);
     if (checked == true) {
         elem.innerHTML = elem.innerHTML.replace('favorite_border', 'favorite');
@@ -118,7 +118,7 @@ function listaFilmLike(checked, nomeFilm, idfilm) {
     }
     request.open("POST", "like.php");
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.send(encodeURIComponent("nomeFilm") + "=" + encodeURIComponent(nomeFilm)
+    request.send(encodeURIComponent("idfilm") + "=" + encodeURIComponent(idfilm)
         + "&" +
         encodeURIComponent("like") + "=" + encodeURIComponent(checked));
 }
