@@ -56,7 +56,8 @@ function printFilms(&$htmlPage) {
             // create and substitute films based on template
             foreach($result as $indice => $film) {
                 $at_least_one = true;
-                $film_html = str_replace("idfilm"            , Sanitizer::forHtml($film["id"])      , $film_html);
+                $film_html = str_replace("idfilm"            , Sanitizer::forHtml($film["id"])      , $template);
+                $film_html = str_replace("titolofilmlink"    , Sanitizer::forLinks($film["nome"])   , $film_html);
                 $film_html = str_replace("titolofilm"        , Sanitizer::forHtml($film["nome"])    , $film_html);
                 $film_html = str_replace("regista"           , Sanitizer::forHtml($film["regista"]) , $film_html);
                 if($film["in_gara"]) 

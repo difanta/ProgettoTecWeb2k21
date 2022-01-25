@@ -23,6 +23,7 @@ function printFilm(&$htmlPage) {
                 if($film) {
                     $found = true;
                     $htmlPage = str_replace("idfilm"              , Sanitizer::forHtml($film["id"])          , $htmlPage);
+                    $htmlPage = str_replace("titolofilmlink"      , Sanitizer::forLinks($film["nome"])       , $htmlPage);
                     $htmlPage = str_replace("titolofilm"          , Sanitizer::forHtml($film["nome"])        , $htmlPage);
                     $htmlPage = str_replace("regista"             , Sanitizer::forHtml($film["regista"])     , $htmlPage);
                     $htmlPage = str_replace("elencoattori"        , Sanitizer::forHtml($film["cast"])        , $htmlPage);

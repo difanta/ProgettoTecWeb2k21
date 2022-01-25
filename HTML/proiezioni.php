@@ -64,12 +64,13 @@ function printProiezioni(&$htmlPage) {
             // create and substitute proiezione based on template
             foreach($result as $indice => $film) {
                 $at_least_one = true;
-                $proiezione_html = str_replace("idfilm",       Sanitizer::forHtml($film["fid"]),     $template);
-                $proiezione_html = str_replace("titolofilm",   Sanitizer::forHtml($film["nome"]),    $proiezione_html);
-                $proiezione_html = str_replace("regista",      Sanitizer::forHtml($film["regista"]), $proiezione_html);
-                $proiezione_html = str_replace("data",         Sanitizer::forHtml($film["data"]),    $proiezione_html);
-                $proiezione_html = str_replace("ora",          Sanitizer::forHtml($film["ora"]),     $proiezione_html);
-                $proiezione_html = str_replace("idproiezione", Sanitizer::forHtml($film["pid"]),     $proiezione_html);
+                $proiezione_html = str_replace("idfilm",         Sanitizer::forHtml($film["fid"]),     $template);
+                $proiezione_html = str_replace("titolofilmlink", Sanitizer::forLinks($film["nome"]),   $proiezione_html);
+                $proiezione_html = str_replace("titolofilm",     Sanitizer::forHtml($film["nome"]),    $proiezione_html);
+                $proiezione_html = str_replace("regista",        Sanitizer::forHtml($film["regista"]), $proiezione_html);
+                $proiezione_html = str_replace("data",           Sanitizer::forHtml($film["data"]),    $proiezione_html);
+                $proiezione_html = str_replace("ora",            Sanitizer::forHtml($film["ora"]),     $proiezione_html);
+                $proiezione_html = str_replace("idproiezione",   Sanitizer::forHtml($film["pid"]),     $proiezione_html);
                 if($film["in_gara"]){
                     $proiezione_html = str_replace("filmNonInGara" , "filmInGara" , $proiezione_html);
                 }
