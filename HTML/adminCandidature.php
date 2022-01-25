@@ -65,11 +65,11 @@ function printCandidature(&$htmlPage)
                 if ($filter_candidatura == "Approvata") {
                     $list = str_replace("rifiutaCand", "style=\"display:none;\"", $list);
                     $list = str_replace("accettaCand", "style=\"display:none;\"", $list);
-                    $list = str_replace("sospendiCand", "style=\"display:show;\"", $list);
+                    $list = str_replace("sospendiCand", "", $list);
                     $list = str_replace("pDisabled", "disabled", $list);
                 } elseif ($filter_candidatura == "Sospesa"){
-                    $list = str_replace("rifiutaCand", "style=\"display:show;\"", $list);
-                    $list = str_replace("accettaCand", "style=\"display:show;\"", $list);
+                    $list = str_replace("rifiutaCand", "", $list);
+                    $list = str_replace("accettaCand", "", $list);
                     $list = str_replace("sospendiCand", "style=\"display:none;\"", $list);
                     $list = str_replace("pDisabled", "", $list);
                 }
@@ -86,10 +86,10 @@ function printCandidature(&$htmlPage)
     if ($filter_candidatura == "Approvata") {
         $htmlPage = str_replace("in sospeso</h1>", "approvate</h1>", $htmlPage);
         $htmlPage = str_replace("alertRifiuto", "style=\"display:none;\"", $htmlPage);
-        $htmlPage = str_replace("alertSospensione", "style=\"display:show;\"", $htmlPage);
+        $htmlPage = str_replace("alertSospensione", "", $htmlPage);
     } else {
         $htmlPage = str_replace("alertSospensione", "style=\"display:none;\"", $htmlPage);
-        $htmlPage = str_replace("alertRifiuto", "style=\"display:show;\"", $htmlPage);
+        $htmlPage = str_replace("alertRifiuto", "", $htmlPage);
     }
     $htmlPage = str_replace("<listaCandidature/>", $list, $htmlPage);
 }
