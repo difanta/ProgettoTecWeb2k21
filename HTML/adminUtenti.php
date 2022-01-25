@@ -212,7 +212,7 @@ function printUtenteAndBiglietti(&$htmlPage) {
     if($at_least_one) {
         $htmlPage = str_replace($p_biglietto, "", $htmlPage);
     } else {
-        $htmlPage = str_replace($p_biglietto, "<p>Nessun Biglietto Trovato!</p>", $htmlPage);
+        $htmlPage = str_replace($p_biglietto, "<li>Nessun Biglietto Trovato!</li>", $htmlPage);
     }
 }
 
