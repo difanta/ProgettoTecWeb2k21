@@ -1032,6 +1032,7 @@ header #loginSection p{
     color: white;
     width: 25%;
     min-width: 200px;
+    text-align: center;
 }
 
 .ticket-up:first-child{
@@ -1063,6 +1064,10 @@ header #loginSection p{
 
 #content_paginaUtente .candidatura label{
     display:block;
+}
+
+.alert{
+    text-align: center;
 }
 
 /* Come Trovarci --------------------------------------------------------------------------------------------------*/

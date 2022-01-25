@@ -488,6 +488,19 @@ class DBAccess
         $stmt->bind_param("s", $titolo);
         return $stmt->execute();
     }
+    /**
+     * @used_in adminCandidature.php
+     */
+    public function deleteTicketsOnSuspend($titolo)
+    {
+        $stmt = $this->connection->prepare("DELETE Biglietto 
+                                            FROM Biglietto
+                                                JOIN Proiezione on Proiezione.id = Biglietto.proiezione
+                                                JOIN Film on Film.id = Proiezione.film 
+                                            WHERE film = 1");
+        $stmt->bind_param("s", $titolo);
+        return $stmt->execute();
+    }
 
     /**
      * @used_in admin.php
