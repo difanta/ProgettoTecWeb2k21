@@ -130,7 +130,7 @@
 
             <form id="aprAggiungi" method="post">
                 <label for="apraSelect">Film</label>
-                <select id="apraSelect" name="agg_nomeFilm" selection="agg_nomefilmselezionato">
+                <select id="apraSelect" name="agg_nomeFilm" data-selection="agg_nomefilmselezionato">
                     <nomifilm/>
                 </select>
                 <br>
@@ -146,12 +146,12 @@
 
             <form id="aprModifica" method="post">
                 <label for="apSelect">Seleziona un film</label>
-                <select id="apSelect" name="mod_nomeFilm" selection="mod_nomefilmselezionato" onchange="injectProiezioni(this, document.getElementById('apSelectP'), [document.getElementById('modificaProiezione'), document.getElementById('eliminaProiezione')])">
+                <select id="apSelect" name="mod_nomeFilm" data-selection="mod_nomefilmselezionato" onchange="injectProiezioni(this, document.getElementById('apSelectP'), [document.getElementById('modificaProiezione'), document.getElementById('eliminaProiezione')])">
                     <nomifilm/>
                 </select>
                 <br>
                 <label for="apSelectP">Seleziona una proiezione</label>
-                <select id="apSelectP" name="mod_idProiezione" selection="mod_idproiezioneselezionata" onchange="mod_ProiezioneSelected()">
+                <select id="apSelectP" name="mod_idProiezione" data-selection="mod_idproiezioneselezionata" onchange="mod_ProiezioneSelected()">
                 </select>
                 <br>
                 <label for="aprmSelect">Film</label>

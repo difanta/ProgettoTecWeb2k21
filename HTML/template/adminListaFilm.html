@@ -171,7 +171,7 @@
 
             <form id="alfModifica" method="post" enctype="multipart/form-data" onsubmit="return validazioneForm(this);">
                 <label for="alfSelect">Seleziona un film da modificare</label>
-                <select id="alfSelect" name="mod_oldNomeFilm" selection="mod_nomefilmselezionato" onchange="mod_onFilmChanged()">
+                <select id="alfSelect" name="mod_oldNomeFilm" data-selection="mod_nomefilmselezionato" onchange="mod_onFilmChanged()">
                     <nomifilm/>
                 </select>
                 <br>

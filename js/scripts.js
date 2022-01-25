@@ -196,10 +196,10 @@ function setEditOff() {
 function injectProiezioni(elem, target, buttons) {
     if (!elem || !target) return;
 
-    if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+    if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        const option = [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
-        elem.setAttribute("selection", "");
+        const option = [].filter.call(elem.options, option => (option.value == elem.getAttribute("data-selection")))[0].selected = true;
+        elem.setAttribute("data-selection", "");
     }
 
     if (!elem.value) return;
@@ -212,9 +212,9 @@ function injectProiezioni(elem, target, buttons) {
             if (request.status === 200) {
                 target.innerHTML = request.responseText;
 
-                // no proiezioni available -> cancel proiezione selection and disable buttons
+                // no proiezioni available -> cancel proiezione data-selection and disable buttons
                 if (!target.options[target.selectedIndex]) {
-                    target.setAttribute("selection", "");
+                    target.setAttribute("data-selection", "");
                     for(let button of buttons) {
                         button.disabled = true;
                     }
@@ -225,10 +225,10 @@ function injectProiezioni(elem, target, buttons) {
                 }
 
                 // load default proiezione
-                if (target.getAttribute("selection") && target.getAttribute("selection") != "") {
+                if (target.getAttribute("data-selection") && target.getAttribute("data-selection") != "") {
                     target.options[target.selectedIndex].selected = false;
-                    [].filter.call(target.options, option => (option.value == target.getAttribute("selection")))[0].selected = true;
-                    target.setAttribute("selection", "");
+                    [].filter.call(target.options, option => (option.value == target.getAttribute("data-selection")))[0].selected = true;
+                    target.setAttribute("data-selection", "");
                 }
 
                 target.dispatchEvent(new Event("change"));
@@ -257,10 +257,10 @@ function initAdminUtenti() {
 function onUtenteSelected(elem) {
     if (!elem) return;
 
-    if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+    if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
-        elem.setAttribute("selection", "");
+        [].filter.call(elem.options, option => (option.value == elem.getAttribute("data-selection")))[0].selected = true;
+        elem.setAttribute("data-selection", "");
     }
 
     let url = new URL(window.location);
@@ -281,14 +281,14 @@ function initAdminListaFilm() {
     elem = document.getElementById("alfSelect");
 
     if (!elem.options[elem.selectedIndex]) {
-        elem.setAttribute("selection", "");
+        elem.setAttribute("data-selection", "");
         return;
     }
 
-    if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+    if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
-        elem.setAttribute("selection", "");
+        [].filter.call(elem.options, option => (option.value == elem.getAttribute("data-selection")))[0].selected = true;
+        elem.setAttribute("data-selection", "");
     } else {
         elem.dispatchEvent(new Event("change"));
     }
@@ -382,10 +382,10 @@ function initAdminProiezioni() {
         return;
     }
 
-    if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+    if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
-        elem.setAttribute("selection", "");
+        [].filter.call(elem.options, option => (option.value == elem.getAttribute("data-selection")))[0].selected = true;
+        elem.setAttribute("data-selection", "");
     }
 
     elem = document.getElementById("apSelect");
