@@ -32,10 +32,10 @@
         <h1>CinePado</h1>
 
         <button <iflogged>title="Vedi il tuo account oppure effettua il logout"</iflogged><ifnotlogged>title="Effettua il login oppure registrati"</ifnotlogged> aria-expanded="false" aria-controls="accountDropdown" id="accountButton" onclick="toggleAccountDropdown()"><span aria-hidden="true" class="material-icons-outlined">account_circle</span><accountname/></button>
-        <div id="accountDropdown">
+        <div id="accountDropdown" role="dialog" aria-label="Account">
             <div id="accountSection" class="slidableOut">
                 <div class="loginNavigation">   
-                    <button class="back" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">arrow_back</span></button>
+                    <button class="back" aria-label="Torna Indietro" onclick="toggleAccountDropdown()"><span aria-hidden="true" class="material-icons-outlined">arrow_back</span></button>
                 </div>
                 <ifnotlogged>
                     <logoutfeedback/>
@@ -51,7 +51,7 @@
     
             <div id="loginSection" class="slidableIn">
                 <div class="loginNavigation">
-                    <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span></button>
+                    <button class="back" aria-label="Torna Indietro" onclick="loginBack()"><span aria-hidden="true" class="material-icons-outlined">arrow_back</span></button>
                 </div>
                 <loginfeedback/>
                 <ifnotloginsuccess>
@@ -68,7 +68,7 @@
     
             <div id="signupSection" class="slidableIn">
                 <div class="loginNavigation">
-                    <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span></button>
+                    <button class="back" aria-label="Torna Indietro" onclick="signupBack()"><span aria-hidden="true" class="material-icons-outlined">arrow_back</span></button>
                 </div>
                 <registerfeedback/>
                 <ifnotregistersuccess>

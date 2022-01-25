@@ -37,6 +37,18 @@ function toggleAccountDropdown() {
 function setAccountAriaState() {
     if(document.getElementById('accountDropdown').classList.contains('dropdown')) {
         document.getElementById('accountButton').ariaExpanded = "true";
+        window.setTimeout(() => {
+            if(!document.getElementById('accountSection').classList.contains('slideOut')) {
+                let loginBtn = document.getElementById('loginBtn');
+                let accountLink = document.getElementById('linkUtente');
+                if(accountLink) { accountLink.focus(); console.log("accountLink focus"); }
+                else if(loginBtn) { loginBtn.focus(); console.log("loginBtn focus"); }
+            } else if(document.getElementById('loginSection').classList.contains('slideOut')) {
+                document.querySelector('#loginSection button[class=\'back\']').focus();
+            } else if(document.getElementById('signupSection').classList.contains('slideOut')) {
+                document.querySelector('#signupSection button[class=\'back\']').focus();
+            }
+        } , 20);
     } else {
         document.getElementById('accountButton').ariaExpanded = "false";
     }
@@ -45,21 +57,39 @@ function setAccountAriaState() {
 function openLogin() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('loginSection').classList.toggle('slideIn');
+    window.setTimeout(() => { 
+        document.querySelector('#loginSection button[class=\'back\']').focus();
+    } , 0);
 }
 
 function openSignup() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('signupSection').classList.toggle('slideIn');
+    window.setTimeout(() => { 
+        document.querySelector('#signupSection button[class=\'back\']').focus();
+    } , 0);
 }
 
 function loginBack() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('loginSection').classList.toggle('slideIn');
+    window.setTimeout(() => { 
+        let loginBtn = document.getElementById('loginBtn');
+        let accountLink = document.getElementById('linkUtente');
+        if(accountLink) { accountLink.focus(); }
+        else if(loginBtn) { loginBtn.focus(); }
+    } , 0);
 }
 
 function signupBack() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('signupSection').classList.toggle('slideIn');
+    window.setTimeout(() => { 
+        let loginBtn = document.getElementById('loginBtn');
+        let accountLink = document.getElementById('linkUtente');
+        if(accountLink) { accountLink.focus(); }
+        else if(loginBtn) { loginBtn.focus(); }
+    } , 0);
 }
 
 // hide account dropdown on click outside it and outside account button
