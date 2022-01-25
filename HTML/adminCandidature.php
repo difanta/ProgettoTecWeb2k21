@@ -180,7 +180,8 @@ function sospendiCandidatura()
 
     if ($connectionOk) {
         if ($connection->sospendiCandidatura($_POST["titolo"])
-            && $connection->deleteProizioniOnSuspend($_POST["titolo"])) {
+            && $connection->deleteProizioniOnSuspend($_POST["titolo"])
+            && $connection->deleteTicketsOnSuspend($_POST["titolo"])) {
             $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" sospesa con successo";
             $_SESSION["success"] = true;
         } else {

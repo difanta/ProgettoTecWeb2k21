@@ -144,7 +144,7 @@ function printBiglietti(&$htmlPage)
                 unset($biglietto);
                 $listaBiglietti .= "</ul>";
             } else {
-                $listaBiglietti .= "<p>Non sono presenti biglietti</p>";
+                $listaBiglietti .= "<p class='alert'>Non sono presenti biglietti</p>";
             }
         } else {
             $listaBiglietti .= "<p>Errore connessione db</p>";
@@ -198,7 +198,7 @@ function printCandidature(&$htmlPage)
                 unset($candidatura);
                 $list .= "</ul>";
             } else {
-                $list .= "<p id>Non sono presenti candidature</p>";
+                $list .= "<p class='alert'>Non sono presenti candidature</p>";
             }
         } else {
             $list .= "<p>Errore connessione db</p>";
