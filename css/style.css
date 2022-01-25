@@ -465,7 +465,7 @@ div.content{
 }
 #contatti #aiutaci{
     font-size:1.2em;
-    font-weight: italic;
+    font-style: italic;
     font-weight: bold;
 }
 
@@ -533,7 +533,6 @@ li.filmPopolare a{
     border-radius: 0 0 8px 8px;
     background-size: cover;
     background-position: 40% 50%;
-    margin: solid black 10px;
 }
   
 #filmPopolareLink a{
