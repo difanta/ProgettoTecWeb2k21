@@ -178,6 +178,7 @@ function printUtenteAndBiglietti(&$htmlPage) {
 
     $connection = new DBAccess();
     $connectionOk = $connection->openDB();
+    $at_least_one = false;
 
     if($connectionOk) {
         $template = file_get_contents("./template/templateAdminUtentiBiglietto.html");
@@ -192,6 +193,7 @@ function printUtenteAndBiglietti(&$htmlPage) {
 
             if($results_tickets) {
                 foreach($results_tickets as $ticket) {
+                    $at_least_one = true;
                     $biglietto_html = str_replace("idbiglietto"                , Sanitizer::forHtml($ticket["id"])  , $ticketTemplate);
                     $biglietto_html = str_replace("mod_nomefilmselezionato"    , Sanitizer::forHtml($ticket["nome"]), $biglietto_html);
                     $biglietto_html = str_replace("mod_idproiezioneselezionata", Sanitizer::forHtml($ticket["pid"]) , $biglietto_html);
@@ -207,7 +209,11 @@ function printUtenteAndBiglietti(&$htmlPage) {
 
     Login::showElement("<ifutenteselezionato>", "</ifutenteselezionato>", $htmlPage);
     $htmlPage = str_replace("userselected", Sanitizer::forHtml($email), $htmlPage);
-    $htmlPage = str_replace($p_biglietto, "", $htmlPage);
+    if($at_least_one) {
+        $htmlPage = str_replace($p_biglietto, "", $htmlPage);
+    } else {
+        $htmlPage = str_replace($p_biglietto, "<p>Nessun Biglietto Trovato!</p>", $htmlPage);
+    }
 }
 
 if (isset($_POST["method"])) {
