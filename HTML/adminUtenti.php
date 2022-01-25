@@ -231,6 +231,7 @@ if (isset($_POST["method"])) {
     Login::printLogin($htmlPage);
     printUtenteAndBiglietti($htmlPage);
     printUtentiAndFilms($htmlPage);
+    Utils::feedbackCleanUp($htmlPage, "<feedback/>");
 
     echo $htmlPage;
 }

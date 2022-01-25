@@ -232,5 +232,7 @@ if (isset($_POST["method"])) {
         unset($_SESSION["success"]);
     }
 
+    Utils::feedbackCleanUp($htmlPage, "<feedbackCandidature/>");
+
     echo $htmlPage;
 }

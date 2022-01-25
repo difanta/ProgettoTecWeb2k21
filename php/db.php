@@ -362,7 +362,7 @@ class DBAccess
      */
     public function getUserCandidature()
     {
-        $stmt = $this->connection->prepare("SELECT Film.nome, Film.descrizione, Film.durata, Film.anno, Film.regista, Film.produttore, Film.cast, Utente.email, Film.approvato
+        $stmt = $this->connection->prepare("SELECT Film.nome, Film.descrizione, Film.durata, Film.anno, Film.regista, Film.produttore, Film.cast, Utente.email, Film.approvato, Film.alt
                                             FROM Utente
                                             join Film on Film.candidatore = Utente.id 
                                             where Utente.id = ?");

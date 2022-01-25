@@ -42,6 +42,16 @@ class Utils
     }
 
     /**
+     * Deletes all printed non-used placeholders
+     * @param $htmlPage string html page
+     * @param ...$placeholders array of placeholders
+     */
+    public static function feedbackCleanUp(&$htmlPage, ...$placeholders){
+        foreach ($placeholders as $elem)
+            $htmlPage = str_replace($elem, "", $htmlPage);
+    }
+
+    /**
      * Validates a string: checks if it's not empty and if it respects a given regular expression
      * @param $element string the input to be checked
      * @param $regex string regular espression

@@ -268,6 +268,8 @@ class Login {
         } else {
             $htmlPage = str_replace(Login::$p_accountname, ""                                                              , $htmlPage);
         }
+
+        Utils::feedbackCleanUp($htmlPage, "<loginfeedback/>", "<registerfeedback/>", "<logoutfeedback/>");
     }
 }
 

@@ -374,6 +374,7 @@ if(!isset($_POST["method"]) && isset($_POST["mod_oldNomeFilm"])) {
         Login::printLogin($htmlPage);
         printAggiungiFilm($htmlPage);
         printModificaFilm($htmlPage);
+        Utils::feedbackCleanUp($htmlPage, "<feedback/>");
 
         echo $htmlPage;
     }

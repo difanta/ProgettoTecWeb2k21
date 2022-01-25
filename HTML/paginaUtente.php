@@ -179,6 +179,8 @@ function printCandidature(&$htmlPage)
 
                     $list = str_replace("collapse", "collapse" . $index, $list);
                     $list = str_replace("pTitolo", Sanitizer::forHtml($candidatura["nome"]), $list);
+                    $list = str_replace("percorsoimmagine", FS::findImage($candidatura["nome"]), $list);
+                    $list = str_replace("descrizioneimmagine", Sanitizer::forHtml($candidatura["alt"]), $list);
                     $list = str_replace("pDurata", Sanitizer::forHtml($candidatura["durata"] . "'"), $list);
                     $list = str_replace("pAnno", Sanitizer::forHtml($candidatura["anno"]), $list);
                     $list = str_replace("pRegista", Sanitizer::forHtml($candidatura["regista"]), $list);
@@ -286,6 +288,8 @@ if (isset($_POST["method"])) {
         unset($_SESSION["feedback"]);
         unset($_SESSION["success"]);
     }
+
+    Utils::feedbackCleanUp($htmlPage, "<feedbackInfoUtente/>", "<feedbackDeleteCandidatura/>");
 
     echo $htmlPage;
 }

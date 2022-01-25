@@ -88,5 +88,8 @@ if (isset($_POST["method"])) {
         unset($_SESSION["feedback"]);
         unset($_SESSION["success"]);
     }
+    Utils::feedbackCleanUp($htmlPage, "<feedbackCandidatura/>");
+
+
     echo $htmlPage;
 }

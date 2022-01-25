@@ -187,6 +187,7 @@ if(isset($_POST["method"])) {
     printFilms($htmlPage);
     printAggiungiProiezione($htmlPage);
     printModificaProiezione($htmlPage);
+    Utils::feedbackCleanUp($htmlPage, "<feedback/>");
 
     echo $htmlPage;
 }

@@ -18,7 +18,7 @@
     <link href="../css/print.css" rel="stylesheet" type="text/css" media="print"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
           rel="stylesheet">
     <script src="../js/scripts.js"></script>
     <link rel="shortcut icon" type="image/png" href="../images/favicon.ico"/>
@@ -175,19 +175,19 @@
             <form method="post" enctype="multipart/form-data" onsubmit="return validazioneForm(this);">
                 <fieldset>
                     <label for="titolo">Titolo</label>
-                    <span><input type="text" name="titolo" id="titolo" required/></span>
+                    <span><input type="text" name="titolo" id="titolo" required></span>
                     <label for="descrizione">Descrizione</label>
                     <span><textarea name="descrizione" id="descrizione" cols="40" rows="8" required></textarea></span>
                     <label for="imgFilm">Immagine film</label>
-                    <span><input type="file" name="imgFilm" id="imgFilm" accept="image/png, image/jpeg" required/></span>
+                    <span><input type="file" name="imgFilm" id="imgFilm" accept="image/png, image/jpeg" required></span>
                     <label for="durata">Durata</label>
-                    <span><input type="number" name="durata" id="durata" min=60 max=180 required/></span>
+                    <span><input type="number" name="durata" id="durata" min=60 max=180 required></span>
                     <label for="anno">Anno</label>
-                    <span><input type="number" name="anno" id="anno" min=1900 max=2022 required/></span>
+                    <span><input type="number" name="anno" id="anno" min=1900 max=2022 required></span>
                     <label for="regista">Regista</label>
-                    <span><input type="text" name="regista" id="regista" required/></span>
+                    <span><input type="text" name="regista" id="regista" required></span>
                     <label for="produttore">Produttore</label>
-                    <span><input type="text" name="produttore" id="produttore" required/></span>
+                    <span><input type="text" name="produttore" id="produttore" required></span>
                     <label for="cast">Cast</label>
                     <span><textarea name="cast" id="cast" cols="40" rows="8" required></textarea></span>
                     <input class="button" type="submit" name="method" value="Invia Candidatura">

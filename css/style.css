@@ -1057,6 +1057,15 @@ header #loginSection p{
     margin-bottom: 0;
 }
 
+#content_paginaUtente .candidatura img{
+    width:initial;
+    max-height: 200px;
+}
+
+#content_paginaUtente .candidatura label{
+    display:block;
+}
+
 /* Come Trovarci --------------------------------------------------------------------------------------------------*/
 #ristorazione h2{
     margin-top:70px;
@@ -1167,7 +1176,6 @@ p.attenzioneCandidatura{
     font-style: italic;
 }
 
-
 #content_adminCandidature input{
     margin-top:10px;
 }
@@ -1222,10 +1230,12 @@ p.attenzioneCandidatura{
     border-radius: 30px;
     grid-area: c;
 }
+
 #content_adminCandidature .candidatura img{
     width:initial;
     max-height: 200px;
 }
+
 #content_adminCandidature .candidatura label{
     display:block;
 }

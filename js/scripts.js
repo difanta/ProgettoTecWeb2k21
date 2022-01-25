@@ -475,8 +475,6 @@ var dettagli_form = {
 function caricamento() {
     for (var key in dettagli_form) {
         var input = document.querySelectorAll("[id*=" + key + "]");
-        console.log(input);
-        console.log(key);
         for (i = 0; i < input.length; i++) {
             console.log(input[i]);
             campoDefault(input[i]);
