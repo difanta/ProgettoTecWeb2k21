@@ -2,15 +2,15 @@
     <form method="post">
         <input type="hidden" name="mod_idBiglietto" value="idbiglietto">
         <label for="m_filmSelect_idbiglietto">Film</label>
-        <select id="m_filmSelect_idbiglietto" name="mod_nomeFilm" selection="mod_nomefilmselezionato" class="js_toBeInit" onchange="injectProiezioni(this, document.getElementById('m_prSelect_idbiglietto'))" required>
+        <select id="m_filmSelect_idbiglietto" name="mod_nomeFilm" selection="mod_nomefilmselezionato" class="js_toBeInit" onchange="injectProiezioni(this, document.getElementById('m_prSelect_idbiglietto'), [document.getElementById('modificaBiglietto_idbiglietto')])">
             <nomifilm/>
         </select>
         <br>
         <label for="m_prSelect_idbiglietto">Proiezione</label>
-        <select id="m_prSelect_idbiglietto" name="mod_idProiezione" selection="mod_idproiezioneselezionata" required>
+        <select id="m_prSelect_idbiglietto" name="mod_idProiezione" selection="mod_idproiezioneselezionata">
         </select>
         <br>
-        <input class="button" type="submit" name="method" value="Modifica Biglietto">
+        <input id="modificaBiglietto_idbiglietto" class="button" type="submit" name="method" value="Modifica Biglietto">
         <input class="button" type="submit" name="method" value="Elimina Biglietto">
     </form>
 </li>

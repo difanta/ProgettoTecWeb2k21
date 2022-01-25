@@ -193,7 +193,7 @@ function setEditOff() {
 
 /* Admin */
 
-function injectProiezioni(elem, target) {
+function injectProiezioni(elem, target, buttons) {
     if (!elem || !target) return;
 
     if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
@@ -212,9 +212,16 @@ function injectProiezioni(elem, target) {
             if (request.status === 200) {
                 target.innerHTML = request.responseText;
 
-                // no proiezioni available -> cancel proiezione selection
+                // no proiezioni available -> cancel proiezione selection and disable buttons
                 if (!target.options[target.selectedIndex]) {
                     target.setAttribute("selection", "");
+                    for(let button of buttons) {
+                        button.disabled = true;
+                    }
+                } else {
+                    for(let button of buttons) {
+                        button.disabled = false;
+                    }
                 }
 
                 // load default proiezione
