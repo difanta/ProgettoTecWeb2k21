@@ -58,7 +58,7 @@ function updateInfoUtente()
     $nome = $_POST["nome"];
     $cognome = $_POST["cognome"];
     $dataNascita = $_POST["dataNascita"];
-    $email = $_POST["email"];
+    $email = strtolower($_POST["email"]);
     $password = $_POST["password"];
 
     if (Utils::validate($nome, Utils::namesRegex)

@@ -548,6 +548,8 @@ function validazioneCampo(input) {
     var padre = input.parentNode;
     if (padre.children.length == 2) {
         padre.removeChild(padre.children[1]);
+        input.removeAttribute("aria-describedby");
+        input.removeAttribute("aria-invalid");
     }
 
     var regex = dettagli_form[input.id.includes("candidaturaAlt") ? "candidaturaAlt" : input.id][1];
@@ -564,6 +566,8 @@ function confermaPassword(input) {
     var padre = input.parentNode;
     if (padre.children.length == 2) {
         padre.removeChild(padre.children[1]);
+        input.removeAttribute("aria-describedby");
+        input.removeAttribute("aria-invalid");
     }
     var pw = document.getElementById("signupPassword").value;
     var text = input.value;
@@ -579,8 +583,11 @@ function mostraErrore(input) {
     var padre = input.parentNode;
     var errore = document.createElement("strong");
     errore.className = "errorSuggestion";
+    errore.id = input.id + "_error";
     errore.appendChild(document.createTextNode(dettagli_form[input.id.includes("candidaturaAlt") ? "candidaturaAlt" : input.id][2]));
     padre.appendChild(errore);
+    input.setAttribute("aria-describedby", errore.id);
+    input.setAttribute("aria-invalid", "true");
 }
 
 function isAncestorOf(elem, ancestor) {
