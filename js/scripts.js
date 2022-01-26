@@ -64,7 +64,7 @@ function focusOnFeedback() {
     let elem = document.querySelector("strong[class='feedbackPositive'], strong[class='feedbackNegative']");
     if(elem) {
         window.setTimeout(() => {
-            elem.focus();
+            if(elem) elem.focus();
         }, 20);
         return true;
     } 
