@@ -12,6 +12,8 @@ body {
     --main-color-darker:#143c5a;
     --main-color-background: #e7fbff;
     --main-color-background-light: #ffffff;
+    --main-color-purple:#800080;
+    --main-color-red:#991F33;
 
     --login-color: #f8f8f8;
     --login-color-hover: #c3d8e2;
@@ -411,7 +413,7 @@ div.content{
     text-decoration: underline;
 }
 .content a:visited{
-    color:purple;
+    color:var(--main-color-purple);
     text-decoration: underline;
 }
 .content a:hover{
@@ -427,7 +429,9 @@ div.content{
 .content h2{
     color:var(--main-color-dark);
 }
-
+#content_contest p, #content_comeTrovarci p, #content_aboutUs p{
+    line-height: 1.5;
+}
 #homeDescription{
     text-align: center;
     text-shadow: 1px 1px 7px var(--main-color-lighter);
@@ -613,7 +617,7 @@ li.filmPopolare a{
     text-decoration: none;
 }
 #acquistoBiglietti a:visited{
-    color:purple;
+    color:var(--main-color-purple);
 }
 
 /* Lista recensioni --------------------------------------------------------------------------------------------------*/
@@ -681,7 +685,7 @@ li.filmPopolare a{
     color:var(--main-color);
 }
 #homeGalleria a:visited h2{
-    color:purple;
+    color:var(--main-color-purple);
 }
 /* Lista Film / Proiezioni ---------------------------------------------------------*/
 
@@ -794,10 +798,10 @@ li.filmPopolare a{
     text-decoration: underline;
 }
 .boxesList a.linkTitolo:visited{
-    color:purple;
+    color:var(--main-color-purple);
 }
 .boxesList a.linkTitolo:visited h2{
-    color:purple;
+    color:var(--main-color-purple);
 }
 .boxesList a.linkTitolo:hover {
     text-shadow: none;
