@@ -51,18 +51,6 @@ class Login {
     private static $p_if_not_logged_admin_open = "<ifnotloggedadmin>";
     private static $p_if_not_logged_admin_close = "</ifnotloggedadmin>";
 
-    private static $p_if_login_success_open = "<ifloginsuccess>";
-    private static $p_if_login_success_close = "</ifloginsuccess>";
-    
-    private static $p_if_not_login_success_open = "<ifnotloginsuccess>";
-    private static $p_if_not_login_success_close = "</ifnotloginsuccess>";
-    
-    private static $p_if_register_success_open = "<ifregistersuccess>";
-    private static $p_if_register_success_close = "</ifregistersuccess>";
-
-    private static $p_if_not_register_success_open = "<ifnotregistersuccess>";
-    private static $p_if_not_register_success_close = "</ifnotregistersuccess>";
-
     private static $p_accountname = "<accountname/>";
 
     public static function showElement($open, $close, &$string) {
