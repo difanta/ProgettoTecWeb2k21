@@ -477,6 +477,7 @@ var dettagli_form = {
     "alfaRegisti": ["inserisci il regista del film", /[a-zA-Zàèéìòù]{1,}/, "il regista deve contenere almeno un carattere alfabetico"],
     "alfaProduttore": ["inserisci il produttore del film", /[a-zA-Zàèéìòù]{1,}/, "il produttore deve contenere almeno un carattere alfabetico"],
     "alfaCast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
+    "alfaAlt": ["inserisci la descrizione alternativa dell'immagine", altregex, "descrizione non valida"],
     "alfmTitolo": ["inserisci il titolo del film", /[\wàèéìòù]{1,}/, "il titolo deve contenere almeno un carattere alfanumerico"],
     "alfmDescrizione": ["inserisci una descrizione del film", /^.{10,}$/, "la descrizione deve contenere almeno dieci caratteri"],
     "alfmDurata": ["", durataregex, "la durata deve essere compresa tra i 60 ed i 180 minuti"],
@@ -484,6 +485,7 @@ var dettagli_form = {
     "alfmRegisti": ["inserisci il regista del film", namesregex, "il regista deve contenere almeno un carattere alfabetico"],
     "alfmProduttore": ["inserisci il produttore del film", namesregex, "il produttore deve contenere almeno un carattere alfabetico"],
     "alfmCast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
+    "alfmAlt": ["inserisci la descrizione alternativa dell'immagine", altregex, "descrizione non valida"],
     // pagina utente
     "userInfoNome": ["inserisci il tuo nome", namesregex, "nome non valido"],
     "userInfoCognome": ["inserisci il tuo cognome", namesregex, "cognome non valido"],
