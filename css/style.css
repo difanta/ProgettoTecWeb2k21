@@ -1232,11 +1232,9 @@ p.attenzioneCandidatura{
 }
 
 .candidatura img{
-    width: 95%;
     padding: 1em;
     margin: auto;
     border-radius: 30px;
-    grid-area: c;
 }
 
 #content_adminCandidature .candidatura img{
@@ -1325,6 +1323,10 @@ p.attenzioneCandidatura{
 #content_adminListaFilm form .button,
 #content_adminProiezioni form .button {
     padding: 3px;
+}
+
+#content_adminListaFilm textarea{
+    width: 40%;
 }
 
 /* Collapsible Headers */

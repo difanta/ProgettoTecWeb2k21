@@ -179,11 +179,6 @@ font-size: 1.8em;
 }
 
 /* ----------------------- form pagina utente/contest ----------------------- */
-#content_paginaUtente div:first-of-type, #content_contest div:first-of-type, #contestForm form{
-    width: 100%;
-    padding: 0;
-}
-
 #content_contest div:first-of-type{
     height: auto;
 }
@@ -350,10 +345,6 @@ footer #studenti li{
     width: 75%;
 }
 
-#content_paginaUtente h1:first-of-type{
-    margin-bottom: 0;
-}
-
 #content_paginaUtente .BoxUser .containerCandidature{
     margin: 0 1em 1em 1em;
 }
@@ -366,10 +357,28 @@ footer #studenti li{
     padding: 0.3em;
 }
 
+
+#content_paginaUtente .candidatura img{
+    width: 100%;
+}
+
 #content_paginaUtente #informazioniAccount, #content_paginaUtente .BoxUser{
     width: 100%;
 }
 
+.candidatura img{
+    display: block;
+    padding: 0;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 0.3em;
+    margin-top: 0.3em;
+    border-radius: 0.7em;
+}
+
+#content_paginaUtente ul.containerCandidature .button, #content_paginaUtente ul.containerCandidature p{
+    width: 100%;
+}
 /* ---------------------------------- Admin --------------------------------- */
 
 .content_admin{
@@ -408,9 +417,7 @@ header #adminMenu li{
     padding: 0.5em;
 }
 
-#content_adminCandidature ul.containerCandidature img{
-    padding-left: 0;
-    padding-right: 0;
+#content_adminCandidature .candidatura img{
     width: 100%;
 }
 
