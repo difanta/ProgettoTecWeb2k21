@@ -31,9 +31,9 @@ class Utils
         $feedback = isset($_SESSION["feedback"]) ? Sanitizer::forHtml($_SESSION["feedback"]) : "";
 
         if ($_SESSION["success"]) {
-            $feedback = "<strong class='feedbackPositive'>" . $feedback . "</strong>";
+            $feedback = "<strong class='feedbackPositive' tabindex='-1'>" . $feedback . "</strong>";
         } else {
-            $feedback = "<strong class='feedbackNegative'>" . $feedback . "</strong>";
+            $feedback = "<strong class='feedbackNegative' tabindex='-1'>" . $feedback . "</strong>";
         }
 
         $htmlPage = str_replace($placeholder, $feedback, $htmlPage);

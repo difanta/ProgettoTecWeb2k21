@@ -2,7 +2,8 @@ window.addEventListener("load", caricaPagina, true);
 
 function caricaPagina() {
     caricamento();
-    setAccountAriaState();
+    let found = focusOnFeedback();
+    setAccountAriaState(!found);
 }
 
 /* Feature Detection --------------------------------- */
@@ -29,29 +30,45 @@ try {
 function toggleAccountDropdown() {
     document.getElementById('accountDropdown').classList.toggle('dropdown');
     document.getElementById('accountSection').classList.remove('slideOut');
-    document.getElementById('loginSection').classList.remove('slideIn');
-    document.getElementById('signupSection').classList.remove('slideIn');
-    setAccountAriaState();
+    loginSection = document.getElementById('loginSection');
+    if(loginSection) {
+        loginSection.classList.remove('slideIn');
+        document.getElementById('signupSection').classList.remove('slideIn');
+    }
+    setAccountAriaState(true);
 }
 
-function setAccountAriaState() {
+function setAccountAriaState(aquireFocus) {
     if(document.getElementById('accountDropdown').classList.contains('dropdown')) {
         document.getElementById('accountButton').ariaExpanded = "true";
-        window.setTimeout(() => {
-            if(!document.getElementById('accountSection').classList.contains('slideOut')) {
-                let loginBtn = document.getElementById('loginBtn');
-                let accountLink = document.getElementById('linkUtente');
-                if(accountLink) { accountLink.focus(); console.log("accountLink focus"); }
-                else if(loginBtn) { loginBtn.focus(); console.log("loginBtn focus"); }
-            } else if(document.getElementById('loginSection').classList.contains('slideOut')) {
-                document.querySelector('#loginSection button[class=\'back\']').focus();
-            } else if(document.getElementById('signupSection').classList.contains('slideOut')) {
-                document.querySelector('#signupSection button[class=\'back\']').focus();
-            }
-        } , 20);
+        if(aquireFocus) {
+            window.setTimeout(() => {
+                if(!document.getElementById('accountSection').classList.contains('slideOut')) {
+                    let loginBtn = document.getElementById('loginBtn');
+                    let accountLink = document.getElementById('linkUtente');
+                    if(accountLink) { accountLink.focus(); console.log("accountLink focus"); }
+                    else if(loginBtn) { loginBtn.focus(); console.log("loginBtn focus"); }
+                } else if(document.getElementById('loginSection') && document.getElementById('loginSection').classList.contains('slideOut')) {
+                    document.querySelector('#loginSection button[class=\'back\']').focus();
+                } else if(document.getElementById('signupSection') && document.getElementById('signupSection').classList.contains('slideOut')) {
+                    document.querySelector('#signupSection button[class=\'back\']').focus();
+                }
+            } , 20);
+        }
     } else {
         document.getElementById('accountButton').ariaExpanded = "false";
     }
+}
+
+function focusOnFeedback() {
+    let elem = document.querySelector("strong[class='feedbackPositive'], strong[class='feedbackNegative']");
+    if(elem) {
+        window.setTimeout(() => {
+            elem.focus();
+        }, 20);
+        return true;
+    } 
+    else return false;
 }
 
 function openLogin() {
