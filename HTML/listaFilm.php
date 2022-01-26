@@ -65,7 +65,7 @@ function printFilms(&$htmlPage) {
                     Login::showElement("<ifingara>"  , "</ifingara>"   , $film_html);
                     
                     if(Login::is_logged()) {
-                        $result = $connection->getLike($_SESSION["login"], $film["nome"]);
+                        $result = $connection->getLike($_SESSION["login"], $film["id"]);
                         if($result && $result[0] && ($result[0]["num"] > 0)) {
                             $film_html = str_replace("liked"    , "checked"  , $film_html);
                             $film_html = str_replace("likeicon" , "favorite" , $film_html);
