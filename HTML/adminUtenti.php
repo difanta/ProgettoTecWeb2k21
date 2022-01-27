@@ -166,7 +166,14 @@ function printUtentiAndFilms(&$htmlPage) {
 }
 
 function printUtenteAndBiglietti(&$htmlPage) {
-    if(!Login::is_logged_admin()) { return; }
+    if(!Login::is_logged_admin()) { 
+        if(isset($_SESSION["method"]) && isset($_SESSION["feedback"]) && $_SESSION["method"] == "Elimina Utente") {
+            Utils::printFeedback($htmlPage, "<feedback/>");
+            unset($_SESSION['method']);
+            unset($_SESSION['success']);
+        }
+        return; 
+    }
 
     $p_biglietto = "<biglietto/>";
 

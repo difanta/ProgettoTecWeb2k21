@@ -123,12 +123,12 @@
 <div id="content_adminUtenti" class="content_admin">
     
     <h1>Admin Lista Utenti</h1>
+    <feedback/>
 
     <ifloggedadmin>
-        <feedback/>
-        
         <label for="utentiSelect">Seleziona un utente</label>
         <select id="utentiSelect" name="selectUtente" data-selection="userselected" class="js_toBeInit" onchange="onUtenteSelected(this)">
+            <option value="" selected></option>
             <utenti/>
         </select>
 
