@@ -47,7 +47,7 @@ function submitContest()
                 }
                 $_SESSION["success"] = true;
             } else {
-                $feedback = "Errore nell' operazione";
+                $feedback = "Titolo già in uso :( Provare con un altro";
                 $_SESSION["success"] = false;
             }
             $connection->closeConnection();
