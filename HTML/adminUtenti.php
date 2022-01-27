@@ -20,7 +20,15 @@ function eliminaUtente() {
         $connectionOk = $connection->openDB();
     
         if($connectionOk) {
-            if($connection->deleteUserByEmail($email)) {
+            if(($connection->getUserByEmail($email)[0]["id"] == $_SESSION["login"]) && $connection->deleteUserByEmail($email)) {
+                session_unset();
+                session_destroy();
+                session_start();
+                $_SESSION["method"] = $_POST["method"];
+                $_SESSION["success"] = true;
+                $_SESSION["feedback"] = "Utente eliminato con successo! Sei stato sloggato dall'account perché lo hai eliminato";
+                $_SESSION["method"] = $_POST["method"];
+            } else if($connection->deleteUserByEmail($email)) {
                 $_SESSION["success"] = true;
                 $_SESSION["feedback"] = "Utente eliminato con successo!";
             } else {
