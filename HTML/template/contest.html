@@ -173,27 +173,25 @@
     <div id="contestForm">
         <iflogged>
             <form method="post" enctype="multipart/form-data" onsubmit="return validazioneForm(this);">
-                <fieldset>
-                    <label for="titolo">Titolo</label>
-                    <span><input type="text" name="titolo" id="titolo" value="pTitolo" required></span>
-                    <label for="descrizione">Descrizione</label>
-                    <span><textarea name="descrizione" id="descrizione" cols="40" rows="8" required>pDescrizione</textarea></span>
-                    <label for="imgFilm">Immagine film</label>
-                    <span><input type="file" name="imgFilm" id="imgFilm" accept="image/png, image/jpeg" required></span>
-                    <label for="durata">Durata</label>
-                    <span><input type="number" name="durata" id="durata" min=60 max=180 value="pDurata" required></span>
-                    <label for="anno">Anno</label>
-                    <span><input type="number" name="anno" id="anno" min=1900 max=2022 value="pAnno" required></span>
-                    <label for="regista">Regista</label>
-                    <span><input type="text" name="regista" id="regista" value="pRegista" required></span>
-                    <label for="produttore">Produttore</label>
-                    <span><input type="text" name="produttore" id="produttore" value="pProduttore" required></span>
-                    <label for="cast">Cast</label>
-                    <span><textarea name="cast" id="cast" cols="40" rows="8" required>pCast</textarea></span>
-                    <input class="button" type="submit" name="method" value="Invia Candidatura">
-                    <input class="button" type="reset" value="Reset">
-                    <feedbackCandidatura/>
-                </fieldset>
+                <label for="titolo">Titolo</label>
+                <span><input type="text" name="titolo" id="titolo" value="pTitolo"></span>
+                <label for="descrizione">Descrizione</label>
+                <span><textarea name="descrizione" id="descrizione" cols="40" rows="8">pDescrizione</textarea></span>
+                <label for="imgFilm">Immagine film</label>
+                <span><input type="file" name="imgFilm" id="imgFilm" accept="image/png, image/jpeg"></span>
+                <label for="durata">Durata</label>
+                <span><input type="number" name="durata" id="durata" min=60 max=180 value="pDurata"></span>
+                <label for="anno">Anno</label>
+                <span><input type="number" name="anno" id="anno" min=1900 max=2022 value="pAnno"></span>
+                <label for="regista">Regista</label>
+                <span><input type="text" name="regista" id="regista" value="pRegista"></span>
+                <label for="produttore">Produttore</label>
+                <span><input type="text" name="produttore" id="produttore" value="pProduttore"></span>
+                <label for="cast">Cast</label>
+                <span><textarea name="cast" id="cast" cols="40" rows="8">pCast</textarea></span>
+                <input class="button" type="submit" name="method" value="Invia Candidatura">
+                <input class="button" type="reset" value="Reset">
+                <feedbackCandidatura/>
             </form>
             <div id="response" ></div>
         </iflogged>
