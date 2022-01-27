@@ -15,7 +15,6 @@ function submitContest()
 {
     if (!Login::is_logged()) return;
 
-    $_SESSION["method"] = "Invia Candidatura";
     $titolo = $_POST["titolo"];
     $descrizione = $_POST["descrizione"];
     $durata = $_POST["durata"];
@@ -40,7 +39,7 @@ function submitContest()
 
         if ($connectionOk) {
             if ($connection->insertContestFilm($titolo, $descrizione, $durata, $anno, $regista, $produttore, $cast)) {
-                if(FS::moveImage($titolo, $imageTmpPath, $imageExt, $connection)) {
+                if (FS::moveImage($titolo, $imageTmpPath, $imageExt, $connection)) {
                     $feedback = "Candidatura proposta con successo";
                 } else {
                     $feedback = "Candidatura proposta con successo, ci sono stati problemi imprevisti con la gestione dell'immagine, prego contattare un admin.";
@@ -59,7 +58,56 @@ function submitContest()
         $feedback = "Errore nella compilazione della form, per maggiori informazioni attivare javascript nel browser";
         $_SESSION["success"] = false;
     }
+    $_SESSION["method"] = "Invia Candidatura";
     $_SESSION["feedback"] = $feedback;
+    $_SESSION["titolo"] = $titolo;
+    $_SESSION["descrizione"] = $descrizione;
+    $_SESSION["durata"] = $durata;
+    $_SESSION["anno"] = $anno;
+    $_SESSION["regista"] = $regista;
+    $_SESSION["produttore"] = $produttore;
+    $_SESSION["cast"] = $cast;
+}
+
+/**
+ * prints submitContest results, maintains input
+ * @request GET
+ */
+function printSubmitContest(&$htmlPage)
+{
+    if (isset($_SESSION["method"])
+        && isset($_SESSION["success"])
+        && $_SESSION["method"] == "Invia Candidatura") {
+        $htmlPage = str_replace("pTitolo", Sanitizer::forHtml($_SESSION["titolo"]), $htmlPage);
+        $htmlPage = str_replace("pDescrizione", Sanitizer::forHtml($_SESSION["descrizione"]), $htmlPage);
+        $htmlPage = str_replace("pDurata", Sanitizer::forHtml($_SESSION["durata"]), $htmlPage);
+        $htmlPage = str_replace("pAnno", Sanitizer::forHtml($_SESSION["anno"]), $htmlPage);
+        $htmlPage = str_replace("pRegista", Sanitizer::forHtml($_SESSION["regista"]), $htmlPage);
+        $htmlPage = str_replace("pProduttore", Sanitizer::forHtml($_SESSION["produttore"]), $htmlPage);
+        $htmlPage = str_replace("pCast", Sanitizer::forHtml($_SESSION["cast"]), $htmlPage);
+
+        Utils::printFeedback($htmlPage, "<feedbackCandidatura/>");
+
+        unset($_SESSION["titolo"]);
+        unset($_SESSION["descrizione"]);
+        unset($_SESSION["durata"]);
+        unset($_SESSION["anno"]);
+        unset($_SESSION["regista"]);
+        unset($_SESSION["produttore"]);
+        unset($_SESSION["cast"]);
+
+        unset($_SESSION["method"]);
+        unset($_SESSION["feedback"]);
+        unset($_SESSION["success"]);
+    } else {
+        $htmlPage = str_replace("pTitolo", "", $htmlPage);
+        $htmlPage = str_replace("pDescrizione", "", $htmlPage);
+        $htmlPage = str_replace("pDurata", "", $htmlPage);
+        $htmlPage = str_replace("pAnno", "", $htmlPage);
+        $htmlPage = str_replace("pRegista", "", $htmlPage);
+        $htmlPage = str_replace("pProduttore", "", $htmlPage);
+        $htmlPage = str_replace("pCast", "", $htmlPage);
+    }
 }
 
 if (isset($_POST["method"])) {
@@ -78,18 +126,9 @@ if (isset($_POST["method"])) {
 
     // show login/register/logout results
     Login::printLogin($htmlPage);
+    printSubmitContest($htmlPage);
 
-    if (isset($_SESSION["method"])
-        && isset($_SESSION["success"])) {
-        if ($_SESSION["method"] == "Invia Candidatura") {
-            Utils::printFeedback($htmlPage, "<feedbackCandidatura/>");
-        }
-        unset($_SESSION["method"]);
-        unset($_SESSION["feedback"]);
-        unset($_SESSION["success"]);
-    }
     Utils::feedbackCleanUp($htmlPage, "<feedbackCandidatura/>");
-
 
     echo $htmlPage;
 }
