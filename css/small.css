@@ -44,11 +44,6 @@ header #accountDropdown #accountSection button#loginBtn, header #accountDropdown
     margin-top: 5em;
 }
 
-header #accountDropdown #accountSection .loginNavigation{
-    display: block;
-    width: 100%; /* forse non serve */
-}
-
 header #accountDropdown{
     font-size: 1.2em;
 }
