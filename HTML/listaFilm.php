@@ -56,8 +56,8 @@ function printFilms(&$htmlPage) {
             // create and substitute films based on template
             foreach($result as $indice => $film) {
                 $at_least_one = true;
-                $film_html = str_replace("titoloescaped"     , Sanitizer::forJs($film["nome"])      , $template);
-                $film_html = str_replace("idfilm"            , Sanitizer::forHtml($film["id"])      , $film_html);
+                $film_html = str_replace("idfilm"            , Sanitizer::forHtml($film["id"])      , $template);
+                $film_html = str_replace("titolofilmlink"    , Sanitizer::forLinks($film["nome"])   , $film_html);
                 $film_html = str_replace("titolofilm"        , Sanitizer::forHtml($film["nome"])    , $film_html);
                 $film_html = str_replace("regista"           , Sanitizer::forHtml($film["regista"]) , $film_html);
                 if($film["in_gara"]) 
@@ -65,7 +65,7 @@ function printFilms(&$htmlPage) {
                     Login::showElement("<ifingara>"  , "</ifingara>"   , $film_html);
                     
                     if(Login::is_logged()) {
-                        $result = $connection->getLike($_SESSION["login"], $film["nome"]);
+                        $result = $connection->getLike($_SESSION["login"], $film["id"]);
                         if($result && $result[0] && ($result[0]["num"] > 0)) {
                             $film_html = str_replace("liked"    , "checked"  , $film_html);
                             $film_html = str_replace("likeicon" , "favorite" , $film_html);

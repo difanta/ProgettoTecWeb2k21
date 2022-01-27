@@ -19,8 +19,7 @@
     <link href="../css/print.css" rel="stylesheet" type="text/css" media="print"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
    	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script src="../js/scripts.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">    <script src="../js/scripts.js"></script>
     <link rel="shortcut icon" type="image/png" href="../images/favicon.ico"/>
 </head>
     
@@ -84,7 +83,7 @@
                     <label for="signupPassword">Password</label>
                     <span><input id="signupPassword" name="password" type="password" autocomplete="new-password"></span>
                     <label for="signupPassword2">ridigita la password</label>
-                    <span><input id="signupPassword2" name="" type="password" autocomplete="new-password"></span>
+                    <span><input id="signupPassword2" name="password2" type="password" autocomplete="new-password"></span>
         
                     <button name="method" value="register">registrati</button>
                 </form>
@@ -131,7 +130,7 @@
 
             <form id="aprAggiungi" method="post">
                 <label for="apraSelect">Film</label>
-                <select id="apraSelect" name="agg_nomeFilm" selection="agg_nomefilmselezionato" required>
+                <select id="apraSelect" name="agg_nomeFilm" data-selection="agg_nomefilmselezionato">
                     <nomifilm/>
                 </select>
                 <br>
@@ -147,24 +146,24 @@
 
             <form id="aprModifica" method="post">
                 <label for="apSelect">Seleziona un film</label>
-                <select id="apSelect" name="mod_nomeFilm" selection="mod_nomefilmselezionato" onchange="injectProiezioni(this, document.getElementById('apSelectP'))" required>
+                <select id="apSelect" name="mod_nomeFilm" data-selection="mod_nomefilmselezionato" onchange="injectProiezioni(this, document.getElementById('apSelectP'), [document.getElementById('modificaProiezione'), document.getElementById('eliminaProiezione')])">
                     <nomifilm/>
                 </select>
                 <br>
                 <label for="apSelectP">Seleziona una proiezione</label>
-                <select id="apSelectP" name="mod_idProiezione" selection="mod_idproiezioneselezionata" onchange="mod_ProiezioneSelected()" required>
+                <select id="apSelectP" name="mod_idProiezione" data-selection="mod_idproiezioneselezionata" onchange="mod_ProiezioneSelected()">
                 </select>
                 <br>
                 <label for="aprmSelect">Film</label>
-                <select id="aprmSelect" name="mod_nomeNuovoFilm" required>
+                <select id="aprmSelect" name="mod_nomeNuovoFilm">
                     <nomifilm/>
                 </select>
                 <br>
                 <label for="aprmData">Data e Ora</label>
                 <input id="aprmData" type="datetime-local" name="mod_nuovaData" min="2022-09-12T00:00" max="2022-09-18T23:59" required>
                 <br>
-                <input class="button" type="submit" name="method" value="Modifica Proiezione">
-                <input class="button" type="submit" name="method" value="Elimina Proiezione">
+                <input id="modificaProiezione" class="button" type="submit" name="method" value="Modifica Proiezione">
+                <input id="eliminaProiezione" class="button" type="submit" name="method" value="Elimina Proiezione">
             </form>
         </ifloggedadmin>
         <ifnotloggedadmin>

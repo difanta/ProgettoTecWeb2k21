@@ -121,5 +121,7 @@ if (isset($_POST["method"])) {
     printOrdine($htmlPage);
     printAcquisto($htmlPage);
 
+    Utils::feedbackCleanUp($htmlPage, "<feedback/>");
+
     echo $htmlPage;
 }

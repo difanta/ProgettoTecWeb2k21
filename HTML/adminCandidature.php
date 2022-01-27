@@ -41,7 +41,7 @@ function printCandidature(&$htmlPage)
         $candidature = $connection->getCandidatureAndEmail($filter_candidatura);
         $connection->closeConnection();
         if ($candidature != null) {
-            $list .= "<ul id='acnSospese'>";
+            $list .= "<ul class=\"containerCandidature\">";
             foreach ($candidature as $index => $candidatura) {
                 $list .= file_get_contents("template/templateCandidaturaAdmin.html");
 
@@ -65,9 +65,12 @@ function printCandidature(&$htmlPage)
                 if ($filter_candidatura == "Approvata") {
                     $list = str_replace("rifiutaCand", "style=\"display:none;\"", $list);
                     $list = str_replace("accettaCand", "style=\"display:none;\"", $list);
-                    $list = str_replace("none;\" sospendiCand", "show;\"", $list);
+                    $list = str_replace("sospendiCand", "", $list);
                     $list = str_replace("pDisabled", "disabled", $list);
                 } elseif ($filter_candidatura == "Sospesa"){
+                    $list = str_replace("rifiutaCand", "", $list);
+                    $list = str_replace("accettaCand", "", $list);
+                    $list = str_replace("sospendiCand", "style=\"display:none;\"", $list);
                     $list = str_replace("pDisabled", "", $list);
                 }
             }
@@ -83,8 +86,10 @@ function printCandidature(&$htmlPage)
     if ($filter_candidatura == "Approvata") {
         $htmlPage = str_replace("in sospeso</h1>", "approvate</h1>", $htmlPage);
         $htmlPage = str_replace("alertRifiuto", "style=\"display:none;\"", $htmlPage);
+        $htmlPage = str_replace("alertSospensione", "", $htmlPage);
     } else {
         $htmlPage = str_replace("alertSospensione", "style=\"display:none;\"", $htmlPage);
+        $htmlPage = str_replace("alertRifiuto", "", $htmlPage);
     }
     $htmlPage = str_replace("<listaCandidature/>", $list, $htmlPage);
 }
@@ -175,7 +180,8 @@ function sospendiCandidatura()
 
     if ($connectionOk) {
         if ($connection->sospendiCandidatura($_POST["titolo"])
-            && $connection->deleteProizioniOnSuspend($_POST["titolo"])) {
+            && $connection->deleteProizioniOnSuspend($_POST["titolo"])
+            && $connection->deleteTicketsOnSuspend($_POST["titolo"])) {
             $feedback = "Candidatura: \"" . $_POST["titolo"] . "\" sospesa con successo";
             $_SESSION["success"] = true;
         } else {
@@ -231,6 +237,8 @@ if (isset($_POST["method"])) {
         unset($_SESSION["feedback"]);
         unset($_SESSION["success"]);
     }
+
+    Utils::feedbackCleanUp($htmlPage, "<feedbackCandidature/>");
 
     echo $htmlPage;
 }

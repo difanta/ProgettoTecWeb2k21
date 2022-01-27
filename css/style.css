@@ -12,6 +12,8 @@ body {
     --main-color-darker:#143c5a;
     --main-color-background: #e7fbff;
     --main-color-background-light: #ffffff;
+    --main-color-purple:#800080;
+    --main-color-red:#991F33;
 
     --login-color: #f8f8f8;
     --login-color-hover: #c3d8e2;
@@ -148,6 +150,7 @@ span.material-icons-outlined.md18 {
 }
 span.material-icons-outlined.md24 {
     font-size: 24px;
+    color: rgb(247, 53, 53);
 }
 span.material-icons-outlined.md36 {
     font-size: 36px;
@@ -339,7 +342,9 @@ header #accountDropdown div.loginNavigation {
 header #accountDropdown button {
     display: block;
     min-width: 10em;
-    margin: 0.8em;
+    margin: auto;
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
     border: 1px solid rgba(82, 82, 82, 0.7);
 
     background-color: var(--login-color);
@@ -406,7 +411,7 @@ div.content{
     text-decoration: underline;
 }
 .content a:visited{
-    color:purple;
+    color:var(--main-color-purple);
     text-decoration: underline;
 }
 .content a:hover{
@@ -422,7 +427,9 @@ div.content{
 .content h2{
     color:var(--main-color-dark);
 }
-
+#content_contest p, #content_comeTrovarci p, #content_aboutUs p{
+    line-height: 1.5;
+}
 #homeDescription{
     text-align: center;
     text-shadow: 1px 1px 7px var(--main-color-lighter);
@@ -460,7 +467,7 @@ div.content{
 }
 #contatti #aiutaci{
     font-size:1.2em;
-    font-weight: italic;
+    font-style: italic;
     font-weight: bold;
 }
 
@@ -528,7 +535,6 @@ li.filmPopolare a{
     border-radius: 0 0 8px 8px;
     background-size: cover;
     background-position: 40% 50%;
-    margin: solid black 10px;
 }
   
 #filmPopolareLink a{
@@ -609,7 +615,7 @@ li.filmPopolare a{
     text-decoration: none;
 }
 #acquistoBiglietti a:visited{
-    color:purple;
+    color:var(--main-color-purple);
 }
 
 /* Lista recensioni --------------------------------------------------------------------------------------------------*/
@@ -655,7 +661,30 @@ li.filmPopolare a{
 #listaRecensioni p::after {
     content: close-quote;
 }
-
+/* Galleria Home -------------------------------------------*/
+#homeGalleria{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 0;
+    margin: 0;
+    margin-top:2em;
+    list-style-type: none;
+    text-align: center;
+}
+#homeGalleria img{
+    max-width:300px;
+    margin-top:0.4em;
+}
+#homeGalleria h2{
+    padding:0;
+    margin:0;
+    color:var(--main-color);
+}
+#homeGalleria a:visited h2{
+    color:var(--main-color-purple);
+}
 /* Lista Film / Proiezioni ---------------------------------------------------------*/
 
 .filters {
@@ -767,10 +796,10 @@ li.filmPopolare a{
     text-decoration: underline;
 }
 .boxesList a.linkTitolo:visited{
-    color:purple;
+    color:var(--main-color-purple);
 }
 .boxesList a.linkTitolo:visited h2{
-    color:purple;
+    color:var(--main-color-purple);
 }
 .boxesList a.linkTitolo:hover {
     text-shadow: none;
@@ -974,7 +1003,6 @@ header #loginSection p{
     margin: auto;
     margin-bottom: 2em;
     border-radius: 4px;
-    padding:1em;
 }
 
 #content_paginaUtente h1{
@@ -1006,6 +1034,7 @@ header #loginSection p{
     color: white;
     width: 25%;
     min-width: 200px;
+    text-align: center;
 }
 
 .ticket-up:first-child{
@@ -1017,17 +1046,30 @@ header #loginSection p{
     font-style: italic;
 }
 
-.BoxUser ul#acnSospese{
+.BoxUser ul.containerCandidature{
     padding: 1em;
     margin: 0;
 }
-.BoxUser ul#acnSospese li form{
+.BoxUser ul.containerCandidature li form{
     padding: 1em;
 }
 
-#content_paginaUtente ul#acnSospese .button, #content_paginaUtente ul#acnSospese p{
+#content_paginaUtente ul.containerCandidature .button, #content_paginaUtente ul.containerCandidature p{
     margin-top: 1em;
     margin-bottom: 0;
+}
+
+#content_paginaUtente .candidatura img{
+    width:initial;
+    max-height: 200px;
+}
+
+#content_paginaUtente .candidatura label{
+    display:block;
+}
+
+.alert{
+    text-align: center;
 }
 
 /* Come Trovarci --------------------------------------------------------------------------------------------------*/
@@ -1127,7 +1169,7 @@ p.attenzioneCandidatura{
     margin-left:8px;
 }
 
-#acnSospese li{
+.containerCandidature li{
     border:var(--main-color-dark) solid;
     border-radius: 4px;
     background-color: var(--main-color-light-halfopacity);
@@ -1140,9 +1182,8 @@ p.attenzioneCandidatura{
     font-style: italic;
 }
 
-
 #content_adminCandidature input{
-    margin-top:30px;
+    margin-top:10px;
 }
 
 .toggle {
@@ -1189,16 +1230,16 @@ p.attenzioneCandidatura{
 }
 
 .candidatura img{
-    width: 95%;
     padding: 1em;
     margin: auto;
     border-radius: 30px;
-    grid-area: c;
 }
+
 #content_adminCandidature .candidatura img{
     width:initial;
     max-height: 200px;
 }
+
 #content_adminCandidature .candidatura label{
     display:block;
 }
@@ -1280,6 +1321,10 @@ p.attenzioneCandidatura{
 #content_adminListaFilm form .button,
 #content_adminProiezioni form .button {
     padding: 3px;
+}
+
+#content_adminListaFilm textarea{
+    width: 40%;
 }
 
 /* Collapsible Headers */

@@ -1,220 +1,256 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <title>Come Trovarci - CinePado</title>
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Dov'è e come raggiungere CinePado, il festival di cinema di Padova." />
-    <meta name="keywords" content="mappa, dove, trasporti, bus, strada, indicazioni, indicazioni stadali, apertivo, ristorazione, cinema, padova, CinePado" />
-    <meta name="language" content="italian it" />
-    <meta name="author" content="L. Annicchiarico T. Di Fant G. Moretti A. Nicoletti" />
-    
+    <meta name="description" content="Dov'è e come raggiungere CinePado, il festival di cinema di Padova."/>
+    <meta name="keywords"
+          content="mappa, dove, trasporti, bus, strada, indicazioni, indicazioni stadali, apertivo, ristorazione, cinema, padova, CinePado"/>
+    <meta name="language" content="italian it"/>
+    <meta name="author" content="L. Annicchiarico T. Di Fant G. Moretti A. Nicoletti"/>
+
     <link rel="stylesheet" href="../css/style.css" media="screen">
     <link rel="stylesheet" href="../css/small.css" media="screen and (max-width: 600px)">
     <link href="../css/print.css" rel="stylesheet" type="text/css" media="print"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
-   	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+          rel="stylesheet">
     <script src="../js/scripts.js"></script>
     <link rel="shortcut icon" type="image/png" href="../images/favicon.ico"/>
 </head>
 <body>
 
-    <header>
-        <a class="goToContent" href="#content_comeTrovarci">Vai al contenuto</a>
+<header>
+    <a class="goToContent" href="#content_comeTrovarci">Vai al contenuto</a>
 
-        <a href="index.php"><h1>CinePado</h1></a>
+    <a href="index.php"><h1>CinePado</h1></a>
 
-        <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span><accountname/></button>
-        <div id="accountDropdown">
-            <div id="accountSection" class="slidableOut">
-                <div class="loginNavigation">
-                    <button class="back" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">arrow_back</span></button>
-                </div>
-                <ifnotlogged>
-                    <logoutfeedback/>
-                    <button id="loginBtn" onclick="openLogin()">Login</button>
-                    <button id="signupBtn" onclick="openSignup()">Registrati</button>
-                </ifnotlogged>
-                <iflogged>
-                    <form id="logout" method="post"></form>
-                    <button name="method" value="logout" form="logout">Logout</button>
-                    <a href="paginaUtente.php">Il mio Profilo</a>
-                </iflogged>
+    <button title="account" id="accountButton" onclick="toggleAccountDropdown()"><span class="material-icons-outlined">account_circle</span>
+        <accountname/>
+    </button>
+    <div id="accountDropdown">
+        <div id="accountSection" class="slidableOut">
+            <div class="loginNavigation">
+                <button class="back" onclick="toggleAccountDropdown()"><span
+                        class="material-icons-outlined">arrow_back</span></button>
             </div>
-    
-            <div id="loginSection" class="slidableIn">
-                <div class="loginNavigation">
-                    <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span></button>
-                </div>
-                <loginfeedback/>
-                <ifnotloginsuccess>
-                    <form id="login" method="post" onsubmit="return validazioneForm(this);">
+            <ifnotlogged>
+                <logoutfeedback/>
+                <button id="loginBtn" onclick="openLogin()">Login</button>
+                <button id="signupBtn" onclick="openSignup()">Registrati</button>
+            </ifnotlogged>
+            <iflogged>
+                <form id="logout" method="post"></form>
+                <button name="method" value="logout" form="logout">Logout</button>
+                <a href="paginaUtente.php">Il mio Profilo</a>
+            </iflogged>
+        </div>
+
+        <div id="loginSection" class="slidableIn">
+            <div class="loginNavigation">
+                <button class="back" onclick="loginBack()"><span class="material-icons-outlined">arrow_back</span>
+                </button>
+            </div>
+            <loginfeedback/>
+            <ifnotloginsuccess>
+                <form id="login" method="post" onsubmit="return validazioneForm(this);">
                     <label for="loginEmail">Email</label>
                     <span><input id="loginEmail" name="email" type="text" autocomplete="username"></span>
                     <label for="loginPassword">Password</label>
-                    <span><input id="loginPassword" name="password" type="password" autocomplete="current-password"></span>
+                    <span><input id="loginPassword" name="password" type="password"
+                                 autocomplete="current-password"></span>
 
                     <button name="method" value="login">accedi</button>
                 </form>
-                </ifnotloginsuccess>
+            </ifnotloginsuccess>
+        </div>
+
+        <div id="signupSection" class="slidableIn">
+            <div class="loginNavigation">
+                <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span>
+                </button>
             </div>
-    
-            <div id="signupSection" class="slidableIn">
-                <div class="loginNavigation">
-                    <button class="back" onclick="signupBack()"><span class="material-icons-outlined">arrow_back</span></button>
-                </div>
-                <registerfeedback/>
-                <ifnotregistersuccess>
-                    <form id="signup" method="post" onsubmit="return validazioneForm(this);">
+            <registerfeedback/>
+            <ifnotregistersuccess>
+                <form id="signup" method="post" onsubmit="return validazioneForm(this);">
                     <label for="signupNome">Nome</label>
                     <span><input id="signupNome" name="nome" type="text" autocomplete="name"></span>
                     <label for="signupCognome">Cognome</label>
                     <span><input id="signupCognome" name="cognome" type="text" autocomplete="family-name"></span>
                     <label for="signupDataNascita">Data di nascita</label>
                     <span><input id="signupDataNascita" name="data_di_nascita" type="date" autocomplete="bday"></span>
-                    
+
                     <label for="signupEmail">Email</label>
                     <span><input id="signupEmail" name="email" type="text" autocomplete="home email"></span>
                     <label for="signupPassword">Password</label>
                     <span><input id="signupPassword" name="password" type="password" autocomplete="new-password"></span>
                     <label for="signupPassword2">ridigita la password</label>
-                    <span><input id="signupPassword2" name="" type="password" autocomplete="new-password"></span>
-        
+                    <span><input id="signupPassword2" name="password2" type="password"
+                                 autocomplete="new-password"></span>
+
                     <button name="method" value="register">registrati</button>
                 </form>
-                </ifnotregistersuccess>
-            </div>
-        </div>
-
-        <nav id="menu">
-            <ul>
-                <li lang="en"><a href="index.php">Home</a></li>
-                <li lang="en"><a href="aboutUs.php">About us</a></li>
-                <li><a href="listaFilm.php">Film</a></li>
-                <li><a href="proiezioni.php">Proiezioni</a></li>
-                <li><a class="currentPage">Come Trovarci</a></li>
-                <li><a href="contest.php">Il Contest</a></li>
-            </ul>
-        </nav>
-
-        <nav id="breadcrumb">
-            <p>Ti trovi in: <a href="index.php" lang="en">Home</a> &gt; &gt; Come Trovarci </p>
-        </nav>
-
-    </header>
-
-     
-
-    <div id="content_comeTrovarci" class="content">
-        <h1>Come Trovarci</h1>
-        <div id="Luogo">
-            <h2>Mappa</h2>
-            <iframe id="gmaps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2801.0919436041363!2d11.873167615555555!3d45.40748547910031!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477eda5003506ac5%3A0x26ac52538c0ba39c!2sPiazza%20della%20Frutta%2C%20Padova%20PD!5e0!3m2!1sit!2sit!4v1639489295072!5m2!1sit!2sit"></iframe>
-            <p>La proiezione dei film e la cerimonia di premiazione avverranno in piazza dello Spritz a Padova, l'ingresso e la biglietteria sono nel lato Est, vicino alla statua del Santo Select.</p>
-        </div>
-
-        <div id="ComeRaggiungerci">
-            <h2>Come raggiungerci</h2>
-            <dl>
-                <dt>A piedi</dt>
-                <dd>
-                    <p>Dalla stazione dei treni di padova, seguire la via principale (Corso del Popolo) per 300 metri, fino all'incorcio con via Lattea (subito dopo il negozio della Feltrinelli). Quindi proseguire lungo via Lattea fino a piazza Garibaldi, e andare a sinistra in Corso Italia, dopo 100 metri si ragginge Piazza della Frutta. </p>
-                    <p>Da Prato della valle basta seguire Corso Laurea, si raggiunge la piazza dopo 200 metri</p>
-                </dd>
-                <dt>In Auto</dt>
-                <dd>
-                    <p>Dall'autostrada prendere l'uscita Padova Ovest, seguire le indicazioni per il centro e trovare parcheggio</p>
-                    <p>Dalla tangenziale prendere l'uscita Padova Centro, alla prima rotatoria prende via Mastroianni e cercare parcheggio lì vicino.</p>
-                </dd>
-                <dt>In Bus</dt>
-                <dd>
-                    <p>La fermata più vicina è Parco Verde, ci si può arrivare con le linee 1, 2, 4 e 6. Una volta scesi dalla fermata, andare verso il bar Pedrocchi e appena raggiunto girare a destra per seguire Corso Italia, che dopo 50 metri porta a Piazza della Frutta.</p>
-                </dd>
-            </dl>
-        </div>
-        <div id="ristorazione">
-            <h2>Dove bere</h2>
-            <dl>
-                <dt>La Dolce Vita</dt>
-                <dd>
-                    <p>In Piazza della Frutta c'è il bar "La Dolce Vita" offre lo spritz, come solo i padovani con origini romane lo sanno fare. Inoltre con il biglietto per una proiezione si ha lo spritz in omaggio (utilizzabile solo il giorno stesso della proiezione e dopo la fine della stessa)</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=45.40784616716723%2C11.875153370654386">Piazza della Frutta, 8 1/2, Padova</a>
-                </dd>
-                <dt>Pub Birra</dt>
-                <dd>
-                    <p>A lato Ovest delle proiezioni si può trovare Pub Birra: un pub in stile irlandese che offre svariate tipologie di birra, dalla birra sudafricana alla burrobirra.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=45.407849430746055%2C11.874948037893148">Piazza della Frutta, 7, Padova</a>
-                </dd>
-                <dt>Bar Miao</dt>
-                <dd>
-                    <p>Il bar perfetto per gli amanti dei gatti e dei liquori bitter. Un bar originale a tema felino con un ottima selezione di bitter nostrani; dai più comuni ai più ricercati: Select, Campari, Gajardo, Super Taurus, Contratto, Martini, Luxardo etc..</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=45.40742121474022%2C11.874937886450232">Piazza della Frutta, 4a, Padova</a>
-                </dd>
-                <dt>Bar Italia</dt>
-                <dd>
-                    <p>Non poteva mancare il rarissimo e originalissimo Bar Italia, bar decisamente unico nel suo genere e presente solo in Piazza della Frutta a Padova. No scherzo non andateci.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=45.40760964520691%2C11.874683018216817">Piazza della Frutta, 36, Padova</a>
-                </dd>
-            </dl>
-
-            <h2>Dove mangiare</h2>
-            <dl>
-                <dt>Pizzeria Bella Napoli</dt>
-                <dd>
-                    <p>Voglia di pizza? Provate la pizza napoletana, ma anche quelle classiche, alla Pizzeria Bella Napoli.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=45.40778857675661%2C11.874743913374664">Piazza della Frutta, 27, Padova</a>
-                </dd>
-                <dt>Trattoria da Pino</dt>
-                <dd>
-                    <p>Pizza al metro, classica o buona cucina. Non puoi prenotare se non per n+1, con n il numero di persone che hai comunicato al telefono, dovrai fare minimo 30 minuti di coda perchè fanno i preziosi.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=45.40780124526727%2C11.876000205887237">Piazza della Frutta, 18, Padova</a>
-                </dd>
-                <dt>Sushi Akira</dt>
-                <dd>
-                    <p>Cosa c'è di meglio di guardare un film con la pancia piena a tal punto che è difficile respirare? Provate il menu All you can eat a pranzo oppure il menù cena a cena.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=45.40746396918955%2C11.875670907029594">Piazza della Frutta, 9, Padova</a>
-                </dd>
-                <dt>Ristorante al termine dell'Universo</dt>
-                <dd>
-                    <p>Vuoi avere un esperienza unica? Visita il Ristorante al termine dell'Universo, spostati nella linea temporale e goditi una cena indimenticabile.</p>
-                    <a href="https://www.google.com/maps/search/?api=1&query=45.407367378093156%2C11.875262671107702">Piazza della Frutta, 42, Padova</a>
-                </dd>
-            </dl>
+            </ifnotregistersuccess>
         </div>
     </div>
 
-    <div id="tornaSu">
-        <a href="#" target="_self"><img src="../images/arrow_upward_white_24dp.svg" alt="Torna a inizio pagina"/></a>
+    <nav id="menu">
+        <ul>
+            <li lang="en"><a href="index.php">Home</a></li>
+            <li lang="en"><a href="aboutUs.php">About us</a></li>
+            <li><a href="listaFilm.php">Film</a></li>
+            <li><a href="proiezioni.php">Proiezioni</a></li>
+            <li><a class="currentPage">Come Trovarci</a></li>
+            <li><a href="contest.php">Il Contest</a></li>
+        </ul>
+    </nav>
+
+    <nav id="breadcrumb">
+        <p>Ti trovi in: <a href="index.php" lang="en">Home</a> &gt; &gt; Come Trovarci </p>
+    </nav>
+
+</header>
+
+
+<div id="content_comeTrovarci" class="content">
+    <h1>Come Trovarci</h1>
+    <div id="Luogo">
+        <h2>Mappa</h2>
+        <iframe id="gmaps"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2801.0919436041363!2d11.873167615555555!3d45.40748547910031!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477eda5003506ac5%3A0x26ac52538c0ba39c!2sPiazza%20della%20Frutta%2C%20Padova%20PD!5e0!3m2!1sit!2sit!4v1639489295072!5m2!1sit!2sit"></iframe>
+        <p>La proiezione dei film e la cerimonia di premiazione avverranno in piazza dello Spritz a Padova, l'ingresso e
+            la biglietteria sono nel lato Est, vicino alla statua del Santo Select.</p>
     </div>
 
-    <footer>
-        <ifloggedadmin><a id="pannelloadmin" href="admin.php">Pannello admin</a></ifloggedadmin>
-        <p id="sponsorLabel">I nostri sponsor:</p> 
-        <ul aria-labelledby="sponsorLabel" id="listaSponsor">
-            <li>
-                <img id="imgSponsor1" src="../images/sponsor/La_dolce_vita.png" alt="La dolce vita"/>
-                <p>La Dolve Vita Bar</p>
-            </li>
-            <li>
-                <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
-                <p>La Feltrinelli</p>
-            </li>
-            <li>
-                <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
-                <p>Grand Budapest Hotel</p>
-            </li>
-        </ul>
-        <ul id="studenti" title="Gli Autori">
-            <li>Alberto Nicoletti</li>
-            <li>Giovanni Moretti</li>
-            <li>Luca Annicchiarico</li>
-            <li>Tommaso Di Fant</li>
-        </ul>
-        <p>&copy; Copyright 2021</p>
-    </footer>
+    <div id="ComeRaggiungerci">
+        <h2>Come raggiungerci</h2>
+        <dl>
+            <dt>A piedi</dt>
+            <dd>
+                <p>Dalla stazione dei treni di padova, seguire la via principale (Corso del Popolo) per 300 metri, fino
+                    all'incorcio con via Lattea (subito dopo il negozio della Feltrinelli). Quindi proseguire lungo via
+                    Lattea fino a piazza Garibaldi, e andare a sinistra in Corso Italia, dopo 100 metri si ragginge
+                    Piazza dello Spritz. </p>
+                <p>Da Prato della valle basta seguire Corso Laurea, si raggiunge la piazza dopo 200 metri</p>
+            </dd>
+            <dt>In Auto</dt>
+            <dd>
+                <p>Dall'autostrada prendere l'uscita Padova Ovest, seguire le indicazioni per il centro e trovare
+                    parcheggio</p>
+                <p>Dalla tangenziale prendere l'uscita Padova Centro, alla prima rotatoria prende via Mastroianni e
+                    cercare parcheggio lì vicino.</p>
+            </dd>
+            <dt>In Bus</dt>
+            <dd>
+                <p>La fermata più vicina è Parco Verde, ci si può arrivare con le linee 1, 2, 4 e 6. Una volta scesi
+                    dalla fermata, andare verso il bar Pedrocchi e appena raggiunto girare a destra per seguire Corso
+                    Italia, che dopo 50 metri porta a Piazza dello Spritz.</p>
+            </dd>
+        </dl>
+    </div>
+    <div id="ristorazione">
+        <h2>Dove bere</h2>
+        <dl>
+            <dt>La Dolce Vita</dt>
+            <dd>
+                <p>In Piazza della Frutta c'è il bar "La Dolce Vita" offre lo spritz, come solo i padovani con origini
+                    romane lo sanno fare. Inoltre con il biglietto per una proiezione si ha lo spritz in omaggio
+                    (utilizzabile solo il giorno stesso della proiezione e dopo la fine della stessa)</p>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=45.40784616716723%2C11.875153370654386">Piazza
+                    della Frutta, 8 1/2, Padova</a>
+            </dd>
+            <dt>Pub Birra</dt>
+            <dd>
+                <p>A lato Ovest delle proiezioni si può trovare Pub Birra: un pub in stile irlandese che offre svariate
+                    tipologie di birra, dalla birra sudafricana alla burrobirra.</p>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=45.407849430746055%2C11.874948037893148">Piazza
+                    della Frutta, 7, Padova</a>
+            </dd>
+            <dt>Bar Miao</dt>
+            <dd>
+                <p>Il bar perfetto per gli amanti dei gatti e dei liquori bitter. Un bar originale a tema felino con un
+                    ottima selezione di bitter nostrani; dai più comuni ai più ricercati: Select, Campari, Gajardo,
+                    Super Taurus, Contratto, Martini, Luxardo etc..</p>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=45.40742121474022%2C11.874937886450232">Piazza
+                    della Frutta, 4a, Padova</a>
+            </dd>
+            <dt>Bar Italia</dt>
+            <dd>
+                <p>Non poteva mancare il rarissimo e originalissimo Bar Italia, bar decisamente unico nel suo genere e
+                    presente solo in Piazza della Frutta a Padova. No scherzo non andateci.</p>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=45.40760964520691%2C11.874683018216817">Piazza
+                    della Frutta, 36, Padova</a>
+            </dd>
+        </dl>
+
+        <h2>Dove mangiare</h2>
+        <dl>
+            <dt>Pizzeria Bella Napoli</dt>
+            <dd>
+                <p>Voglia di pizza? Provate la pizza napoletana, ma anche quelle classiche, alla Pizzeria Bella
+                    Napoli.</p>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=45.40778857675661%2C11.874743913374664">Piazza
+                    della Frutta, 27, Padova</a>
+            </dd>
+            <dt>Trattoria da Pino</dt>
+            <dd>
+                <p>Pizza al metro, classica o buona cucina. Non puoi prenotare se non per n+1, con n il numero di
+                    persone che hai comunicato al telefono, dovrai fare minimo 30 minuti di coda perchè fanno i
+                    preziosi.</p>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=45.40780124526727%2C11.876000205887237">Piazza
+                    della Frutta, 18, Padova</a>
+            </dd>
+            <dt>Sushi Akira</dt>
+            <dd>
+                <p>Cosa c'è di meglio di guardare un film con la pancia piena a tal punto che è difficile respirare?
+                    Provate il menu All you can eat a pranzo oppure il menù cena a cena.</p>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=45.40746396918955%2C11.875670907029594">Piazza
+                    della Frutta, 9, Padova</a>
+            </dd>
+            <dt>Ristorante al termine dell'Universo</dt>
+            <dd>
+                <p>Vuoi avere un esperienza unica? Visita il Ristorante al termine dell'Universo, spostati nella linea
+                    temporale e goditi una cena indimenticabile.</p>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=45.407367378093156%2C11.875262671107702">Piazza
+                    della Frutta, 42, Padova</a>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div id="tornaSu">
+    <a href="#" target="_self"><img src="../images/arrow_upward_white_24dp.svg" alt="Torna a inizio pagina"/></a>
+</div>
+
+<footer>
+    <ifloggedadmin><a id="pannelloadmin" href="admin.php">Pannello admin</a></ifloggedadmin>
+    <p id="sponsorLabel">I nostri sponsor:</p>
+    <ul aria-labelledby="sponsorLabel" id="listaSponsor">
+        <li>
+            <img id="imgSponsor1" src="../images/sponsor/La_dolce_vita.png" alt="La dolce vita"/>
+            <p>La Dolve Vita Bar</p>
+        </li>
+        <li>
+            <img id="imgSponsor2" src="../images/sponsor/la_feltrinelli.png" alt="La Feltrinelli"/>
+            <p>La Feltrinelli</p>
+        </li>
+        <li>
+            <img id="imgSponsor3" src="../images/sponsor/the_grand_budapest_hotel.png" alt="The Grand Budapest Hotel"/>
+            <p>Grand Budapest Hotel</p>
+        </li>
+    </ul>
+    <ul id="studenti" title="Gli Autori">
+        <li>Alberto Nicoletti</li>
+        <li>Giovanni Moretti</li>
+        <li>Luca Annicchiarico</li>
+        <li>Tommaso Di Fant</li>
+    </ul>
+    <p>&copy; Copyright 2021</p>
+</footer>
 
 </body>
 </html>

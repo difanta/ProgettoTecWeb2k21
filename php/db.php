@@ -55,29 +55,29 @@ class DBAccess
         return $this->formatGetResult($stmt->get_result());
     }
 
-    public function getLike($utente, $nomeFilm)
+    public function getLike($utente, $idfilm)
     {
         $stmt = $this->connection->prepare("SELECT count(*) as num 
                                             FROM _Like 
-                                            WHERE utente = ? and film = (SELECT id from Film where Film.nome = ?)");
-        $stmt->bind_param("ss", $utente, $nomeFilm);
+                                            WHERE utente = ? and film = ?");
+        $stmt->bind_param("si", $utente, $idfilm);
         $stmt->execute();
         return $this->formatGetResult($stmt->get_result());
     }
 
-    public function insertLike($utente, $nomeFilm)
+    public function insertLike($utente, $idfilm)
     {
         $stmt = $this->connection->prepare("INSERT INTO _Like(utente, film) VALUES
-                                            (?, (SELECT id from Film where Film.nome = ?))");
-        $stmt->bind_param("ss", $utente, $nomeFilm);
+                                            (?, ?)");
+        $stmt->bind_param("si", $utente, $idfilm);
         return $stmt->execute();
     }
 
-    public function removeLike($utente, $nomeFilm)
+    public function removeLike($utente, $idfilm)
     {
         $stmt = $this->connection->prepare("DELETE from _Like
-                                            where utente = ? and film = (SELECT id from Film where Film.nome = ?)");
-        $stmt->bind_param("ss", $utente, $nomeFilm);
+                                            where utente = ? and film = ?");
+        $stmt->bind_param("si", $utente, $idfilm);
         return $stmt->execute();
     }
 
@@ -362,7 +362,7 @@ class DBAccess
      */
     public function getUserCandidature()
     {
-        $stmt = $this->connection->prepare("SELECT Film.nome, Film.descrizione, Film.durata, Film.anno, Film.regista, Film.produttore, Film.cast, Utente.email, Film.approvato
+        $stmt = $this->connection->prepare("SELECT Film.nome, Film.descrizione, Film.durata, Film.anno, Film.regista, Film.produttore, Film.cast, Utente.email, Film.approvato, Film.alt
                                             FROM Utente
                                             join Film on Film.candidatore = Utente.id 
                                             where Utente.id = ?");
@@ -483,6 +483,19 @@ class DBAccess
     {
         $stmt = $this->connection->prepare("DELETE Proiezione 
                                             FROM Proiezione 
+                                                JOIN Film on Film.id = Proiezione.film 
+                                            WHERE film = 1");
+        $stmt->bind_param("s", $titolo);
+        return $stmt->execute();
+    }
+    /**
+     * @used_in adminCandidature.php
+     */
+    public function deleteTicketsOnSuspend($titolo)
+    {
+        $stmt = $this->connection->prepare("DELETE Biglietto 
+                                            FROM Biglietto
+                                                JOIN Proiezione on Proiezione.id = Biglietto.proiezione
                                                 JOIN Film on Film.id = Proiezione.film 
                                             WHERE film = 1");
         $stmt->bind_param("s", $titolo);

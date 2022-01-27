@@ -19,8 +19,7 @@
     <link href="../css/print.css" rel="stylesheet" type="text/css" media="print"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
    	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <script src="../js/scripts.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">    <script src="../js/scripts.js"></script>
     <link rel="shortcut icon" type="image/png" href="../images/favicon.ico"/>
 </head>
     
@@ -84,7 +83,7 @@
                     <label for="signupPassword">Password</label>
                     <span><input id="signupPassword" name="password" type="password" autocomplete="new-password"></span>
                     <label for="signupPassword2">ridigita la password</label>
-                    <span><input id="signupPassword2" name="" type="password" autocomplete="new-password"></span>
+                    <span><input id="signupPassword2" name="password2" type="password" autocomplete="new-password"></span>
         
                     <button name="method" value="register">registrati</button>
                 </form>
@@ -121,7 +120,7 @@
         
     <div id="content_adminListaFilm" class="content_admin">
  
-        <h1>Admin Lista Film</h1>
+        <h1>Lista Film</h1>
 
         <ifloggedadmin>
             <feedback/>
@@ -131,13 +130,13 @@
 
             <form id="alfAggiungi" method="post" enctype="multipart/form-data" onsubmit="return validazioneForm(this);">
                 <label for="alfaTitolo">Titolo:</label>
-                <span><input type="text" id="alfaTitolo" name="agg_nomeFilm" value="agg_nomefilm" required/></span>
+                <span><input type="text" id="alfaTitolo" name="agg_nomeFilm" value="agg_nomefilm" required></span>
                 
                 <label for="alfaProduttore">Produttore:</label>
-                <span><input type="text" id="alfaProduttore" name="agg_Produttore" value="agg_produttore" required/></span>
+                <span><input type="text" id="alfaProduttore" name="agg_Produttore" value="agg_produttore" required></span>
                 
                 <label for="alfaRegisti">Regista:</label>
-                <span><input type="text" id="alfaRegisti" name="agg_Regista" value="agg_regista" required/></span>
+                <span><input type="text" id="alfaRegisti" name="agg_Regista" value="agg_regista" required></span>
                 
                 <label for="alfaAnno">Anno di Pubblicazione:</label>
                 <span><input type="number" id="alfaAnno" name="agg_Anno" value="agg_annofilm" min=1900 max=2022 required></span>
@@ -146,7 +145,7 @@
                 <span><input type="number" id="alfaDurata" name="agg_Durata" value="agg_duratafilm" min=60 max=180 required></span>
 
                 <label for="imgFilm">Immagine film:</label>
-                <span><input type="file" id="alfaImg" name="agg_Img" accept="image/png, image/jpeg" required/></span>
+                <span><input type="file" id="alfaImg" name="agg_Img" accept="image/png, image/jpeg" required></span>
 
                 <label for="alfmAlt">Descrizione Alternativa Immagine:</label>
                 <span><textarea id="alfaAlt" name="agg_Alt" required>agg_altfilm</textarea></span>
@@ -172,7 +171,7 @@
 
             <form id="alfModifica" method="post" enctype="multipart/form-data" onsubmit="return validazioneForm(this);">
                 <label for="alfSelect">Seleziona un film da modificare</label>
-                <select id="alfSelect" name="mod_oldNomeFilm" selection="mod_nomefilmselezionato" onchange="mod_onFilmChanged()">
+                <select id="alfSelect" name="mod_oldNomeFilm" data-selection="mod_nomefilmselezionato" onchange="mod_onFilmChanged()">
                     <nomifilm/>
                 </select>
                 <br>
@@ -192,7 +191,7 @@
                 <span><input type="number" id="alfmDurata" name="mod_Durata" value="mod_duratafilm" min=60 max=180 ></span>
 
                 <label for="imgFilm">Immagine film:</label>
-                <span><input type="file" id="alfmImg" name="mod_Img" accept="image/png, image/jpeg"/></span>
+                <span><input type="file" id="imgFilm" name="mod_Img" accept="image/png, image/jpeg"/></span>
 
                 <label for="alfmAlt">Descrizione Alternativa Immagine:</label>
                 <span><textarea id="alfmAlt" name="mod_Alt" required>mod_altfilm</textarea></span>

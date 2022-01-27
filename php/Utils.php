@@ -31,14 +31,24 @@ class Utils
         $feedback = isset($_SESSION["feedback"]) ? Sanitizer::forHtml($_SESSION["feedback"]) : "";
 
         if ($_SESSION["success"]) {
-            $feedback = "<strong class='feedbackPositive'>" . $feedback . "</strong>";
+            $feedback = "<strong class='feedbackPositive' tabindex='-1'>" . $feedback . "</strong>";
         } else {
-            $feedback = "<strong class='feedbackNegative'>" . $feedback . "</strong>";
+            $feedback = "<strong class='feedbackNegative' tabindex='-1'>" . $feedback . "</strong>";
         }
 
         $htmlPage = str_replace($placeholder, $feedback, $htmlPage);
 
         unset($_SESSION["feedback"]);
+    }
+
+    /**
+     * Deletes all printed non-used placeholders
+     * @param $htmlPage string html page
+     * @param ...$placeholders array of placeholders
+     */
+    public static function feedbackCleanUp(&$htmlPage, ...$placeholders){
+        foreach ($placeholders as $elem)
+            $htmlPage = str_replace($elem, "", $htmlPage);
     }
 
     /**

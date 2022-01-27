@@ -2,7 +2,8 @@ window.addEventListener("load", caricaPagina, true);
 
 function caricaPagina() {
     caricamento();
-    setAccountAriaState();
+    let found = focusOnFeedback();
+    setAccountAriaState(!found);
 }
 
 /* Feature Detection --------------------------------- */
@@ -29,37 +30,83 @@ try {
 function toggleAccountDropdown() {
     document.getElementById('accountDropdown').classList.toggle('dropdown');
     document.getElementById('accountSection').classList.remove('slideOut');
-    document.getElementById('loginSection').classList.remove('slideIn');
-    document.getElementById('signupSection').classList.remove('slideIn');
-    setAccountAriaState();
+    loginSection = document.getElementById('loginSection');
+    if(loginSection) {
+        loginSection.classList.remove('slideIn');
+        document.getElementById('signupSection').classList.remove('slideIn');
+    }
+    setAccountAriaState(true);
 }
 
-function setAccountAriaState() {
+function setAccountAriaState(aquireFocus) {
     if(document.getElementById('accountDropdown').classList.contains('dropdown')) {
         document.getElementById('accountButton').ariaExpanded = "true";
+        if(aquireFocus) {
+            window.setTimeout(() => {
+                if(!document.getElementById('accountSection').classList.contains('slideOut')) {
+                    let loginBtn = document.getElementById('loginBtn');
+                    let accountLink = document.getElementById('linkUtente');
+                    if(accountLink) { accountLink.focus(); console.log("accountLink focus"); }
+                    else if(loginBtn) { loginBtn.focus(); console.log("loginBtn focus"); }
+                } else if(document.getElementById('loginSection') && document.getElementById('loginSection').classList.contains('slideOut')) {
+                    document.querySelector('#loginSection button[class=\'back\']').focus();
+                } else if(document.getElementById('signupSection') && document.getElementById('signupSection').classList.contains('slideOut')) {
+                    document.querySelector('#signupSection button[class=\'back\']').focus();
+                }
+            } , 20);
+        }
     } else {
         document.getElementById('accountButton').ariaExpanded = "false";
     }
 }
 
+function focusOnFeedback() {
+    let elem = document.querySelector("strong[class='feedbackPositive'], strong[class='feedbackNegative']");
+    if(elem) {
+        window.setTimeout(() => {
+            if(elem) elem.focus();
+        }, 20);
+        return true;
+    } 
+    else return false;
+}
+
 function openLogin() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('loginSection').classList.toggle('slideIn');
+    window.setTimeout(() => { 
+        document.querySelector('#loginSection button[class=\'back\']').focus();
+    } , 0);
 }
 
 function openSignup() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('signupSection').classList.toggle('slideIn');
+    window.setTimeout(() => { 
+        document.querySelector('#signupSection button[class=\'back\']').focus();
+    } , 0);
 }
 
 function loginBack() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('loginSection').classList.toggle('slideIn');
+    window.setTimeout(() => { 
+        let loginBtn = document.getElementById('loginBtn');
+        let accountLink = document.getElementById('linkUtente');
+        if(accountLink) { accountLink.focus(); }
+        else if(loginBtn) { loginBtn.focus(); }
+    } , 0);
 }
 
 function signupBack() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('signupSection').classList.toggle('slideIn');
+    window.setTimeout(() => { 
+        let loginBtn = document.getElementById('loginBtn');
+        let accountLink = document.getElementById('linkUtente');
+        if(accountLink) { accountLink.focus(); }
+        else if(loginBtn) { loginBtn.focus(); }
+    } , 0);
 }
 
 // hide account dropdown on click outside it and outside account button
@@ -97,7 +144,7 @@ window.addEventListener("scroll", function () {
 
 /* Lista Film ---------------------------------------- */
 
-function listaFilmLike(checked, nomeFilm, idfilm) {
+function listaFilmLike(checked, idfilm) {
     elem = document.getElementById('label-like-' + idfilm);
     if (checked == true) {
         elem.innerHTML = elem.innerHTML.replace('favorite_border', 'favorite');
@@ -118,7 +165,7 @@ function listaFilmLike(checked, nomeFilm, idfilm) {
     }
     request.open("POST", "like.php");
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.send(encodeURIComponent("nomeFilm") + "=" + encodeURIComponent(nomeFilm)
+    request.send(encodeURIComponent("idfilm") + "=" + encodeURIComponent(idfilm)
         + "&" +
         encodeURIComponent("like") + "=" + encodeURIComponent(checked));
 }
@@ -193,13 +240,13 @@ function setEditOff() {
 
 /* Admin */
 
-function injectProiezioni(elem, target) {
+function injectProiezioni(elem, target, buttons) {
     if (!elem || !target) return;
 
-    if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+    if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        const option = [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
-        elem.setAttribute("selection", "");
+        const option = [].filter.call(elem.options, option => (option.value == elem.getAttribute("data-selection")))[0].selected = true;
+        elem.setAttribute("data-selection", "");
     }
 
     if (!elem.value) return;
@@ -212,16 +259,23 @@ function injectProiezioni(elem, target) {
             if (request.status === 200) {
                 target.innerHTML = request.responseText;
 
-                // no proiezioni available -> cancel proiezione selection
+                // no proiezioni available -> cancel proiezione data-selection and disable buttons
                 if (!target.options[target.selectedIndex]) {
-                    target.setAttribute("selection", "");
+                    target.setAttribute("data-selection", "");
+                    for(let button of buttons) {
+                        button.disabled = true;
+                    }
+                } else {
+                    for(let button of buttons) {
+                        button.disabled = false;
+                    }
                 }
 
                 // load default proiezione
-                if (target.getAttribute("selection") && target.getAttribute("selection") != "") {
+                if (target.getAttribute("data-selection") && target.getAttribute("data-selection") != "") {
                     target.options[target.selectedIndex].selected = false;
-                    [].filter.call(target.options, option => (option.value == target.getAttribute("selection")))[0].selected = true;
-                    target.setAttribute("selection", "");
+                    [].filter.call(target.options, option => (option.value == target.getAttribute("data-selection")))[0].selected = true;
+                    target.setAttribute("data-selection", "");
                 }
 
                 target.dispatchEvent(new Event("change"));
@@ -250,10 +304,10 @@ function initAdminUtenti() {
 function onUtenteSelected(elem) {
     if (!elem) return;
 
-    if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+    if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
-        elem.setAttribute("selection", "");
+        [].filter.call(elem.options, option => (option.value == elem.getAttribute("data-selection")))[0].selected = true;
+        elem.setAttribute("data-selection", "");
     }
 
     let url = new URL(window.location);
@@ -274,14 +328,14 @@ function initAdminListaFilm() {
     elem = document.getElementById("alfSelect");
 
     if (!elem.options[elem.selectedIndex]) {
-        elem.setAttribute("selection", "");
+        elem.setAttribute("data-selection", "");
         return;
     }
 
-    if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+    if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
-        elem.setAttribute("selection", "");
+        [].filter.call(elem.options, option => (option.value == elem.getAttribute("data-selection")))[0].selected = true;
+        elem.setAttribute("data-selection", "");
     } else {
         elem.dispatchEvent(new Event("change"));
     }
@@ -375,10 +429,10 @@ function initAdminProiezioni() {
         return;
     }
 
-    if (elem.getAttribute("selection") && elem.getAttribute("selection") != "") {
+    if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        [].filter.call(elem.options, option => (option.value == elem.getAttribute("selection")))[0].selected = true;
-        elem.setAttribute("selection", "");
+        [].filter.call(elem.options, option => (option.value == elem.getAttribute("data-selection")))[0].selected = true;
+        elem.setAttribute("data-selection", "");
     }
 
     elem = document.getElementById("apSelect");
@@ -417,45 +471,49 @@ chiave:campo input di cui inserisco informazioni
 */
 var emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 var emailregexlogin = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))|admin|user$/;
-var namesRegex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/;
+var namesregex = /[a-zA-Zàèéìòù]{1,}/;
 var passwordregex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}$/;
 var passwordregexlogin = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}|admin|user$/;
 var altregex = /^.{4,125}$/;
+var dataregex =/^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/;
+var durataregex=/^[6-9][0-9]|1[0-7][0-9]|180$/;
 var dettagli_form = {
     // contest
     "titolo": ["inserisci il titolo del film", /[\wàèéìòù]{1,}/, "il titolo deve contenere almeno un carattere alfanumerico"],
     "descrizione": ["inserisci una descrizione del film", /^.{10,}$/, "la descrizione deve contenere almeno dieci caratteri"],
-    "durata": ["", /^[6-9][0-9]|1[0-7][0-9]|180$/, "la durata deve essere compresa tra i 60 ed i 180 minuti"],
-    "anno": ["", /^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/, "l'anno deve essere compreso tra il 1900 ed il 2022"],
+    "durata": ["", durataregex, "la durata deve essere compresa tra i 60 ed i 180 minuti"],
+    "anno": ["", dataregex, "l'anno deve essere compreso tra il 1900 ed il 2022"],
     "regista": ["inserisci il regista del film", /[a-zA-Zàèéìòù]{1,}/, "il regista deve contenere almeno un carattere alfabetico"],
     "produttore": ["inserisci il produttore del film", /[a-zA-Zàèéìòù]{1,}/, "il produttore deve contenere almeno un carattere alfabetico"],
     "cast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
     //listaFilm
     "alfaTitolo": ["inserisci il titolo del film", /[\wàèéìòù]{1,}/, "il titolo deve contenere almeno un carattere alfanumerico"],
     "alfaDescrizione": ["inserisci una descrizione del film", /^.{10,}$/, "la descrizione deve contenere almeno dieci caratteri"],
-    "alfaDurata": ["", /^[6-9][0-9]|1[0-7][0-9]|180$/, "la durata deve essere compresa tra i 60 ed i 180 minuti"],
-    "alfaAnno": ["", /^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/, "l'anno deve essere compreso tra il 1900 ed il 2022"],
+    "alfaDurata": ["", durataregex, "la durata deve essere compresa tra i 60 ed i 180 minuti"],
+    "alfaAnno": ["", dataregex, "l'anno deve essere compreso tra il 1900 ed il 2022"],
     "alfaRegisti": ["inserisci il regista del film", /[a-zA-Zàèéìòù]{1,}/, "il regista deve contenere almeno un carattere alfabetico"],
     "alfaProduttore": ["inserisci il produttore del film", /[a-zA-Zàèéìòù]{1,}/, "il produttore deve contenere almeno un carattere alfabetico"],
     "alfaCast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
+    "alfaAlt": ["inserisci la descrizione alternativa dell'immagine", altregex, "descrizione non valida"],
     "alfmTitolo": ["inserisci il titolo del film", /[\wàèéìòù]{1,}/, "il titolo deve contenere almeno un carattere alfanumerico"],
     "alfmDescrizione": ["inserisci una descrizione del film", /^.{10,}$/, "la descrizione deve contenere almeno dieci caratteri"],
-    "alfmDurata": ["", /^[6-9][0-9]|1[0-7][0-9]|180$/, "la durata deve essere compresa tra i 60 ed i 180 minuti"],
-    "alfmAnno": ["", /^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/, "l'anno deve essere compreso tra il 1900 ed il 2022"],
-    "alfmRegisti": ["inserisci il regista del film", /[a-zA-Zàèéìòù]{1,}/, "il regista deve contenere almeno un carattere alfabetico"],
-    "alfmProduttore": ["inserisci il produttore del film", /[a-zA-Zàèéìòù]{1,}/, "il produttore deve contenere almeno un carattere alfabetico"],
+    "alfmDurata": ["", durataregex, "la durata deve essere compresa tra i 60 ed i 180 minuti"],
+    "alfmAnno": ["", dataregex, "l'anno deve essere compreso tra il 1900 ed il 2022"],
+    "alfmRegisti": ["inserisci il regista del film", namesregex, "il regista deve contenere almeno un carattere alfabetico"],
+    "alfmProduttore": ["inserisci il produttore del film", namesregex, "il produttore deve contenere almeno un carattere alfabetico"],
     "alfmCast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
+    "alfmAlt": ["inserisci la descrizione alternativa dell'immagine", altregex, "descrizione non valida"],
     // pagina utente
-    "userInfoNome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
-    "userInfoCognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
+    "userInfoNome": ["inserisci il tuo nome", namesregex, "nome non valido"],
+    "userInfoCognome": ["inserisci il tuo cognome", namesregex, "cognome non valido"],
     "userInfoEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
     "userInfoPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero"],
     // content login
     "contentLoginEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
     "contentLoginPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
     // content signup
-    "contentSingupNome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
-    "contentSingupCognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
+    "contentSingupNome": ["inserisci il tuo nome", namesregex, "nome non valido"],
+    "contentSingupCognome": ["inserisci il tuo cognome", namesregex, "cognome non valido"],
     "contentSingupEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
     "contentSingupPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
     "contentSingupPassword2": ["", passwordregexlogin, "la password non coincide con la conferma password"],
@@ -463,8 +521,8 @@ var dettagli_form = {
     "loginEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
     "loginPassword": ["", passwordregexlogin, "almeno 8 caratteri di cui un numero e una lettera"],
     //signup
-    "signupNome": ["inserisci il tuo nome", namesRegex, "nome non valido"],
-    "signupCognome": ["inserisci il tuo cognome", namesRegex, "cognome non valido"],
+    "signupNome": ["inserisci il tuo nome", namesregex, "nome non valido"],
+    "signupCognome": ["inserisci il tuo cognome", namesregex, "cognome non valido"],
     "signupEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
     "signupPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
     "signupPassword2": ["", passwordregexlogin, "la password non coincide con la conferma password"],
@@ -475,8 +533,6 @@ var dettagli_form = {
 function caricamento() {
     for (var key in dettagli_form) {
         var input = document.querySelectorAll("[id*=" + key + "]");
-        console.log(input);
-        console.log(key);
         for (i = 0; i < input.length; i++) {
             console.log(input[i]);
             campoDefault(input[i]);
@@ -511,6 +567,8 @@ function validazioneCampo(input) {
     var padre = input.parentNode;
     if (padre.children.length == 2) {
         padre.removeChild(padre.children[1]);
+        input.removeAttribute("aria-describedby");
+        input.removeAttribute("aria-invalid");
     }
 
     var regex = dettagli_form[input.id.includes("candidaturaAlt") ? "candidaturaAlt" : input.id][1];
@@ -527,6 +585,8 @@ function confermaPassword(input) {
     var padre = input.parentNode;
     if (padre.children.length == 2) {
         padre.removeChild(padre.children[1]);
+        input.removeAttribute("aria-describedby");
+        input.removeAttribute("aria-invalid");
     }
     var pw = document.getElementById("signupPassword").value;
     var text = input.value;
@@ -542,8 +602,11 @@ function mostraErrore(input) {
     var padre = input.parentNode;
     var errore = document.createElement("strong");
     errore.className = "errorSuggestion";
+    errore.id = input.id + "_error";
     errore.appendChild(document.createTextNode(dettagli_form[input.id.includes("candidaturaAlt") ? "candidaturaAlt" : input.id][2]));
     padre.appendChild(errore);
+    input.setAttribute("aria-describedby", errore.id);
+    input.setAttribute("aria-invalid", "true");
 }
 
 function isAncestorOf(elem, ancestor) {

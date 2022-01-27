@@ -1,16 +1,16 @@
-<li id="idfilm">
-    <a class="linkTitolo" title="Titolo del film" href="film.php?nomeFilm=titolofilm"><h2 id="titolo_idfilm">titolofilm</h2></a>
+<li id="idfilm" aria-labelledby="titolo_idfilm">
+    <a class="linkTitolo" title="Titolo del Film" href="film.php?nomeFilm=titolofilmlink"><h2 id="titolo_idfilm">titolofilm</h2></a>
     <em title="Registi">regista</em>
     <em class="filmNonInGara">film in gara</em>
 
     <iflogged>
         <ifingara>
-            <input type="checkbox" name="like" id="like-idfilm" onchange="listaFilmLike(this.checked, 'titoloescaped', 'idfilm');" liked/>
+            <input type="checkbox" name="like" id="like-idfilm" onchange="listaFilmLike(this.checked, 'idfilm');" liked/>
             <label for="like-idfilm" id="label-like-idfilm" title="like" aria-label="Valutazione Cuore"><span title="like" aria-hidden="true" class="material-icons-outlined md24">likeicon</span></label>
         </ifingara>
     </iflogged>
 
     <br>
-    <a class="info" title="Info del film" aria-label="Info del film" href="film.php?nomeFilm=titolofilm"><span aria-hidden="true" class="material-icons-outlined md36">info</span></a>
-    <a class="biglietti" title="Vedi le proiezioni e acquista biglietti" aria-label="Vedi le proiezioni e acquista biglietti" href="proiezioni.php?nomeFilm=titolofilm"><span aria-hidden="true" class="material-icons-outlined md36">local_activity</span></a>
+    <a class="info" title="Info del film" aria-label="Info del film" href="film.php?nomeFilm=titolofilmlink"><span aria-hidden="true" class="material-icons-outlined md36">info</span></a>
+    <a class="biglietti" title="Vedi le proiezioni e acquista biglietti" aria-label="Vedi le proiezioni e acquista biglietti" href="proiezioni.php?nomeFilm=titolofilmlink"><span aria-hidden="true" class="material-icons-outlined md36">local_activity</span></a>
 </li>

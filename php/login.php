@@ -51,18 +51,6 @@ class Login {
     private static $p_if_not_logged_admin_open = "<ifnotloggedadmin>";
     private static $p_if_not_logged_admin_close = "</ifnotloggedadmin>";
 
-    private static $p_if_login_success_open = "<ifloginsuccess>";
-    private static $p_if_login_success_close = "</ifloginsuccess>";
-    
-    private static $p_if_not_login_success_open = "<ifnotloginsuccess>";
-    private static $p_if_not_login_success_close = "</ifnotloginsuccess>";
-    
-    private static $p_if_register_success_open = "<ifregistersuccess>";
-    private static $p_if_register_success_close = "</ifregistersuccess>";
-
-    private static $p_if_not_register_success_open = "<ifnotregistersuccess>";
-    private static $p_if_not_register_success_close = "</ifnotregistersuccess>";
-
     private static $p_accountname = "<accountname/>";
 
     public static function showElement($open, $close, &$string) {
@@ -88,7 +76,7 @@ class Login {
         {
             if($_POST["method"] == "login") 
             {
-                $email    = $_POST["email"];
+                $email    = strtolower($_POST["email"]);
                 $password = $_POST["password"];
 
                 $_SESSION["success"] = false;
@@ -129,7 +117,7 @@ class Login {
                 $nome            = $_POST["nome"];
                 $cognome         = $_POST["cognome"];
                 $data_di_nascita = $_POST["data_di_nascita"];
-                $email           = $_POST["email"];
+                $email           = strtolower($_POST["email"]);
                 $password        = $_POST["password"];
 
                 $_SESSION["success"] = false;
@@ -191,15 +179,13 @@ class Login {
             {
                 case 'login':
                     $htmlPage = str_replace(Login::$p_account_dropdown, Login::$p_account_dropdown . " class=\"dropdown\"", $htmlPage);
-                    $htmlPage = str_replace(Login::$p_account_section,  Login::$p_account_section  . " slideOut\"",         $htmlPage);
-                    $htmlPage = str_replace(Login::$p_login_section,    Login::$p_login_section    . " slideIn\"",          $htmlPage);
                     
                     if($success) {
                         Utils::printFeedback($htmlPage, "<loginfeedback/>");
-                        Login::hideElement(Login::$p_if_not_login_success_open, Login::$p_if_not_login_success_close, $htmlPage);
                     } else {
+                        $htmlPage = str_replace(Login::$p_account_section,  Login::$p_account_section  . " slideOut\"",         $htmlPage);
+                        $htmlPage = str_replace(Login::$p_login_section,    Login::$p_login_section    . " slideIn\"",          $htmlPage);
                         Utils::printFeedback($htmlPage, "<loginfeedback/>");
-                        Login::showElement(Login::$p_if_not_login_success_open, Login::$p_if_not_login_success_close, $htmlPage);
                     }
 
                     if(!$success) {
@@ -210,15 +196,13 @@ class Login {
 
                 case 'register':
                     $htmlPage = str_replace(Login::$p_account_dropdown, Login::$p_account_dropdown . " class=\"dropdown\"", $htmlPage);
-                    $htmlPage = str_replace(Login::$p_account_section,  Login::$p_account_section  . " slideOut\"",         $htmlPage);
-                    $htmlPage = str_replace(Login::$p_signup_section,   Login::$p_signup_section   . " slideIn\"",          $htmlPage);
                     
                     if($success) {
-                        Utils::printFeedback($htmlPage, "<registerfeedback/>");
-                        Login::hideElement(Login::$p_if_not_register_success_open, Login::$p_if_not_register_success_close, $htmlPage);
+                        Utils::printFeedback($htmlPage, "<registerfeedbackpositive/>");
                     } else {
-                        Utils::printFeedback($htmlPage, "<registerfeedback/>");
-                        Login::showElement(Login::$p_if_not_register_success_open, Login::$p_if_not_register_success_close, $htmlPage);
+                        $htmlPage = str_replace(Login::$p_account_section,  Login::$p_account_section  . " slideOut\"",         $htmlPage);
+                        $htmlPage = str_replace(Login::$p_signup_section,   Login::$p_signup_section   . " slideIn\"",          $htmlPage);
+                        Utils::printFeedback($htmlPage, "<registerfeedbacknegative/>");
                     }
 
                     if(!$success) {
@@ -239,12 +223,6 @@ class Login {
             unset($_SESSION["method"]);
             unset($_SESSION["success"]);
         }
-
-        // default: show not_success items
-        Login::hideElement(Login::$p_if_login_success_open,        Login::$p_if_login_success_close,        $htmlPage);
-        Login::showElement(Login::$p_if_not_login_success_open,    Login::$p_if_not_login_success_close,    $htmlPage);
-        Login::hideElement(Login::$p_if_register_success_open,     Login::$p_if_register_success_close,     $htmlPage);
-        Login::showElement(Login::$p_if_not_register_success_open, Login::$p_if_not_register_success_close, $htmlPage);
 
         // login conditional structs
         if(Login::is_logged()) {
@@ -268,6 +246,8 @@ class Login {
         } else {
             $htmlPage = str_replace(Login::$p_accountname, ""                                                              , $htmlPage);
         }
+
+        Utils::feedbackCleanUp($htmlPage, "<loginfeedback/>", "<registerfeedbackpositive/>", "<registerfeedbacknegative/>", "<logoutfeedback/>");
     }
 }
 

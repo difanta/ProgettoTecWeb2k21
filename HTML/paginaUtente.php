@@ -58,7 +58,7 @@ function updateInfoUtente()
     $nome = $_POST["nome"];
     $cognome = $_POST["cognome"];
     $dataNascita = $_POST["dataNascita"];
-    $email = $_POST["email"];
+    $email = strtolower($_POST["email"]);
     $password = $_POST["password"];
 
     if (Utils::validate($nome, Utils::namesRegex)
@@ -144,7 +144,7 @@ function printBiglietti(&$htmlPage)
                 unset($biglietto);
                 $listaBiglietti .= "</ul>";
             } else {
-                $listaBiglietti .= "<p>Non sono presenti biglietti</p>";
+                $listaBiglietti .= "<p class='alert'>Non sono presenti biglietti</p>";
             }
         } else {
             $listaBiglietti .= "<p>Errore connessione db</p>";
@@ -173,12 +173,14 @@ function printCandidature(&$htmlPage)
             $candidature = $connection->getUserCandidature();
             $connection->closeConnection();
             if ($candidature != null) {
-                $list .= "<ul aria-labelledby='candidatureLabel' id='acnSospese'>";
+                $list .= "<ul aria-labelledby='candidatureLabel' class=\"containerCandidature\">";
                 foreach ($candidature as $index => $candidatura) {
                     $list .= file_get_contents("template/templateCandidaturaUser.html");
 
                     $list = str_replace("collapse", "collapse" . $index, $list);
                     $list = str_replace("pTitolo", Sanitizer::forHtml($candidatura["nome"]), $list);
+                    $list = str_replace("percorsoimmagine", FS::findImage($candidatura["nome"]), $list);
+                    $list = str_replace("descrizioneimmagine", Sanitizer::forHtml($candidatura["alt"]), $list);
                     $list = str_replace("pDurata", Sanitizer::forHtml($candidatura["durata"] . "'"), $list);
                     $list = str_replace("pAnno", Sanitizer::forHtml($candidatura["anno"]), $list);
                     $list = str_replace("pRegista", Sanitizer::forHtml($candidatura["regista"]), $list);
@@ -196,7 +198,7 @@ function printCandidature(&$htmlPage)
                 unset($candidatura);
                 $list .= "</ul>";
             } else {
-                $list .= "<p id>Non sono presenti candidature</p>";
+                $list .= "<p class='alert'>Non sono presenti candidature</p>";
             }
         } else {
             $list .= "<p>Errore connessione db</p>";
@@ -286,6 +288,8 @@ if (isset($_POST["method"])) {
         unset($_SESSION["feedback"]);
         unset($_SESSION["success"]);
     }
+
+    Utils::feedbackCleanUp($htmlPage, "<feedbackInfoUtente/>", "<feedbackDeleteCandidatura/>");
 
     echo $htmlPage;
 }
