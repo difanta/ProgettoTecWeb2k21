@@ -10,7 +10,6 @@
     <meta name="keywords" content="utenti, admin, cinema, festival, padova, indipendente"/>
     <meta name="description" content="gestione admin degli utenti del sito ufficiale di CinePado"/>
     <meta name="author" content="L. Annicchiarico T. Di Fant G. Moretti A. Nicoletti"/>
-    <meta name="language" content="italian it" />
     <meta name="robots" content="noindex">
 
     <link rel="stylesheet" href="../css/style.css" media="screen">
@@ -128,7 +127,7 @@
     <ifloggedadmin>
         <label for="utentiSelect">Seleziona un utente</label>
         <select id="utentiSelect" name="selectUtente" data-selection="userselected" class="js_toBeInit" onchange="onUtenteSelected(this)">
-            <option value="" selected> - </option>
+            <option hidden disabled value="" selected> - </option>
             <utenti/>
         </select>
 
