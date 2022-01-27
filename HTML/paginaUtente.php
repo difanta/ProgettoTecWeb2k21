@@ -84,7 +84,7 @@ function updateInfoUtente()
         }
 
     } else {
-        $feedback = "Errore nella compliazione";
+        $feedback = "Errore nella compilazione della form, per maggiori informazioni attivare javascript nel browser";
         $_SESSION["success"] = false;
     }
     $_SESSION["feedback"] = $feedback;
