@@ -36,6 +36,10 @@ header #accountDropdown #accountSection{
     padding: 0;
 }
 
+header #accountDropdown #accountSectionButtons {
+    padding: 0;
+}
+
 header #accountDropdown #accountSection button#signupBtn{
     margin-top: 0.6em;
 }

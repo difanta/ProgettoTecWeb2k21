@@ -37,18 +37,20 @@
                 <div class="loginNavigation">   
                     <button class="back" aria-label="Chiudi Dialogo" onclick="toggleAccountDropdown()"><span aria-hidden="true" class="material-icons-outlined">close</span></button>
                 </div>
-                <ifnotlogged>
-                    <logoutfeedback/>
-                    <registerfeedbackpositive/>
-                    <button id="loginBtn" onclick="openLogin()">Login</button>
-                    <button id="signupBtn" onclick="openSignup()">Registrati</button>
-                </ifnotlogged>
-                <iflogged>
-                    <loginfeedback/>
-                    <form id="logout" method="post"></form>
-                    <a id="linkUtente" href="paginaUtente.php">Il mio Profilo</a>
-                    <button id="logoutBtn" name="method" value="logout" form="logout">Logout</button>
-                </iflogged>
+                <div id="accountSectionButtons">
+                    <ifnotlogged>
+                        <logoutfeedback/>
+                        <registerfeedbackpositive/>
+                        <button id="loginBtn" onclick="openLogin()">Login</button>
+                        <button id="signupBtn" onclick="openSignup()">Registrati</button>
+                    </ifnotlogged>
+                    <iflogged>
+                        <loginfeedback/>
+                        <form id="logout" method="post"></form>
+                        <a id="linkUtente" href="paginaUtente.php">Il mio Profilo</a>
+                        <button id="logoutBtn" name="method" value="logout" form="logout">Logout</button>
+                    </iflogged>
+                </div>
             </div>
             <ifnotlogged>
                 <div id="loginSection" class="slidableIn">

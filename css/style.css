@@ -317,6 +317,9 @@ header #accountDropdown {
 
 header #accountDropdown .slidableOut {
     display: block;
+}
+
+header #accountDropdown #accountSectionButtons {
     padding: 1em;
 }
 

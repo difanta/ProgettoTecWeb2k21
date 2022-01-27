@@ -3,7 +3,7 @@ window.addEventListener("load", caricaPagina, true);
 function caricaPagina() {
     caricamento();
     let found = focusOnFeedback();
-    setAccountAriaState(!found);
+    setAccountAriaStateAndFocus(!found, true);
 }
 
 /* Feature Detection --------------------------------- */
@@ -35,10 +35,10 @@ function toggleAccountDropdown() {
         loginSection.classList.remove('slideIn');
         document.getElementById('signupSection').classList.remove('slideIn');
     }
-    setAccountAriaState(true);
+    setAccountAriaStateAndFocus(true, false);
 }
 
-function setAccountAriaState(aquireFocus) {
+function setAccountAriaStateAndFocus(aquireFocus, onload) {
     if(document.getElementById('accountDropdown').classList.contains('dropdown')) {
         document.getElementById('accountButton').ariaExpanded = "true";
         if(aquireFocus) {
@@ -46,17 +46,22 @@ function setAccountAriaState(aquireFocus) {
                 if(!document.getElementById('accountSection').classList.contains('slideOut')) {
                     let loginBtn = document.getElementById('loginBtn');
                     let accountLink = document.getElementById('linkUtente');
-                    if(accountLink) { accountLink.focus(); console.log("accountLink focus"); }
-                    else if(loginBtn) { loginBtn.focus(); console.log("loginBtn focus"); }
+                    if(accountLink) { accountLink.focus(); }
+                    else if(loginBtn) { loginBtn.focus(); }
                 } else if(document.getElementById('loginSection') && document.getElementById('loginSection').classList.contains('slideOut')) {
-                    document.querySelector('#loginSection button[class=\'back\']').focus();
+                    document.querySelector('#loginEmail').focus();
                 } else if(document.getElementById('signupSection') && document.getElementById('signupSection').classList.contains('slideOut')) {
-                    document.querySelector('#signupSection button[class=\'back\']').focus();
+                    document.querySelector('#signupNome').focus();
                 }
             } , 20);
         }
     } else {
         document.getElementById('accountButton').ariaExpanded = "false";
+        if(!onload) {
+            window.setTimeout(() => {
+                document.getElementById('accountButton').focus();
+            }, 0);
+        }
     }
 }
 
@@ -75,7 +80,7 @@ function openLogin() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('loginSection').classList.toggle('slideIn');
     window.setTimeout(() => { 
-        document.querySelector('#loginSection button[class=\'back\']').focus();
+        document.querySelector('#loginEmail').focus();
     } , 0);
 }
 
@@ -83,7 +88,7 @@ function openSignup() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('signupSection').classList.toggle('slideIn');
     window.setTimeout(() => { 
-        document.querySelector('#signupSection button[class=\'back\']').focus();
+        document.querySelector('#signupNome').focus();
     } , 0);
 }
 
