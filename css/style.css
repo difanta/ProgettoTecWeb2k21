@@ -1115,6 +1115,14 @@ header #loginSection p{
     padding: 0 1% 1% 1%;
 }
 
+#content_contest #contestForm form {
+    padding: 1em;
+    margin-bottom: 1em;
+    border: 1px solid black;
+    border-radius: 4px;
+    max-width: 30em;
+}
+
 /* Admin --------------------------------------------------------------------------------------------------*/
 
 .content_admin{

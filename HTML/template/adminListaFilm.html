@@ -106,7 +106,7 @@
             <p>Ti trovi in: <a href="index.php" lang="en">Home</a> &gt; &gt; <a href="admin.php" lang="en">Admin</a> &gt; &gt; Lista Film</p>
         </nav>
 
-        <div id="adminMenu"><ul>
+        <div id="adminMenu" title="Menù admin" aria-label="Menù admin"><ul>
             <li><a href="admin.php">Home admin</a></li>
             <li><a href="adminCandidature.php">Candidature</a></li>
             <li><a href="adminProiezioni.php">Proiezioni</a></li>
@@ -130,31 +130,31 @@
 
             <form id="alfAggiungi" method="post" enctype="multipart/form-data" onsubmit="return validazioneForm(this);">
                 <label for="alfaTitolo">Titolo:</label>
-                <span><input type="text" id="alfaTitolo" name="agg_nomeFilm" value="agg_nomefilm" required></span>
+                <span><input type="text" id="alfaTitolo" name="agg_nomeFilm" value="agg_nomefilm"></span>
                 
                 <label for="alfaProduttore">Produttore:</label>
-                <span><input type="text" id="alfaProduttore" name="agg_Produttore" value="agg_produttore" required></span>
+                <span><input type="text" id="alfaProduttore" name="agg_Produttore" value="agg_produttore"></span>
                 
                 <label for="alfaRegisti">Regista:</label>
-                <span><input type="text" id="alfaRegisti" name="agg_Regista" value="agg_regista" required></span>
+                <span><input type="text" id="alfaRegisti" name="agg_Regista" value="agg_regista"></span>
                 
                 <label for="alfaAnno">Anno di Pubblicazione:</label>
-                <span><input type="number" id="alfaAnno" name="agg_Anno" value="agg_annofilm" min=1900 max=2022 required></span>
+                <span><input type="number" id="alfaAnno" name="agg_Anno" value="agg_annofilm" min=1900 max=2022></span>
                 
                 <label for="alfaDurata">Durata(min):</label>
-                <span><input type="number" id="alfaDurata" name="agg_Durata" value="agg_duratafilm" min=60 max=180 required></span>
+                <span><input type="number" id="alfaDurata" name="agg_Durata" value="agg_duratafilm" min=60 max=180></span>
 
                 <label for="imgFilm">Immagine film:</label>
-                <span><input type="file" id="alfaImg" name="agg_Img" accept="image/png, image/jpeg" required></span>
+                <span><input type="file" id="alfaImg" name="agg_Img" accept="image/png, image/jpeg"></span>
 
                 <label for="alfmAlt">Descrizione Alternativa Immagine:</label>
-                <span><textarea id="alfaAlt" name="agg_Alt" required>agg_altfilm</textarea></span>
+                <span><textarea id="alfaAlt" name="agg_Alt">agg_altfilm</textarea></span>
                 
                 <label for="alfaDescrizione">Descrizione Film:</label>
-                <span><textarea id="alfaDescrizione" cols="26" rows="5" name="agg_descrizioneFilm" required>agg_descrizionefilm</textarea></span>
+                <span><textarea id="alfaDescrizione" cols="26" rows="5" name="agg_descrizioneFilm">agg_descrizionefilm</textarea></span>
                 
                 <label for="alfaCast">Cast:</label>
-                <span><textarea id="alfaCast" cols="26" rows="5" name="agg_Cast" required>agg_cast</textarea></span>
+                <span><textarea id="alfaCast" cols="26" rows="5" name="agg_Cast">agg_cast</textarea></span>
                 
                 <input type="checkbox" id="alfaGara" name="agg_inGara" agg_filmingara>
                 <label for="alfaGara" class="inline">In Gara</label>
@@ -185,7 +185,7 @@
                 <span><input type="text" id="alfmRegisti" name="mod_Registi" value="mod_regista"/></span>
                 
                 <label for="alfmAnno">Anno di Pubblicazione:</label>
-                <span><input type="number" id="alfmAnno" name="mod_Anno" value="mod_annofilm" min=1900 max=2022 required></span>
+                <span><input type="number" id="alfmAnno" name="mod_Anno" value="mod_annofilm" min=1900 max=2022></span>
 
                 <label for="alfmDurata">Durata(min):</label>
                 <span><input type="number" id="alfmDurata" name="mod_Durata" value="mod_duratafilm" min=60 max=180 ></span>
@@ -194,7 +194,7 @@
                 <span><input type="file" id="imgFilm" name="mod_Img" accept="image/png, image/jpeg"/></span>
 
                 <label for="alfmAlt">Descrizione Alternativa Immagine:</label>
-                <span><textarea id="alfmAlt" name="mod_Alt" required>mod_altfilm</textarea></span>
+                <span><textarea id="alfmAlt" name="mod_Alt">mod_altfilm</textarea></span>
                 
                 <label for="alfmDescrizione">Descrizione Film:</label>
                 <span><textarea id="alfmDescrizione" cols="26" rows="5" name="mod_descrizioneFilm">mod_descrizionefilm</textarea></span>
