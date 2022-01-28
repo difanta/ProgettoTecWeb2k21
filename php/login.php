@@ -244,7 +244,7 @@ class Login {
         if(Login::is_logged()) {
             $htmlPage = str_replace(Login::$p_accountname, "<span aria-hidden='true' id='accountName'>" . $_SESSION["accountname"] . "</span>", $htmlPage);
         } else {
-            $htmlPage = str_replace(Login::$p_accountname, ""                                                              , $htmlPage);
+            $htmlPage = str_replace(Login::$p_accountname, "" , $htmlPage);
         }
 
         Utils::feedbackCleanUp($htmlPage, "<loginfeedback/>", "<registerfeedbackpositive/>", "<registerfeedbacknegative/>", "<logoutfeedback/>");
