@@ -42,7 +42,7 @@ function setAccountAriaStateAndFocus(aquireFocus, onload) {
     if(document.getElementById('accountDropdown').classList.contains('dropdown')) {
         document.getElementById('accountButton').ariaExpanded = "true";
         if(aquireFocus) {
-            window.setTimeout(() => {
+            window.setTimeout(function() {
                 if(!document.getElementById('accountSection').classList.contains('slideOut')) {
                     let loginBtn = document.getElementById('loginBtn');
                     let accountLink = document.getElementById('linkUtente');
@@ -58,7 +58,7 @@ function setAccountAriaStateAndFocus(aquireFocus, onload) {
     } else {
         document.getElementById('accountButton').ariaExpanded = "false";
         if(!onload) {
-            window.setTimeout(() => {
+            window.setTimeout(function() {
                 document.getElementById('accountButton').focus();
             }, 0);
         }
@@ -68,7 +68,7 @@ function setAccountAriaStateAndFocus(aquireFocus, onload) {
 function focusOnFeedback() {
     let elem = document.querySelector("strong[class='feedbackPositive'], strong[class='feedbackNegative']");
     if(elem) {
-        window.setTimeout(() => {
+        window.setTimeout(function() {
             if(elem) elem.focus();
         }, 20);
         return true;
@@ -79,7 +79,7 @@ function focusOnFeedback() {
 function openLogin() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('loginSection').classList.toggle('slideIn');
-    window.setTimeout(() => { 
+    window.setTimeout(function() { 
         document.querySelector('#loginEmail').focus();
     } , 0);
 }
@@ -87,7 +87,7 @@ function openLogin() {
 function openSignup() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('signupSection').classList.toggle('slideIn');
-    window.setTimeout(() => { 
+    window.setTimeout(function() { 
         document.querySelector('#signupNome').focus();
     } , 0);
 }
@@ -95,7 +95,7 @@ function openSignup() {
 function loginBack() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('loginSection').classList.toggle('slideIn');
-    window.setTimeout(() => { 
+    window.setTimeout(function() { 
         let loginBtn = document.getElementById('loginBtn');
         let accountLink = document.getElementById('linkUtente');
         if(accountLink) { accountLink.focus(); }
@@ -106,7 +106,7 @@ function loginBack() {
 function signupBack() {
     document.getElementById('accountSection').classList.toggle('slideOut');
     document.getElementById('signupSection').classList.toggle('slideIn');
-    window.setTimeout(() => { 
+    window.setTimeout(function() { 
         let loginBtn = document.getElementById('loginBtn');
         let accountLink = document.getElementById('linkUtente');
         if(accountLink) { accountLink.focus(); }
@@ -158,7 +158,7 @@ function listaFilmLike(checked, idfilm) {
     }
 
     let request = new XMLHttpRequest();
-    request.onload = (e) => {
+    request.onload = function(e) {
         if (request.readyState === request.DONE) {
             let select = document.getElementById("apSelectP");
             if (request.status === 200) {
@@ -166,7 +166,7 @@ function listaFilmLike(checked, idfilm) {
             }
         }
     };
-    request.onerror = (e) => {
+    request.onerror = function(e) {
     }
     request.open("POST", "like.php");
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -250,7 +250,7 @@ function injectProiezioni(elem, target, buttons) {
 
     if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        const option = [].filter.call(elem.options, option => (option.value == elem.getAttribute("data-selection")))[0].selected = true;
+        const option = [].filter.call(elem.options, function(option) { return (option.value == elem.getAttribute("data-selection"))} )[0].selected = true;
         elem.setAttribute("data-selection", "");
     }
 
@@ -259,7 +259,7 @@ function injectProiezioni(elem, target, buttons) {
     target.innerHTML = "";
 
     let request = new XMLHttpRequest();
-    request.onload = (e) => {
+    request.onload = function(e) {
         if (request.readyState === request.DONE) {
             if (request.status === 200) {
                 target.innerHTML = request.responseText;
@@ -279,7 +279,7 @@ function injectProiezioni(elem, target, buttons) {
                 // load default proiezione
                 if (target.getAttribute("data-selection") && target.getAttribute("data-selection") != "") {
                     target.options[target.selectedIndex].selected = false;
-                    [].filter.call(target.options, option => (option.value == target.getAttribute("data-selection")))[0].selected = true;
+                    [].filter.call(target.options, function(option) { return (option.value == target.getAttribute("data-selection"))} )[0].selected = true;
                     target.setAttribute("data-selection", "");
                 }
 
@@ -288,7 +288,7 @@ function injectProiezioni(elem, target, buttons) {
             }
         }
     };
-    request.onerror = (e) => {
+    request.onerror = function(e) {
     }
     request.open("POST", "getproiezioni.php");
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -311,7 +311,7 @@ function onUtenteSelected(elem) {
 
     if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        [].filter.call(elem.options, option => (option.value == elem.getAttribute("data-selection")))[0].selected = true;
+        [].filter.call(elem.options, function(option) { return (option.value == elem.getAttribute("data-selection"))} )[0].selected = true;
         elem.setAttribute("data-selection", "");
     }
 
@@ -339,7 +339,7 @@ function initAdminListaFilm() {
 
     if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        [].filter.call(elem.options, option => (option.value == elem.getAttribute("data-selection")))[0].selected = true;
+        [].filter.call(elem.options, function(option) { return (option.value == elem.getAttribute("data-selection"))} )[0].selected = true;
         elem.setAttribute("data-selection", "");
     } else {
         elem.dispatchEvent(new Event("change"));
@@ -369,7 +369,7 @@ function mod_onFilmChanged() {
     resetAlfm();
 
     let request = new XMLHttpRequest();
-    request.onload = (e) => {
+    request.onload = function(e) {
         if (request.readyState === request.DONE) {
             if (request.status === 200) {
                 let obj = JSON.parse(request.response);
@@ -419,7 +419,7 @@ function mod_onFilmChanged() {
             }
         }
     };
-    request.onerror = (e) => {
+    request.onerror = function(e) {
     }
     request.open("POST", window.location.href);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -436,7 +436,7 @@ function initAdminProiezioni() {
 
     if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        [].filter.call(elem.options, option => (option.value == elem.getAttribute("data-selection")))[0].selected = true;
+        [].filter.call(elem.options, function(option) { return (option.value == elem.getAttribute("data-selection"))} )[0].selected = true;
         elem.setAttribute("data-selection", "");
     }
 
@@ -453,7 +453,7 @@ function mod_ProiezioneSelected() {
     if (selectedFilm && selectedFilm != "") {
         const selectFilm = document.getElementById("aprmSelect");
         selectFilm.options[selectFilm.selectedIndex].selected = false;
-        [].filter.call(selectFilm.options, option => (option.value == selectedFilm))[0].selected = true;
+        [].filter.call(selectFilm.options, function(option) { return (option.value == selectedFilm) })[0].selected = true;
     }
 
     // load default date in the form if at least one proiezione is available and if attribute orario is defined
