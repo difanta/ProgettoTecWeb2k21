@@ -275,13 +275,13 @@ function injectProiezioni(elem, target, buttons) {
                 // no proiezioni available -> cancel proiezione data-selection and disable buttons
                 if (!target.options[target.selectedIndex]) {
                     target.setAttribute("data-selection", "");
-                    for(let button of buttons) {
+                    buttons.forEach(function(button) {
                         button.disabled = true;
-                    }
+                    });
                 } else {
-                    for(let button of buttons) {
+                    buttons.forEach(function(button) {
                         button.disabled = false;
-                    }
+                    });
                 }
 
                 // load default proiezione
