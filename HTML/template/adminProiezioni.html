@@ -76,7 +76,7 @@
                         <label for="signupCognome">Cognome</label>
                         <span><input id="signupCognome" name="cognome" type="text" autocomplete="family-name"></span>
                         <label for="signupDataNascita">Data di nascita</label>
-                        <span><input id="signupDataNascita" name="data_di_nascita" type="date" autocomplete="bday"></span>
+                        <span><input id="signupDataNascita" name="data_di_nascita" type="date" placeholder="yyyy-mm-dd" autocomplete="bday"></span>
                         
                         <label for="signupEmail">Email</label>
                         <span><input id="signupEmail" name="email" type="text" autocomplete="home email"></span>
@@ -135,7 +135,7 @@
                 </select>
                 <br>
                 <label for="apraData">Data e Ora</label>
-                <input type="datetime-local" id="apraData" name="agg_data" value="agg_dataselezionata" min="2022-09-12T00:00" max="2022-09-18T23:59">
+                <input type="date" placeholder="yyyy-mm-ddThh:mm" id="apraData" name="agg_data" value="agg_dataselezionata" min="2022-09-12T00:00" max="2022-09-18T23:59">
                 <br>
                 <input class="button" type="submit" name="method" value="Aggiungi Proiezione">
                 <input class="button" type="submit" value="Reset">
@@ -160,7 +160,7 @@
                 </select>
                 <br>
                 <label for="aprmData">Data e Ora</label>
-                <input id="aprmData" type="datetime-local" name="mod_nuovaData" min="2022-09-12T00:00" max="2022-09-18T23:59">
+                <input id="aprmData" type="date" placeholder="yyyy-mm-ddThh:mm" name="mod_nuovaData" min="2022-09-12T00:00" max="2022-09-18T23:59">
                 <br>
                 <input id="modificaProiezione" class="button" type="submit" name="method" value="Modifica Proiezione">
                 <input id="eliminaProiezione" class="button" type="submit" name="method" value="Elimina Proiezione">
