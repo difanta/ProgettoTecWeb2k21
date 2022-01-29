@@ -74,7 +74,7 @@ function setAccountAriaStateAndFocus(aquireFocus, onload) {
 }
 
 function focusOnFeedback() {
-    let elem = document.querySelector("strong[class='feedbackPositive'], strong[class='feedbackNegative']");
+    let elem = document.querySelector("strong[class='feedbackNegative'], strong[class='feedbackPositive'], #feedbackAcquisto");
     if(elem) {
         window.setTimeout(function() {
             if(elem) elem.focus();
