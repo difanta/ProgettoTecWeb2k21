@@ -4,21 +4,21 @@
 
 <head>
 	<meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
 	<title>Lista film Admin - CinePado</title>
 	
 	<meta name="keywords" content="cinema, festival, padova, indipendente" />
 	<meta name="description" content="Gestione admin dei film di CinePado" />
     <meta name="author" content="L. Annicchiarico T. Di Fant G. Moretti A. Nicoletti" />
-    <meta name="robots" content="noindex">
+    <meta name="robots" content="noindex" />
 
-    <link rel="stylesheet" href="../css/style.css" media="screen">
-    <link rel="stylesheet" href="../css/small.css" media="screen and (max-width: 600px)">
+    <link rel="stylesheet" href="../css/style.css" media="screen" />
+    <link rel="stylesheet" href="../css/small.css" media="screen and (max-width: 600px)" />
     <link href="../css/print.css" rel="stylesheet" type="text/css" media="print"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
-   	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">    <script src="../js/scripts.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" />
+   	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet" />    <script src="../js/scripts.js"></script>
     <link rel="shortcut icon" type="image/png" href="../images/favicon.ico"/>
 </head>
     
@@ -57,9 +57,9 @@
                     <loginfeedback/>
                     <form id="login" method="post" onsubmit="return validazioneForm(this);">
                         <label for="loginEmail">Email</label>
-                        <span><input id="loginEmail" name="email" type="text" autocomplete="username"></span>
+                        <span><input id="loginEmail" name="email" type="text" autocomplete="username" /></span>
                         <label for="loginPassword">Password</label>
-                        <span><input id="loginPassword" name="password" type="password" autocomplete="current-password"></span>
+                        <span><input id="loginPassword" name="password" type="password" autocomplete="current-password" /></span>
 
                         <button name="method" value="login">accedi</button>
                     </form>
@@ -72,18 +72,18 @@
                     <registerfeedbacknegative/>
                     <form id="signup" method="post" onsubmit="return validazioneForm(this);">
                         <label for="signupNome">Nome</label>
-                        <span><input id="signupNome" name="nome" type="text" autocomplete="name"></span>
+                        <span><input id="signupNome" name="nome" type="text" autocomplete="name" /></span>
                         <label for="signupCognome">Cognome</label>
-                        <span><input id="signupCognome" name="cognome" type="text" autocomplete="family-name"></span>
+                        <span><input id="signupCognome" name="cognome" type="text" autocomplete="family-name" /></span>
                         <label for="signupDataNascita">Data di nascita</label>
-                        <span><input id="signupDataNascita" name="data_di_nascita" type="date" placeholder="yyyy-mm-dd" autocomplete="bday"></span>
+                        <span><input id="signupDataNascita" name="data_di_nascita" type="date" placeholder="yyyy-mm-dd" autocomplete="bday" /></span>
                         
                         <label for="signupEmail">Email</label>
-                        <span><input id="signupEmail" name="email" type="text" autocomplete="home email"></span>
+                        <span><input id="signupEmail" name="email" type="text" autocomplete="home email" /></span>
                         <label for="signupPassword">Password</label>
-                        <span><input id="signupPassword" name="password" type="password" autocomplete="new-password"></span>
+                        <span><input id="signupPassword" name="password" type="password" autocomplete="new-password" /></span>
                         <label for="signupPassword2">ridigita la password</label>
-                        <span><input id="signupPassword2" name="password2" type="password" autocomplete="new-password"></span>
+                        <span><input id="signupPassword2" name="password2" type="password" autocomplete="new-password" /></span>
             
                         <button name="method" value="register">registrati</button>
                     </form>
@@ -125,27 +125,27 @@
         <ifloggedadmin>
             <feedback/>
             
-            <input id="acollapse" class="collapse" type="checkbox" aggiungiposted>
+            <input id="acollapse" class="collapse" type="checkbox" aggiungiposted />
             <h2><label for="acollapse">Aggiungi Film</label></h2>
 
             <form id="alfAggiungi" method="post" enctype="multipart/form-data" onsubmit="return validazioneForm(this);">
                 <label for="alfaTitolo">Titolo:</label>
-                <span><input type="text" id="alfaTitolo" name="agg_nomeFilm" value="agg_nomefilm"></span>
+                <span><input type="text" id="alfaTitolo" name="agg_nomeFilm" value="agg_nomefilm" /></span>
                 
                 <label for="alfaProduttore">Produttore:</label>
-                <span><input type="text" id="alfaProduttore" name="agg_Produttore" value="agg_produttore"></span>
+                <span><input type="text" id="alfaProduttore" name="agg_Produttore" value="agg_produttore" /></span>
                 
                 <label for="alfaRegisti">Regista:</label>
-                <span><input type="text" id="alfaRegisti" name="agg_Regista" value="agg_regista"></span>
+                <span><input type="text" id="alfaRegisti" name="agg_Regista" value="agg_regista" /></span>
                 
                 <label for="alfaAnno">Anno di Pubblicazione:</label>
-                <span><input type="number" id="alfaAnno" name="agg_Anno" value="agg_annofilm" min=1900 max=2022></span>
+                <span><input type="number" id="alfaAnno" name="agg_Anno" value="agg_annofilm" min=1900 max=2022 /></span>
                 
                 <label for="alfaDurata">Durata(min):</label>
-                <span><input type="number" id="alfaDurata" name="agg_Durata" value="agg_duratafilm" min=60 max=180></span>
+                <span><input type="number" id="alfaDurata" name="agg_Durata" value="agg_duratafilm" min=60 max=180 /></span>
 
                 <label for="alfaImg">Immagine film:</label>
-                <span><input type="file" id="alfaImg" name="agg_Img" accept="image/png, image/jpeg"></span>
+                <span><input type="file" id="alfaImg" name="agg_Img" accept="image/png, image/jpeg" /></span>
 
                 <label for="alfaAlt">Descrizione Alternativa Immagine:</label>
                 <span><textarea id="alfaAlt" name="agg_Alt">agg_altfilm</textarea></span>
@@ -156,17 +156,15 @@
                 <label for="alfaCast">Cast:</label>
                 <span><textarea id="alfaCast" cols="26" rows="5" name="agg_Cast">agg_cast</textarea></span>
                 
-                <input type="checkbox" id="alfaGara" name="agg_inGara" agg_filmingara>
+                <input type="checkbox" id="alfaGara" name="agg_inGara" agg_filmingara />
                 <label for="alfaGara" class="inline">In Gara</label>
-                <br>
-                <input type="checkbox" id="alfaApprovato" name="agg_Approvato" agg_approvato>
+                <input type="checkbox" id="alfaApprovato" name="agg_Approvato" agg_approvato />
                 <label for="alfaApprovato" class="inline">Approvato</label>
-                <br>
                 <input class="button" type="submit" name="method" value="Aggiungi Film">
-                <input class="button" type="submit" name="method" value="Reset">
+                <input class="button" type="submit" name="method" value="Reset" />
             </form>
             
-            <input id="mcollapse" class="collapse" type="checkbox" modificaposted>
+            <input id="mcollapse" class="collapse" type="checkbox" modificaposted />
             <h2><label for="mcollapse">Modifica Film</label></h2>
 
             <form id="alfModifica" method="post" enctype="multipart/form-data" onsubmit="return validazioneForm(this);">
@@ -174,7 +172,6 @@
                 <select id="alfSelect" name="mod_oldNomeFilm" data-selection="mod_nomefilmselezionato" onchange="mod_onFilmChanged()">
                     <nomifilm/>
                 </select>
-                <br>
                 <label for="alfmTitolo">Titolo:</label>
                 <span><input type="text" id="alfmTitolo" name="mod_nomeFilm" value="mod_nomefilm"/></span>
                 
@@ -185,10 +182,10 @@
                 <span><input type="text" id="alfmRegisti" name="mod_Registi" value="mod_regista"/></span>
                 
                 <label for="alfmAnno">Anno di Pubblicazione:</label>
-                <span><input type="number" id="alfmAnno" name="mod_Anno" value="mod_annofilm" min=1900 max=2022></span>
+                <span><input type="number" id="alfmAnno" name="mod_Anno" value="mod_annofilm" min=1900 max=2022 /></span>
 
                 <label for="alfmDurata">Durata(min):</label>
-                <span><input type="number" id="alfmDurata" name="mod_Durata" value="mod_duratafilm" min=60 max=180 ></span>
+                <span><input type="number" id="alfmDurata" name="mod_Durata" value="mod_duratafilm" min=60 max=180 /></span>
 
                 <label for="alfmFilm">Immagine film:</label>
                 <span><input type="file" id="alfmFilm" name="mod_Img" accept="image/png, image/jpeg"/></span>
@@ -202,14 +199,14 @@
                 <label for="alfmCast">Cast:</label>
                 <span><textarea id="alfmCast" cols="26" rows="5" name="mod_Cast">mod_cast</textarea></span>
                 
-                <input type="checkbox" id="alfmGara" name="mod_inGara" mod_filmingara>
-                <label for="alfmGara" class="inline">In Gara</label><br>
+                <input type="checkbox" id="alfmGara" name="mod_inGara" mod_filmingara />
+                <label for="alfmGara" class="inline">In Gara</label>
 
-                <input type="checkbox" id="alfmApprovato" name="mod_Approvato" mod_approvato>
-                <label for="alfmApprovato" class="inline">Approvato</label><br>
+                <input type="checkbox" id="alfmApprovato" name="mod_Approvato" mod_approvato />
+                <label for="alfmApprovato" class="inline">Approvato</label>
                 
-                <input class="button" type="submit" name="method" value="Modifica Film">
-                <input class="button" type="submit" name="method" value="Elimina Film">
+                <input class="button" type="submit" name="method" value="Modifica Film" />
+                <input class="button" type="submit" name="method" value="Elimina Film" />
             </form>
         </ifloggedadmin>
         <ifnotloggedadmin>

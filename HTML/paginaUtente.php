@@ -190,7 +190,7 @@ function printCandidature(&$htmlPage)
                     $list = str_replace("pDescrizione", Sanitizer::forHtml($candidatura["descrizione"]), $list);
 
                     if (!$candidatura["approvato"]) {
-                        $list = str_replace("<pAction/>", "<input class='button' type='submit' name='method' value='Ritira candidatura'>", $list);
+                        $list = str_replace("<pAction/>", "<input class='button' type='submit' name='method' value='Ritira candidatura' />", $list);
                     } else {
                         $list = str_replace("<pAction/>", "<p>Approvata</p>", $list);
                     }

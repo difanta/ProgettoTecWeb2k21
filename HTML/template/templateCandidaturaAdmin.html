@@ -1,14 +1,14 @@
 <li>
     <form method="post" onsubmit="return validazioneForm(this);">
-        <input id="collapse" class="toggle" type="checkbox">
+        <input id="collapse" class="toggle" type="checkbox" />
         <label for="collapse" class="text-toggle">pTitolo</label>
 
         <div class="candidatura">
             <div class="candidatura-inner">
-                <img src="percorsoimmagine" alt="descrizioneimmagine">
+                <img src="percorsoimmagine" alt="descrizioneimmagine" />
 
                 <label for="candidaturaAlt">Descrizione alternativa immagine</label>
-                <span><input id="candidaturaAlt" name="alt" type="text" pValue pDisabled></span>
+                <span><input id="candidaturaAlt" name="alt" type="text" pValue pDisabled /></span>
 
                 <p>Durata: pDurata</p>
                 <p>Anno: pAnno</p>
@@ -20,9 +20,9 @@
             </div>
         </div>
 
-        <input type="hidden" name="titolo" value="pTitolo"> <!-- used for post request -->
-        <input class="button" type="submit" name="method" value="Accetta candidatura" accettaCand>
-        <input class="button" type="submit" name="method" value="Rifiuta candidatura" rifiutaCand>
-        <input class="button" type="submit" name="method" value="Sospendi candidatura" sospendiCand>
+        <input type="hidden" name="titolo" value="pTitolo" /> <!-- used for post request -->
+        <input class="button" type="submit" name="method" value="Accetta candidatura" accettaCand />
+        <input class="button" type="submit" name="method" value="Rifiuta candidatura" rifiutaCand />
+        <input class="button" type="submit" name="method" value="Sospendi candidatura" sospendiCand />
     </form>
 </li>

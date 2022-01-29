@@ -866,7 +866,9 @@ li.filmPopolare a{
     color:#1E6091;
     color: var(--main-color-dark);
 }
-
+em[title="Registi"]{
+    display: block;
+}
 .filmInGara{
     display:block;
     padding-top:5px;
@@ -876,6 +878,10 @@ li.filmPopolare a{
 
 .filmNonInGara{
     display:none;
+}
+
+#content_acquistoBiglietti #ordine span.prezzo{
+    display:block;
 }
 
 /* Acquisto biglietti ------------------------------------------------------------- */
@@ -1369,6 +1375,7 @@ p.attenzioneCandidatura{
 
 #content_adminUtenti #aggiungiBiglietto .button{
     margin-top: 0.5em;
+    display:block;
 }
 
 /* Admin Lista Film / Lista Proiezioni  --------------------------------------------------------------------- */
@@ -1443,7 +1450,7 @@ p.attenzioneCandidatura{
     max-height: 60em;
     overflow: hidden;
 
-    padding-bottom: 1.5em;
+    padding-bottom: 2.5em;
 
     margin-top: 0;
     margin-bottom: 1em;
@@ -1478,7 +1485,7 @@ p.attenzioneCandidatura{
 
 #content_adminListaFilm label,
 #content_adminProiezioni label {
-    display: inline-block;
+    display: block;
     min-width: 6em;
 }
 
@@ -1508,7 +1515,7 @@ p.attenzioneCandidatura{
 
 #content_adminListaFilm input[type="submit"],
 #content_adminProiezioni input[type="submit"] {
-    display: inline-block;
+    display: block;
     margin-left: 1em;
     margin-right: 0.8em;
     margin-top: 1em;
