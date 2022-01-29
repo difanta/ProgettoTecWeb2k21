@@ -205,7 +205,7 @@ header h1 {
     background: var(--main-color-dark);
     color: #fff;
     left: 50%;
-    padding: 4px;
+    padding: 0.2em;
     position: absolute;
     transform: translateY(-100%);
     transition: transform 0.3s;
@@ -427,7 +427,7 @@ div.content{
     background-color: #ffffff;
     background-color: var(--main-color-background-light);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.267);
-    padding:40px;
+    padding:2.2em;
 }
 .content a{
     color:#0f709a;
@@ -479,10 +479,10 @@ div.content{
 }
 #contatti li{
 	background-position: left center;
-	background-size: 30px;
+	background-size: 1.67em;
 	background-repeat: no-repeat;
     vertical-align: center;
-    padding:8px 0 8px 43px;
+    padding:0.4em 0 0.4em 2.4em;
 }
 #contatti #social_ig{
 	background-image: url(../images/social/instagram.png);
@@ -506,10 +506,10 @@ div.content{
     margin: auto;
 }
 #content_home{
-    padding: 40px 0;
+    padding: 2.2em 0;
 }
 #content_home h2{
-    padding:40px;
+    padding:2.2em;
 }
 
 
@@ -532,10 +532,10 @@ div.content{
 li.filmPopolare {
     width: 18vw;
     height: 18vw;
-    min-width: 300px;
-    min-height: 300px;
-    max-width: 360px;
-    max-height: 360px;
+    min-width: 16.7em;
+    min-height: 16.7em;
+    max-width: 20em;
+    max-height: 20em;
     margin: 2em 1.2em 2em 1.2em;
     position: relative;
     border: none;
@@ -548,7 +548,7 @@ li.filmPopolare p{
     font-size: 1.4em;
     height:12%;
     margin: 0;
-    padding: 5% 7px;
+    padding: 5% 0.4em;
     text-align: center;
     background-color: #74d9dd;
     background-color: var(--main-color-lighter);
@@ -576,16 +576,16 @@ li.filmPopolare a{
     background-color: #74d9dd;
     background-color: var(--main-color-lighter);
     margin: auto;
-    margin-top: 32px;
+    margin-top: 1.8em;
     display: block;
     text-align: center;
     padding-top: 0.7%;
     padding-bottom: 0.7%;
-    margin-bottom: 16px;
+    margin-bottom: 0.9em;
     align-self: flex-end;
     box-shadow: 0 0 20px 0px #313131;
-    min-width:420px;
-    min-height: 40px;
+    min-width: 23em;
+    min-height: 2.2em;
 }
 
 #linkFilmPopolari:hover{
@@ -708,7 +708,7 @@ li.filmPopolare a{
     text-align: center;
 }
 #homeGalleria img{
-    max-width:300px;
+    max-width:16.7em;
     margin-top:0.4em;
 }
 #homeGalleria h2{
@@ -871,7 +871,7 @@ em[title="Registi"]{
 }
 .filmInGara{
     display:block;
-    padding-top:5px;
+    padding-top:0.3em;
     color:#0f709a;
     color:var(--main-color);
 }
@@ -1080,7 +1080,7 @@ header #loginSection p{
     margin: 1em 0 1em 0;
     color: white;
     width: 25%;
-    min-width: 200px;
+    min-width: 11em;
     text-align: center;
 }
 
@@ -1108,7 +1108,7 @@ header #loginSection p{
 
 #content_paginaUtente .candidatura img{
     width:initial;
-    max-height: 200px;
+    max-height: 11em;
 }
 
 #content_paginaUtente .candidatura label{
@@ -1121,12 +1121,12 @@ header #loginSection p{
 
 /* Come Trovarci --------------------------------------------------------------------------------------------------*/
 #ristorazione h2{
-    margin-top:70px;
+    margin-top:3.9em;
 }
 #content_comeTrovarci #gmaps{
-    max-width: 200px;
+    max-width: 11em;
     float:left;
-    margin: 0 20px 30px 0;
+    margin: 0 1.1em 1.7em 0;
 }
 #ComeRaggiungerci{
     clear:both;
@@ -1149,7 +1149,7 @@ header #loginSection p{
 #ristorazione dt{
     color:#1E6091;
     color:var(--main-color-dark);
-    margin-top:16px;
+    margin-top:0.9em;
 }
 
 /* Contest --------------------------------------------------------------------------------------------------*/
@@ -1171,20 +1171,20 @@ header #loginSection p{
 /* Admin --------------------------------------------------------------------------------------------------*/
 
 .content_admin{
-    margin-left:170px;
+    margin-left:9.4em;
     background-color: #ffffff;
     background-color: var(--main-color-background-light);
-    padding:20px;
+    padding:1.1em;
 }
 
 header #adminMenu ul {
-    width:150px;
+    width:8.3em;
     position: sticky;
     background-color: #74d9dd;
     background-color: var(--main-color-lighter);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.267);
-    padding: 4px 10px;
-    margin-top:2px;
+    padding: 0.2em 0.5em;
+    margin-top:0.1em;
     float:left;
     list-style: none;
     text-align:left;
@@ -1201,10 +1201,10 @@ header #adminMenu ul {
 }
 
 #adminInfo{
-    max-width: 500px;
+    max-width: 27.8em;
     margin:auto;
     border: 3px solid black;
-    margin-bottom: 30px;
+    margin-bottom: 1.67em;
 }
 #adminInfo dt{
     background-color: #74d9dd;
@@ -1228,7 +1228,7 @@ p.attenzioneCandidatura{
 }
 
 #content_adminCandidature li .button{
-    margin-left:8px;
+    margin-left:0.44em;
 }
 
 .containerCandidature li{
@@ -1238,7 +1238,7 @@ p.attenzioneCandidatura{
     background-color: #168aad77;
     background-color: var(--main-color-light-halfopacity);
     list-style-type: none;
-    margin:5px 0;
+    margin:0.3em 0;
     padding:0.5em;
 }
 
@@ -1247,7 +1247,7 @@ p.attenzioneCandidatura{
 }
 
 #content_adminCandidature input{
-    margin-top:10px;
+    margin-top:0.5em;
 }
 
 .toggle {
@@ -1302,7 +1302,7 @@ p.attenzioneCandidatura{
 
 #content_adminCandidature .candidatura img{
     width:initial;
-    max-height: 200px;
+    max-height: 11em;
 }
 
 #content_adminCandidature .candidatura label{
@@ -1323,7 +1323,7 @@ p.attenzioneCandidatura{
     background: var(--login-color);
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
-    padding:6px 12px;
+    padding:0.3em 0.7em
 }
 
 /* Admin Utenti ---------------------------------------------------------------------------------------*/
@@ -1387,7 +1387,7 @@ p.attenzioneCandidatura{
 
 #content_adminListaFilm form .button,
 #content_adminProiezioni form .button {
-    padding: 3px;
+    padding: 0.17em;
 }
 
 #content_adminListaFilm textarea{
@@ -1403,8 +1403,8 @@ p.attenzioneCandidatura{
 
 #content_adminListaFilm h2 label,
 #content_adminProiezioni h2 label {
-    padding-bottom: 3px;
-    border-bottom: 3px solid transparent;
+    padding-bottom: 0.17em;
+    border-bottom: 0.17em solid transparent;
 
     cursor: pointer;
 
@@ -1652,7 +1652,7 @@ p.attenzioneCandidatura{
 
 #tornaSu a img {
     display: block;
-    width: 35px;
+    width: 1.9em;
     height: auto;
     margin: auto;
     padding-top: 0.46em;
@@ -1672,13 +1672,13 @@ footer {
     background-color: var(--footer-color);
     color: aliceblue;
     font-size: 0.9em;
-    padding:30px;
+    padding:1.67em;
 }
 footer #pannelloadmin{
     color:white;
 }
 footer ul {
-    margin-top:8px;
+    margin-top:0.4em;
     list-style-type: none;
     text-align: center;
     padding: 0;
@@ -1691,8 +1691,8 @@ footer p {
     text-align: center;
 }
 #listaSponsor img{
-    max-width: 180px;
-    max-height: 80px;
+    max-width: 10em;
+    max-height: 4.4em;
 }
 #listaSponsor p{
     display:none;
