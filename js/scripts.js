@@ -236,6 +236,7 @@ function setEditOn() {
     document.getElementById('userInfoDataNascita').removeAttribute('disabled');
     document.getElementById('userInfoEmail').removeAttribute('disabled');
     document.getElementById('userInfoPassword').removeAttribute('disabled');
+    document.getElementById('userInfoNome').focus();
 }
 
 function setEditOff() {
