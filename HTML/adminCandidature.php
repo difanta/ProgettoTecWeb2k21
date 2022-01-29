@@ -47,6 +47,7 @@ function printCandidature(&$htmlPage)
 
                 $list = str_replace("collapse", "collapse" . $index, $list); // candidatura class
 
+                $list = str_replace("pId", Sanitizer::forHtml($candidatura["id"]), $list);
                 $list = str_replace("pTitolo", Sanitizer::forHtml($candidatura["nome"]), $list);
                 $list = str_replace("percorsoimmagine", FS::findImage($candidatura["nome"]), $list);
                 $list = str_replace("descrizioneimmagine", Sanitizer::forHtml($candidatura["alt"]), $list);

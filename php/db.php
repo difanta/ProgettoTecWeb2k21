@@ -424,7 +424,7 @@ class DBAccess
     public function getCandidatureAndEmail($filter_candidatura)
     {
 
-        $query = "SELECT Film.nome, Film.descrizione, Film.durata, Film.anno, Film.regista, Film.produttore, Film.cast, Film.alt, Utente.email
+        $query = "SELECT Film.id, Film.nome, Film.descrizione, Film.durata, Film.anno, Film.regista, Film.produttore, Film.cast, Film.alt, Utente.email
                   FROM Film Join Utente on (Film.candidatore = Utente.id)
                   WHERE candidatore IS NOT NULL";
 

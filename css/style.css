@@ -1251,7 +1251,8 @@ p.attenzioneCandidatura{
 }
 
 .toggle {
-    display: none;
+    position: absolute;
+    left: -10000%;
 }
 
 .text-toggle {
@@ -1289,9 +1290,10 @@ p.attenzioneCandidatura{
 }
 
 .candidatura {
+    visibility: hidden;
     max-height: 0px;
     overflow: hidden;
-    transition: max-height .25s ease-in-out;
+    transition: visibility .25s ease-in-out, max-height .25s ease-in-out;
 }
 
 .candidatura img{
@@ -1310,6 +1312,7 @@ p.attenzioneCandidatura{
 }
 
 .toggle:checked + .text-toggle + .candidatura {
+    visibility: visible;
     max-height: 300vh;
 }
 
@@ -1462,7 +1465,7 @@ p.attenzioneCandidatura{
 }
 
 #content_adminProiezioni form {
-    max-height: 20em;
+    max-height: 24em;
 }
 
 #content_adminListaFilm #acollapse:checked ~ #alfAggiungi,

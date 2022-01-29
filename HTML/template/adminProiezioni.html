@@ -125,10 +125,10 @@
         <ifloggedadmin>
             <feedback/>
 
-            <input id="acollapse" class="collapse" type="checkbox" aggiungiposted />
-            <h2><label for="acollapse">Aggiungi Proiezione</label></h2>
+            <input id="acollapse" class="collapse" type="checkbox" aria-controls="aprAggiungi" aria-expanded="false" onchange="toggleAriaExpanded(this)" aggiungiposted />
+            <h2 id="aggLabel"><label for="acollapse">Aggiungi Proiezione</label></h2>
 
-            <form id="aprAggiungi" method="post">
+            <form id="aprAggiungi" aria-labelledby="aggLabel" tabindex="-1" method="post">
                 <label for="apraSelect">Film</label>
                 <select id="apraSelect" name="agg_nomeFilm" data-selection="agg_nomefilmselezionato">
                     <nomifilm/>
@@ -139,10 +139,10 @@
                 <input class="button" type="submit" value="Reset" />
             </form>
             
-            <input id="mcollapse" class="collapse" type="checkbox" modificaposted />
-            <h2><label for="mcollapse">Modifica Proiezione</label></h2>
+            <input id="mcollapse" class="collapse" aria-controls="aprModifica" aria-expanded="false" type="checkbox" onchange="toggleAriaExpanded(this)" modificaposted />
+            <h2 id="modLabel"><label for="mcollapse">Modifica Proiezione</label></h2>
 
-            <form id="aprModifica" method="post">
+            <form id="aprModifica" aria-labelledby="modLabel" tabindex="-1" method="post">
                 <label for="apSelect">Seleziona un film</label>
                 <select id="apSelect" name="mod_nomeFilm" data-selection="mod_nomefilmselezionato" onchange="injectProiezioni(this, document.getElementById('apSelectP'), [document.getElementById('modificaProiezione'), document.getElementById('eliminaProiezione')])">
                     <nomifilm/>

@@ -23,7 +23,7 @@ function aggiungiProiezione() {
                 $_SESSION["feedback"] = "Proiezione aggiunta con successo!";
             } else {
                 $_SESSION["success"] = false;
-                $_SESSION["feedback"] = "Errore, Proiezione non aggiunta"; // non succede mai in realtà
+                $_SESSION["feedback"] = "Errore, Inserire una data alla proiezione"; // non succede mai in realtà
             }
             $connection->closeConnection();
         } else {

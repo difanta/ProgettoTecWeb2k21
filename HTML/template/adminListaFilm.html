@@ -125,10 +125,10 @@
         <ifloggedadmin>
             <feedback/>
             
-            <input id="acollapse" class="collapse" type="checkbox" aggiungiposted />
-            <h2><label for="acollapse">Aggiungi Film</label></h2>
+            <input id="acollapse" class="collapse" type="checkbox" aria-controls="alfAggiungi" aria-expanded="false" onchange="toggleAriaExpanded(this)" aggiungiposted />
+            <h2 id="aggLabel"><label for="acollapse">Aggiungi Film</label></h2>
 
-            <form id="alfAggiungi" method="post" enctype="multipart/form-data" onsubmit="return validazioneForm(this);">
+            <form id="alfAggiungi" aria-labelledby="aggLabel" tabindex="-1" method="post" enctype="multipart/form-data" onsubmit="return validazioneForm(this);">
                 <label for="alfaTitolo">Titolo:</label>
                 <span><input type="text" id="alfaTitolo" name="agg_nomeFilm" value="agg_nomefilm" /></span>
                 
@@ -164,10 +164,10 @@
                 <input class="button" type="submit" name="method" value="Reset" />
             </form>
             
-            <input id="mcollapse" class="collapse" type="checkbox" modificaposted />
-            <h2><label for="mcollapse">Modifica Film</label></h2>
+            <input id="mcollapse" class="collapse" type="checkbox" aria-controls="alfModifica" aria-expanded="false" onchange="toggleAriaExpanded(this)" modificaposted />
+            <h2 id="modLabel"><label for="mcollapse">Modifica Film</label></h2>
 
-            <form id="alfModifica" method="post" enctype="multipart/form-data" onsubmit="return validazioneForm(this);">
+            <form id="alfModifica" aria-labelledby="modLabel" tabindex="-1" method="post" enctype="multipart/form-data" onsubmit="return validazioneForm(this);">
                 <label for="alfSelect">Seleziona un film da modificare</label>
                 <select id="alfSelect" name="mod_oldNomeFilm" data-selection="mod_nomefilmselezionato" onchange="mod_onFilmChanged()">
                     <nomifilm/>

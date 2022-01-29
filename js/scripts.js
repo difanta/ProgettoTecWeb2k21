@@ -352,6 +352,14 @@ function initAdminListaFilm() {
     } else {
         elem.dispatchEvent(new Event("change"));
     }
+
+    if(!document.getElementById("acollapse").checked) {
+        document.getElementById("acollapse").setAttribute("aria-expanded", "true");
+    }
+
+    if(!document.getElementById("mcollapse").checked) {
+        document.getElementById("mcollapse").setAttribute("aria-expanded", "true");
+    }
 }
 
 function resetAlfm() {
@@ -450,6 +458,26 @@ function initAdminProiezioni() {
 
     elem = document.getElementById("apSelect");
     elem.dispatchEvent(new Event("change"));
+
+    if(!document.getElementById("acollapse").checked) {
+        document.getElementById("acollapse").setAttribute("aria-expanded", "true");
+    }
+
+    if(!document.getElementById("mcollapse").checked) {
+        document.getElementById("mcollapse").setAttribute("aria-expanded", "true");
+    }
+}
+
+function toggleAriaExpanded(elem, invert=false) {
+    let expanded = (invert ? elem.checked : !elem.checked);
+    if(expanded) { // checked == collapsed
+        elem.setAttribute("aria-expanded", "true");
+        window.setTimeout(function() {
+            document.getElementById(elem.getAttribute("aria-controls")).focus();
+        }, 20);
+    } else {
+        elem.setAttribute("aria-expanded", "false");
+    }
 }
 
 function mod_ProiezioneSelected() {
@@ -515,7 +543,7 @@ var dettagli_form = {
     "alfmRegisti": ["inserisci il regista del film", namesregex, "il regista deve contenere almeno un carattere alfabetico"],
     "alfmProduttore": ["inserisci il produttore del film", namesregex, "il produttore deve contenere almeno un carattere alfabetico"],
     "alfmCast": ["inserisci il cast del film separato da virgole", /^.{5,}$/, "il cast deve contenere almeno cinque caratteri"],
-    "alfmAlt": ["inserisci la descrizione alternativa dell'immagine", altregex, "descrizione non valida"],
+    "alfmAlt": ["inserisci la descrizione alternativa dell'immagine", altregex, "La descrizione dell'immagine deve contenere tra i 4 e i 125 caratteri"],
     // pagina utente
     "userInfoNome": ["inserisci il tuo nome", namesregex, "nome non valido"],
     "userInfoCognome": ["inserisci il tuo cognome", namesregex, "cognome non valido"],
@@ -540,7 +568,7 @@ var dettagli_form = {
     "signupPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
     "signupPassword2": ["", passwordregexlogin, "la password non coincide con la conferma password"],
     // admin candidature
-    "candidaturaAlt": ["inserisci la descrizione alternativa dell'immagine", altregex, "descrizione non valida"],
+    "candidaturaAlt": ["inserisci la descrizione alternativa dell'immagine", altregex, "La descrizione dell'immagine deve contenere tra i 4 e i 125 caratteri"],
 }
 
 function caricamento() {
