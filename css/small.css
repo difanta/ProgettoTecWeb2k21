@@ -58,11 +58,13 @@ header #accountDropdown button{
 
 /* ---------------------------------- menu ---------------------------------- */
 header #menu{
+    border-top-color:#1E6091;
     border-top: 1px solid var(--main-color-dark);
 }
 
 header #menu #menuButton{
     display: block;
+    background-color:#1E6091;
     background-color: var(--main-color-dark);
     border-radius: 0;
     border: none;
@@ -310,6 +312,7 @@ footer #studenti li{
     margin: 0;
     float: none;
     clear: none;
+    border-top-color:#1E6091;
     border-top: 1px solid var(--main-color-dark);
     text-align: center;
 }
