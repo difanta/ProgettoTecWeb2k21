@@ -531,7 +531,8 @@ class DBAccess
      */
     public function getMediaBigliettiPerProieizione()
     {
-        return $this->formatGetResult($this->connection->query("")); // TODO
+        return $this->formatGetResult($this->connection->query("SELECT count(Biglietto.id)/(SELECT count(Proiezione.id) from Proiezione)
+        from Biglietto") );
     }
 
     /**
