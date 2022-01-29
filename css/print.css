@@ -158,10 +158,6 @@ ol#filmPopolari{
     margin:0 16pt;
     list-style-type: disc;
 }
-#content_contest #contestForm textarea{
-    height: 15pt;
-    width:30%;
-}
 #content_contest #contestForm *{
     display:block;
     padding-top:4pt;
@@ -170,15 +166,14 @@ ol#filmPopolari{
 #content_contest #contestForm input.button{
     display:none;
 }
-#content_contest #contestForm input{
-    max-height: 14pt;
-    margin-top:2pt;
+#content_contest #contestForm input, #content_contest #contestForm textarea{
+    display:none;
 }
 #content_contest #contestForm label {
-    text-align: right;
-    clear: both;
-    float:left;
     margin-right:4pt;
+}
+#content_contest #contestForm label::after {
+    content: "   ________________";
 }
 #content_contest #contestForm{
     margin-top: 6pt;
@@ -213,8 +208,17 @@ ol#filmPopolari{
 /*Admin Candidature*/
 #content_adminCandidature input[type="checkbox"],
 #content_adminCandidature input[type="submit"],
-#content_adminCandidature #attenzioneRifiuto{
+#content_adminCandidature #attenzioneRifiuto,
+#content_adminCandidature #candidaturaAlt{
     display:none;
+}
+#content_adminCandidature img{
+    display: block;
+    max-height: 80pt;
+}
+#content_adminCandidature label[for="candidaturaAlt"]{
+    font-weight: normal;
+    font-size: 16pt;
 }
 #content_adminCandidature label{
     font-size: 14pt;
