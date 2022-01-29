@@ -177,6 +177,10 @@ font-size: 1.8em;
     margin-bottom: 0;
 }
 
+#content_acquistoBiglietti div#login-container button{
+    margin-top: 0.3em;
+}
+
 /* ----------------------- form pagina utente/contest ----------------------- */
 #content_contest div:first-of-type{
     height: auto;
@@ -327,6 +331,15 @@ footer #studenti li{
     padding-bottom: 0.6em;
 }
 
+/* contest */
+#content_contest div#login-container{
+    width: 100%;
+    padding: 0;
+}
+
+#content_contest div#login-container button{
+    margin-top: 0.3em;
+}
 /* ------------------------------ Pagina Utente ----------------------------- */
 #content_paginaUtente h1{
     padding: 0;
