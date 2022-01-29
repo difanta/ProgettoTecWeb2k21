@@ -13,11 +13,13 @@ function printAdminStats(&$htmlPage){
     if ($connectionOk) {
         $n_utenti = $connection->getNoUtenti();
         $n_biglietti = $connection->getNoBiglietti();
+        $n_media = $connection->getMediaBigliettiPerProieizione();
         $n_like = $connection->getNoLike();
         $connection->closeConnection();
 
         $htmlPage = str_replace("pUtentiRegistrati", Sanitizer::forHtml($n_utenti[0]["no"]), $htmlPage);
         $htmlPage = str_replace("pBigliettiVenduti", Sanitizer::forHtml($n_biglietti[0]["no"]), $htmlPage);
+        $htmlPage = str_replace("pMedia", Sanitizer::forHtml($n_media[0]["no"]), $htmlPage);
         $htmlPage = str_replace("pLike", Sanitizer::forHtml($n_like[0]["no"]), $htmlPage);
     }
 }

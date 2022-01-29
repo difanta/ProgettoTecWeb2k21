@@ -134,12 +134,13 @@ function printBiglietti(&$htmlPage)
             $connection->closeConnection();
             if ($biglietti != null) {
                 $listaBiglietti .= "<ul aria-labelledby='bigliettiLabel'>";
+                setlocale(LC_TIME, "it_IT");
                 foreach ($biglietti as $biglietto) {
                     $listaBiglietti .= file_get_contents("template/templateTicketUtente.html");
 
                     $listaBiglietti = str_replace("pNome", Sanitizer::forHtml($biglietto["nome"]), $listaBiglietti);
                     $listaBiglietti = str_replace("pId", Sanitizer::forHtml($biglietto["id"]), $listaBiglietti);
-                    $listaBiglietti = str_replace("pOrario", Sanitizer::forHtml($biglietto["data"] . " " . $biglietto["ora"]), $listaBiglietti);
+                    $listaBiglietti = str_replace("pOrario", Sanitizer::forHtml(strftime("%e %B", strtotime($biglietto["data"])) . " " . $biglietto["ora"]), $listaBiglietti);
                 }
                 unset($biglietto);
                 $listaBiglietti .= "</ul>";
