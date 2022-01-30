@@ -634,7 +634,7 @@ function validazioneCampo(input) {
         input.removeAttribute("aria-invalid");
     }
 
-    var regex = dettagli_form[input.id.includes('candidaturaAlt') ? "candidaturaAlt" : input[id][1];
+    var regex = dettagli_form[input.id.includes('candidaturaAlt') ? "candidaturaAlt" : input.id][1];
     var text = input.value;
     input.value = text;
     if ((text.search(regex) == -1) || (text == dettagli_form[input.id.includes("candidaturaAlt") ? "candidaturaAlt" : input.id][0])) {
