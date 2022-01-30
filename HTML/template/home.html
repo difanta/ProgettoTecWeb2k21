@@ -26,7 +26,7 @@
 
         <h1>CinePado</h1>
 
-        <button <iflogged>title="Vedi il tuo account oppure effettua il logout"</iflogged><ifnotlogged>title="Effettua il login oppure registrati"</ifnotlogged> aria-expanded="false" aria-controls="accountDropdown" aria-haspopup="dialog" id="accountButton" onclick="toggleAccountDropdown()"><span aria-hidden="true" class="material-icons-outlined">account_circle</span><accountname/></button>
+        <button <iflogged>title="Vedi il tuo account oppure effettua il logout" aria-label="Vedi il tuo account oppure effettua il logout"</iflogged><ifnotlogged>title="Effettua il login oppure registrati" aria-label="Effettua il login oppure registrati"</ifnotlogged> aria-expanded="false" aria-controls="accountDropdown" aria-haspopup="dialog" id="accountButton" onclick="toggleAccountDropdown()"><span aria-hidden="true" class="material-icons-outlined">account_circle</span><accountname/></button>
         <div id="accountDropdown" role="dialog" aria-label="Account">
             <div id="accountSection" class="slidableOut">
                 <div class="loginNavigation">   
