@@ -46,7 +46,8 @@ class Utils
      * @param $htmlPage string html page
      * @param ...$placeholders array of placeholders
      */
-    public static function feedbackCleanUp(&$htmlPage, ...$placeholders){
+    public static function feedbackCleanUp(&$htmlPage, ...$placeholders)
+    {
         foreach ($placeholders as $elem)
             $htmlPage = str_replace($elem, "", $htmlPage);
     }
@@ -61,5 +62,80 @@ class Utils
     {
         return strlen($element) == 0
             || preg_match($regex, $element);
+    }
+
+    /**
+     * Takes a date and formats as per given format and translates it to italian.
+     * Workaround to using setlocale() and strftime() as it_IT.utf8 is installed on the server is not set by setlocale.
+     * @author stack overflow's user: rpravisani
+     * @reference https://stackoverflow.com/questions/12565981/setlocale-and-strftime-not-translating-month
+     * @param $format string format to transalte a date to
+     * @param $timestamp timestamp the date to be manipulated
+     * @return array|mixed|string|string[] transalted data
+     */
+    public static function strftimeIta($format, $timestamp)
+    {
+        $months = [
+            1 => "gennaio",
+            "febbraio",
+            "marzo",
+            "aprile",
+            "maggio",
+            "giugno",
+            "luglio",
+            "agosto",
+            "settembre",
+            "ottobre",
+            "novembre",
+            "dicembre"];
+
+        $weekdays = [
+            "domenica",
+            "luned&igrave,",
+            "marted&igrave,",
+            "mercoled&igrave,",
+            "gioved&igrave,",
+            "venerd&igrave,",
+            "sabato"];
+
+        preg_match_all('/%([a-zA-Z])/', $format, $results);
+
+        $originals = $results[0];
+        $factors = $results[1];
+
+        foreach ($factors as $key => $factor) {
+            switch ($factor) {
+                case 'a':
+                    /*** Abbreviated textual representation of the day ***/
+                    $n = date('w', $timestamp); // number of the weekday (0 for sunday, 6 for saturday);
+                    $replace = ucfirst($weekdays[$n]);
+                    $replace = substr($replace, 0, 3);
+                    break;
+                case 'A':
+                    /*** Full textual representation of the day ***/
+                    $n = date('w', $timestamp); // number of the weekday (0 for sunday, 6 for saturday);
+                    $replace = ucfirst($weekdays[$n]);
+                    break;
+                case 'h':
+                case 'b':
+                    /*** Abbreviated month name ***/
+                    $n = date('n', $timestamp); // Numeric representation of a month, without leading zeros
+                    $replace = ucfirst($months[$n]);
+                    $replace = substr($replace, 0, 3);
+                    break;
+                case 'B':
+                    /*** Full month name ***/
+                    $n = date('n', $timestamp); // Numeric representation of a month, without leading zeros
+                    $replace = ucfirst($months[$n]);
+                    break;
+                default:
+                    /*** Use standard strftime function ***/
+                    $replace = strftime("%" . $factor, $timestamp);
+                    break;
+            }
+            $search = $originals[$key];
+            $format = str_replace($search, $replace, $format);
+        }
+        return $format;
     }
 }

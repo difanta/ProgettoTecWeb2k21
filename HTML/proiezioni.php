@@ -68,7 +68,7 @@ function printProiezioni(&$htmlPage) {
                 $proiezione_html = str_replace("titolofilmlink", Sanitizer::forLinks($film["nome"]),   $proiezione_html);
                 $proiezione_html = str_replace("titolofilm",     Sanitizer::forHtml($film["nome"]),    $proiezione_html);
                 $proiezione_html = str_replace("regista",        Sanitizer::forHtml($film["regista"]), $proiezione_html);
-                $proiezione_html = str_replace("data",           Sanitizer::forHtml($film["data"]),    $proiezione_html);
+                $proiezione_html = str_replace("data",           Sanitizer::forHtml(Utils::strftimeIta("%e %B", strtotime($film["data"]))),    $proiezione_html);
                 $proiezione_html = str_replace("ora",            Sanitizer::forHtml($film["ora"]),     $proiezione_html);
                 $proiezione_html = str_replace("idproiezione",   Sanitizer::forHtml($film["pid"]),     $proiezione_html);
                 if($film["in_gara"]){
