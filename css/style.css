@@ -395,7 +395,8 @@ header #accountDropdown .feedbackPositive:last-child{
 }
 
 header form#logout {
-    display: none;   
+    margin: 0;
+    padding: 0; 
 }
 
 header form {

@@ -70,7 +70,9 @@ function setAccountAriaStateAndFocus(aquireFocus, onload) {
                 if(!document.getElementById('accountSection').classList.contains('slideOut')) {
                     let loginBtn = document.getElementById('loginBtn');
                     let accountLink = document.getElementById('linkUtente');
+                    let logoutButton = document.getElementById('logoutBtn');
                     if(accountLink) { accountLink.focus(); }
+                    else if(logoutButton) { logoutButton.focus(); }
                     else if(loginBtn) { loginBtn.focus(); }
                 } else if(document.getElementById('loginSection') && document.getElementById('loginSection').classList.contains('slideOut')) {
                     document.querySelector('#loginEmail').focus();
@@ -122,7 +124,9 @@ function loginBack() {
     window.setTimeout(function() { 
         let loginBtn = document.getElementById('loginBtn');
         let accountLink = document.getElementById('linkUtente');
+        let logoutButton = document.getElementById('logoutBtn');
         if(accountLink) { accountLink.focus(); }
+        else if(logoutButton) { logoutButton.focus(); }
         else if(loginBtn) { loginBtn.focus(); }
     } , 0);
 }
@@ -133,7 +137,9 @@ function signupBack() {
     window.setTimeout(function() { 
         let loginBtn = document.getElementById('loginBtn');
         let accountLink = document.getElementById('linkUtente');
+        let logoutButton = document.getElementById('logoutBtn');
         if(accountLink) { accountLink.focus(); }
+        else if(logoutButton) { logoutButton.focus(); }
         else if(loginBtn) { loginBtn.focus(); }
     } , 0);
 }
@@ -628,7 +634,7 @@ function validazioneCampo(input) {
         input.removeAttribute("aria-invalid");
     }
 
-    var regex = dettagli_form[input.id.includes('candidaturaAlt') ? "candidaturaAlt" : input.id][1];
+    var regex = dettagli_form[input.id.includes('candidaturaAlt') ? "candidaturaAlt" : input[id][1];
     var text = input.value;
     input.value = text;
     if ((text.search(regex) == -1) || (text == dettagli_form[input.id.includes("candidaturaAlt") ? "candidaturaAlt" : input.id][0])) {
