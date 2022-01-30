@@ -1071,14 +1071,15 @@ header #loginSection p{
 }
 
 .ticket{
-    background-color:#34A0A4;
-    background-color: var(--main-color-light);
+    background-color: #74d9dd;
+    background-color:var(--main-color-lighter);
     border: solid black 1px;
     border-radius: 4px;
     padding-left: 1em;
     padding-right: 1em;
     margin: 1em 0 1em 0;
-    color: white;
+    color:#143c5a;
+    color: var(--main-color-darker);
     width: 25%;
     min-width: 11em;
     text-align: center;
