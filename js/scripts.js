@@ -27,7 +27,7 @@ try {
 
 /* Polyfill ------------------------------------------ */
 
-if(String.prototype.includes){
+if(!String.prototype.includes){
     console.log("polyfill includes");
     String.prototype.includes = function(search){
      return !!~this.indexOf(search);

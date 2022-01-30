@@ -116,6 +116,7 @@ font-size: 1.8em;
 
 #listaRecensioni p{
     width: 100%;
+    height: -moz-fit-content;
     height: fit-content;
 }
 
@@ -125,6 +126,7 @@ font-size: 1.8em;
 }
 
 #contatti ul{
+    display: -ms-flexbox;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -225,6 +227,7 @@ footer #studenti li{
     margin: 0;
     margin-top:2em;
     padding: 1em;
+    height: -moz-fit-content;
     height: fit-content;
 }
 

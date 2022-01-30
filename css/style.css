@@ -120,6 +120,7 @@ form textarea:focus{
 }
 
 form button, .button{
+    width: -moz-fit-content;
     width: fit-content;
     min-width: 50px;
     background-color:#0f709a;
@@ -172,6 +173,7 @@ span.material-icons-outlined.md48 {
 /* HEADER --------------------------------------------- */
 
 header {
+    position: -webkit-sticky;
     position: sticky;
     top: -6.5em;
     z-index: 1;
@@ -1181,6 +1183,7 @@ header #loginSection p{
 
 header #adminMenu ul {
     width:8.3em;
+    position: -webkit-sticky;
     position: sticky;
     background-color: #74d9dd;
     background-color: var(--main-color-lighter);
