@@ -27,9 +27,9 @@ try {
 
 /* Polyfill ------------------------------------------ */
 
-if(!Array.prototype.includes){
+if(String.prototype.includes){
     console.log("polyfill includes");
-    Array.prototype.includes = function(search){
+    String.prototype.includes = function(search){
      return !!~this.indexOf(search);
    }
  }
@@ -622,7 +622,7 @@ function validazioneCampo(input) {
     var regex = dettagli_form[input.id.includes('candidaturaAlt') ? "candidaturaAlt" : input.id] ? dettagli_form[input.id.includes('candidaturaAlt') ? "candidaturaAlt" : input.id][1] : null;
     var text = input.value;
     input.value = text;
-    if(!(input && text && regex)) return true;
+    if(!(input && regex)) return true;
     if ((text.search(regex) == -1) || (text == dettagli_form[input.id.includes("candidaturaAlt") ? "candidaturaAlt" : input.id][0])) {
         mostraErrore(input);
         return false;
