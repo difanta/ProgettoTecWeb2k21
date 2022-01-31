@@ -313,6 +313,7 @@ header #accountDropdown {
     visibility: hidden;
     opacity: 0;
     position: absolute;
+    max-width: 300px;
 
     top: 40%;
     right: 0.5%;
