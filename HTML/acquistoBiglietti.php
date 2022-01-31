@@ -28,7 +28,7 @@ function printOrdine(&$htmlPage)
 
             $ordine = str_replace("pNome", Sanitizer::forHtml($results[0]["nome"]), $ordine);
             $ordine = str_replace("pRegista", Sanitizer::forHtml($results[0]["regista"]), $ordine);
-            $ordine = str_replace("pData", Sanitizer::forHtml($results[0]["data"]), $ordine);
+            $ordine = str_replace("pData", Sanitizer::forHtml(Utils::strftimeIta("%e %B", strtotime($results[0]["data"]))), $ordine);
             $ordine = str_replace("pOra", Sanitizer::forHtml($results[0]["ora"]), $ordine);
 
         } else {
