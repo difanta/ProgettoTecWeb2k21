@@ -525,6 +525,7 @@ var passwordregex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}$/;
 var passwordregexlogin = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}|admin|user$/;
 var altregex = /^.{4,125}$/;
 var dataregex =/^19[0-9][0-9]|20[0-1][0-9]|202[0-2]$/;
+var dateregexlogin =/^(19[0-9][0-9]|20[0-1][0-9])-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
 var durataregex=/^[6-9][0-9]|1[0-7][0-9]|180$/;
 var dettagli_form = {
     // contest
@@ -556,6 +557,7 @@ var dettagli_form = {
     "userInfoNome": ["inserisci il tuo nome", namesregex, "nome non valido"],
     "userInfoCognome": ["inserisci il tuo cognome", namesregex, "cognome non valido"],
     "userInfoEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
+    "userInfoDataNascita": ["aaaa-mm-gg", dateregexlogin, "la data deve essere in formato aaaa-mm-gg ed essere compresa tra il 1900 e il 2019"],
     "userInfoPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero"],
     // content login
     "contentLoginEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
@@ -564,6 +566,7 @@ var dettagli_form = {
     "contentSingupNome": ["inserisci il tuo nome", namesregex, "nome non valido"],
     "contentSingupCognome": ["inserisci il tuo cognome", namesregex, "cognome non valido"],
     "contentSingupEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
+    "contentSingupDataNascita": ["aaaa-mm-gg", dateregexlogin, "la data deve essere in formato aaaa-mm-gg ed essere compresa tra il 1900 e il 2019"],
     "contentSingupPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
     "contentSingupPassword2": ["", passwordregexlogin, "la password non coincide con la conferma password"],
     //login
@@ -573,6 +576,7 @@ var dettagli_form = {
     "signupNome": ["inserisci il tuo nome", namesregex, "nome non valido"],
     "signupCognome": ["inserisci il tuo cognome", namesregex, "cognome non valido"],
     "signupEmail": ["inserisci la tua mail", emailregexlogin, "mail non valida"],
+    "signupDataNascita": ["aaaa-mm-gg", dateregexlogin, "la data deve essere in formato aaaa-mm-gg ed essere compresa tra il 1900 e il 2019"],
     "signupPassword": ["", passwordregexlogin, "la password deve contenere almeno una lettera ed un numero ed essere lunga almeno otto caratteri"],
     "signupPassword2": ["", passwordregexlogin, "la password non coincide con la conferma password"],
     // admin candidature
