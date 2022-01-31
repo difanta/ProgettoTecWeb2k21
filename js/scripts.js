@@ -587,7 +587,10 @@ function caricamento() {
     for (var key in dettagli_form) {
         var input = document.querySelectorAll("[id*=" + key + "]");
         for (i = 0; i < input.length; i++) {
-            campoDefault(input[i]);
+            if(key!="signupDataNascita" && key!="contentSingupDataNascita" || navigator.userAgent.match(/safari/i) 
+            ){
+                campoDefault(input[i]);
+            }
             input[i].onfocus = function () {
                 campoPerInput(this);
             };
