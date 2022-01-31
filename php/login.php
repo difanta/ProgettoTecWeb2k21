@@ -166,6 +166,9 @@ class Login {
         }
         if(isset($_SESSION["success"])) {
             $_SESSION["method"] = $_POST["method"];
+            if(isset($_POST["content_loginSignIn"]) && $_POST["content_loginSignIn"] == "true") { 
+                $_SESSION["content_loginSignIn"] = true;
+            }
         }
     }
 
@@ -175,43 +178,65 @@ class Login {
             $method = $_SESSION["method"];
             $success = $_SESSION["success"];
 
+            $dataPrefix = "";
+            $content = false;
+            if(isset($_SESSION["content_loginSignIn"]) && $_SESSION["content_loginSignIn"]) { 
+                $dataPrefix = "content";
+                $content = true;
+            }
+
             switch ($method) 
             {
                 case 'login':
-                    $htmlPage = str_replace(Login::$p_account_dropdown, Login::$p_account_dropdown . " class=\"dropdown\"", $htmlPage);
+                    $p_feedback = "<loginfeedback/>";
+                    if(isset($_SESSION["content_loginSignIn"]) && $_SESSION["content_loginSignIn"]) { 
+                        $p_feedback = "<contentfeedback/>"; 
+                    }
+
+                    if(!$content) {
+                        $htmlPage = str_replace(Login::$p_account_dropdown, Login::$p_account_dropdown . " class=\"dropdown\"", $htmlPage);
+                    }
                     
                     if($success) {
-                        Utils::printFeedback($htmlPage, "<loginfeedback/>");
+                        Utils::printFeedback($htmlPage, $p_feedback);
                     } else {
-                        $htmlPage = str_replace(Login::$p_account_section,  Login::$p_account_section  . " slideOut\"",         $htmlPage);
-                        $htmlPage = str_replace(Login::$p_login_section,    Login::$p_login_section    . " slideIn\"",          $htmlPage);
-                        Utils::printFeedback($htmlPage, "<loginfeedback/>");
-                    }
-
-                    if(!$success) {
+                        if(!$content) {
+                            $htmlPage = str_replace(Login::$p_account_section,  Login::$p_account_section  . " slideOut\"",         $htmlPage);
+                            $htmlPage = str_replace(Login::$p_login_section,    Login::$p_login_section    . " slideIn\"",          $htmlPage);
+                        }
+                        $htmlPage = str_replace("login" . $dataPrefix . "email", $_SESSION["email"], $htmlPage);
+                        Utils::printFeedback($htmlPage, $p_feedback);
                         unset($_SESSION["email"]);
                     }
-
                     break;
 
                 case 'register':
+                    $p_feedbackpositive = "<registerfeedbackpositive/>";
+                    $p_feedbacknegative = "<registerfeedbacknegative/>";
+                    if(isset($_SESSION["content_loginSignIn"]) && $_SESSION["content_loginSignIn"]) { 
+                        $p_feedbackpositive = "<contentfeedback/>"; 
+                        $p_feedbacknegative = "<contentfeedback/>"; 
+                    }
+
                     $htmlPage = str_replace(Login::$p_account_dropdown, Login::$p_account_dropdown . " class=\"dropdown\"", $htmlPage);
                     
                     if($success) {
-                        Utils::printFeedback($htmlPage, "<registerfeedbackpositive/>");
+                        Utils::printFeedback($htmlPage, $p_feedbackpositive);
                     } else {
-                        $htmlPage = str_replace(Login::$p_account_section,  Login::$p_account_section  . " slideOut\"",         $htmlPage);
-                        $htmlPage = str_replace(Login::$p_signup_section,   Login::$p_signup_section   . " slideIn\"",          $htmlPage);
-                        Utils::printFeedback($htmlPage, "<registerfeedbacknegative/>");
-                    }
-
-                    if(!$success) {
+                        if(!$content) {
+                            $htmlPage = str_replace(Login::$p_account_section,  Login::$p_account_section  . " slideOut\"",         $htmlPage);
+                            $htmlPage = str_replace(Login::$p_signup_section,   Login::$p_signup_section   . " slideIn\"",          $htmlPage);
+                        }
+                        $htmlPage = str_replace("signin" . $dataPrefix . "nome"         , $_SESSION["nome"]           , $htmlPage);
+                        $htmlPage = str_replace("signin" . $dataPrefix . "cognome"      , $_SESSION["cognome"]        , $htmlPage);
+                        $htmlPage = str_replace("signin" . $dataPrefix . "datadinascita", $_SESSION["data_di_nascita"], $htmlPage);
+                        $htmlPage = str_replace("signin" . $dataPrefix . "email"        , $_SESSION["email"]          , $htmlPage);
+                        Utils::printFeedback($htmlPage, $p_feedbacknegative);
                         unset($_SESSION["nome"]);
                         unset($_SESSION["cognome"]);
                         unset($_SESSION["data_di_nascita"]);
                         unset($_SESSION["email"]);
                     }
-
                     break;
 
                 case 'logout':
@@ -222,6 +247,7 @@ class Login {
             }
             unset($_SESSION["method"]);
             unset($_SESSION["success"]);
+            unset($_SESSION["content_loginSignIn"]);
         }
 
         // login conditional structs
@@ -245,9 +271,20 @@ class Login {
             $htmlPage = str_replace(Login::$p_accountname, "<span aria-hidden='true' id='accountName'>" . $_SESSION["accountname"] . "</span>", $htmlPage);
         } else {
             $htmlPage = str_replace(Login::$p_accountname, "" , $htmlPage);
+            $htmlPage = str_replace("loginemail"         , "" , $htmlPage);
+            $htmlPage = str_replace("signinnome"         , "" , $htmlPage);
+            $htmlPage = str_replace("signincognome"      , "" , $htmlPage);
+            $htmlPage = str_replace("signindatadinascita", "" , $htmlPage);
+            $htmlPage = str_replace("signinemail"        , "" , $htmlPage);
+    
+            $htmlPage = str_replace("logincontentemail"         , "" , $htmlPage);
+            $htmlPage = str_replace("signincontentnome"         , "" , $htmlPage);
+            $htmlPage = str_replace("signincontentcognome"      , "" , $htmlPage);
+            $htmlPage = str_replace("signincontentdatadinascita", "" , $htmlPage);
+            $htmlPage = str_replace("signincontentemail"        , "" , $htmlPage);
         }
 
-        Utils::feedbackCleanUp($htmlPage, "<loginfeedback/>", "<registerfeedbackpositive/>", "<registerfeedbacknegative/>", "<logoutfeedback/>");
+        Utils::feedbackCleanUp($htmlPage, "<loginfeedback/>", "<registerfeedbackpositive/>", "<registerfeedbacknegative/>", "<logoutfeedback/>", "<contentfeedback>");
     }
 }
 

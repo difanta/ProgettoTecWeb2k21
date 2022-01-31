@@ -57,7 +57,7 @@
                 <loginfeedback/>
                 <form id="login" method="post" onsubmit="return validazioneForm(this);">
                     <label for="loginEmail">Email</label>
-                    <span><input id="loginEmail" name="email" type="text" autocomplete="username" /></span>
+                    <span><input id="loginEmail" name="email" type="text" autocomplete="username" value="loginemail" /></span>
                     <label for="loginPassword">Password</label>
                     <span><input id="loginPassword" name="password" type="password" autocomplete="current-password" /></span>
 
@@ -72,14 +72,14 @@
                 <registerfeedbacknegative/>
                 <form id="signup" method="post" onsubmit="return validazioneForm(this);">
                     <label for="signupNome">Nome</label>
-                    <span><input id="signupNome" name="nome" type="text" autocomplete="name" /></span>
+                    <span><input id="signupNome" name="nome" type="text" autocomplete="name"  value="signinnome" /></span>
                     <label for="signupCognome">Cognome</label>
-                    <span><input id="signupCognome" name="cognome" type="text" autocomplete="family-name" /></span>
+                    <span><input id="signupCognome" name="cognome" type="text" autocomplete="family-name" value="signincognome" /></span>
                     <label for="signupDataNascita">Data di nascita</label>
-                    <span><input id="signupDataNascita" name="data_di_nascita" type="date" placeholder="yyyy-mm-dd" autocomplete="bday" /></span>
+                    <span><input id="signupDataNascita" name="data_di_nascita" type="date" placeholder="yyyy-mm-dd" autocomplete="bday" value="signindatadinascita" /></span>
                     
                     <label for="signupEmail">Email</label>
-                    <span><input id="signupEmail" name="email" type="text" autocomplete="home email" /></span>
+                    <span><input id="signupEmail" name="email" type="text" autocomplete="home email" value="signinemail" /></span>
                     <label for="signupPassword">Password</label>
                     <span><input id="signupPassword" name="password" type="password" autocomplete="new-password" /></span>
                     <label for="signupPassword2">ridigita la password</label>
@@ -134,6 +134,7 @@
     <h2>Candidatura</h2>
     <p>Nel presentare la candidatura è fondamentale fornire tutte le informazioni richieste. In particolare è richiesto l'upload di una immagine presa da un frame del film che si vuole candidare. Quindi niente locandina o altre immagini che non siano presenti nel film. Dopo l'approvazione, questa immagine verrà pubblicata sul sito assieme alle altre informazioni del prodotto candidato, deve quindi essere rappresentativa del film.</p>
 
+    <contentfeedback/>
     <ifnotlogged>
         <div id="login-container">
             <p>Per poter candidare un film devi prima effettuare il login</p>
@@ -144,27 +145,27 @@
             <form id="contentLogin" method="post" onsubmit="return validazioneForm(this);">
                 <input name="content_loginSignIn" type="hidden" value="true">
                 <label for="contentLoginEmail">Email</label>
-                <span><input id="contentLoginEmail" name="email" type="text" /></span>
+                <span><input id="contentLoginEmail" name="email" type="text" autocomplete="username" value="logincontentemail"/></span>
                 <label for="contentLoginPassword">Password</label>
-                <span><input id="contentLoginPassword" name="password" type="password" /></span>
+                <span><input id="contentLoginPassword" name="password" type="password" autocomplete="current-password" /></span>
 
                 <button name="method" value="login">accedi</button>
             </form>
             <form id="contentSignin" method="post" onsubmit="return validazioneForm(this);">
                 <input name="content_loginSignIn" type="hidden" value="true">
                 <label for="contentSingupNome">Nome</label>
-                <span><input id="contentSingupNome" name="nome" type="text" /></span>
+                <span><input id="contentSingupNome" name="nome" type="text" autocomplete="name" value="signincontentnome"/></span>
                 <label for="contentSingupCognome">Cognome</label>
-                <span><input id="contentSingupCognome" name="cognome" type="text" /></span>
+                <span><input id="contentSingupCognome" name="cognome" type="text" autocomplete="family-name" value="signincontentcognome"/></span>
                 <label for="contentSingupDataNascita">Data di nascita</label>
-                <span><input id="contentSingupDataNascita" name="dataNascita" type="text" /></span>
+                <span><input id="contentSingupDataNascita" name="data_di_nascita" type="text" autocomplete="bday" value="signincontentdatadinascita"/></span>
 
                 <label for="contentSingupEmail">Email</label>
-                <span><input id="contentSingupEmail" name="email" type="text" /></span>
+                <span><input id="contentSingupEmail" name="email" type="text" autocomplete="home email" value="signincontentemail"/></span>
                 <label for="contentSingupPassword">Password</label>
-                <span><input id="contentSingupPassword" name="password" type="password" /></span>
+                <span><input id="contentSingupPassword" name="password" type="password" autocomplete="new-password"/></span>
                 <label for="contentSingupPassword2">ridigita la password</label>
-                <span><input id="contentSingupPassword2" name="password2" type="password" /></span>
+                <span><input id="contentSingupPassword2" name="password2" type="password" autocomplete="new-password"/></span>
 
                 <button name="method" value="register">registrati</button>
             </form>
