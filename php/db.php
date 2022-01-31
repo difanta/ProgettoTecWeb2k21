@@ -347,7 +347,7 @@ class DBAccess
      */
     public function getUserTickets()
     {
-        $stmt = $this->connection->prepare("SELECT Film.nome, Biglietto.id, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora 
+        $stmt = $this->connection->prepare("SELECT Film.nome, Biglietto.id, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora, orario
                                             FROM Utente join Biglietto on Utente.id=Biglietto.utente
                                             join Proiezione on Proiezione.id=Biglietto.proiezione
                                             join Film on Film.id= Proiezione.film 
