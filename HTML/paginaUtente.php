@@ -140,6 +140,7 @@ function printBiglietti(&$htmlPage)
 
                     $listaBiglietti = str_replace("pNome", Sanitizer::forHtml($biglietto["nome"]), $listaBiglietti);
                     $listaBiglietti = str_replace("pId", Sanitizer::forHtml($biglietto["id"]), $listaBiglietti);
+                    $listaBiglietti = str_replace("pDataora", Sanitizer::forHtml($biglietto["orario"]), $listaBiglietti);
                     $listaBiglietti = str_replace("pOrario", Sanitizer::forHtml(Utils::strftimeIta("%e %B", strtotime($biglietto["data"])) . " " . $biglietto["ora"]), $listaBiglietti);
                 }
                 unset($biglietto);

@@ -142,6 +142,7 @@
             oppure
             <button onclick="acquistoBigliettiSignup()">Registrati</button>
             <form id="contentLogin" method="post" onsubmit="return validazioneForm(this);">
+                <input name="content_loginSignIn" type="hidden" value="true">
                 <label for="contentLoginEmail">Email</label>
                 <span><input id="contentLoginEmail" name="email" type="text" /></span>
                 <label for="contentLoginPassword">Password</label>
@@ -150,6 +151,7 @@
                 <button name="method" value="login">accedi</button>
             </form>
             <form id="contentSignin" method="post" onsubmit="return validazioneForm(this);">
+                <input name="content_loginSignIn" type="hidden" value="true">
                 <label for="contentSingupNome">Nome</label>
                 <span><input id="contentSingupNome" name="nome" type="text" /></span>
                 <label for="contentSingupCognome">Cognome</label>

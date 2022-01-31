@@ -102,7 +102,7 @@ function printFilms(&$htmlPage) {
     if($at_least_one) {
         $htmlPage  = str_replace($p_filmPreview, "", $htmlPage);
     } else {
-        $htmlPage  = str_replace($p_filmPreview, "<p>Nessun Film trovato!</p>", $htmlPage);
+        $htmlPage  = str_replace($p_filmPreview, "<li>Nessun Film trovato!</li>", $htmlPage);
     }
 }
 
