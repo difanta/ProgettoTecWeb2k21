@@ -95,7 +95,7 @@ function printProiezioni(&$htmlPage) {
     if($at_least_one) {
         $htmlPage  = str_replace($p_proiezione, "", $htmlPage);
     } else {
-        $htmlPage  = str_replace($p_proiezione, "<p>Nessuna Proiezione trovata!</p>", $htmlPage);
+        $htmlPage  = str_replace($p_proiezione, "<li>Nessuna Proiezione trovata!</li>", $htmlPage);
     }
 }
 
