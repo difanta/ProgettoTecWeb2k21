@@ -284,7 +284,7 @@ class Login {
             $htmlPage = str_replace("signincontentemail"        , "" , $htmlPage);
         }
 
-        Utils::feedbackCleanUp($htmlPage, "<loginfeedback/>", "<registerfeedbackpositive/>", "<registerfeedbacknegative/>", "<logoutfeedback/>", "<contentfeedback>");
+        Utils::feedbackCleanUp($htmlPage, "<loginfeedback/>", "<registerfeedbackpositive/>", "<registerfeedbacknegative/>", "<logoutfeedback/>", "<contentfeedback/>");
     }
 }
 

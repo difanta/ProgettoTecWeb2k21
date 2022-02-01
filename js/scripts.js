@@ -11,7 +11,7 @@ function caricaPagina() {
 let passiveSupported = false;
 
 try {
-    const options = {
+    let options = {
         get passive() { // This function will be called when the browser
             //   attempts to access the passive property.
             passiveSupported = true;
@@ -266,7 +266,7 @@ function injectProiezioni(elem, target, buttons) {
 
     if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        const option = [].filter.call(elem.options, function(option) { return (option.value == elem.getAttribute("data-selection"))} )[0].selected = true;
+        let option = [].filter.call(elem.options, function(option) { return (option.value == elem.getAttribute("data-selection"))} )[0].selected = true;
         elem.setAttribute("data-selection", "");
     }
 
@@ -495,7 +495,7 @@ function mod_ProiezioneSelected() {
 
     // load default film in the form select
     if (selectedFilm && selectedFilm != "") {
-        const selectFilm = document.getElementById("aprmSelect");
+        let selectFilm = document.getElementById("aprmSelect");
         selectFilm.options[selectFilm.selectedIndex].selected = false;
         [].filter.call(selectFilm.options, function(option) { return (option.value == selectedFilm) })[0].selected = true;
     }
