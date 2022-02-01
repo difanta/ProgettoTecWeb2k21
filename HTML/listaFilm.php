@@ -87,7 +87,7 @@ function printFilms(&$htmlPage) {
         }
 
         // set datalist
-        $template = "<option value=\"nomefilm\"></option>";
+        $template = "<option value=\"nomefilm\">nomefilm</option>";
         $stringa = "";
         if($films) {
             foreach($films as $film) {
