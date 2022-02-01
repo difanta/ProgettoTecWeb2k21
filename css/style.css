@@ -1057,11 +1057,11 @@ header #loginSection p{
     border-radius: 4px;
 }
 
-#content_paginaUtente h1{
+#content_paginaUtente h2{
     padding-left: 1em;
 }
 
-.BoxUser h1{
+.BoxUser h2{
     padding-left: 1em;
 }
 

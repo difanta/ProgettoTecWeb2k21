@@ -266,7 +266,7 @@ function injectProiezioni(elem, target, buttons) {
 
     if (elem.getAttribute("data-selection") && elem.getAttribute("data-selection") != "") {
         elem.options[elem.selectedIndex].selected = false;
-        let option = [].filter.call(elem.options, function(option) { return (option.value == elem.getAttribute("data-selection"))} )[0].selected = true;
+        [].filter.call(elem.options, function(option) { return (option.value == elem.getAttribute("data-selection"))} )[0].selected = true;
         elem.setAttribute("data-selection", "");
     }
 
