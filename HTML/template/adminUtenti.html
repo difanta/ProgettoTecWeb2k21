@@ -132,7 +132,7 @@
 
         <ifutenteselezionato>
             <div class="boxUtente" aria-labelledby="infoUtenteLabel">
-                <h1 id="infoUtenteLabel">Informazioni Utente</h1>
+                <h2 id="infoUtenteLabel">Informazioni Utente</h2>
                 <p id="email">Email: emailutente</p>
                 <p id="nome">Nome: nomeutente</p>
                 <p id="cognome">Cognome: cognome</p>
@@ -141,11 +141,11 @@
                     <input class="button" type="submit" name="method" value="Elimina Utente" />
                 </form>
                 <div id="biglietti" aria-labelledby="bigliettiLabel">
-                    <h1 id="bigliettiLabel">Biglietti</h1>
+                    <h2 id="bigliettiLabel">Biglietti Utente</h2>
                     <ul id="ticketList" aria-label="Biglietti dell'utente">
                         <biglietto/>
                     </ul>
-                    <h1 id="aggiungiBigliettiLabel">Aggiungi biglietti</h1>
+                    <h2 id="aggiungiBigliettiLabel">Aggiungi biglietti</h2>
                     <form id="aggiungiBiglietto" aria-labelledby="aggiungiBigliettiLabel" method="post">
                         <label for="a_filmSelect">Film</label>
                         <select id="a_filmSelect" name="agg_nomeFilm" class="js_toBeInit" onchange="injectProiezioni(this, document.getElementById('a_prSelect'), [document.getElementById('aggiungiBiglietto_submit')])">
