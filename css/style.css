@@ -908,6 +908,8 @@ header #loginSection p{
 #login-container button {
     font-size: 0.9em;
     margin: 0 1em;
+    width: 6em;
+    padding: 0.2em 0 0.2em 0;
 }
 
 #login-container form {
@@ -1159,7 +1161,7 @@ header #loginSection p{
 
 /* Contest --------------------------------------------------------------------------------------------------*/
 
-#content_contest div:first-of-type{
+#content_contest div#contestForm{
     margin: 2em auto;
     width: 60%;
     padding: 0 1% 1% 1%;

@@ -27,16 +27,13 @@ header #accountDropdown.dropdown{
     top: 0;
     height: 100%;
     width: 100%;
+    max-width: unset;
 }
 header #accountButton span#accountName{
     display: none;
 }
 
 header #accountDropdown #accountSection{
-    padding: 0;
-}
-
-header #accountDropdown #accountSectionButtons {
     padding: 0;
 }
 
@@ -56,6 +53,13 @@ header #accountDropdown button{
     margin: 0.3em auto 0.3em auto;
 }
 
+div#login-container{
+    margin: auto;
+}
+
+div#login-container button{
+    margin: 0.3em 0;
+}
 /* ---------------------------------- menu ---------------------------------- */
 header #menu{
     border-top-color:#1E6091;
@@ -181,13 +185,11 @@ font-size: 1.8em;
     margin-bottom: 0;
 }
 
-#content_acquistoBiglietti div#login-container button{
-    margin-top: 0.3em;
-}
-
 /* ----------------------- form pagina utente/contest ----------------------- */
-#content_contest div:first-of-type{
-    height: auto;
+#content_contest div#contestForm{
+    margin: 0;
+    width: 100%;
+    padding: 0;
 }
 
 /* --------------------------------- FOOTER --------------------------------- */
@@ -337,15 +339,6 @@ footer #studenti li{
     padding-bottom: 0.6em;
 }
 
-/* contest */
-#content_contest div#login-container{
-    width: 100%;
-    padding: 0;
-}
-
-#content_contest div#login-container button{
-    margin-top: 0.3em;
-}
 /* ------------------------------ Pagina Utente ----------------------------- */
 #content_paginaUtente h1{
     padding: 0;
