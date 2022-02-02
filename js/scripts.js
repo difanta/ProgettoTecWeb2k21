@@ -1,10 +1,10 @@
 window.addEventListener("load", caricaPagina, true);
 
 function caricaPagina() {
+    hideTornaSu();
     caricamento();
     let found = focusOnFeedback();
     setAccountAriaStateAndFocus(!found, true);
-    hideTornaSu();
 }
 
 /* Feature Detection --------------------------------- */
