@@ -554,7 +554,6 @@ li.filmPopolare p{
     margin: 0;
     padding: 5% 0.4em;
     text-align: center;
-    background-color: #74d9dd;
     background-color: var(--main-color-lighter);
     white-space: nowrap;
     overflow: hidden;
