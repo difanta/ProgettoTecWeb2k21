@@ -50,9 +50,13 @@ class DBAccess
     public function getUserByEmail($email)
     {
         $stmt = $this->connection->prepare("SELECT * FROM Utente WHERE Utente.email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        return $this->formatGetResult($stmt->get_result());
+        if($stmt != false) {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            return $this->formatGetResult($stmt->get_result());
+        } else {
+            return false;
+        }
     }
 
     public function getLike($utente, $idfilm)
@@ -60,33 +64,48 @@ class DBAccess
         $stmt = $this->connection->prepare("SELECT count(*) as num 
                                             FROM _Like 
                                             WHERE utente = ? and film = ?");
-        $stmt->bind_param("si", $utente, $idfilm);
-        $stmt->execute();
-        return $this->formatGetResult($stmt->get_result());
+        if($stmt != false) {
+            $stmt->bind_param("si", $utente, $idfilm);
+            $stmt->execute();
+            return $this->formatGetResult($stmt->get_result());
+        }
     }
 
     public function insertLike($utente, $idfilm)
     {
         $stmt = $this->connection->prepare("INSERT INTO _Like(utente, film) VALUES
                                             (?, ?)");
-        $stmt->bind_param("si", $utente, $idfilm);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("si", $utente, $idfilm);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     public function removeLike($utente, $idfilm)
     {
         $stmt = $this->connection->prepare("DELETE from _Like
                                             where utente = ? and film = ?");
-        $stmt->bind_param("si", $utente, $idfilm);
-        return $stmt->execute();
+                                                        
+        if($stmt != false) {
+            $stmt->bind_param("si", $utente, $idfilm);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     public function getFilm($nomeFilm)
     {
         $stmt = $this->connection->prepare("SELECT * from Film where Film.nome = ?");
-        $stmt->bind_param("s", $nomeFilm);
-        $stmt->execute();
-        return $this->formatGetResult($stmt->get_result());
+        if($stmt != false) {
+            $stmt->bind_param("s", $nomeFilm);
+            $stmt->execute();
+            return $this->formatGetResult($stmt->get_result());
+        } else {
+            return false;
+        }
     }
 
     public function getFilmsApprovati($in_gara, $nomeFilm)
@@ -110,9 +129,13 @@ class DBAccess
             $query .= "and Film.nome like ?";
             $stmt = $this->connection->prepare($query);
             $nomeFilm = "%$nomeFilm%";
-            $stmt->bind_param("s", $nomeFilm);
-            $stmt->execute();
-            return $this->formatGetResult($stmt->get_result());
+            if($stmt != false) {
+                $stmt->bind_param("s", $nomeFilm);
+                $stmt->execute();
+                return $this->formatGetResult($stmt->get_result());
+            } else {
+                return false;
+            }
         } else {
             return $this->formatGetResult($this->connection->query($query));
         }
@@ -156,20 +179,24 @@ class DBAccess
 
         $stmt = $this->connection->prepare($query);
 
-        if ($nomeFilm != "") {
-            $types .= "s";
-            array_push($array_of_values, "%$nomeFilm%");
-        }
-        if ($dataProiezione != "") {
-            $types .= "s";
-            array_push($array_of_values, $dataProiezione);
-        }
-        if ($types != "") {
-            $stmt->bind_param($types, ...$array_of_values);
-        }
+        if($stmt != false) {
+            if ($nomeFilm != "") {
+                $types .= "s";
+                array_push($array_of_values, "%$nomeFilm%");
+            }
+            if ($dataProiezione != "") {
+                $types .= "s";
+                array_push($array_of_values, $dataProiezione);
+            }
+            if ($types != "") {
+                $stmt->bind_param($types, ...$array_of_values);
+            }
 
-        $stmt->execute();
-        return $this->formatGetResult($stmt->get_result());
+            $stmt->execute();
+            return $this->formatGetResult($stmt->get_result());
+        } else {
+            return false;
+        }
     }
 
     public function getProiezione($proiezione)
@@ -177,9 +204,13 @@ class DBAccess
         $stmt = $this->connection->prepare("SELECT nome, orario 
                                             FROM Proiezione join Film on Proiezione.film = Film.id 
                                             WHERE Proiezione.id = ?");
-        $stmt->bind_param("i", $proiezione);
-        $stmt->execute();
-        return $this->formatGetResult($stmt->get_result());
+        if($stmt != false) {
+            $stmt->bind_param("i", $proiezione);
+            $stmt->execute();
+            return $this->formatGetResult($stmt->get_result());
+        } else {
+            return false;
+        }
     }
 
     public function getNomiFilm()
@@ -196,8 +227,12 @@ class DBAccess
     {
         $stmt = $this->connection->prepare("INSERT INTO Utente(nome, cognome, data_di_nascita, email, password, admin)
 										    VALUES (?, ?, ?, ?, ?, '0')");
-        $stmt->bind_param("sssss", $nome, $cognome, $data_di_nascita, $email, $password);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("sssss", $nome, $cognome, $data_di_nascita, $email, $password);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -220,8 +255,12 @@ class DBAccess
 
         $stmt = $this->connection->prepare("INSERT INTO Film(nome, produttore, regista, anno, durata, descrizione, cast, in_gara, approvato, alt) 
                                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssssss", $nomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato, $alt);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("ssssssssss", $nomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato, $alt);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     public function modifyFilm($oldNomeFilm, $newNomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato, $alt)
@@ -241,15 +280,23 @@ class DBAccess
         $stmt = $this->connection->prepare("UPDATE Film
                                             set nome = ?, produttore = ?, regista = ?, anno = ?, durata = ?, descrizione = ?, cast = ?, in_gara = ?, approvato = ?, alt = ?  
                                             where Film.nome = ?");
-        $stmt->bind_param("sssssssssss", $newNomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato, $alt, $oldNomeFilm);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("sssssssssss", $newNomeFilm, $produttore, $regista, $anno, $durata, $descrizioneFilm, $cast, $inGara, $approvato, $alt, $oldNomeFilm);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     public function deleteFilm($nomeFilm)
     {
         $stmt = $this->connection->prepare("DELETE from Film where Film.nome = ?");
-        $stmt->bind_param("s", $nomeFilm);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("s", $nomeFilm);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -260,8 +307,12 @@ class DBAccess
     {
         $stmt = $this->connection->prepare("INSERT INTO Proiezione(orario, film) 
                                             VALUES (?, (SELECT id from Film where Film.nome = ? and Film.approvato = '1'))");
-        $stmt->bind_param("ss", $data, $nomeFilm);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("ss", $data, $nomeFilm);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     public function modifyProiezione($idProiezione, $nomeFilm, $data)
@@ -269,15 +320,23 @@ class DBAccess
         $stmt = $this->connection->prepare("UPDATE Proiezione
                                             set orario = ?, film = (SELECT id from Film where Film.nome = ? and Film.approvato = '1')
                                             where Proiezione.id = ?");
-        $stmt->bind_param("ssi", $data, $nomeFilm, $idProiezione);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("ssi", $data, $nomeFilm, $idProiezione);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     public function deleteProiezione($idProiezione)
     {
         $stmt = $this->connection->prepare("DELETE from Proiezione where Proiezione.id = ?");
-        $stmt->bind_param("i", $idProiezione);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("i", $idProiezione);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -287,8 +346,12 @@ class DBAccess
     {
         $stmt = $this->connection->prepare("INSERT INTO Film(nome, descrizione, durata, anno, regista, produttore, cast, in_gara, approvato, candidatore)
 										VALUES (?, ?, ?, ?, ?, ?, ?, '1', '0', ?)");
-        $stmt->bind_param("ssiisssi", $titolo, $descrizione, $durata, $anno, $regista, $produttore, $cast, $_SESSION["login"]);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("ssiisssi", $titolo, $descrizione, $durata, $anno, $regista, $produttore, $cast, $_SESSION["login"]);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -297,9 +360,13 @@ class DBAccess
     public function getUser()
     {
         $stmt = $this->connection->prepare("SELECT * FROM Utente WHERE Utente.id = ?");
-        $stmt->bind_param("i", $_SESSION["login"]);
-        $stmt->execute();
-        return $this->formatGetResult($stmt->get_result());
+        if($stmt != false) {
+            $stmt->bind_param("i", $_SESSION["login"]);
+            $stmt->execute();
+            return $this->formatGetResult($stmt->get_result());
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -308,9 +375,13 @@ class DBAccess
     public function getUserById($id)
     {
         $stmt = $this->connection->prepare("SELECT * FROM Utente WHERE Utente.id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        return $this->formatGetResult($stmt->get_result());
+        if($stmt != false) {
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            return $this->formatGetResult($stmt->get_result());
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -321,8 +392,12 @@ class DBAccess
         $stmt = $this->connection->prepare("UPDATE Utente
                                             SET nome = ?, cognome= ?, data_di_nascita= ?, email= ?, password= ?
                                             where id= ?");
-        $stmt->bind_param("sssssi", $nome, $cognome, $dataNascita, $email, $password, $_SESSION["login"]);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("sssssi", $nome, $cognome, $dataNascita, $email, $password, $_SESSION["login"]);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -331,15 +406,23 @@ class DBAccess
     public function deleteUser()
     {
         $stmt = $this->connection->prepare("DELETE FROM Utente WHERE id= ?");
-        $stmt->bind_param("i", $_SESSION["login"]);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("i", $_SESSION["login"]);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     public function deleteUserByEmail($email)
     {
         $stmt = $this->connection->prepare("DELETE FROM Utente WHERE Utente.email= ?");
-        $stmt->bind_param("s", $email);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("s", $email);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -352,9 +435,13 @@ class DBAccess
                                             join Proiezione on Proiezione.id=Biglietto.proiezione
                                             join Film on Film.id= Proiezione.film 
                                             where Utente.id= ?");
-        $stmt->bind_param("i", $_SESSION["login"]);
-        $stmt->execute();
-        return $this->formatGetResult($stmt->get_result());
+        if($stmt != false) {
+            $stmt->bind_param("i", $_SESSION["login"]);
+            $stmt->execute();
+            return $this->formatGetResult($stmt->get_result());
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -366,9 +453,13 @@ class DBAccess
                                             FROM Utente
                                             join Film on Film.candidatore = Utente.id 
                                             where Utente.id = ?");
-        $stmt->bind_param("i", $_SESSION["login"]);
-        $stmt->execute();
-        return $this->formatGetResult($stmt->get_result());
+        if($stmt != false) {
+            $stmt->bind_param("i", $_SESSION["login"]);
+            $stmt->execute();
+            return $this->formatGetResult($stmt->get_result());
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -378,31 +469,47 @@ class DBAccess
     {
         $stmt = $this->connection->prepare("INSERT INTO Biglietto(utente, proiezione) 
                                             VALUES (? , ?)");
-        $stmt->bind_param("ii", $_SESSION["login"], $proiezione);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("ii", $_SESSION["login"], $proiezione);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     public function insertTicketByEmail($email, $proiezione)
     {
         $stmt = $this->connection->prepare("INSERT INTO Biglietto(utente, proiezione) 
                                             VALUES ((SELECT id FROM Utente WHERE Utente.email = ?), ?)");
-        $stmt->bind_param("si", $email, $proiezione);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("si", $email, $proiezione);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     public function modifyTicket($idBiglietto, $idProiezione) {
         $stmt = $this->connection->prepare("UPDATE Biglietto
                                             SET proiezione = ? 
                                             WHERE Biglietto.id = ?");
-        $stmt->bind_param("ii", $idProiezione, $idBiglietto);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("ii", $idProiezione, $idBiglietto);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     public function deleteTicket($idBiglietto) {
         $stmt = $this->connection->prepare("DELETE FROM Biglietto 
                                             WHERE Biglietto.id = ?");
-        $stmt->bind_param("i", $idBiglietto);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("i", $idBiglietto);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -413,9 +520,13 @@ class DBAccess
         $stmt = $this->connection->prepare("SELECT nome, regista, CAST(orario AS DATE) as data, TIME_FORMAT(CAST(orario AS TIME), '%H:%i') as ora
                                             FROM Proiezione join Film on film 
                                             WHERE Proiezione.id= ? and Proiezione.film = Film.id");
-        $stmt->bind_param("i", $proiezione);
-        $stmt->execute();
-        return $this->formatGetResult($stmt->get_result());
+        if($stmt != false) {
+            $stmt->bind_param("i", $proiezione);
+            $stmt->execute();
+            return $this->formatGetResult($stmt->get_result());
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -438,8 +549,12 @@ class DBAccess
                 break;
         }
         $stmt = $this->connection->prepare($query);
-        $stmt->execute();
-        return $this->formatGetResult($stmt->get_result());
+        if($stmt != false) {
+            $stmt->execute();
+            return $this->formatGetResult($stmt->get_result());
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -448,8 +563,12 @@ class DBAccess
     public function deleteCandidatura($titolo)
     {
         $stmt = $this->connection->prepare("DELETE FROM Film WHERE nome= ?");
-        $stmt->bind_param("s", $titolo);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("s", $titolo);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -460,8 +579,12 @@ class DBAccess
         $stmt = $this->connection->prepare("UPDATE Film
                                             SET approvato = '1', alt = ?
                                             WHERE nome= ?");
-        $stmt->bind_param("ss", $alt, $titolo);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("ss", $alt, $titolo);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -472,8 +595,12 @@ class DBAccess
         $stmt = $this->connection->prepare("UPDATE Film
                                             SET approvato = '0'
                                             WHERE nome= ?");
-        $stmt->bind_param("s", $titolo);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("s", $titolo);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -485,8 +612,12 @@ class DBAccess
                                             FROM Proiezione 
                                                 JOIN Film on Film.id = Proiezione.film 
                                             WHERE film = 1");
-        $stmt->bind_param("s", $titolo);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("s", $titolo);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
     /**
      * @used_in adminCandidature.php
@@ -498,8 +629,12 @@ class DBAccess
                                                 JOIN Proiezione on Proiezione.id = Biglietto.proiezione
                                                 JOIN Film on Film.id = Proiezione.film 
                                             WHERE film = 1");
-        $stmt->bind_param("s", $titolo);
-        return $stmt->execute();
+        if($stmt != false) {
+            $stmt->bind_param("s", $titolo);
+            return $stmt->execute();
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -545,9 +680,13 @@ class DBAccess
                                             join Proiezione on Proiezione.id=Biglietto.proiezione
                                             join Film on Film.id= Proiezione.film 
                                             where Utente.email= ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        return $this->formatGetResult($stmt->get_result());
+        if($stmt != false) {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            return $this->formatGetResult($stmt->get_result());
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -556,8 +695,12 @@ class DBAccess
     public function getEmailUtenti()
     {
         $stmt = $this->connection->prepare("SELECT email FROM Utente");
-        $stmt->execute();
-        return $this->formatGetResult($stmt->get_result());
+        if($stmt != false) {
+            $stmt->execute();
+            return $this->formatGetResult($stmt->get_result());
+        } else {
+            return false;
+        }
     }
 }
 
