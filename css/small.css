@@ -19,8 +19,8 @@ header #accountButton {
     top: 5%;
     right: 2.5%;
 }
-/* ------------------------------ login-signup ------------------------------ */
 
+/* ------------------------------ login-signup ------------------------------ */
 header #accountDropdown.dropdown{
     position: fixed;
     right: 0;
@@ -29,6 +29,7 @@ header #accountDropdown.dropdown{
     width: 100%;
     max-width: unset;
 }
+
 header #accountButton span#accountName{
     display: none;
 }
@@ -60,7 +61,8 @@ div#login-container{
 div#login-container button{
     margin: 0.3em 0;
 }
-/* ---------------------------------- menu ---------------------------------- */
+
+/* ---------------------------------- menù ---------------------------------- */
 header #menu{
     border-top-color:#1E6091;
     border-top: 1px solid var(--main-color-dark);
@@ -96,7 +98,6 @@ header #menu li a{
     padding: 0.3em 0 0.3em 0;
     font-size: 1em;
 }
-
 
 /* --------------------------------- CONTENT -------------------------------- */
 div.content{
@@ -214,7 +215,6 @@ footer #studenti li{
     margin: 0;
     padding-bottom: 0.2em;
 }
-
 
 /* ------------------------- Lista Film / Proiezioni ------------------------ */
 #content_listaFilm{
@@ -390,8 +390,8 @@ footer #studenti li{
 #content_paginaUtente ul.containerCandidature .button, #content_paginaUtente ul.containerCandidature p{
     width: 100%;
 }
-/* ---------------------------------- Admin --------------------------------- */
 
+/* ---------------------------------- Admin --------------------------------- */
 .content_admin{
     margin-left: 0;
 }
@@ -413,8 +413,7 @@ header #adminMenu li{
     text-align: center;
 }
 
-/*admin candidature*/
-
+/* ---------------------------- Admin Candidature --------------------------- */
 #content_adminCandidature ul.containerCandidature{
     padding-left: 0;
 }
@@ -445,7 +444,7 @@ header #adminMenu li{
     padding: 0;
 }
 
-/* admin proiezioni */
+/* ---------------------------- Admin Proiezioni ---------------------------- */
 #content_adminProiezioni form{
     padding: 0;
 }
@@ -473,7 +472,7 @@ header #adminMenu li{
     display: none;
 }
 
-/* admin lista film */
+/* ---------------------------- Admin Lista Film ---------------------------- */
 #content_adminListaFilm #alfAggiungi,
 #content_adminListaFilm #alfModifica{
     padding: 0;
@@ -492,7 +491,8 @@ header #adminMenu li{
 #content_adminListaFilm input[type="checkbox"]{
 width: unset;
 }
-/*Admin Utenti*/
+
+/* ------------------------------ Admin Utenti ------------------------------ */
 #content_adminUtenti select:first-of-type{
     width: 100%;
     margin-top: 0.5em;
