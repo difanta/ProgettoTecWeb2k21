@@ -1637,7 +1637,7 @@ p.attenzioneCandidatura{
 
 
 #tornaSu {
-    display: none;
+    display: block;
     height: 3em;
     width: 3em;
     overflow-y: auto;

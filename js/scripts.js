@@ -4,6 +4,7 @@ function caricaPagina() {
     caricamento();
     let found = focusOnFeedback();
     setAccountAriaStateAndFocus(!found, true);
+    hideTornaSu();
 }
 
 /* Feature Detection --------------------------------- */
@@ -161,6 +162,15 @@ window.addEventListener("scroll", function () {
         elem.style.display = "none";
     }
 }, passiveSupported ? {passive: true} : false);
+
+function hideTornaSu() {
+    elem = document.getElementById("tornaSu");
+    if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+        elem.style.display = "block";
+    } else {
+        elem.style.display = "none";
+    }
+}
 
 /* Lista Film ---------------------------------------- */
 
